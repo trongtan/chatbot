@@ -40,3 +40,6 @@ jspm_packages
 .idea
 ngrok
 .DS_Store
+
+#env
+.env
