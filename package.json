@@ -1,0 +1,25 @@
+{
+  "name": "life-pedia-chatbot",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "~4.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EastAgile/LifePedia-chatbot.git"
+  },
+  "author": "East Agile",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EastAgile/LifePedia-chatbot/issues"
+  },
+  "homepage": "https://github.com/EastAgile/LifePedia-chatbot#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
