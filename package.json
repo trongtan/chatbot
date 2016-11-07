@@ -1,6 +1,6 @@
 {
   "name": "LifePedia-chatbot",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "LifePedia Chatbot",
   "main": "index.js",
   "repository": {
@@ -25,6 +25,9 @@
   },
   "dependencies": {
     "dotenv": "^2.0.0",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "pg": "^6.1.0",
+    "sequelize": "^3.24.8",
+    "sequelize-cli": "^2.4.0"
   }
 }
