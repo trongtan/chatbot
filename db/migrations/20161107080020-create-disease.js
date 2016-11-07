@@ -2,7 +2,7 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('Diseases', {
-      diseaseId: {
+      id: {
         primaryKey: true,
         type: Sequelize.INTEGER,
         autoIncrement: true

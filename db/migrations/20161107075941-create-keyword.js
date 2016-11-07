@@ -2,7 +2,7 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('Keywords', {
-      keyword_id: {
+      id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Types',
-          key: 'type_id'
+          key: 'id'
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'

@@ -23,7 +23,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Diseases',
-          key: 'disease_id'
+          key: 'id'
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'
@@ -32,7 +32,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Types',
-          key: 'type_id'
+          key: 'id'
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'
