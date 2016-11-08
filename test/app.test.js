@@ -1,5 +1,5 @@
 import Chai from 'chai';
-import { sum } from 'abc';
+import {sum} from 'abc';
 
 const expect = Chai.expect;
 
