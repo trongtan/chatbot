@@ -4,10 +4,8 @@ const del = require('del');
 const gulpUtil = require('gulp-util');
 const shell = require('gulp-shell');
 
-const models = require('./src/models');
-
 gulp.task('clean', () => {
-  return del(['dist']);
+  return del(['dist', 'coverage']);
 });
 
 gulp.task('es6', () => {
@@ -22,16 +20,14 @@ gulp.task('test', () => {
   gulp.src('test/mocha.opts')
     .pipe(gulp.dest('dist/test'));
 
-  return gulp.src(['test/**/*.js'])
+  return gulp.src(['test/**/*.test.js'])
     .pipe(babel({
       presets: ['es2015', 'stage-3']
     }))
     .pipe(gulp.dest('dist/test'));
 });
 
-gulp.task('migrate', shell.task([
-  'sequelize db:migrate'
-]));
+gulp.task('migrate', shell.task(['sequelize db:migrate']));
 
 gulp.task('build', ['clean'], () => {
   gulp.start('es6', 'migrate').on('error', gulpUtil.log);
@@ -51,7 +47,7 @@ gulp.task('watch', ['build'], () => {
 });
 
 gulp.task('watch-dev', ['build-dev'], () => {
-  gulp.watch('src/**/*.js', ['build-dev']).on('error', gulpUtil.log);
+  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build-dev']).on('error', gulpUtil.log);
 });
 
 gulp.task('default', ['clean'], function () {

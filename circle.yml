@@ -1,0 +1,24 @@
+machine:
+  pre:
+    - mkdir ~/.yarn-cache
+  node:
+    version: stable
+  services:
+    - postgresql
+dependencies:
+  pre:
+    - curl -o- -L https://yarnpkg.com/install.sh | bash
+    - yarn global add gulp-cli
+  cache_directories:
+    - ~/.yarn-cache
+  override:
+    - yarn install
+    - gulp build
+test:
+  override:
+    - yarn test-coverage
+  post:
+    # copy coverage result to artifacts
+    - cp -r coverage $CIRCLE_ARTIFACTS
+    # upload coverage data to coverall.io
+    - yarn coveralls
