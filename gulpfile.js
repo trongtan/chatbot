@@ -11,11 +11,22 @@ gulp.task('clean', () => {
 });
 
 gulp.task('es6', () => {
-  return gulp.src('src/**/*.js')
+  return gulp.src(['src/**/*.js'])
     .pipe(babel({
       presets: ['es2015', 'stage-3']
     }))
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('test', () => {
+  gulp.src('test/mocha.opts')
+    .pipe(gulp.dest('dist/test'));
+
+  return gulp.src(['test/**/*.js'])
+    .pipe(babel({
+      presets: ['es2015', 'stage-3']
+    }))
+    .pipe(gulp.dest('dist/test'));
 });
 
 gulp.task('migrate', shell.task([
@@ -26,6 +37,10 @@ gulp.task('build', ['clean'], () => {
   gulp.start('es6', 'migrate').on('error', gulpUtil.log);
 });
 
+gulp.task('build-dev', ['clean'], () => {
+  gulp.start('es6', 'migrate', 'test').on('error', gulpUtil.log);
+});
+
 gulp.task('clean_db', shell.task([
   'dropdb life_pedia_development',
   'createdb life_pedia_development'
@@ -33,6 +48,10 @@ gulp.task('clean_db', shell.task([
 
 gulp.task('watch', ['build'], () => {
   gulp.watch('src/**/*.js', ['build']).on('error', gulpUtil.log);
+});
+
+gulp.task('watch-dev', ['build-dev'], () => {
+  gulp.watch('src/**/*.js', ['build-dev']).on('error', gulpUtil.log);
 });
 
 gulp.task('default', ['clean'], function () {
