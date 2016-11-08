@@ -6,3 +6,8 @@ dist/
 .env
 /db/config.json
 /coverage/
+
+/scripts/add_greet_message.sh
+/scripts/remove_get_started_button.sh
+/scripts/remove_greet_message.sh
+/scripts/add_get_started_button.sh
