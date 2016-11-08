@@ -19,13 +19,15 @@
     "gulp-babel": "^6.1.2",
     "gulp-shell": "^0.5.2",
     "gulp-util": "^3.0.7",
+    "istanbul": "^0.4.5",
     "mocha": "^3.1.2"
   },
   "scripts": {
     "dev": "yarn start -- --watch",
     "start": "pm2 start dist/app.js",
     "debug": "node debug dist/app.js",
-    "test": "./node_modules/.bin/mocha dist/*.test.js"
+    "test": "./node_modules/.bin/_mocha dist/test/",
+    "test-coverage": "NODE_PATH=dist ./node_modules/.bin/istanbul cover yarn test"
   },
   "dependencies": {
     "dotenv": "^2.0.0",
