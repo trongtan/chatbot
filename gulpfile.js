@@ -30,11 +30,15 @@ gulp.task('test', () => {
 gulp.task('migrate', shell.task(['sequelize db:migrate']));
 
 gulp.task('build', ['clean'], () => {
-  gulp.start('es6').on('error', gulpUtil.log);
+  gulp.start('es6', 'migrate').on('error', gulpUtil.log);
 });
 
 gulp.task('build-dev', ['clean'], () => {
   gulp.start('es6', 'migrate', 'test').on('error', gulpUtil.log);
+});
+
+gulp.task('build-test', ['clean'], () => {
+  gulp.start('es6', 'test').on('error', gulpUtil.log);
 });
 
 gulp.task('clean_db', shell.task([
