@@ -13,7 +13,7 @@ dependencies:
     - ~/.yarn-cache
   override:
     - yarn install
-    - gulp build
+    - gulp build-test
 test:
   override:
     - yarn test-coverage
