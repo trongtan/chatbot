@@ -20,7 +20,7 @@
     "gulp-util": "^3.0.7"
   },
   "scripts": {
-    "dev": "npm start -- --watch",
+    "dev": "yarn start -- --watch",
     "start": "pm2 start dist/app.js",
     "debug": "node debug dist/app.js"
   },
