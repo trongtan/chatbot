@@ -1,0 +1,25 @@
+// this is just an example of config.json file
+// to use it in production, fill the variable values and rename the file to config.json
+{
+  "development": {
+    "username": "<user_name_here>",
+    "password": null,
+    "database": "<database_name_here>",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "",
+    "password": "",
+    "database": "<database_name_test_here>",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "<database_name_production_here>",
+    "host": "",
+    "dialect": "postgres"
+  }
+}
