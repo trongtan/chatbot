@@ -9,8 +9,7 @@ module.exports = {
           key: 'id'
         },
         onUpdate: 'cascade',
-        onDelete: 'cascade',
-        primaryKey: true,
+        onDelete: 'cascade'
       },
       symptomId: {
         type: Sequelize.INTEGER,
@@ -19,8 +18,7 @@ module.exports = {
           key: 'id'
         },
         onUpdate: 'cascade',
-        onDelete: 'cascade',
-        primaryKey: true,
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,

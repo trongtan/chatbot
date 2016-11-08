@@ -18,7 +18,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      //foreign key to Diseases
       diseaseId: {
         type: Sequelize.INTEGER,
         references: {

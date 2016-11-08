@@ -18,7 +18,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      //foreign key to Type
       typeId: {
         type: Sequelize.INTEGER,
         references: {
