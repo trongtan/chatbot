@@ -1,8 +1,12 @@
 import Express from 'express';
+import {logger} from 'logs/winston-logger';
 
 var webHookApp = new Express();
 
-webHookApp.get('/', (req, res) => res.send('Hello from Life Pedia - Chatbot'));
+webHookApp.get('/', (req, res) => {
+  logger.log('info', "request to root");
+  res.send('Hello from Life Pedia - Chatbot')
+});
 
 webHookApp.get('/webhook', (req, res) => {
   if (req.query['hub.mode'] === 'subscribe' &&
