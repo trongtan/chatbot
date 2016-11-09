@@ -16,12 +16,14 @@
     "chai": "^3.5.0",
     "coveralls": "^2.11.14",
     "del": "^2.2.2",
+    "eslint": "^3.9.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-shell": "^0.5.2",
     "gulp-util": "^3.0.7",
     "istanbul": "^0.4.5",
-    "mocha": "^3.1.2"
+    "mocha": "^3.1.2",
+    "pre-commit": "^1.1.3"
   },
   "scripts": {
     "dev": "yarn start -- --watch",
@@ -29,7 +31,8 @@
     "debug": "node debug dist/app.js",
     "test": "NODE_PATH=dist ./node_modules/.bin/_mocha dist/test/",
     "test-coverage": "NODE_PATH=dist ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha dist/test/",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "eslint": "./node_modules/.bin/eslint src/**/*.js --quiet && ./node_modules/.bin/eslint test/**/*.js --quiet"
   },
   "dependencies": {
     "dotenv": "^2.0.0",
@@ -38,5 +41,6 @@
     "sequelize": "^3.24.8",
     "sequelize-cli": "^2.4.0",
     "winston": "^2.3.0"
-  }
+  },
+  "pre-commit": ["eslint"]
 }
