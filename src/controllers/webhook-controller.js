@@ -1,11 +1,15 @@
 import Express from 'express';
-import { logger } from 'logs/winston-logger';
 
-var webHookApp = new Express();
+import { logger } from 'logs/winston-logger';
+import ClassifyCenter from 'classifies';
+import TransporterCenter from 'transporters';
+
+const webHookApp = new Express();
+const transporterCenter = new TransporterCenter();
+const classifyCenter = new ClassifyCenter(transporterCenter);
 
 webHookApp.get('/', (req, res) => {
-  logger.log('info', 'request to root');
-  res.send('Hello from Life Pedia - Chatbot');
+  res.send('Hello from Life Pedia - Chatbot')
 });
 
 webHookApp.get('/webhook', (req, res) => {
@@ -18,5 +22,20 @@ webHookApp.get('/webhook', (req, res) => {
     res.sendStatus(403);
   }
 });
+
+webHookApp.post('/webhook', (req, res) => {
+  const data = req.body;
+
+  if (data.object == 'page') {
+    data.entry.forEach(pageEntry => {
+      pageEntry.messaging.forEach(function(messagingEvent) {
+        classifyCenter.receivedMessage(messagingEvent);
+      });
+    });
+
+    res.sendStatus(200);
+  }
+});
+
 
 export default webHookApp;
