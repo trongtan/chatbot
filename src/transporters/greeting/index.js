@@ -15,6 +15,6 @@ export const handleGreetingMessage = (responseMessage, services) => {
   services.sendTextMessage(recipientId, message);
 };
 
-export const _getGreetingResponseMessage = function () {
+export const _getGreetingResponseMessage = () => {
   return getRandomObjectFromArray(messages).message;
 };

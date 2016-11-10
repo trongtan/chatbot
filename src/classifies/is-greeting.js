@@ -10,7 +10,7 @@ const keywords = {
   'bac si oi': ['bac si oi', 'bác sĩ ơi']
 };
 
-export const isGreeting = function (messageEvent) {
+export const isGreeting = messageEvent => {
   if (!(messageEvent && messageEvent.message && messageEvent.message.text)) {
     return false;
   } else {
