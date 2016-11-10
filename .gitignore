@@ -11,4 +11,5 @@ dist/
 /scripts/remove_get_started_button.sh
 /scripts/remove_greet_message.sh
 /scripts/add_get_started_button.sh
+/scripts/subscribe_app_to_page.sh
 /setup.sh
