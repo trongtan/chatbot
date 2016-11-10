@@ -1,0 +1,219 @@
+[
+  {
+    "id": 1,
+    "value": "thong tin",
+    "typeId": "1",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "value": "thông tin",
+    "typeId": "1",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 3,
+    "value": "thog tin",
+    "typeId": "1",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 4,
+    "value": "thongtin",
+    "typeId": "1",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 5,
+    "value": "tac hai",
+    "typeId": "2",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 6,
+    "value": "tachai",
+    "typeId": "2",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 7,
+    "value": "tác hai",
+    "typeId": "2",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 8,
+    "value": "tác hại",
+    "typeId": "1",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 9,
+    "value": "tac hại",
+    "typeId": "2",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 10,
+    "value": "dieu tri",
+    "typeId": "3",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 11,
+    "value": "dieutri",
+    "typeId": "3",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 12,
+    "value": "điều trị",
+    "typeId": "3",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 13,
+    "value": "điêu trị",
+    "typeId": "3",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 14,
+    "value": "điêu tri",
+    "typeId": "3",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 15,
+    "value": "diều trị",
+    "typeId": "3",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 16,
+    "value": "dinh duong",
+    "typeId": "4",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 17,
+    "value": "dinh dưỡng",
+    "typeId": "4",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 18,
+    "value": "dinh dương",
+    "typeId": "4",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 19,
+    "value": "dinhduong",
+    "typeId": "4",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 20,
+    "value": "trieu chung",
+    "typeId": "5",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 21,
+    "value": "trieuchung",
+    "typeId": "5",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 22,
+    "value": "triệu chứng",
+    "typeId": "5",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 23,
+    "value": "triêu chứng",
+    "typeId": "5",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 24,
+    "value": "triêu chưng",
+    "typeId": "5",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 25,
+    "value": "triêu chung",
+    "typeId": "5",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 26,
+    "value": "đề phòng",
+    "typeId": "6",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 27,
+    "value": "phòng tránh",
+    "typeId": "6",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 28,
+    "value": "de phong",
+    "typeId": "6",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 29,
+    "value": "phong tranh",
+    "typeId": "6",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 30,
+    "value": "phòng bệnh",
+    "typeId": "6",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 31,
+    "value": "phong benh",
+    "typeId": "6",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  }
+]

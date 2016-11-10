@@ -1,0 +1,415 @@
+[
+  {
+    "id": 1,
+    "diseaseId": 1,
+    "name": "cam lanh",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "diseaseId": 1,
+    "name": "camlanh",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 3,
+    "diseaseId": 1,
+    "name": "cảm lanh",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 4,
+    "diseaseId": 1,
+    "name": "cảm lạnh",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 5,
+    "diseaseId": 1,
+    "name": "cãm lanh",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 6,
+    "diseaseId": 1,
+    "name": "cãm lạnh",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 7,
+    "diseaseId": 2,
+    "name": "cảm cúm",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 8,
+    "diseaseId": 2,
+    "name": "cảm cum",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 9,
+    "diseaseId": 2,
+    "name": "cam cum",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 10,
+    "diseaseId": 2,
+    "name": "cam cúm",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 11,
+    "diseaseId": 2,
+    "name": "camcum",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 12,
+    "diseaseId": 3,
+    "name": "rôm sảy",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 13,
+    "diseaseId": 3,
+    "name": "rôm sẩy",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 14,
+    "diseaseId": 3,
+    "name": "rôm say",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 15,
+    "diseaseId": 3,
+    "name": "rôm sây",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 16,
+    "diseaseId": 3,
+    "name": "rom sảy",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 17,
+    "diseaseId": 3,
+    "name": "rom say",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 18,
+    "diseaseId": 3,
+    "name": "rom sẩy",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 19,
+    "diseaseId": 4,
+    "name": "mụn trứng cá",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 20,
+    "diseaseId": 4,
+    "name": "mun trung ca",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 21,
+    "diseaseId": 4,
+    "name": "noi mun",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 22,
+    "diseaseId": 4,
+    "name": "mun",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 23,
+    "diseaseId": 4,
+    "name": "nổi mụn",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 24,
+    "diseaseId": 4,
+    "name": "mụn",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 25,
+    "diseaseId": 5,
+    "name": "đau mắt đỏ",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 26,
+    "diseaseId": 5,
+    "name": "đâu mắt đỏ",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 27,
+    "diseaseId": 5,
+    "name": "dau mac do",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 28,
+    "diseaseId": 5,
+    "name": "đau mắc đỏ",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 29,
+    "diseaseId": 6,
+    "name": "viêm họng",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 30,
+    "diseaseId": 6,
+    "name": "viem họng",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 31,
+    "diseaseId": 6,
+    "name": "viêm hong",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 32,
+    "diseaseId": 6,
+    "name": "viem hong",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 33,
+    "diseaseId": 6,
+    "name": "viemhong",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 34,
+    "diseaseId": 7,
+    "name": "hô hấp",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 35,
+    "diseaseId": 7,
+    "name": "hô háp",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 36,
+    "diseaseId": 7,
+    "name": "ho hấp",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 37,
+    "diseaseId": 7,
+    "name": "ho hap",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 38,
+    "diseaseId": 7,
+    "name": "hohap",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 39,
+    "diseaseId": 8,
+    "name": "tiêu chảy",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 40,
+    "diseaseId": 8,
+    "name": "tiêu chãy",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 41,
+    "diseaseId": 8,
+    "name": "tiêu chẩy",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 42,
+    "diseaseId": 8,
+    "name": "tiêu chay",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 43,
+    "diseaseId": 8,
+    "name": "tieu chảy",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 44,
+    "diseaseId": 8,
+    "name": "tieu chay",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 45,
+    "diseaseId": 8,
+    "name": "tieuchay",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 46,
+    "diseaseId": 9,
+    "name": "kiết lỵ",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 47,
+    "diseaseId": 9,
+    "name": "kiết lị",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 48,
+    "diseaseId": 9,
+    "name": "kiếc lỵ",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 49,
+    "diseaseId": 9,
+    "name": "kiếc lị",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 50,
+    "diseaseId": 9,
+    "name": "kiet ly",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 51,
+    "diseaseId": 9,
+    "name": "kiec ly",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 52,
+    "diseaseId": 9,
+    "name": "kiet li",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 53,
+    "diseaseId": 10,
+    "name": "mẩn ngứa",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 54,
+    "diseaseId": 10,
+    "name": "mẩn ngưa",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 55,
+    "diseaseId": 10,
+    "name": "mẩn ngua",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 56,
+    "diseaseId": 10,
+    "name": "mẫn ngứa",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 57,
+    "diseaseId": 10,
+    "name": "mẫn ngưa",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 58,
+    "diseaseId": 10,
+    "name": "man ngua",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 59,
+    "diseaseId": 10,
+    "name": "manngua",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  }
+]

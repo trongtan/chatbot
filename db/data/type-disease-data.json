@@ -1,0 +1,492 @@
+[
+  {
+    "id": 1,
+    "typeId": 1,
+    "diseaseId": 1,
+    "articles": [
+      "http://www.webtretho.com/forum/f87/cam-sot-15073/",
+      "http://www.webtretho.com/forum/f71/nhung-cach-ha-sot-khien-be-benh-them-nang-2182041/",
+      "http://www.webtretho.com/forum/f26/benh-cam-lanh-o-tre-khi-nao-nguy-hiem-1157350/",
+      "http://www.webtretho.com/forum/f87/phong-chong-benh-cam-cho-be-1269226/",
+      "http://www.webtretho.com/forum/f3584/nguyen-nhan-va-cach-phong-tranh-benh-cam-cum-o-tre-em-1838438/",
+      "http://www.webtretho.com/forum/f26/10-dieu-lam-tuong-ve-cam-cum-dantri-137377/",
+      "http://www.webtretho.com/forum/f73/tim-hieu-mot-so-benh-o-tre-em-cam-lanh-1628957/",
+      "http://www.webtretho.com/forum/f119/dau-hieu-nhan-biet-cam-cum-tu-som-dau-hong-2206158/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "typeId": 1,
+    "diseaseId": 2,
+    "articles": [
+      "http://www.webtretho.com/forum/f119/8-hieu-lam-chet-nguoi-ve-cum-a-h1n1-691596/",
+      "http://www.webtretho.com/forum/f26/co-che-lay-benh-cum-364423/",
+      "http://www.webtretho.com/forum/f119/thong-tin-phong-tranh-va-trieu-chung-cua-benh-cum-virus-a-h7n9-2022258/",
+      "http://www.webtretho.com/forum/f113/phan-biet-cam-cum-voi-cam-lanh-2217506/",
+      "http://www.webtretho.com/forum/f119/dau-hieu-nhan-biet-cam-cum-tu-som-dau-hong-2206158/",
+      "http://www.webtretho.com/forum/f26/nhung-dieu-can-biet-ve-benh-cum-h7n9-tren-nguoi-1840325/",
+      "http://www.webtretho.com/forum/f854/bac-si-mach-me-nhan-biet-dau-hieu-dau-tien-cua-cam-cum-va-cach-xu-ly-nhanh-de-chan-dung-benh-2236301/",
+      "http://www.webtretho.com/forum/f26/nhung-thong-tin-can-biet-ve-cum-lon-248795/",
+      "http://www.webtretho.com/forum/f119/benh-cum-trieu-chung-va-cach-phong-ngua-1755860/",
+      "http://www.webtretho.com/forum/f92/5-dieu-phu-nu-mang-thai-can-biet-ve-cum-a-h1n1-1812945/",
+      "http://www.webtretho.com/forum/f96/su-can-thiet-cua-chich-ngua-cum-khi-mang-thai-2030530/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 3,
+    "typeId": 1,
+    "diseaseId": 3,
+    "articles": [
+      "http://www.webtretho.com/forum/f26/meo-dan-gian-tri-rom-say-hieu-qua-cho-be-trong-mua-nang-nong-1896036/",
+      "http://www.webtretho.com/forum/f87/rom-say-ke-phien-nhieu-cho-lan-da-be-1293816/",
+      "http://www.webtretho.com/forum/f87/7-cach-dieu-tri-rom-say-o-tre-em-1982864/",
+      "http://www.webtretho.com/forum/f87/danh-bay-rom-say-cho-be-trong-ngay-he-863602/",
+      "http://www.webtretho.com/forum/f26/tai-sao-tre-con-bi-rom-say-510705/",
+      "http://www.webtretho.com/forum/f3584/cach-phong-tranh-rom-say-mua-nang-nong-cho-be-1727950/",
+      "http://www.webtretho.com/forum/f854/cac-chua-tri-rom-say-cho-be-yeu-ngay-nong-2075898/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 4,
+    "typeId": 1,
+    "diseaseId": 4,
+    "articles": [
+      "http://www.webtretho.com/forum/f3268/tri-mun-trung-ca-cho-co-nang-da-nhon-2333437/",
+      "http://www.webtretho.com/forum/f3268/7-giai-phap-tri-mun-13516/",
+      "http://www.webtretho.com/forum/f3268/lam-the-nao-de-loai-bo-mun-nhanh-va-hieu-qua-114411/",
+      "http://www.webtretho.com/forum/f119/tri-mun-nhu-the-nao-144027/",
+      "http://www.webtretho.com/forum/f26/ngua-mun-6-thoi-quen-cho-nam-gioi-141855/",
+      "http://www.webtretho.com/forum/f26/tham-hoa-tu-nan-mun-383483/",
+      "http://www.webtretho.com/forum/f119/giai-phap-nao-cho-dieu-tri-mun-trung-ca-691432/",
+      "http://www.webtretho.com/forum/f1742/nhung-li-do-khien-ban-khong-nen-nan-mun-767260/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 5,
+    "typeId": 1,
+    "diseaseId": 5,
+    "articles": [
+      "http://www.webtretho.com/forum/f119/dau-mat-do-dieu-tri-the-nao-2274705/",
+      "http://www.webtretho.com/forum/f119/cach-phong-benh-dau-mat-do-1956634/",
+      "http://www.webtretho.com/forum/f119/dau-mat-do-de-lay-nhu-cum-1960177/",
+      "http://www.webtretho.com/forum/f26/phong-va-chua-benh-dau-mat-do-dung-cach-1777743/",
+      "http://www.webtretho.com/forum/f26/mua-dau-mat-do-phong-benh-the-nao-cho-hieu-qua-1946465/",
+      "http://www.webtretho.com/forum/f87/mua-mua-phong-dich-dau-mat-do-cho-be-1729360/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 6,
+    "typeId": 1,
+    "diseaseId": 6,
+    "articles": [
+      "http://www.webtretho.com/forum/f26/chua-viem-hong-khong-dung-khang-sinh-394533/",
+      "http://www.webtretho.com/forum/f26/chua-viem-hong-khong-dung-khang-sinh-394533/",
+      "http://www.webtretho.com/forum/f87/viem-hong-khong-nen-lam-dung-khang-sinh-999740/",
+      "http://www.webtretho.com/forum/f87/vai-cach-tri-chung-viem-hong-don-gian-va-hieu-qua-1611952/",
+      "http://www.webtretho.com/forum/f119/bien-chung-nguy-hiem-cua-benh-viem-hong-1247204/",
+      "http://www.webtretho.com/forum/f77/vi-sao-mac-benh-viem-hong-hat-2312898/",
+      "http://www.webtretho.com/forum/f119/chung-viem-hong-cua-tre-trong-mua-lanh-2004091/",
+      "http://www.webtretho.com/forum/f119/bien-chung-nguy-hiem-cua-benh-viem-hong-1247204/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 7,
+    "typeId": 1,
+    "diseaseId": 7,
+    "articles": [
+      "http://www.webtretho.com/forum/f87/nhung-dieu-can-biet-khi-cham-soc-tre-bi-benh-ho-hap-1362764/",
+      "http://www.webtretho.com/forum/f26/benh-ho-hap-tim-mach-noi-kinh-hoang-trong-mua-lanh-1823012/",
+      "http://www.webtretho.com/forum/f73/5-cach-giup-ba-bau-phong-benh-ho-hap-1262651/",
+      "http://www.webtretho.com/forum/f26/luu-y-benh-ho-hap-o-tre-1957741/",
+      "http://www.webtretho.com/forum/f26/ho-va-hat-xi-dung-cach-phong-ngua-hieu-qua-benh-ho-hap-2063069/",
+      "http://www.webtretho.com/forum/f119/7-cach-phong-benh-ho-hap-khi-giao-mua-1982898/",
+      "http://www.webtretho.com/forum/f87/mot-nguyen-nhan-gay-ra-benh-ho-hap-cho-tre-638952/",
+      "http://www.webtretho.com/forum/f854/phong-benh-ho-hap-cho-con-bang-nuoc-muoi-sinh-ly-phong-dau-chua-thay-da-thay-hai-con-2198000/",
+      "http://www.webtretho.com/forum/f73/5-cach-giup-ba-bau-phong-benh-ho-hap-1262651/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 8,
+    "typeId": 1,
+    "diseaseId": 8,
+    "articles": [
+      "http://www.webtretho.com/forum/f2140/tieu-chay-cap-va-dinh-duong-cho-con-yeu-647162/",
+      "http://www.webtretho.com/forum/f87/tieu-chay-va-chua-tieu-chay-4411/",
+      "http://www.webtretho.com/forum/f87/xu-tri-tieu-chay-cap-o-tre-em-13515/",
+      "http://www.webtretho.com/forum/f26/cach-chua-benh-tieu-chay-ma-khong-can-bu-nuoc-445218/",
+      "http://www.webtretho.com/forum/f71/tieu-chay-cap-1626719/",
+      "http://www.webtretho.com/forum/f26/tre-de-bi-tieu-chay-cap-vao-mua-lanh-641944/",
+      "http://www.webtretho.com/forum/f1582/tieu-chay-co-the-dieu-tri-tai-nha-681434/",
+      "http://www.webtretho.com/forum/f71/cac-sai-lam-hay-gap-khi-cham-be-bi-tieu-chay-165863/",
+      "http://www.webtretho.com/forum/f71/nen-va-khong-nen-khi-be-tieu-chay-1365288/",
+      "http://www.webtretho.com/forum/f26/nhan-dien-ke-thu-gay-tieu-chay-mua-nang-nong-1680740/",
+      "http://www.webtretho.com/forum/f26/phong-benh-tieu-chay-mua-dong-cho-be-37820/",
+      "http://www.webtretho.com/forum/f26/nhung-nguy-co-gay-tieu-chay-cap-o-tre-em-17004/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 9,
+    "typeId": 1,
+    "diseaseId": 9,
+    "articles": [
+      "http://www.webtretho.com/forum/f87/cac-bai-thuoc-dan-gian-chua-kiet-ly-phan-song-loan-khuan-1859992/",
+      "http://www.webtretho.com/forum/f73/chua-kiet-ly-bang-thuoc-nam-1391587/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 10,
+    "typeId": 1,
+    "diseaseId": 10,
+    "articles": [
+      "http://www.webtretho.com/forum/f854/man-ngua-benh-thuong-gap-trong-mua-nong-2267283/",
+      "http://www.webtretho.com/forum/f26/chua-man-ngua-o-tre-nho-140719/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 11,
+    "typeId": 6,
+    "diseaseId": 1,
+    "articles": [
+      "http://www.webtretho.com/forum/f26/bi-cam-cum-khong-nen-dung-khang-sinh-378275/",
+      "http://www.webtretho.com/forum/f119/cach-chua-cam-don-gian-ma-hieu-qua-21680/",
+      "http://www.webtretho.com/forum/f3395/phong-benh-cam-cum-cho-be-yeu-khi-thoi-khac-giao-mua-1765171/",
+      "http://www.webtretho.com/forum/f87/phong-chong-benh-cam-cho-be-1269226/",
+      "http://www.webtretho.com/forum/f3584/nguyen-nhan-va-cach-phong-tranh-benh-cam-cum-o-tre-em-1838438/",
+      "http://www.webtretho.com/forum/f73/tim-hieu-mot-so-benh-o-tre-em-cam-lanh-1628957/",
+      "http://www.webtretho.com/forum/f119/meo-chua-cam-cum-khong-can-dung-thuoc-1470593/",
+      "http://www.webtretho.com/forum/f119/dau-hieu-nhan-biet-cam-cum-tu-som-dau-hong-2206158/",
+      "http://www.webtretho.com/forum/f113/de-phong-ngua-cam-cum-hay-ghi-nho-3-dieu-cuc-ky-quan-trong-sau-2102316/",
+      "http://www.webtretho.com/forum/f26/18-meo-quan-trong-giup-ban-khong-bao-gio-bi-cam-2010374/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 12,
+    "typeId": 6,
+    "diseaseId": 2,
+    "articles": [
+      "http://www.webtretho.com/forum/f113/de-phong-ngua-cam-cum-hay-ghi-nho-3-dieu-cuc-ky-quan-trong-sau-2102316/",
+      "http://www.webtretho.com/forum/f119/benh-cum-trieu-chung-va-cach-phong-ngua-1755860/",
+      "http://www.webtretho.com/forum/f96/su-can-thiet-cua-chich-ngua-cum-khi-mang-thai-2030530/",
+      "http://www.webtretho.com/forum/f87/bi-quyet-giu-be-khoe-trong-mua-cam-cum-1977024/",
+      "http://www.webtretho.com/forum/f119/thong-tin-phong-tranh-va-trieu-chung-cua-benh-cum-virus-a-h7n9-2022258/",
+      "http://www.webtretho.com/forum/f119/de-phong-bi-lay-cum-mua-dong-2152330/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 13,
+    "typeId": 6,
+    "diseaseId": 3,
+    "articles": [
+      "http://www.webtretho.com/forum/f26/meo-dan-gian-tri-rom-say-hieu-qua-cho-be-trong-mua-nang-nong-1896036/",
+      "http://www.webtretho.com/forum/f87/rom-say-ke-phien-nhieu-cho-lan-da-be-1293816/",
+      "http://www.webtretho.com/forum/f26/tai-sao-tre-con-bi-rom-say-510705/",
+      "http://www.webtretho.com/forum/f26/meo-hay-tri-rom-say-cho-be-795972/",
+      "http://www.webtretho.com/forum/f3584/cach-phong-tranh-rom-say-mua-nang-nong-cho-be-1727950/",
+      "http://www.webtretho.com/forum/f854/cac-chua-tri-rom-say-cho-be-yeu-ngay-nong-2075898/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 14,
+    "typeId": 6,
+    "diseaseId": 4,
+    "articles": [
+      "http://www.webtretho.com/forum/f3268/tri-mun-trung-ca-cho-co-nang-da-nhon-2333437/",
+      "http://www.webtretho.com/forum/f3268/cach-tri-mun-dau-den-don-gian-tai-nha-2333631/",
+      "http://www.webtretho.com/forum/f3268/7-giai-phap-tri-mun-13516/",
+      "http://www.webtretho.com/forum/f3268/lam-the-nao-de-loai-bo-mun-nhanh-va-hieu-qua-114411/",
+      "http://www.webtretho.com/forum/f3268/dung-dau-dua-tri-mun-vua-an-toan-ma-duong-da-2333129/",
+      "http://www.webtretho.com/forum/f119/tri-mun-nhu-the-nao-144027/",
+      "http://www.webtretho.com/forum/f26/ngua-mun-6-thoi-quen-cho-nam-gioi-141855/",
+      "http://www.webtretho.com/forum/f119/giai-phap-nao-cho-dieu-tri-mun-trung-ca-691432/",
+      "http://www.webtretho.com/forum/f1742/nhung-li-do-khien-ban-khong-nen-nan-mun-767260/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 15,
+    "typeId": 6,
+    "diseaseId": 5,
+    "articles": [
+      "http://www.webtretho.com/forum/f119/dau-mat-do-dieu-tri-the-nao-2274705/",
+      "http://www.webtretho.com/forum/f119/cach-phong-benh-dau-mat-do-1956634/",
+      "http://www.webtretho.com/forum/f119/dau-mat-do-de-lay-nhu-cum-1960177/",
+      "http://www.webtretho.com/forum/f119/cach-xu-ly-khi-bi-benh-dau-mat-do-2163837/",
+      "http://www.webtretho.com/forum/f119/dieu-tri-dau-mat-do-cho-be-537542/",
+      "http://www.webtretho.com/forum/f2210/ngan-ngua-dieu-tri-dau-mat-do-cho-595670/",
+      "http://www.webtretho.com/forum/f26/phong-va-chua-benh-dau-mat-do-dung-cach-1777743/",
+      "http://www.webtretho.com/forum/f26/mua-dau-mat-do-phong-benh-the-nao-cho-hieu-qua-1946465/",
+      "http://www.webtretho.com/forum/f87/phuong-phap-dieu-tri-dau-mat-do-tot-nhat-cho-tre-em-2085897/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 16,
+    "typeId": 6,
+    "diseaseId": 6,
+    "articles": [
+      "http://www.webtretho.com/forum/f26/chua-viem-hong-khong-dung-khang-sinh-394533/",
+      "http://www.webtretho.com/forum/f87/vai-cach-tri-chung-viem-hong-don-gian-va-hieu-qua-1611952/",
+      "http://www.webtretho.com/forum/f26/6-cach-phong-viem-hong-cho-dan-cong-so-803108/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 17,
+    "typeId": 6,
+    "diseaseId": 7,
+    "articles": [
+      "http://www.webtretho.com/forum/f87/nhung-dieu-can-biet-khi-cham-soc-tre-bi-benh-ho-hap-1362764/",
+      "http://www.webtretho.com/forum/f26/benh-ho-hap-tim-mach-noi-kinh-hoang-trong-mua-lanh-1823012/",
+      "http://www.webtretho.com/forum/f73/5-cach-giup-ba-bau-phong-benh-ho-hap-1262651/",
+      "http://www.webtretho.com/forum/f26/luu-y-benh-ho-hap-o-tre-1957741/",
+      "http://www.webtretho.com/forum/f26/ho-va-hat-xi-dung-cach-phong-ngua-hieu-qua-benh-ho-hap-2063069/",
+      "http://www.webtretho.com/forum/f87/phong-benh-ho-hap-khi-be-di-nha-tre-2124129/",
+      "http://www.webtretho.com/forum/f119/7-cach-phong-benh-ho-hap-khi-giao-mua-1982898/",
+      "http://www.webtretho.com/forum/f73/5-cach-giup-ba-bau-phong-benh-ho-hap-1262651/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 18,
+    "typeId": 6,
+    "diseaseId": 8,
+    "articles": [
+      "http://www.webtretho.com/forum/f2140/tieu-chay-cap-va-dinh-duong-cho-con-yeu-647162/",
+      "http://www.webtretho.com/forum/f87/xu-tri-tieu-chay-cap-o-tre-em-13515/",
+      "http://www.webtretho.com/forum/f71/tieu-chay-cap-1626719/",
+      "http://www.webtretho.com/forum/f26/tre-de-bi-tieu-chay-cap-vao-mua-lanh-641944/",
+      "http://www.webtretho.com/forum/f71/nen-va-khong-nen-khi-be-tieu-chay-1365288/",
+      "http://www.webtretho.com/forum/f26/nhan-dien-ke-thu-gay-tieu-chay-mua-nang-nong-1680740/",
+      "http://www.webtretho.com/forum/f87/phong-tieu-chay-1411401/",
+      "http://www.webtretho.com/forum/f26/phong-benh-tieu-chay-mua-dong-cho-be-37820/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 19,
+    "typeId": 6,
+    "diseaseId": 9,
+    "articles": [
+      "http://www.webtretho.com/forum/f87/cac-bai-thuoc-dan-gian-chua-kiet-ly-phan-song-loan-khuan-1859992/",
+      "http://www.webtretho.com/forum/f73/chua-kiet-ly-bang-thuoc-nam-1391587/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 20,
+    "typeId": 6,
+    "diseaseId": 10,
+    "articles": [
+      "http://www.webtretho.com/forum/f854/man-ngua-benh-thuong-gap-trong-mua-nong-2267283/",
+      "http://www.webtretho.com/forum/f26/chua-man-ngua-o-tre-nho-140719/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 21,
+    "typeId": 3,
+    "diseaseId": 1,
+    "articles": [
+      "http://www.webtretho.com/forum/f87/cam-sot-15073/",
+      "http://www.webtretho.com/forum/f26/bi-cam-cum-khong-nen-dung-khang-sinh-378275/",
+      "http://www.webtretho.com/forum/f119/cach-chua-cam-don-gian-ma-hieu-qua-21680/",
+      "http://www.webtretho.com/forum/f87/kinh-nghiem-chua-ho-viem-hong-viem-amidan-va-ha-sot-bang-nhung-bai-thuoc-don-gian-248981/",
+      "http://www.webtretho.com/forum/f216/cac-mon-canh-giai-cam-507647/",
+      "http://www.webtretho.com/forum/f3395/phong-benh-cam-cum-cho-be-yeu-khi-thoi-khac-giao-mua-1765171/",
+      "http://www.webtretho.com/forum/f26/3-thuc-uong-giai-cam-voi-chanh-1932678/",
+      "http://www.webtretho.com/forum/f26/bai-thuoc-chua-cam-cum-tai-nha-khong-can-dung-khang-sinh-2050069/",
+      "http://www.webtretho.com/forum/f73/tim-hieu-mot-so-benh-o-tre-em-cam-lanh-1628957/",
+      "http://www.webtretho.com/forum/f119/danh-sach-thuc-pham-danh-bai-cam-cum-hieu-qua-1518076/",
+      "http://www.webtretho.com/forum/f119/meo-chua-cam-cum-khong-can-dung-thuoc-1470593/",
+      "http://www.webtretho.com/forum/f119/dau-hieu-nhan-biet-cam-cum-tu-som-dau-hong-2206158/",
+      "http://www.webtretho.com/forum/f113/de-phong-ngua-cam-cum-hay-ghi-nho-3-dieu-cuc-ky-quan-trong-sau-2102316/",
+      "http://www.webtretho.com/forum/f26/18-meo-quan-trong-giup-ban-khong-bao-gio-bi-cam-2010374/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 22,
+    "typeId": 3,
+    "diseaseId": 2,
+    "articles": [
+      "http://www.webtretho.com/forum/f92/giai-phap-huu-hieu-cho-me-bau-khi-bi-cam-cum-2144242/",
+      "http://www.webtretho.com/forum/f119/benh-cum-trieu-chung-va-cach-phong-ngua-1755860/",
+      "http://www.webtretho.com/forum/f3199/thuoc-cam-cum-cho-be-2110367/",
+      "http://www.webtretho.com/forum/f87/bi-quyet-giu-be-khoe-trong-mua-cam-cum-1977024/",
+      "http://www.webtretho.com/forum/f119/thong-tin-phong-tranh-va-trieu-chung-cua-benh-cum-virus-a-h7n9-2022258/",
+      "http://www.webtretho.com/forum/f3199/thuoc-cam-cum-cho-be-2110367/",
+      "http://www.webtretho.com/forum/f113/mon-an-thuoc-tri-cam-cum-2229149/",
+      "http://www.webtretho.com/forum/f73/thuc-pham-tri-cam-cum-nhanh-va-hieu-qua-nhat-khong-can-dung-thuoc-2198160/",
+      "http://www.webtretho.com/forum/f216/nhung-thuc-pham-giup-ban-va-gia-dinh-tranh-bi-cam-cum-khi-giao-mua-2098818/",
+      "http://www.webtretho.com/forum/f119/de-phong-bi-lay-cum-mua-dong-2152330/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 23,
+    "typeId": 3,
+    "diseaseId": 3,
+    "articles": [
+      "http://www.webtretho.com/forum/f119/tri-rom-say-cho-be-bang-cac-loai-la-tam-2046730/",
+      "http://www.webtretho.com/forum/f26/meo-dan-gian-tri-rom-say-hieu-qua-cho-be-trong-mua-nang-nong-1896036/",
+      "http://www.webtretho.com/forum/f87/rom-say-ke-phien-nhieu-cho-lan-da-be-1293816/",
+      "http://www.webtretho.com/forum/f87/7-cach-dieu-tri-rom-say-o-tre-em-1982864/",
+      "http://www.webtretho.com/forum/f87/danh-bay-rom-say-cho-be-trong-ngay-he-863602/",
+      "http://www.webtretho.com/forum/f26/tai-sao-tre-con-bi-rom-say-510705/",
+      "http://www.webtretho.com/forum/f26/meo-hay-tri-rom-say-cho-be-795972/",
+      "http://www.webtretho.com/forum/f854/cac-chua-tri-rom-say-cho-be-yeu-ngay-nong-2075898/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 24,
+    "typeId": 3,
+    "diseaseId": 4,
+    "articles": [
+      "http://www.webtretho.com/forum/f3268/tri-mun-trung-ca-cho-co-nang-da-nhon-2333437/",
+      "http://www.webtretho.com/forum/f3268/cac-loai-mat-na-tri-mun-tu-thien-nhien-2330962/",
+      "http://www.webtretho.com/forum/f3268/cach-tri-mun-dau-den-don-gian-tai-nha-2333631/",
+      "http://www.webtretho.com/forum/f3268/7-giai-phap-tri-mun-13516/",
+      "http://www.webtretho.com/forum/f3268/tri-mun-trung-ca-127063/",
+      "http://www.webtretho.com/forum/f3268/lam-the-nao-de-loai-bo-mun-nhanh-va-hieu-qua-114411/",
+      "http://www.webtretho.com/forum/f3268/dung-dau-dua-tri-mun-vua-an-toan-ma-duong-da-2333129/",
+      "http://www.webtretho.com/forum/f119/tri-mun-nhu-the-nao-144027/",
+      "http://www.webtretho.com/forum/f26/ngua-mun-6-thoi-quen-cho-nam-gioi-141855/",
+      "http://www.webtretho.com/forum/f119/giai-phap-nao-cho-dieu-tri-mun-trung-ca-691432/",
+      "http://www.webtretho.com/forum/f1742/nhung-li-do-khien-ban-khong-nen-nan-mun-767260/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 25,
+    "typeId": 3,
+    "diseaseId": 5,
+    "articles": [
+      "http://www.webtretho.com/forum/f119/dau-mat-do-dieu-tri-the-nao-2274705/",
+      "http://www.webtretho.com/forum/f119/cach-phong-benh-dau-mat-do-1956634/",
+      "http://www.webtretho.com/forum/f119/dau-mat-do-de-lay-nhu-cum-1960177/",
+      "http://www.webtretho.com/forum/f119/cach-xu-ly-khi-bi-benh-dau-mat-do-2163837/",
+      "http://www.webtretho.com/forum/f119/dieu-tri-dau-mat-do-cho-be-537542/",
+      "http://www.webtretho.com/forum/f2210/ngan-ngua-dieu-tri-dau-mat-do-cho-595670/",
+      "http://www.webtretho.com/forum/f26/phong-va-chua-benh-dau-mat-do-dung-cach-1777743/",
+      "http://www.webtretho.com/forum/f87/phuong-phap-dieu-tri-dau-mat-do-tot-nhat-cho-tre-em-2085897/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 26,
+    "typeId": 3,
+    "diseaseId": 6,
+    "articles": [
+      "http://www.webtretho.com/forum/f26/chua-viem-hong-khong-dung-khang-sinh-394533/",
+      "http://www.webtretho.com/forum/f87/vai-cach-tri-chung-viem-hong-don-gian-va-hieu-qua-1611952/",
+      "http://www.webtretho.com/forum/f26/nhung-cach-tri-viem-hong-tuyet-voi-khi-troi-lanh-1473734/",
+      "http://www.webtretho.com/forum/f26/mot-so-bai-thuoc-don-gian-chua-viem-hong-hieu-qua-1543721/",
+      "http://www.webtretho.com/forum/f119/chung-viem-hong-cua-tre-trong-mua-lanh-2004091/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 27,
+    "typeId": 3,
+    "diseaseId": 7,
+    "articles": [
+      "http://www.webtretho.com/forum/f87/nhung-dieu-can-biet-khi-cham-soc-tre-bi-benh-ho-hap-1362764/",
+      "http://www.webtretho.com/forum/f73/5-cach-giup-ba-bau-phong-benh-ho-hap-1262651/",
+      "http://www.webtretho.com/forum/f26/ho-va-hat-xi-dung-cach-phong-ngua-hieu-qua-benh-ho-hap-2063069/",
+      "http://www.webtretho.com/forum/f87/phong-benh-ho-hap-khi-be-di-nha-tre-2124129/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 28,
+    "typeId": 3,
+    "diseaseId": 8,
+    "articles": [
+      "http://www.webtretho.com/forum/f26/can-su-dung-kem-trong-dieu-tri-tre-bi-tieu-chay-407345/",
+      "http://www.webtretho.com/forum/f2140/tieu-chay-cap-va-dinh-duong-cho-con-yeu-647162/",
+      "http://www.webtretho.com/forum/f87/tieu-chay-va-chua-tieu-chay-4411/",
+      "http://www.webtretho.com/forum/f26/benh-tieu-chay-cap-163581/",
+      "http://www.webtretho.com/forum/f26/cach-chua-benh-tieu-chay-ma-khong-can-bu-nuoc-445218/",
+      "http://www.webtretho.com/forum/f71/tieu-chay-cap-1626719/",
+      "http://www.webtretho.com/forum/f1582/tieu-chay-co-the-dieu-tri-tai-nha-681434/",
+      "http://www.webtretho.com/forum/f71/cac-sai-lam-hay-gap-khi-cham-be-bi-tieu-chay-165863/",
+      "http://www.webtretho.com/forum/f71/nen-va-khong-nen-khi-be-tieu-chay-1365288/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 29,
+    "typeId": 3,
+    "diseaseId": 9,
+    "articles": [
+      "http://www.webtretho.com/forum/f87/cac-bai-thuoc-dan-gian-chua-kiet-ly-phan-song-loan-khuan-1859992/",
+      "http://www.webtretho.com/forum/f73/chua-kiet-ly-bang-thuoc-nam-1391587/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 30,
+    "typeId": 3,
+    "diseaseId": 10,
+    "articles": [
+      "http://www.webtretho.com/forum/f854/man-ngua-benh-thuong-gap-trong-mua-nong-2267283/",
+      "http://www.webtretho.com/forum/f26/chua-man-ngua-o-tre-nho-140719/",
+      "http://www.webtretho.com/forum/f113/la-kinh-gioi-danh-bay-man-ngua-me-day-khoi-ngay-sau-5-phut-2250520/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 31,
+    "typeId": 4,
+    "diseaseId": 9,
+    "articles": [
+      "http://www.webtretho.com/forum/f26/che-do-an-uong-cho-tre-mac-benh-ly-53188/"
+    ],
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  }
+]
