@@ -35,12 +35,16 @@
     "eslint": "./node_modules/.bin/eslint src/**/*.js --quiet && ./node_modules/.bin/eslint test/**/*.js --quiet"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
     "pg": "^6.1.0",
+    "request": "^2.78.0",
     "sequelize": "^3.24.8",
     "sequelize-cli": "^2.4.0",
     "winston": "^2.3.0"
   },
-  "pre-commit": ["eslint"]
+  "pre-commit": [
+    "eslint"
+  ]
 }
