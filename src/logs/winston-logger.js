@@ -6,19 +6,19 @@ export const logger = new (winston.Logger)({
     new (winston.transports.Console)({
       name: 'life-pedia-log-debug',
       level: 'debug',
-      timestamp:true
+      timestamp: true
     }),
     new (winston.transports.File)({
       name: 'life-pedia-log-info',
       filename: path.join(__dirname, 'life-pedia-log-info.log'),
       level: 'info',
-      timestamp:true
+      timestamp: true
     }),
     new (winston.transports.File)({
       name: 'life-pedia-log-error',
       filename: path.join(__dirname, 'life-pedia-log-error.log'),
       level: 'error',
-      timestamp:true
+      timestamp: true
     })
   ]
 });
