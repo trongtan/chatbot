@@ -9,7 +9,7 @@ const transporterCenter = new TransporterCenter();
 const classifyCenter = new ClassifyCenter(transporterCenter);
 
 webHookApp.get('/', (req, res) => {
-  res.send('Hello from Life Pedia - Chatbot')
+  res.send('Hello from Life Pedia - Chatbot');
 });
 
 webHookApp.get('/webhook', (req, res) => {

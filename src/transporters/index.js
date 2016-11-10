@@ -1,5 +1,5 @@
-import {logger} from 'logs/winston-logger';
-import {isGetStartedResponse} from './get-started-transporter';
+import { logger } from 'logs/winston-logger';
+import { isGetStartedResponse } from './get-started-transporter';
 
 export default class TransporterCenter {
   handle(responseMessage) {
@@ -7,4 +7,4 @@ export default class TransporterCenter {
       logger.log('info', 'Write response message for %j', responseMessage);
     }
   }
-};
+}

@@ -1,6 +1,6 @@
-import {logger} from 'logs/winston-logger';
-import {isGetStarted} from './is-get-started';
-import {GET_STARTED_PAYLOAD} from 'utils/constants';
+import { logger } from 'logs/winston-logger';
+import { isGetStarted } from './is-get-started';
+import { GET_STARTED_PAYLOAD } from 'utils/constants';
 
 export default class ClassifyCenter {
   constructor(transporter) {
@@ -8,7 +8,7 @@ export default class ClassifyCenter {
   }
 
   receivedMessage (messagingEvent) {
-    let responseMessage = {senderId: messagingEvent.sender.id};
+    let responseMessage = { senderId: messagingEvent.sender.id };
 
     if (isGetStarted(messagingEvent)) {
       logger.log('info', '[Received] Get started - %j', messagingEvent);
@@ -19,4 +19,4 @@ export default class ClassifyCenter {
 
     this.transporter.handle(responseMessage);
   }
-};
+}
