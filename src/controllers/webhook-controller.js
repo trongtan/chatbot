@@ -1,11 +1,12 @@
 import Express from 'express';
 
 import { logger } from 'logs/winston-logger';
+import services from 'services';
 import ClassifyCenter from 'classifies';
 import TransporterCenter from 'transporters';
 
 const webHookApp = new Express();
-const transporterCenter = new TransporterCenter();
+const transporterCenter = new TransporterCenter(services);
 const classifyCenter = new ClassifyCenter(transporterCenter);
 
 webHookApp.get('/', (req, res) => {
