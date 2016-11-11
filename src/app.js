@@ -1,3 +1,6 @@
+import 'babel-core/register';
+import 'babel-polyfill';
+
 import Config from 'dotenv';
 import Express from 'express';
 import bodyParser from 'body-parser';
