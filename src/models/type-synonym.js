@@ -1,7 +1,9 @@
 export default (sequelize, DataTypes) => {
-  return sequelize.define('TypeSynonym', {
+  const TypeSynonym = sequelize.define('TypeSynonym', {
     value: DataTypes.STRING
   }, {
     freezeTableName: true
   });
+
+  return TypeSynonym;
 };
