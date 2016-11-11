@@ -3,7 +3,7 @@ import Promise from 'promise';
 
 import { logger } from 'logs/winston-logger';
 
-export const callSendAPI = function (messageData) {
+export const callSendAPI = messageData => {
   const requestData = {
     uri: 'https://graph.facebook.com/v2.6/me/messages',
     qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
@@ -29,7 +29,7 @@ export const callSendAPI = function (messageData) {
   });
 };
 
-export const getUserProfile = function (userId) {
+export const getUserProfile = userId => {
   return new Promise((fulfill, reject) => {
     const requestData = {
       method: 'GET',
@@ -45,10 +45,11 @@ export const getUserProfile = function (userId) {
     request(requestData, (error, response, body) => {
       if (!error && response.statusCode == 200) {
         logger.log('info', 'Get user profile %j', body);
-        fulfill(body);
+
+        return fulfill(body);
       } else {
         logger.error('Failed getting user profile', response.statusCode, response.statusMessage, body.error);
-        reject(error);
+        return reject(error);
       }
     });
   });
