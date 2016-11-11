@@ -1,11 +1,16 @@
 'use strict';
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('DiseaseSymptoms', {
+    return queryInterface.createTable('DiseaseSymptom', {
+      id: {
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+        autoIncrement: true
+      },
       diseaseId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Diseases',
+          model: 'Disease',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -14,7 +19,7 @@ module.exports = {
       symptomId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'Symptoms',
+          model: 'Symptom',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -31,6 +36,6 @@ module.exports = {
     });
   },
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('DiseaseSymptoms');
+    return queryInterface.dropTable('DiseaseSymptom');
   }
 };

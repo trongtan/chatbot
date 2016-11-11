@@ -1,11 +1,29 @@
 'use strict';
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('TypeDiseases', {
+    return queryInterface.createTable('TypeDisease', {
       id: {
         primaryKey: true,
         type: Sequelize.INTEGER,
         autoIncrement: true
+      },
+      diseaseId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Disease',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
+      typeId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Type',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       articles: {
         type: Sequelize.ARRAY(Sequelize.STRING)
@@ -17,28 +35,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      diseaseId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Diseases',
-          key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
-      },
-      typeId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Types',
-          key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
       }
     });
   },
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('TypeDiseases');
+    return queryInterface.dropTable('TypeDisease');
   }
 };

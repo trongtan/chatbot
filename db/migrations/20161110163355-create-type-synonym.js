@@ -1,14 +1,23 @@
 'use strict';
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('Keywords', {
+    return queryInterface.createTable('TypeSynonym', {
       id: {
-        type: Sequelize.INTEGER,
         primaryKey: true,
+        type: Sequelize.INTEGER,
         autoIncrement: true
       },
       value: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      typeId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Type',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
@@ -17,19 +26,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      typeId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Types',
-          key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
       }
     });
   },
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('Keywords');
+    return queryInterface.dropTable('TypeSynonym');
   }
 };

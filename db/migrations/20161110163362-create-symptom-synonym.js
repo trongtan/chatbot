@@ -1,14 +1,23 @@
 'use strict';
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('Types', {
+    return queryInterface.createTable('SymptomSynonym', {
       id: {
-        type: Sequelize.INTEGER,
         primaryKey: true,
+        type: Sequelize.INTEGER,
         autoIncrement: true
       },
-      value: {
-        type: Sequelize.STRING
+      name: {
+        type: Sequelize.STRING,
+      },
+      symptomId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Symptom',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
@@ -21,6 +30,6 @@ module.exports = {
     });
   },
   down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('Types');
+    return queryInterface.dropTable('SymptomSynonym');
   }
 };

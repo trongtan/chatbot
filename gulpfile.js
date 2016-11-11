@@ -33,7 +33,7 @@ gulp.task('build', ['clean'], () => {
   gulp.start('es6', 'migrate').on('error', gulpUtil.log);
 });
 
-gulp.task('build-dev', ['clean'], () => {
+gulp.task('build-dev', () => {
   gulp.start('es6', 'migrate', 'test').on('error', gulpUtil.log);
 });
 
@@ -44,7 +44,7 @@ gulp.task('build-test', ['clean'], () => {
 gulp.task('clean_db', shell.task([
   'dropdb life_pedia_development',
   'createdb life_pedia_development'
-]));
+], { ignoreErrors: true }));
 
 gulp.task('watch', ['build'], () => {
   gulp.watch('src/**/*.js', ['build']).on('error', gulpUtil.log);

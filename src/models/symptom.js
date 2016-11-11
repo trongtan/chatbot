@@ -1,13 +1,13 @@
-'use strict';
-module.exports = function (sequelize, DataTypes) {
-  var Symptom = sequelize.define('Symptom', {
+export default (sequelize, DataTypes) => {
+  const Symptom = sequelize.define('Symptom', {
     name: DataTypes.STRING
   }, {
+    freezeTableName: true,
     classMethods: {
       associate: function (models) {
+        this.hasMany(models.SymptomSynonym);
         this.belongsToMany(models.Disease, {
-          through: 'DiseaseSymptoms',
-          foreignKey: 'id'
+          through: 'DiseaseSymptom'
         });
       }
     }
