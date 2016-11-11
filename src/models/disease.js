@@ -1,14 +1,13 @@
-'use strict';
-module.exports = function (sequelize, DataTypes) {
-  var Disease = sequelize.define('Disease', {
+export default (sequelize, DataTypes) => {
+  return sequelize.define('Disease', {
     name: DataTypes.STRING
   }, {
     classMethods: {
       associate: function (models) {
+        models.Disease.belongsToMany(models.Symptom, { through: 'DiseaseSymptom' });
+        this.hasMany(models.DiseaseSynonym);
         this.hasMany(models.TypeDisease);
       }
     }
   });
-
-  return Disease;
 };
