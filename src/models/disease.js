@@ -18,7 +18,8 @@ export default (sequelize, DataTypes) => {
             id: {
               $in: ids
             }
-          }
+          },
+          raw: true
         }).then(diseases => {
           return Promise.resolve(diseases.map(disease => {
             return disease.value;

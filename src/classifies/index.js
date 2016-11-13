@@ -31,8 +31,8 @@ export default class ClassifyCenter {
         const askingDiseaseAnalytics = yield analyzeAskingDisease(messagingEvent);
         if (askingDiseaseAnalytics.isAskingDisease) {
           responseMessage.payload = DISEASE_PAYLOAD;
-          responseMessage.types = askingDiseaseAnalytics.types;
-          responseMessage.diseases = askingDiseaseAnalytics.diseases;
+          responseMessage.typeIds = askingDiseaseAnalytics.typeIds;
+          responseMessage.diseaseIds = askingDiseaseAnalytics.diseaseIds;
 
           self.transporter.handle(responseMessage);
         } else {

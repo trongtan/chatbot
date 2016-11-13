@@ -6,7 +6,8 @@ export default (sequelize, DataTypes) => {
     classMethods: {
       findAllDiseaseSynonyms: () => {
         return DiseaseSynonym.findAll({
-          attributes: ['diseaseId', 'name']
+          attributes: ['diseaseId', 'name'],
+          raw: true
         });
       }
     }

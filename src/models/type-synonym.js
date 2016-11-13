@@ -6,7 +6,8 @@ export default (sequelize, DataTypes) => {
     classMethods: {
       findAllTypeSynonyms: () => {
         return TypeSynonym.findAll({
-          attributes: ['typeId', 'value']
+          attributes: ['typeId', 'value'],
+          raw: true
         });
       }
     }

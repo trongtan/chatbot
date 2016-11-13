@@ -11,8 +11,12 @@ export const analyzeAskingDisease = messageEvent => {
 
   const text = messageEvent.message.text;
   return _getRequest(text).then((res) => {
-    if (res.requestedTypes.length > 0 && res.requestedDiseases.length > 0) {
-      return Promise.resolve({ isAskingDisease: true, types: res.requestedTypes, diseases: res.requestedDiseases });
+    if (res.requestedTypeIds.length > 0 && res.requestedDiseaseIds.length > 0) {
+      return Promise.resolve({
+        isAskingDisease: true,
+        typeIds: res.requestedTypeIds,
+        diseaseIds: res.requestedDiseaseIds
+      });
     } else {
       return Promise.resolve({ isAskingDisease: false });
     }
@@ -42,22 +46,16 @@ const _getRequest = (message) => {
     logger.log('info', 'List of requestedDiseaseSynonyms: %j', requestedDiseaseSynonyms);
 
     const requestedTypeIds = requestedTypeSynonyms.map(requestedTypeSynonym => {
-      return requestedTypeSynonym.get('typeId');
+      return requestedTypeSynonym.typeId;
     });
 
     const requestedDiseaseIds = requestedDiseaseSynonyms.map(requestedDiseaseSynonym => {
-      return requestedDiseaseSynonym.get('diseaseId');
+      return requestedDiseaseSynonym.diseaseId;
     });
 
     logger.log('info', 'List of requestedTypeIds: %j', requestedTypeIds);
     logger.log('info', 'List of requestedDiseaseIds: %j', requestedDiseaseIds);
 
-    const requestedTypes = yield Models.Type.findTypesByIds(requestedTypeIds);
-    const requestedDiseases = yield Models.Disease.findDiseasesByIds(requestedDiseaseIds);
-
-    logger.log('info', 'List of requestedTypes: %j', requestedTypes);
-    logger.log('info', 'List of requestedDiseases: %j', requestedDiseases);
-
-    return { requestedTypes, requestedDiseases };
+    return { requestedTypeIds, requestedDiseaseIds };
   });
 };

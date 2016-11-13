@@ -17,7 +17,8 @@ export default (sequelize, DataTypes) => {
             id: {
               $in: ids
             }
-          }
+          },
+          raw: true
         }).then(types => {
           return Promise.resolve(types.map(type => {
             return type.value;
