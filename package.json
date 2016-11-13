@@ -15,7 +15,6 @@
     "babel-preset-stage-3": "^6.17.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.14",
-    "del": "^2.2.2",
     "eslint": "^3.9.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",

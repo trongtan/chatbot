@@ -12,8 +12,8 @@ dependencies:
   cache_directories:
     - ~/.yarn-cache
   override:
-    - yarn install
-    - gulp build-test
+    - yarn
+    - gulp build-dev
 test:
   override:
     - yarn test-coverage
