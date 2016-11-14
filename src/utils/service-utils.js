@@ -45,11 +45,10 @@ export const getUserProfile = userId => {
     request(requestData, (error, response, body) => {
       if (!error && response.statusCode == 200) {
         logger.log('info', 'Get user profile %j', body);
-
-        return fulfill(body);
+        fulfill(JSON.parse(body));
       } else {
         logger.error('Failed getting user profile', response.statusCode, response.statusMessage, body.error);
-        return reject(error);
+        reject(error);
       }
     });
   });

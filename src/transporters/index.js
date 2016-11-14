@@ -2,7 +2,6 @@ import { logger } from 'logs/winston-logger';
 import { isGetStarted, handleGetStartedResponseMessage } from './get_started';
 import { isGreeting, handleGreetingMessage } from './greeting';
 
-
 export default class TransporterCenter {
   constructor(services) {
     this.services = services;

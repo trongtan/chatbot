@@ -1,5 +1,6 @@
 import Promise from 'promise';
 
+import Models from 'models';
 import { getUserProfile } from 'utils/service-utils';
 import { getRandomObjectFromArray } from 'utils/helpers';
 import { GET_STARTED_PAYLOAD } from 'utils/constants';
@@ -24,7 +25,9 @@ const _saveUserProfileToDatabase = responseMessage => {
   const userId = responseMessage.senderId;
 
   if (userId) {
-    return getUserProfile(userId);
+    return getUserProfile(userId).then(function (userProfile) {
+      Models.User.saveProfileForUser(userId, userProfile);
+    });
   } else {
     logger.info('Called get user profile of invalid userId');
     return Promise.reject(new Error('Called get user profile of invalid userId'));

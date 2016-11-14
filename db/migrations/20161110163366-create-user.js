@@ -15,6 +15,9 @@ module.exports = {
       gender: {
         type: Sequelize.STRING
       },
+      currentPayload: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
