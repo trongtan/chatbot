@@ -10,7 +10,7 @@ import TypeSynonymDefinition from './type-synonym';
 import UserDefinition from './user';
 
 
-const sequelize = new Sequelize("postgres://postgres@localhost:5432/life_pedia_development");
+const sequelize = new Sequelize(process.env.DB_URL);
 
 const Disease = sequelize.import('Disease', DiseaseDefinition);
 const DiseaseSynonym = sequelize.import('DiseaseSymptom', DiseaseSynonymDefinition);
