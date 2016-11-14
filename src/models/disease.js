@@ -1,7 +1,7 @@
 import Promise from 'promise';
 
 export default (sequelize, DataTypes) => {
-  return sequelize.define('Disease', {
+  const Disease = sequelize.define('Disease', {
     name: DataTypes.STRING
   }, {
     freezeTableName: true,
@@ -28,4 +28,6 @@ export default (sequelize, DataTypes) => {
       }
     },
   });
+
+  return Disease;
 };

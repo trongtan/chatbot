@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  return sequelize.define('TypeDisease', {
+  const TypeDisease = sequelize.define('TypeDisease', {
     articles: DataTypes.ARRAY(DataTypes.STRING)
   }, {
     freezeTableName: true,
@@ -13,9 +13,11 @@ export default (sequelize, DataTypes) => {
           },
           raw: true
         }).then(result => {
-          return Promise.resolve(result.articles);
+          return Promise.resolve(result && result.articles ? result.articles : []);
         });
       }
     }
   });
+
+  return TypeDisease;
 };

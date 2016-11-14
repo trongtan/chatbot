@@ -1,7 +1,7 @@
 import Promise from 'promise';
 import co from 'co';
 
-import Models from 'models';
+import { TypeSynonym, DiseaseSynonym } from 'models';
 import { logger } from 'logs/winston-logger';
 
 export const analyzeAskingDisease = messageEvent => {
@@ -28,8 +28,8 @@ const _getRequest = (message) => {
   logger.log('info', 'Message: %j', message);
 
   return co(function *() {
-    const typeSynonyms = yield Models.TypeSynonym.findAllTypeSynonyms();
-    const diseaseSynonyms = yield Models.DiseaseSynonym.findAllDiseaseSynonyms();
+    const typeSynonyms = yield TypeSynonym.findAllTypeSynonyms();
+    const diseaseSynonyms = yield DiseaseSynonym.findAllDiseaseSynonyms();
 
     logger.log('info', 'List of typeSynonyms: %j', typeSynonyms);
     logger.log('info', 'List of diseaseSynonyms: %j', diseaseSynonyms);
