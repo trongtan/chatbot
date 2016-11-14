@@ -1849,12 +1849,24 @@ gulp-babel@^6.1.2:
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
 
+gulp-dotenv:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/gulp-dotenv/-/gulp-dotenv-0.2.1.tgz#9c436110587b1744a77fa364b7d5a85e48cb42e1"
+  dependencies:
+    dotenv "^2.0.0"
+    livescript "^1.4.0"
+    through2 "^2.0.0"
+
 gulp-help@~1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/gulp-help/-/gulp-help-1.6.1.tgz#261db186e18397fef3f6a2c22e9c315bfa88ae0c"
   dependencies:
     chalk "^1.0.0"
     object-assign "^3.0.0"
+
+gulp-rename:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/gulp-rename/-/gulp-rename-1.2.2.tgz#3ad4428763f05e2764dec1c67d868db275687817"
 
 gulp-shell@^0.5.2:
   version "0.5.2"
@@ -2386,6 +2398,14 @@ liftoff@^2.1.0:
     rechoir "^0.6.2"
     resolve "^1.1.7"
 
+livescript@^1.4.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/livescript/-/livescript-1.5.0.tgz#4fe7121c41217e4608e334eb9cbe1762e63e5566"
+  dependencies:
+    optionator "~0.8.1"
+    prelude-ls "~1.1.2"
+    source-map "^0.5.6"
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -2860,7 +2880,7 @@ optimist@^0.6.1:
     minimist "~0.0.1"
     wordwrap "~0.0.2"
 
-optionator@^0.8.1, optionator@^0.8.2:
+optionator@^0.8.1, optionator@^0.8.2, optionator@~0.8.1:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.2.tgz#364c5e409d3f4d6301d6c0b4c05bba50180aeb64"
   dependencies:
@@ -3552,7 +3572,7 @@ source-map@^0.4.4:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@^0.5.0, source-map@^0.5.1, source-map@^0.5.3, source-map@~0.5.1:
+source-map@^0.5.0, source-map@^0.5.1, source-map@^0.5.3, source-map@^0.5.6, source-map@~0.5.1:
   version "0.5.6"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
 

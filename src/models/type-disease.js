@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+export default (sequelize, DataTypes) => {
   const TypeDisease = sequelize.define('TypeDisease', {
     articles: DataTypes.ARRAY(DataTypes.STRING)
   }, {
