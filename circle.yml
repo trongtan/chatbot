@@ -13,7 +13,7 @@ dependencies:
     - ~/.yarn-cache
   override:
     - yarn
-    - gulp build-test
+    - gulp --DB_URL_TEST=$DB_URL_TEST build-test
 test:
   override:
     - yarn test-coverage

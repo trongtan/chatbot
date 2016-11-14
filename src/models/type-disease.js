@@ -1,9 +1,7 @@
-module.exports = function (sequelize, DataTypes) {
-  const TypeDisease = sequelize.define('TypeDisease', {
+export default (sequelize, DataTypes) => {
+  return sequelize.define('TypeDisease', {
     articles: DataTypes.ARRAY(DataTypes.STRING)
   }, {
     freezeTableName: true
   });
-
-  return TypeDisease;
 };

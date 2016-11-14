@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Symptom = sequelize.define('Symptom', {
+  return sequelize.define('Symptom', {
     name: DataTypes.STRING
   }, {
     freezeTableName: true,
@@ -12,6 +12,4 @@ export default (sequelize, DataTypes) => {
       }
     }
   });
-
-  return Symptom;
 };
