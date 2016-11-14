@@ -23,13 +23,17 @@ const _copyTask = (src, dest) => {
     .pipe(gulp.dest(dest));
 };
 
+const _cleanDBTask = (env) => {
+  return shell.task([
+    `dropdb life_pedia_${env}`,
+    `createdb life_pedia_${env}`
+  ], { ignoreErrors: true });
+};
+
 /////////////////////////////////////////////////////////////////
 ///                        CLEAN TASKS                        ///
 /////////////////////////////////////////////////////////////////
-gulp.task('clean-db', shell.task([
-  'dropdb life_pedia_development',
-  'createdb life_pedia_development'
-], { ignoreErrors: true }));
+gulp.task('clean-db', _cleanDBTask('development'));
 
 gulp.task('clean-built-code', shell.task([
   'rm -r dist',
@@ -59,19 +63,21 @@ gulp.task('build', ['clean'], () => {
 /////////////////////////////////////////////////////////////////
 ///                         TEST TASKS                        ///
 /////////////////////////////////////////////////////////////////
+gulp.task('clean-db-test', _cleanDBTask('test'));
+
 gulp.task('es6-test', () => {
   return _es6Task(['test/**/*.test.js'], 'dist/test');
 });
 
-gulp.task('import-db-test', shell.task([
-  'sequelize db:migrate'
+gulp.task('import-db-test', ['clean-db-test'], shell.task([
+  'sequelize db:migrate --url postgres://postgres@localhost:5432/life_pedia_test'
 ]));
 
 gulp.task('copy-mocha-options', () => {
   return _copyTask('test/mocha.opts', 'dist/test');
 });
 
-gulp.task('build-dev', () => {
+gulp.task('build-test', () => {
   gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test').on('error', gulpUtil.log);
 });
 
@@ -83,6 +89,6 @@ gulp.task('watch', ['build'], () => {
   gulp.watch('src/**/*.js', ['build']).on('error', gulpUtil.log);
 });
 
-gulp.task('watch-dev', ['build-dev'], () => {
-  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build-dev']).on('error', gulpUtil.log);
+gulp.task('watch-test', ['build-test'], () => {
+  gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build-test']).on('error', gulpUtil.log);
 });
