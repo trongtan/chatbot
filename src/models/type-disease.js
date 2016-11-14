@@ -1,9 +1,7 @@
 export default (sequelize, DataTypes) => {
-  const TypeDisease = sequelize.define('TypeDisease', {
+  return sequelize.define('TypeDisease', {
     articles: DataTypes.ARRAY(DataTypes.STRING)
   }, {
     freezeTableName: true
   });
-
-  return TypeDisease;
 };
