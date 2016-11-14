@@ -1,6 +1,6 @@
 import co from 'co';
 
-import Models from 'models';
+import { TypeDisease } from 'models';
 import { DISEASE_PAYLOAD } from 'utils/constants';
 import { logger } from 'logs/winston-logger';
 
@@ -14,10 +14,12 @@ export const handleDiseaseMessage = (responseMessage, services) => {
   co(function*() {
       const articles = yield _getDiseaseResponseMessage(responseMessage);
 
-      articles.map(article => {
-        logger.log('info', 'Write response article %j to recipient %j', article, recipientId);
-        services.sendTextMessage(recipientId, article);
-      });
+      if (articles.length > 0) {
+        articles.map(article => {
+          logger.log('info', 'Write response article %j to recipient %j', article, recipientId);
+          services.sendTextMessage(recipientId, article);
+        });
+      }
     }
   ).catch(exception => {
     logger.error('error', `Got exeption on writing disease response article ${exception}`);
@@ -33,7 +35,7 @@ const _getDiseaseResponseMessage = responseMessage => {
 
     for (let typeId of typeIds) {
       for (let diseaseId of diseaseIds) {
-        const additionalArticles = yield Models.TypeDisease.getArticles(typeId, diseaseId);
+        const additionalArticles = yield TypeDisease.getArticles(typeId, diseaseId);
         if (additionalArticles && additionalArticles.length > 0) {
           articles = [...articles, ...additionalArticles];
         }

@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  return sequelize.define('DiseaseSynonym', {
+  const DiseaseSynonym = sequelize.define('DiseaseSynonym', {
     name: DataTypes.STRING
   }, {
     freezeTableName: true,
@@ -12,4 +12,6 @@ export default (sequelize, DataTypes) => {
       }
     }
   });
+
+  return DiseaseSynonym;
 };

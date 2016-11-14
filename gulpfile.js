@@ -60,7 +60,7 @@ gulp.task('es6', () => {
 });
 
 gulp.task('import-db', ['build-env'], () => {
-  const dbUrl = require('./dist/env.json').DATABASE_URL;
+  const dbUrl = require('./dist/env.json').DB_URL;
   return gulp.src('*.js', { read: false })
     .pipe(shell([
       `sequelize db:migrate --url ${dbUrl}`,
