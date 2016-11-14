@@ -82,7 +82,7 @@ gulp.task('es6-test', () => {
 });
 
 gulp.task('import-db-test', ['build-env', 'clean-db-test'], () => {
-  const dbUrl = require('./dist/env.json').DATABASE_URL_TEST;
+  const dbUrl = gulpUtil.env.DB_URL_TEST ? gulpUtil.env.DB_URL_TEST : require('./dist/env.json').DB_URL_TEST;
   return gulp.src('*.js', { read: false })
     .pipe(shell([
       `sequelize db:migrate --url ${dbUrl}`
