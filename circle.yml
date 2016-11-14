@@ -12,7 +12,7 @@ dependencies:
   cache_directories:
     - ~/.yarn-cache
   override:
-    - yarn install
+    - yarn
     - gulp build-test
 test:
   override:
