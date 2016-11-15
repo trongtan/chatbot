@@ -3,8 +3,9 @@ import co from 'co';
 
 import services from 'services';
 import AnalyzeListener from 'observers/base/analyze-listener';
-import { TypeSynonym, DiseaseSynonym, TypeDisease } from 'models';
+import { TypeSynonym, DiseaseSynonym, TypeDisease, Type } from 'models';
 import { logger } from 'logs/winston-logger';
+import { DEFAULT_TYPE_KEYWORD } from 'utils/constants';
 
 export default class AskDiseaseArticlesListener extends AnalyzeListener {
   _analyze(messageEvent) {
@@ -60,13 +61,17 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
       logger.log('info', 'List of requestedTypeSynonyms: %j', requestedTypeSynonyms);
       logger.log('info', 'List of requestedDiseaseSynonyms: %j', requestedDiseaseSynonyms);
 
-      const requestedTypeIds = requestedTypeSynonyms.map(requestedTypeSynonym => {
+      let requestedTypeIds = requestedTypeSynonyms.map(requestedTypeSynonym => {
         return requestedTypeSynonym.typeId;
       });
 
       const requestedDiseaseIds = requestedDiseaseSynonyms.map(requestedDiseaseSynonym => {
         return requestedDiseaseSynonym.diseaseId;
       });
+
+      if (requestedTypeIds.length == 0) {
+        requestedTypeIds.push(yield Type.findTypeIdByValue(DEFAULT_TYPE_KEYWORD));
+      }
 
       logger.log('info', 'List of requestedTypeIds: %j', requestedTypeIds);
       logger.log('info', 'List of requestedDiseaseIds: %j', requestedDiseaseIds);

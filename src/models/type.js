@@ -29,9 +29,7 @@ export default (sequelize, DataTypes) => {
         return Type.findOne({
           attributes: ['id'],
           where: {
-            value: {
-              $like: value
-            }
+            value: value
           }
         }).then(type => {
           return Promise.resolve(type.id);
