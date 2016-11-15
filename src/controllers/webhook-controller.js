@@ -26,7 +26,7 @@ webHookApp.post('/webhook', (req, res) => {
 
   if (data.object == 'page') {
     data.entry.forEach(pageEntry => {
-      pageEntry.messaging.forEach(function(messagingEvent) {
+      pageEntry.messaging.forEach(messagingEvent => {
         rootObserver.perform(messagingEvent);
       });
     });
