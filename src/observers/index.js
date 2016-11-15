@@ -11,9 +11,9 @@ export default class RootObserver {
     ];
   }
 
-  handle(messageEvent) {
+  perform(messageEvent) {
     this.listeners.map(listener => {
-      listener.handle(messageEvent);
+      listener.perform(messageEvent);
     });
   }
 }

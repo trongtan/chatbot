@@ -2,31 +2,12 @@ import Promise from 'promise';
 import co from 'co';
 
 import services from 'services';
+import AnalyzeListener from 'observers/base/analyze-listener';
 import { TypeSynonym, DiseaseSynonym, TypeDisease } from 'models';
 import { logger } from 'logs/winston-logger';
 
-export default class AskDiseaseArticlesListener {
-  handle(messageEvent) {
-    const self = this;
-    co(
-      function*() {
-        const dataAnalysis = yield self._analyzeAskingDisease(messageEvent);
-        if (dataAnalysis.isAskingDisease) {
-          if (messageEvent && messageEvent.sender.id) {
-            self._sendResponseMessage(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
-          } else {
-            logger.info('Sender id is invalid');
-          }
-        } else {
-          logger.info('No data matches with request');
-        }
-      }
-    ).catch(exception => {
-      logger.log('error', 'Get error %s', exception);
-    });
-  }
-
-  _analyzeAskingDisease(messageEvent) {
+export default class AskDiseaseArticlesListener extends AnalyzeListener {
+  _analyze(messageEvent) {
     if (!(messageEvent && messageEvent.message && messageEvent.message.text)) {
       return Promise.resolve({ isAskingDisease: false });
     }
@@ -43,6 +24,18 @@ export default class AskDiseaseArticlesListener {
         return Promise.resolve({ isAskingDisease: false });
       }
     });
+  }
+
+  _handle(messageEvent, dataAnalysis) {
+    if (dataAnalysis.isAskingDisease) {
+      if (messageEvent && messageEvent.sender.id) {
+        this._sendResponseMessage(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
+      } else {
+        logger.info('Sender id is invalid');
+      }
+    } else {
+      logger.info('No data matches with request');
+    }
   }
 
   _getRequest(message) {
