@@ -82,10 +82,8 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
         const articles = yield self._getDiseaseResponseMessage(typeIds, diseaseIds);
 
         if (articles.length > 0) {
-          articles.map(article => {
-            logger.log('info', 'Write response article %j to recipient %j', article, recipientId);
-            services.sendTextMessage(recipientId, article);
-          });
+          logger.log('info', 'Write response articles %j to recipient %j', articles, recipientId);
+          services.sendCarouselMessage(recipientId, articles);
         }
       }
     ).catch(exception => {
