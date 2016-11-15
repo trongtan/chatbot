@@ -15,7 +15,11 @@ gulp.task('default', ['clean'], () => {
 const _es6Task = (src, dest) => {
   return gulp.src(src)
     .pipe(babel({
-      presets: ['es2015', 'stage-3']
+      presets: ['es2015', 'stage-3'],
+      "plugins": [["transform-runtime", {
+        "polyfill": true,
+        "regenerator": true
+      }]]
     }))
     .pipe(gulp.dest(dest));
 };
@@ -38,6 +42,7 @@ const _cleanDBTask = (env) => {
 gulp.task('clean-db', _cleanDBTask('development'));
 
 gulp.task('clean-built-code', shell.task([
+  'rm -r dist',
   'rm -r coverage'
 ], { ignoreErrors: true }));
 

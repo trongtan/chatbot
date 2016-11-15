@@ -1,13 +1,10 @@
 import Express from 'express';
 
+import RootObserver from 'observers';
 import { logger } from 'logs/winston-logger';
-import services from 'services';
-import ClassifyCenter from 'classifies';
-import TransporterCenter from 'transporters';
 
 const webHookApp = new Express();
-const transporterCenter = new TransporterCenter(services);
-const classifyCenter = new ClassifyCenter(transporterCenter);
+const rootObserver = new RootObserver();
 
 webHookApp.get('/', (req, res) => {
   res.send('Hello from Life Pedia - Chatbot');
@@ -30,7 +27,7 @@ webHookApp.post('/webhook', (req, res) => {
   if (data.object == 'page') {
     data.entry.forEach(pageEntry => {
       pageEntry.messaging.forEach(function(messagingEvent) {
-        classifyCenter.receivedMessage(messagingEvent);
+        rootObserver.perform(messagingEvent);
       });
     });
 

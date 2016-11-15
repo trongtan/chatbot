@@ -9,7 +9,6 @@ import TypeDiseaseDefinition from './type-disease';
 import TypeSynonymDefinition from './type-synonym';
 import UserDefinition from './user';
 
-
 const sequelize = new Sequelize(process.env.DB_URL);
 
 const Disease = sequelize.import('Disease', DiseaseDefinition);
