@@ -24,6 +24,16 @@ export default (sequelize, DataTypes) => {
             return type.value;
           }));
         });
+      },
+      findTypeIdByValue: (value) => {
+        return Type.findOne({
+          attributes: ['id'],
+          where: {
+            value: value
+          }
+        }).then(type => {
+          return Promise.resolve(type.id);
+        })
       }
     }
   });
