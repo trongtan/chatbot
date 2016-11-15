@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { chunk } from 'lodash';
 
 import { callSendAPI } from 'utils/service-utils';
 import { DEFAULT_MAXIMUM_PAYLOAD_ELEMENT } from 'utils/constants';
@@ -21,7 +21,7 @@ export const sendCarouselMessage = (recipientId, elements) => {
     elementsData.push(elementData);
   }
 
-  _.chunk(elementsData, DEFAULT_MAXIMUM_PAYLOAD_ELEMENT).forEach(data => {
+  chunk(elementsData, DEFAULT_MAXIMUM_PAYLOAD_ELEMENT).forEach(data => {
     const messageData = {
       recipient: {
         id: recipientId
