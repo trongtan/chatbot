@@ -1,4 +1,7 @@
+import _ from 'lodash';
+
 import { callSendAPI } from 'utils/service-utils';
+import { DEFAULT_MAXIMUM_PAYLOAD_ELEMENT } from 'utils/constants';
 
 export const sendCarouselMessage = (recipientId, elements) => {
   let elementsData = [];
@@ -18,20 +21,22 @@ export const sendCarouselMessage = (recipientId, elements) => {
     elementsData.push(elementData);
   }
 
-  const messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'generic',
-          elements: elementsData
+  _.chunk(elementsData, DEFAULT_MAXIMUM_PAYLOAD_ELEMENT).forEach(data => {
+    const messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'generic',
+            elements: data
+          }
         }
       }
-    }
-  };
+    };
 
-  callSendAPI(messageData);
+    callSendAPI(messageData);
+  });
 };
