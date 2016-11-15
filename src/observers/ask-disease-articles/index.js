@@ -1,0 +1,122 @@
+import Promise from 'promise';
+import co from 'co';
+
+import services from 'services';
+import { TypeSynonym, DiseaseSynonym, TypeDisease } from 'models';
+import { logger } from 'logs/winston-logger';
+
+export default class AskDiseaseArticlesListener {
+  handle(messageEvent) {
+    const self = this;
+    co(
+      function*() {
+        const dataAnalysis = yield self._analyzeAskingDisease(messageEvent);
+        if (dataAnalysis.isAskingDisease) {
+          if (messageEvent && messageEvent.sender.id) {
+            self._sendResponseMessage(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
+          } else {
+            logger.info('Sender id is invalid');
+          }
+        } else {
+          logger.info('No data matches with request');
+        }
+      }
+    ).catch(exception => {
+      logger.log('error', 'Get error %s', exception);
+    });
+  }
+
+  _analyzeAskingDisease(messageEvent) {
+    if (!(messageEvent && messageEvent.message && messageEvent.message.text)) {
+      return Promise.resolve({ isAskingDisease: false });
+    }
+
+    const text = messageEvent.message.text;
+    return this._getRequest(text).then((res) => {
+      if (res.requestedTypeIds.length > 0 && res.requestedDiseaseIds.length > 0) {
+        return Promise.resolve({
+          isAskingDisease: true,
+          typeIds: res.requestedTypeIds,
+          diseaseIds: res.requestedDiseaseIds
+        });
+      } else {
+        return Promise.resolve({ isAskingDisease: false });
+      }
+    });
+  }
+
+  _getRequest(message) {
+
+    logger.log('info', 'Message: %j', message);
+
+    return co(function *() {
+      const typeSynonyms = yield TypeSynonym.findAllTypeSynonyms();
+      const diseaseSynonyms = yield DiseaseSynonym.findAllDiseaseSynonyms();
+
+      logger.log('info', 'List of typeSynonyms: %j', typeSynonyms);
+      logger.log('info', 'List of diseaseSynonyms: %j', diseaseSynonyms);
+
+      const requestedTypeSynonyms = typeSynonyms.filter(typeSynonym => {
+        return message.indexOf(typeSynonym.value) !== -1;
+      });
+
+      const requestedDiseaseSynonyms = diseaseSynonyms.filter(diseaseSynonym => {
+        return message.indexOf(diseaseSynonym.name) !== -1;
+      });
+
+      logger.log('info', 'List of requestedTypeSynonyms: %j', requestedTypeSynonyms);
+      logger.log('info', 'List of requestedDiseaseSynonyms: %j', requestedDiseaseSynonyms);
+
+      const requestedTypeIds = requestedTypeSynonyms.map(requestedTypeSynonym => {
+        return requestedTypeSynonym.typeId;
+      });
+
+      const requestedDiseaseIds = requestedDiseaseSynonyms.map(requestedDiseaseSynonym => {
+        return requestedDiseaseSynonym.diseaseId;
+      });
+
+      logger.log('info', 'List of requestedTypeIds: %j', requestedTypeIds);
+      logger.log('info', 'List of requestedDiseaseIds: %j', requestedDiseaseIds);
+
+      return { requestedTypeIds, requestedDiseaseIds };
+    });
+  };
+
+  _sendResponseMessage(recipientId, typeIds, diseaseIds) {
+    const self = this;
+
+    co(function*() {
+        const articles = yield self._getDiseaseResponseMessage(typeIds, diseaseIds);
+
+        if (articles.length > 0) {
+          articles.map(article => {
+            logger.log('info', 'Write response article %j to recipient %j', article, recipientId);
+            services.sendTextMessage(recipientId, article);
+          });
+        }
+      }
+    ).catch(exception => {
+      logger.error(`Got exception on writing disease response article ${exception}`);
+    });
+  };
+
+  _getDiseaseResponseMessage(typeIds, diseaseIds) {
+    return co(function*() {
+      let articles = [];
+
+      for (let typeId of typeIds) {
+        for (let diseaseId of diseaseIds) {
+          const additionalArticles = yield TypeDisease.getArticles(typeId, diseaseId);
+          if (additionalArticles && additionalArticles.length > 0) {
+            articles = [...articles, ...additionalArticles];
+          }
+        }
+      }
+
+      logger.log('info', 'Response message %j', articles);
+      return articles;
+    }).catch(exception => {
+      logger.error(`Got on building disease response message ${exception}`);
+    });
+  }
+}
