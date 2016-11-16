@@ -31,7 +31,7 @@ describe('ask disease articles observer', () => {
     });
 
     it('returns false if not match database', () => {
-      sinon.stub(askDiseaseArticlesListener, '_getRequest').returns(Promise.resolve({
+      sinon.stub(askDiseaseArticlesListener, '_getRequest', () => Promise.resolve({
         requestedTypeIds: [],
         requestedDiseaseIds: []
       }));
@@ -42,7 +42,7 @@ describe('ask disease articles observer', () => {
     });
 
     it('returns true with data if match database', () => {
-      sinon.stub(askDiseaseArticlesListener, '_getRequest').returns(Promise.resolve({
+      sinon.stub(askDiseaseArticlesListener, '_getRequest', () => Promise.resolve({
         requestedTypeIds: [1],
         requestedDiseaseIds: [1]
       }));

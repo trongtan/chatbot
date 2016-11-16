@@ -54,7 +54,7 @@ describe('greeting observer', () => {
     });
 
     it('send text message to user', (done) => {
-      sinon.stub(services, 'sendTextMessage').returns(Promise.resolve('Success'));
+      sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
       greetingListener._handle({ sender: { id: '1' } }).then((response) => {
         expect(spy.called).to.be.true;
         expect(response).to.be.equal('Success');

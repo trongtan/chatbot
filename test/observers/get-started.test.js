@@ -50,11 +50,11 @@ describe('get started observer', () => {
     });
 
     it('saves user profile to database and send response data', (done) => {
-      const saveUserProfileToDatabaseSpy = sinon.stub(getStartedListener, '_saveUserProfileToDatabase').withArgs('1')
-        .returns(Promise.resolve('Success'));
-      const sendResponseMessageSpy = sinon.stub(getStartedListener, '_sendResponseMessage').withArgs('1')
-        .returns(Promise.resolve('Success'));
-      sinon.stub(services, 'sendTextMessage').returns(Promise.resolve('Success'));
+      const saveUserProfileToDatabaseSpy = sinon.stub(getStartedListener, '_saveUserProfileToDatabase',
+        () => Promise.resolve('Success'));
+      const sendResponseMessageSpy = sinon.stub(getStartedListener, '_sendResponseMessage',
+        () => Promise.resolve('Success'));
+      sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
 
       getStartedListener._handle({ sender: { id: '1' } }).then(() => {
         expect(saveUserProfileToDatabaseSpy.called).to.be.true;
@@ -78,7 +78,7 @@ describe('get started observer', () => {
         gender: 'Male'
       };
 
-      sinon.stub(serviceUtils, 'getUserProfile').returns(Promise.resolve(userProfile));
+      sinon.stub(serviceUtils, 'getUserProfile', () => Promise.resolve(userProfile));
 
       getStartedListener._saveUserProfileToDatabase('1').then(() => {
         User.findAll().then((users) => {
@@ -93,8 +93,8 @@ describe('get started observer', () => {
 
   context('#sendResponseMessage', () => {
     it('sends message to user', (done) => {
-      sinon.stub(getStartedListener, '_buildResponseMessage').returns('Response message');
-      sinon.stub(services, 'sendTextMessage').returns(Promise.resolve('Success'));
+      sinon.stub(getStartedListener, '_buildResponseMessage', () => 'Response message');
+      sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
 
       getStartedListener._sendResponseMessage('1').then((result) => {
         expect(result).to.be.equal('Success');
