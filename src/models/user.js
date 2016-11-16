@@ -1,5 +1,5 @@
 import { logger } from 'logs/winston-logger';
-import { GET_STARTED_PAYLOAD } from 'utils/constants';
+import { payloadConstants } from 'utils/constants';
 
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -20,7 +20,7 @@ export default (sequelize, DataTypes) => {
           firstName: userProfile.first_name,
           lastName: userProfile.last_name,
           gender: userProfile.gender,
-          currentPayload: GET_STARTED_PAYLOAD
+          currentPayload: payloadConstants.GET_STARTED_PAYLOAD
         };
 
         logger.log('info', 'Save to user profile to database %j', fullUserProfile);

@@ -1,8 +1,15 @@
+import constantMirror from 'constant-mirror';
+
 export const FACEBOOK_GET_STARTED_PAYLOAD = 'USER_DEFINED_PAYLOAD';
 export const DEFAULT_TYPE_KEYWORD = 'thong tin';
 export const DEFAULT_MAXIMUM_PAYLOAD_ELEMENT = 10;
 
-let c = 0;
-export const GET_STARTED_PAYLOAD = c++;
-export const GREETING_PAYLOAD = c++;
-export const DISEASE_PAYLOAD = c++;
+const payloadConstants = constantMirror(
+  'GET_STARTED_PAYLOAD',
+  'GREETING_PAYLOAD',
+  'DISEASE_PAYLOAD'
+);
+
+export {
+  payloadConstants
+};
