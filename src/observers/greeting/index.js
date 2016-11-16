@@ -1,6 +1,6 @@
 import services from 'services';
 import messages from './messages';
-import ValidateObserver from 'observers/base/validate-listener';
+import ValidateListener from 'observers/base/validate-listener';
 import { logger } from 'logs/winston-logger';
 import { replaceVietnameseCharacters } from 'utils/text-utils';
 import { getRandomObjectFromArray } from 'utils/helpers';
@@ -15,7 +15,7 @@ const keywords = {
   'bac si oi': ['bac si oi', 'bác sĩ ơi']
 };
 
-export default class GreetingListener extends ValidateObserver {
+export default class GreetingListener extends ValidateListener {
   _shouldHandle(messageEvent) {
     if (!(messageEvent && messageEvent.message && messageEvent.message.text)) {
       return false;

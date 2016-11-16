@@ -57,7 +57,8 @@ gulp.task('build-env', function () {
   return gulp.src('.env')
     .pipe(dotenv())
     .pipe(rename('env.json'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'))
+    .on('error', gulpUtil.log);
 });
 
 gulp.task('es6', () => {

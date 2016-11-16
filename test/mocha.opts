@@ -1,3 +1,5 @@
 --require chai
 --reporter spec
---timeout 1000
+--timeout 5000
+dist/test
+--recursive

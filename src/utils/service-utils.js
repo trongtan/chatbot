@@ -20,11 +20,14 @@ export const callSendAPI = messageData => {
 
       if (messageId) {
         logger.log('info', 'Successfully sent message to recipient %s', recipientId);
+        return Promise.resolve(`Successfully sent message to recipient ${recipientId}`);
       } else {
         logger.log('info', 'Successfully called Send API for recipient %s', recipientId);
+        return Promise.resolve(`Successfully called Send API for recipient ${recipientId}`);
       }
     } else {
       logger.error('Failed calling Send API', response.statusCode, response.statusMessage, body.error);
+      return Promise.reject('Failed calling Send API');
     }
   });
 };

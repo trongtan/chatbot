@@ -26,7 +26,6 @@ export default (sequelize, DataTypes) => {
         logger.log('info', 'Save to user profile to database %j', fullUserProfile);
 
         return User.findOrCreate({
-          attributes: ['userId', 'firstName', 'lastName', 'gender'],
           where: { userId: userId },
           defaults: fullUserProfile
         });

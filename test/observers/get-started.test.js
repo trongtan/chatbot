@@ -1,0 +1,114 @@
+import Promise from 'promise';
+import { expect } from 'chai';
+import sinon from 'sinon';
+import { beforeEach, afterEach } from 'mocha';
+
+import 'preload';
+import services from 'services';
+import * as serviceUtils from 'utils/service-utils';
+import GetStartedListener from 'observers/get_started';
+import messages from 'observers/get_started/messages';
+import { FACEBOOK_GET_STARTED_PAYLOAD } from 'utils/constants';
+import { User } from 'models';
+
+describe('get started observer', () => {
+  let getStartedListener;
+
+  beforeEach(() => {
+    getStartedListener = new GetStartedListener();
+  });
+
+  context('#shouldHandle', () => {
+    it('returns false if messageEvent is null', () => {
+      expect(getStartedListener._shouldHandle(null)).to.be.false;
+    });
+
+    it('returns false if messageEvent.postback is null', () => {
+      expect(getStartedListener._shouldHandle({ postback: null })).to.be.false;
+    });
+
+    it('returns false if messageEvent.postback.payload is not FACEBOOK_GET_STARTED_PAYLOAD', () => {
+      expect(getStartedListener._shouldHandle({ postback: { payload: '' } })).to.be.false;
+    });
+
+    it('returns true if messageEvent.postback.payload is FACEBOOK_GET_STARTED_PAYLOAD', () => {
+      expect(getStartedListener._shouldHandle({ postback: { payload: FACEBOOK_GET_STARTED_PAYLOAD } })).to.be.true;
+    });
+  });
+
+  context('#handle', () => {
+    it('does nothing if messageEvent is null', () => {
+      let spy = sinon.spy(getStartedListener, '_saveUserProfileToDatabase');
+      getStartedListener._handle(null);
+      expect(spy.called).to.be.false;
+    });
+
+    it('does nothing if messageEvent.sender is null', () => {
+      let spy = sinon.spy(getStartedListener, '_saveUserProfileToDatabase');
+      getStartedListener._handle({});
+      expect(spy.called).to.be.false;
+    });
+
+    it('saves user profile to database and send response data', (done) => {
+      const saveUserProfileToDatabaseSpy = sinon.stub(getStartedListener, '_saveUserProfileToDatabase').withArgs('1')
+        .returns(Promise.resolve('Success'));
+      const sendResponseMessageSpy = sinon.stub(getStartedListener, '_sendResponseMessage').withArgs('1')
+        .returns(Promise.resolve('Success'));
+      sinon.stub(services, 'sendTextMessage').returns(Promise.resolve('Success'));
+
+      getStartedListener._handle({ sender: { id: '1' } }).then(() => {
+        expect(saveUserProfileToDatabaseSpy.called).to.be.true;
+        expect(sendResponseMessageSpy.called).to.be.true;
+      }).done(() => {
+        services.sendTextMessage.restore();
+        done();
+      });
+    });
+  });
+
+  context('#saveUserProfileToDatabase', () => {
+    afterEach(() => {
+      User.sync({ force: true });
+    });
+
+    it('gets data via facebook API and save to database', (done) => {
+      const userProfile = {
+        first_name: 'test',
+        last_name: 'test',
+        gender: 'Male'
+      };
+
+      sinon.stub(serviceUtils, 'getUserProfile').returns(Promise.resolve(userProfile));
+
+      getStartedListener._saveUserProfileToDatabase('1').then(() => {
+        User.findAll().then((users) => {
+          expect(users.length).to.be.equal(1);
+        });
+      }).done(() => {
+        serviceUtils.getUserProfile.restore();
+        done();
+      });
+    });
+  });
+
+  context('#sendResponseMessage', () => {
+    it('sends message to user', (done) => {
+      sinon.stub(getStartedListener, '_buildResponseMessage').returns('Response message');
+      sinon.stub(services, 'sendTextMessage').returns(Promise.resolve('Success'));
+
+      getStartedListener._sendResponseMessage('1').then((result) => {
+        expect(result).to.be.equal('Success');
+      }).done(() => {
+        services.sendTextMessage.restore();
+        done();
+      });
+    });
+  });
+
+  context('#buildResponseMessage', () => {
+    it('returns one of get started response messages', () => {
+      const responseMessage = getStartedListener._buildResponseMessage();
+      expect(messages).to.include(responseMessage);
+    });
+  });
+});
