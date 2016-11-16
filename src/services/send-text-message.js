@@ -11,5 +11,5 @@ export const sendTextMessage = function (recipientId, messageText) {
     }
   };
 
-  callSendAPI(messageData);
+  return callSendAPI(messageData);
 };

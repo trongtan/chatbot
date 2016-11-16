@@ -4,28 +4,33 @@ import Promise from 'promise';
 import { logger } from 'logs/winston-logger';
 
 export const callSendAPI = messageData => {
-  const requestData = {
-    uri: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
-    method: 'POST',
-    json: messageData
-  };
+  return new Promise((fulfill, reject) => {
+    const requestData = {
+      uri: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+      method: 'POST',
+      json: messageData
+    };
 
-  logger.log('info', 'Sending message %j to %j', requestData, messageData);
+    logger.log('info', 'Sending message %j to %j', requestData, messageData);
 
-  request(requestData, (error, response, body) => {
-    if (!error && response.statusCode == 200) {
-      var recipientId = body['recipient_id'];
-      var messageId = body['message_id'];
+    request(requestData, (error, response, body) => {
+      if (!error && response.statusCode == 200) {
+        var recipientId = body['recipient_id'];
+        var messageId = body['message_id'];
 
-      if (messageId) {
-        logger.log('info', 'Successfully sent message to recipient %s', recipientId);
+        if (messageId) {
+          logger.log('info', 'Successfully sent message to recipient %s', recipientId);
+          return fulfill(`Successfully sent message to recipient ${recipientId}`);
+        } else {
+          logger.log('info', 'Successfully called Send API for recipient %s', recipientId);
+          return fulfill(`Successfully called Send API for recipient ${recipientId}`);
+        }
       } else {
-        logger.log('info', 'Successfully called Send API for recipient %s', recipientId);
+        logger.error('Failed calling Send API', response.statusCode, response.statusMessage, body.error);
+        return reject('Failed calling Send API');
       }
-    } else {
-      logger.error('Failed calling Send API', response.statusCode, response.statusMessage, body.error);
-    }
+    });
   });
 };
 

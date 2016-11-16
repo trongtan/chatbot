@@ -36,6 +36,14 @@ const _cleanDBTask = (env) => {
   ], { ignoreErrors: true });
 };
 
+const _seedDBTask = (dbUrl) => {
+  return gulp.src('*.js', { read: false })
+    .pipe(shell([
+      `sequelize db:migrate --url ${dbUrl}`,
+      `sequelize db:seed:all --url ${dbUrl}`
+    ]));
+};
+
 /////////////////////////////////////////////////////////////////
 ///                        CLEAN TASKS                        ///
 /////////////////////////////////////////////////////////////////
@@ -57,7 +65,8 @@ gulp.task('build-env', function () {
   return gulp.src('.env')
     .pipe(dotenv())
     .pipe(rename('env.json'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'))
+    .on('error', gulpUtil.log);
 });
 
 gulp.task('es6', () => {
@@ -66,11 +75,7 @@ gulp.task('es6', () => {
 
 gulp.task('import-db', ['build-env'], () => {
   const dbUrl = require('./dist/env.json').DB_URL;
-  return gulp.src('*.js', { read: false })
-    .pipe(shell([
-      `sequelize db:migrate --url ${dbUrl}`,
-      `sequelize db:seed:all --url ${dbUrl}`
-    ]));
+  return _seedDBTask(dbUrl);
 });
 
 gulp.task('build', ['clean'], () => {
@@ -88,10 +93,7 @@ gulp.task('es6-test', () => {
 
 gulp.task('import-db-test', ['build-env', 'clean-db-test'], () => {
   const dbUrl = gulpUtil.env.DB_URL_TEST ? gulpUtil.env.DB_URL_TEST : require('./dist/env.json').DB_URL_TEST;
-  return gulp.src('*.js', { read: false })
-    .pipe(shell([
-      `sequelize db:migrate --url ${dbUrl}`
-    ]));
+  return _seedDBTask(dbUrl);
 });
 
 gulp.task('copy-mocha-options', () => {
