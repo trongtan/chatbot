@@ -23,17 +23,17 @@ export default class GreetingListener extends ValidateListener {
       const originText = messageEvent.message.text;
       const synonymText = replaceVietnameseCharacters(originText).toLowerCase();
 
-      return synonymText in keywords && originText.includes(keywords[synonymText]);
+      return synonymText in keywords && keywords[synonymText].includes(originText);
     }
   }
 
   _handle(messageEvent) {
-    if (messageEvent && messageEvent.sender.id) {
+    if (messageEvent && messageEvent.sender && messageEvent.sender.id) {
       const recipientId = messageEvent.sender.id;
       const message = this._buildResponseMessage();
 
       logger.log('info', 'Write response message %j to recipient %j', message, recipientId);
-      services.sendTextMessage(recipientId, message);
+      return services.sendTextMessage(recipientId, message);
     }
   }
 
