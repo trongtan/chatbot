@@ -28,9 +28,10 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
   }
 
   _handle(messageEvent, dataAnalysis) {
-    if (dataAnalysis.isAskingDisease) {
-      if (messageEvent && messageEvent.sender.id) {
-        this._sendResponseMessage(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
+    if (dataAnalysis && dataAnalysis.isAskingDisease) {
+      if (messageEvent && messageEvent.sender && messageEvent.sender.id) {
+        console.log(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
+        return this._sendResponseMessage(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
       } else {
         logger.info('Sender id is invalid');
       }
@@ -77,6 +78,8 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
       logger.log('info', 'List of requestedDiseaseIds: %j', requestedDiseaseIds);
 
       return { requestedTypeIds, requestedDiseaseIds };
+    }).catch(exception => {
+      logger.log('error', 'Got exception on getRequest: %s', exception);
     });
   };
 
@@ -88,7 +91,7 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
 
         if (articles.length > 0) {
           logger.log('info', 'Write response articles %j to recipient %j', articles, recipientId);
-          services.sendCarouselMessage(recipientId, articles);
+          return services.sendCarouselMessage(recipientId, articles);
         }
       }
     ).catch(exception => {

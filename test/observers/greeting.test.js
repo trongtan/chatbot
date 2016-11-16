@@ -1,3 +1,4 @@
+import Promise from 'promise';
 import sinon from 'sinon';
 import { expect } from 'chai';
 import { beforeEach } from 'mocha';
@@ -31,28 +32,35 @@ describe('greeting observer', () => {
   });
 
   context('#handle', () => {
+    let spy;
+
+    beforeEach(() => {
+      spy = sinon.spy(greetingListener, '_buildResponseMessage');
+    });
+
     it('does nothing if messageEvent is null', () => {
-      let spy = sinon.spy(greetingListener, '_buildResponseMessage');
       greetingListener._handle(null);
       expect(spy.called).to.be.false;
     });
 
     it('does nothing if messageEvent.sender is null', () => {
-      let spy = sinon.spy(greetingListener, '_buildResponseMessage');
       greetingListener._handle({});
       expect(spy.called).to.be.false;
     });
 
     it('does nothing if messageEvent.sender.id is null', () => {
-      let spy = sinon.spy(greetingListener, '_buildResponseMessage');
       greetingListener._handle({ sender: {} });
       expect(spy.called).to.be.false;
     });
 
-    it('send text message to user', () => {
+    it('send text message to user', (done) => {
       sinon.stub(services, 'sendTextMessage').returns(Promise.resolve('Success'));
-      greetingListener._handle({ sender: { id: '1' } }).then(result => {
-        expect(result).to.be.equal('Success');
+      greetingListener._handle({ sender: { id: '1' } }).then((response) => {
+        expect(spy.called).to.be.true;
+        expect(response).to.be.equal('Success');
+      }).done(() => {
+        services.sendTextMessage.restore();
+        done();
       });
     });
   });

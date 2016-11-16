@@ -67,8 +67,8 @@ describe('get started observer', () => {
   });
 
   context('#saveUserProfileToDatabase', () => {
-    afterEach(() => {
-      User.sync({ force: true });
+    afterEach((done) => {
+      User.destroy({ truncate: true }).then(done);
     });
 
     it('gets data via facebook API and save to database', (done) => {
