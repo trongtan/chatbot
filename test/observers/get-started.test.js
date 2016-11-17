@@ -53,13 +53,13 @@ describe('get started observer', () => {
         () => Promise.resolve('Success'));
       const sendResponseMessageSpy = sinon.stub(getStartedListener, '_sendResponseMessage',
         () => Promise.resolve('Success'));
-      sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
+      sinon.stub(services, 'sendTextWithQuickReplyMessage', () => Promise.resolve('Success'));
 
       getStartedListener._handle({ sender: { id: '1' } }).then(() => {
         expect(saveUserProfileToDatabaseSpy.called).to.be.true;
         expect(sendResponseMessageSpy.called).to.be.true;
       }).done(() => {
-        services.sendTextMessage.restore();
+        services.sendTextWithQuickReplyMessage.restore();
         done();
       });
     });

@@ -1,7 +1,7 @@
 import GetStartedListener from './get_started';
 import GreetingListener from './greeting';
 import AskDiseaseArticlesListener from './ask-disease-articles';
-import ReadyToChatListener from './ready-to-chat';
+import ReadyToChatListener from './ready_to_chat';
 
 export default class RootObserver {
   constructor() {

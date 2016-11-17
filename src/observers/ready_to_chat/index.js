@@ -16,17 +16,17 @@ const notReadyToChatResponse = ['khong', 'ko', 'no'];
 export default class ReadyToChatListener extends AnalyzeListener {
   _analyze(messageEvent) {
 
-    try {
+    if (messageEvent && messageEvent.sender && messageEvent.sender.id && messageEvent.message
+      && messageEvent.message.quick_reply && messageEvent.message.quick_reply.payload) {
+      const userId = messageEvent.sender.id;
       const payload = messageEvent.message.quick_reply.payload;
+
       if ([payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD]
           .includes(payload)) {
-        return Promise.resolve({ shouldHandle: true, userId: messageEvent.sender.id, payload: payload })
-      }
-    } catch (exception) {
-      try {
-        const userId = messageEvent.sender.id;
+        return Promise.resolve({ shouldHandle: true, userId: userId, payload: payload })
+      } else {
         return User.getCurrentPayload(userId).then(user => {
-          try {
+          if (user && user.currentPayload) {
             const currentPayload = user.currentPayload;
 
             if (currentPayload === payloadConstants.GET_STARTED_PAYLOAD) {
@@ -48,16 +48,13 @@ export default class ReadyToChatListener extends AnalyzeListener {
                 });
               }
             }
-          } catch (exception) {
-            logger.info('[Ready To Chat]Get exception on analyzing user');
           }
 
           return Promise.resolve({ shouldHandle: false });
         });
-      } catch (exception) {
-        logger.info('info', '[Ready To Chat]Get exception on parsing messageEvent');
       }
     }
+
     return Promise.resolve({ shouldHandle: false });
   }
 
@@ -70,15 +67,15 @@ export default class ReadyToChatListener extends AnalyzeListener {
 
         logger.log('info', '[Ready To Chat]Write response message %j to recipient %j', message, userId);
         return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
-      } else {
+      } else if (payload === payloadConstants.NOT_READY_TO_CHAT_PAYLOAD) {
         const message = this._buildNotReadyResponseMessage();
 
         logger.log('info', '[Ready To Chat]Write response message %j to recipient %j', message, userId);
         return services.sendTextMessage(userId, message);
       }
-    } else {
-      return Promise.resolve(`Ready-to-chat skip message ${JSON.stringify(messageEvent)}`);
     }
+
+    return Promise.resolve(`Ready-to-chat skip message ${JSON.stringify(messageEvent)}`);
   }
 
   _buildReadyResponseMessage() {
@@ -108,4 +105,5 @@ export default class ReadyToChatListener extends AnalyzeListener {
     }
     return false;
   }
-};
+}
+;
