@@ -6,7 +6,7 @@ import notReadyMessages from './not-ready-to-chat-messages';
 import AnalyzeListener from 'observers/base/analyze-listener';
 import { User } from 'models';
 import { payloadConstants } from 'utils/constants';
-import { getRandomObjectFromArray } from 'utils/helpers';
+import { getRandomObjectFromArray, isSynonymTextInArray } from 'utils/helpers';
 import { logger } from 'logs/winston-logger';
 import { replaceVietnameseCharacters } from 'utils/text-utils';
 
@@ -38,12 +38,12 @@ export default class ReadyToChatListener extends AnalyzeListener {
   }
 
   _validateMessageAndCurrentPayload(text, userId) {
-    return User.getCurrentPayload(userId).then(user => {
+    return User.findById(userId).then(user => {
       if (user && user.currentPayload) {
         const currentPayload = user.currentPayload;
 
         if (currentPayload === payloadConstants.GET_STARTED_PAYLOAD) {
-          if (this._isReadyResponse(text)) {
+          if (isSynonymTextInArray(text, readyToChatResponse)) {
             return Promise.resolve({
               shouldHandle: true,
               userId: userId,
@@ -51,7 +51,7 @@ export default class ReadyToChatListener extends AnalyzeListener {
             });
           }
 
-          if (this._isNotReadyResponse(text)) {
+          if (isSynonymTextInArray(text, notReadyToChatResponse)) {
             return Promise.resolve({
               shouldHandle: true,
               userId: userId,
@@ -73,11 +73,14 @@ export default class ReadyToChatListener extends AnalyzeListener {
         const message = this._buildReadyResponseMessage();
 
         logger.log('info', '[Ready To Chat]Write response message %j to recipient %j', message, userId);
-        return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
+        return User.updateCurrentPayload(userId, payloadConstants.READY_TO_CHAT_PAYLOAD).then(() => {
+          return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
+        });
       } else if (payload === payloadConstants.NOT_READY_TO_CHAT_PAYLOAD) {
         const message = this._buildNotReadyResponseMessage();
 
         logger.log('info', '[Ready To Chat]Write response message %j to recipient %j', message, userId);
+
         return services.sendTextMessage(userId, message);
       }
     }
@@ -92,24 +95,4 @@ export default class ReadyToChatListener extends AnalyzeListener {
   _buildNotReadyResponseMessage() {
     return getRandomObjectFromArray(notReadyMessages);
   }
-
-  _isReadyResponse(text) {
-    return this._isSynonymTextInArray(text, readyToChatResponse);
-  }
-
-  _isNotReadyResponse(text) {
-    return this._isSynonymTextInArray(text, notReadyToChatResponse);
-  }
-
-  _isSynonymTextInArray(text, elements) {
-    const synonymText = replaceVietnameseCharacters(text).toLowerCase();
-
-    for (let element of elements) {
-      if (synonymText.includes(element)) {
-        return true;
-      }
-    }
-    return false;
-  }
-}
-;
+};

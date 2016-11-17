@@ -10,7 +10,9 @@ export default (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     gender: DataTypes.STRING,
-    currentPayload: DataTypes.STRING
+    currentPayload: DataTypes.STRING,
+    parental: DataTypes.STRING,
+    childName: DataTypes.STRING
   }, {
     freezeTableName: true,
     classMethods: {
@@ -32,13 +34,16 @@ export default (sequelize, DataTypes) => {
       },
       getCurrentPayload: (userId) => {
         return User.findOne({
-          attributes: [ 'currentPayload' ],
+          attributes: ['currentPayload'],
           where: {
             userId: userId
           },
           raw: true
         });
-      }
+      },
+      updateCurrentPayload: (userId, currentPayload) => {
+        return User.update({ currentPayload: currentPayload }, { where: { userId: userId } });
+      },
     }
   });
 

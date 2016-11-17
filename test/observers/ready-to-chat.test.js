@@ -153,24 +153,4 @@ describe('ready to chat observer', () => {
       });
     });
   });
-
-  context('#isReadyResponse', () => {
-    it('return true if parameter is in readyResponse', () => {
-      expect(readyToChatListener._isReadyResponse('co')).to.be.true;
-    });
-
-    it('return false if parameter is not in readyResponse', () => {
-      expect(readyToChatListener._isReadyResponse('ko')).to.be.false;
-    });
-  });
-
-  context('#isNotReadyResponse', () => {
-    it('return true if parameter is in notReadyResponse', () => {
-      expect(readyToChatListener._isNotReadyResponse('khong')).to.be.true;
-    });
-
-    it('return false if parameter is not in notReadyResponse', () => {
-      expect(readyToChatListener._isNotReadyResponse('co')).to.be.false;
-    });
-  });
 });
