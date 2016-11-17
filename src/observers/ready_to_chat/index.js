@@ -16,46 +16,53 @@ const notReadyToChatResponse = ['khong', 'ko', 'no'];
 export default class ReadyToChatListener extends AnalyzeListener {
   _analyze(messageEvent) {
 
-    if (messageEvent && messageEvent.sender && messageEvent.sender.id && messageEvent.message
-      && messageEvent.message.quick_reply && messageEvent.message.quick_reply.payload) {
+    const isValidSender = messageEvent && messageEvent.sender && messageEvent.sender.id;
+    const isValidMessage = messageEvent && messageEvent.message && messageEvent.message.quick_reply
+      && messageEvent.message.quick_reply.payload;
+
+    if (isValidSender && isValidMessage) {
       const userId = messageEvent.sender.id;
       const payload = messageEvent.message.quick_reply.payload;
 
-      if ([payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD]
-          .includes(payload)) {
+      if ([payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD].includes(payload)) {
         return Promise.resolve({ shouldHandle: true, userId: userId, payload: payload })
       } else {
-        return User.getCurrentPayload(userId).then(user => {
-          if (user && user.currentPayload) {
-            const currentPayload = user.currentPayload;
-
-            if (currentPayload === payloadConstants.GET_STARTED_PAYLOAD) {
-              const text = messageEvent.message.text;
-
-              if (this._isReadyResponse(text)) {
-                return Promise.resolve({
-                  shouldHandle: true,
-                  userId: userId,
-                  payload: payloadConstants.READY_TO_CHAT_PAYLOAD
-                });
-              }
-
-              if (this._isNotReadyResponse(text)) {
-                return Promise.resolve({
-                  shouldHandle: true,
-                  userId: userId,
-                  payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD
-                });
-              }
-            }
-          }
-
-          return Promise.resolve({ shouldHandle: false });
-        });
+        const text = messageEvent.message.text;
+        if (text) {
+          return this._validateMessageAndCurrentPayload(text, userId);
+        }
       }
     }
 
     return Promise.resolve({ shouldHandle: false });
+  }
+
+  _validateMessageAndCurrentPayload(text, userId) {
+    return User.getCurrentPayload(userId).then(user => {
+      if (user && user.currentPayload) {
+        const currentPayload = user.currentPayload;
+
+        if (currentPayload === payloadConstants.GET_STARTED_PAYLOAD) {
+          if (this._isReadyResponse(text)) {
+            return Promise.resolve({
+              shouldHandle: true,
+              userId: userId,
+              payload: payloadConstants.READY_TO_CHAT_PAYLOAD
+            });
+          }
+
+          if (this._isNotReadyResponse(text)) {
+            return Promise.resolve({
+              shouldHandle: true,
+              userId: userId,
+              payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD
+            });
+          }
+        }
+      }
+
+      return Promise.resolve({ shouldHandle: false });
+    });
   }
 
   _handle(messageEvent, dataAnalysis) {
@@ -87,19 +94,18 @@ export default class ReadyToChatListener extends AnalyzeListener {
   }
 
   _isReadyResponse(text) {
-    const synonymText = replaceVietnameseCharacters(text).toLowerCase();
-    for (let readyMessage of readyToChatResponse) {
-      if (synonymText.includes(readyMessage)) {
-        return true;
-      }
-    }
-    return false;
+    return this._isSynonymTextInArray(text, readyToChatResponse);
   }
 
   _isNotReadyResponse(text) {
+    return this._isSynonymTextInArray(text, notReadyToChatResponse);
+  }
+
+  _isSynonymTextInArray(text, elements) {
     const synonymText = replaceVietnameseCharacters(text).toLowerCase();
-    for (let readyMessage of notReadyToChatResponse) {
-      if (synonymText.includes(readyMessage)) {
+
+    for (let element of elements) {
+      if (synonymText.includes(element)) {
         return true;
       }
     }
