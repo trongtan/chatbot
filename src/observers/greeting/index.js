@@ -33,7 +33,7 @@ export default class GreetingListener extends ValidateListener {
       const message = this._buildResponseMessage();
 
       logger.log('info', 'Write response message %j to recipient %j', message, recipientId);
-      return services.sendTextMessage(recipientId, message);
+      return services.sendTextWithQuickReplyMessage(recipientId, message.text, message.replyOptions);
     }
   }
 
