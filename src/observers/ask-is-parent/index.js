@@ -10,23 +10,27 @@ import { replaceVietnameseCharacters } from 'utils/text-utils';
 
 const isDadResponse = ['bo', 'ba', 'cha'];
 const isMomResponse = ['me', 'ma'];
-const isNotParentResponse = ['chua co con'];
+const isNotParentResponse = ['chua co con', 'khong co con', 'khong co'];
 
 export default class ReadyToChatListener extends AnalyzeListener {
   _analyze(messageEvent) {
     logger.info('[Ask is parent] Analyze (%j)', messageEvent);
     const isValidSender = messageEvent && messageEvent.sender && messageEvent.sender.id;
-    const isValidMessage = messageEvent && messageEvent.message && messageEvent.message.quick_reply
+    const isValidText = messageEvent && messageEvent.message && messageEvent.message.text;
+    const isValidPayload = messageEvent && messageEvent.message && messageEvent.message.quick_reply
       && messageEvent.message.quick_reply.payload;
 
-    if (isValidSender && isValidMessage) {
+    if (isValidSender) {
       const userId = messageEvent.sender.id;
-      const payload = messageEvent.message.quick_reply.payload;
 
-      if ([payloadConstants.IS_DAD_PAYLOAD, payloadConstants.IS_MOM_PAYLOAD, payloadConstants.NO_CHILDREN_PAYLOAD]
-          .includes(payload)) {
-        return Promise.resolve({ shouldHandle: true, userId: userId, parental: payload })
-      } else {
+      if (isValidPayload) {
+        const payload = messageEvent.message.quick_reply.payload;
+
+        if ([payloadConstants.IS_DAD_PAYLOAD, payloadConstants.IS_MOM_PAYLOAD, payloadConstants.NO_CHILDREN_PAYLOAD]
+            .includes(payload)) {
+          return Promise.resolve({ shouldHandle: true, userId: userId, parental: payload })
+        }
+      } else if (isValidText) {
         const text = messageEvent.message.text;
         if (text) {
           return this._validateMessageAndCurrentPayload(text, userId);
@@ -43,16 +47,11 @@ export default class ReadyToChatListener extends AnalyzeListener {
 
     if (shouldHandle) {
       return this._buildResponseMessage(userId, parental).then((message) => {
-        if (message) {
-          logger.log('info', '[Ask is parent]Write response message %j to recipient %j', message, userId);
+        logger.log('info', '[Ask is parent]Write response message %j to recipient %j', message, userId);
 
-          return User.updateCurrentPayload(userId, payloadConstants.ASK_PARENT_PAYLOAD).then(() => {
-            return services.sendTextMessage(userId, message);
-          });
-        } else {
-          logger.log('info', '[Ask is parent]Nothing to write to recipient %j', userId);
-          return Promise.reject(`Nothing to write to recipient ${userId}`);
-        }
+        return User.updateCurrentPayload(userId, payloadConstants.ASK_PARENT_PAYLOAD).then(() => {
+          return services.sendTextMessage(userId, message);
+        });
       });
     }
 

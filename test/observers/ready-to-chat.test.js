@@ -186,7 +186,7 @@ describe('ready to chat observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
           done();
         });
-      })
+      });
     });
 
     context('database ready', () => {
