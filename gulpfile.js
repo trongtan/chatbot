@@ -104,7 +104,6 @@ gulp.task('build-test', () => {
   gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test').on('error', gulpUtil.log);
 });
 
-
 /////////////////////////////////////////////////////////////////
 ///                         WATCH TASKS                       ///
 /////////////////////////////////////////////////////////////////
@@ -114,4 +113,39 @@ gulp.task('watch', ['build'], () => {
 
 gulp.task('watch-test', ['build-test'], () => {
   gulp.watch(['src/**/*.js', 'test/**/*.js'], ['build-test']).on('error', gulpUtil.log);
+});
+
+/////////////////////////////////////////////////////////////////
+///                          YARN TASKS                       ///
+/////////////////////////////////////////////////////////////////
+const _yarnTask = (command, prebuilds) => {
+  return gulp.src('*.js')
+    .pipe(shell(prebuilds))
+    .pipe(shell(command))
+    .pipe(gulp.dest('dist'))
+    .on('error', gulpUtil.log);
+};
+
+gulp.task('test', () => {
+  return _yarnTask('yarn test', ['gulp build-test']);
+});
+
+gulp.task('test-coverage', () => {
+  return _yarnTask('yarn test-coverage', ['gulp build-test']);
+});
+
+gulp.task('eslint', () => {
+  return _yarnTask('yarn eslint', []);
+});
+
+gulp.task('dev', () => {
+  return _yarnTask('yarn dev', []);
+});
+
+gulp.task('start', () => {
+  return _yarnTask('yarn start', []);
+});
+
+gulp.task('debug', () => {
+  return _yarnTask('yarn debug', []);
 });
