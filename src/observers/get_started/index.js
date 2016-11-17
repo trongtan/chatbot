@@ -1,3 +1,5 @@
+import Promise from 'promise';
+
 import services from 'services';
 import messages from './messages';
 import ValidateListener from 'observers/base/validate-listener';
@@ -32,8 +34,12 @@ export default class GetStartedListener extends ValidateListener {
     const recipientId = userId;
     const message = this._buildResponseMessage();
 
-    logger.log('info', 'Write response message %j to recipient %j', message, recipientId);
-    return services.sendTextMessage(recipientId, message);
+    if (message) {
+      logger.log('info', 'Write response message %j to recipient %s', message, recipientId);
+      return services.sendTextMessage(recipientId, message);
+    } else {
+      return Promise.resolve('Intentionally send no message to %s', recipientId);
+    }
   };
 
   _buildResponseMessage() {
