@@ -17,16 +17,21 @@ export default class ReadyToChatListener extends AnalyzeListener {
   _analyze(messageEvent) {
 
     const isValidSender = messageEvent && messageEvent.sender && messageEvent.sender.id;
-    const isValidMessage = messageEvent && messageEvent.message && messageEvent.message.quick_reply
+    const isValidText = messageEvent && messageEvent.message && messageEvent.message.text;
+    const isValidPayload = messageEvent && messageEvent.message && messageEvent.message.quick_reply
       && messageEvent.message.quick_reply.payload;
 
-    if (isValidSender && isValidMessage) {
+    if (isValidSender) {
       const userId = messageEvent.sender.id;
-      const payload = messageEvent.message.quick_reply.payload;
 
-      if ([payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD].includes(payload)) {
-        return Promise.resolve({ shouldHandle: true, userId: userId, payload: payload })
-      } else {
+      if (isValidPayload) {
+        const userId = messageEvent.sender.id;
+        const payload = messageEvent.message.quick_reply.payload;
+
+        if ([payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD].includes(payload)) {
+          return Promise.resolve({ shouldHandle: true, userId: userId, payload: payload })
+        }
+      } else if (isValidText) {
         const text = messageEvent.message.text;
         if (text) {
           return this._validateMessageAndCurrentPayload(text, userId);
@@ -38,7 +43,9 @@ export default class ReadyToChatListener extends AnalyzeListener {
   }
 
   _validateMessageAndCurrentPayload(text, userId) {
+    logger.info('[Ready To Chat]Validate message and current payload', text, userId);
     return User.findById(userId).then(user => {
+      logger.info('[Ready To Chat]Validate on user', JSON.stringify(user));
       if (user && user.currentPayload) {
         const currentPayload = user.currentPayload;
 
