@@ -7,7 +7,6 @@ import 'preload';
 import services from 'services';
 import * as serviceUtils from 'utils/service-utils';
 import GetStartedListener from 'observers/get_started';
-import messages from 'observers/get_started/messages';
 import { FACEBOOK_GET_STARTED_PAYLOAD } from 'utils/constants';
 import { User } from 'models';
 
@@ -106,9 +105,9 @@ describe('get started observer', () => {
   });
 
   context('#buildResponseMessage', () => {
-    it('returns one of get started response messages', () => {
+    it('returns no message', () => {
       const responseMessage = getStartedListener._buildResponseMessage();
-      expect(messages).to.include(responseMessage);
+      expect(responseMessage).to.be.null;
     });
   });
 });
