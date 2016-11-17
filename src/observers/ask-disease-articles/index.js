@@ -30,13 +30,14 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
   _handle(messageEvent, dataAnalysis) {
     if (dataAnalysis && dataAnalysis.isAskingDisease) {
       if (messageEvent && messageEvent.sender && messageEvent.sender.id) {
-        console.log(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
         return this._sendResponseMessage(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
       } else {
         logger.info('Sender id is invalid');
+        return Promise.resolve('Sender id is invalid');
       }
     } else {
       logger.info('No data matches with request');
+      return Promise.resolve('No data matches with request');
     }
   }
 

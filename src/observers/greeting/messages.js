@@ -1,4 +1,19 @@
+import { payloadConstants } from 'utils/constants';
+
 export default [
-  "Xin chào! Tôi là bác sĩ Lifebuoy. Bạn khỏe chứ?",
-  "Tôi có thể giúp gì cho bạn ko?"
+  {
+    text: 'Xin chào! Tôi là bác sĩ Lifebuoy. Bạn đã sẵn sàng để chat với chúng tôi chưa nè',
+    replyOptions: [
+      {
+        content_type: 'text',
+        title: 'Có',
+        payload: payloadConstants.READY_TO_CHAT_PAYLOAD
+      },
+      {
+        content_type: 'text',
+        title: 'Không',
+        payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD
+      }
+    ]
+  }
 ]

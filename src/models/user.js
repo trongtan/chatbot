@@ -29,6 +29,15 @@ export default (sequelize, DataTypes) => {
           where: { userId: userId },
           defaults: fullUserProfile
         });
+      },
+      getCurrentPayload: (userId) => {
+        return User.findOne({
+          attributes: [ 'currentPayload' ],
+          where: {
+            userId: userId
+          },
+          raw: true
+        });
       }
     }
   });
