@@ -4,15 +4,14 @@ import services from 'services';
 import AnalyzeListener from 'observers/base/analyze-listener';
 import { User } from 'models';
 import { payloadConstants, parentalConstants } from 'utils/constants';
-import { getRandomObjectFromArray, isSynonymTextInArray } from 'utils/helpers';
+import { isSynonymTextInArray } from 'utils/helpers';
 import { logger } from 'logs/winston-logger';
-import { replaceVietnameseCharacters } from 'utils/text-utils';
 
 const isDadResponse = ['bo', 'ba', 'cha'];
 const isMomResponse = ['me', 'ma'];
 const isNotParentResponse = ['chua co con', 'khong co con', 'khong co'];
 
-export default class ReadyToChatListener extends AnalyzeListener {
+export default class AskIsParentListener extends AnalyzeListener {
   _analyze(messageEvent) {
     logger.info('[Ask is parent] Analyze (%j)', messageEvent);
     const isValidSender = messageEvent && messageEvent.sender && messageEvent.sender.id;
