@@ -1,15 +1,15 @@
-import Promise from 'promise';
-
-import services from 'services';
-import messages from './messages';
 import ValidateListener from 'observers/base/validate-listener';
 import { getUserProfile } from 'utils/service-utils';
 import { User } from 'models';
 import { logger } from 'logs/winston-logger';
-import { getRandomObjectFromArray } from 'utils/helpers';
 import { FACEBOOK_GET_STARTED_PAYLOAD } from 'utils/constants';
+import { payloadConstants } from 'utils/constants';
 
 export default class GetStartedListener extends ValidateListener {
+  constructor() {
+    super();
+    this.tag = '[Get started]';
+  }
   _shouldHandle(messageEvent) {
     return !!(messageEvent && messageEvent.postback && messageEvent.postback.payload === FACEBOOK_GET_STARTED_PAYLOAD);
   }
@@ -19,7 +19,7 @@ export default class GetStartedListener extends ValidateListener {
       const userId = messageEvent.sender.id;
 
       return this._saveUserProfileToDatabase(userId).then(() => {
-        return this._sendResponseMessage(userId);
+        return this._sendResponseMessage(userId, payloadConstants.GET_STARTED_PAYLOAD);
       });
     }
   }
@@ -29,21 +29,5 @@ export default class GetStartedListener extends ValidateListener {
       logger.info('[Get started] Get user profile', JSON.stringify(userProfile));
       return User.saveProfileForUser(userId, userProfile);
     });
-  };
-
-  _sendResponseMessage(userId) {
-    const recipientId = userId;
-    const message = this._buildResponseMessage();
-
-    if (message) {
-      logger.log('info', 'Write response message %j to recipient %s', message, recipientId);
-      return services.sendTextMessage(recipientId, message);
-    } else {
-      return Promise.resolve('Intentionally send no message to %s', recipientId);
-    }
-  };
-
-  _buildResponseMessage() {
-    return getRandomObjectFromArray(messages);
   };
 }
