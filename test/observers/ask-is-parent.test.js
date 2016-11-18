@@ -113,8 +113,8 @@ describe('ask is parent observer', () => {
     });
 
     context('validate message and current payload', () => {
-      it('calls validateMessageAndCurrentPayload method', (done) => {
-        sinon.stub(askIsParentListener, '_validateMessageAndCurrentPayload', () => Promise.resolve('Success'));
+      it('calls validate method', (done) => {
+        sinon.stub(askIsParentListener, '_validate', () => Promise.resolve('Success'));
 
         askIsParentListener._analyze({
           message: { text: 'bo' },
@@ -168,10 +168,10 @@ describe('ask is parent observer', () => {
     });
   });
 
-  context('#validateMessageAndCurrentPayload', () => {
+  context('#validate', () => {
     context('database not ready', () => {
       it('return false', (done) => {
-        askIsParentListener._validateMessageAndCurrentPayload('bo', '1').then((response) => {
+        askIsParentListener._validate('bo', '1').then((response) => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
           done();
         });
@@ -194,7 +194,7 @@ describe('ask is parent observer', () => {
       });
 
       it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
-        askIsParentListener._validateMessageAndCurrentPayload('bo', '1').then((response) => {
+        askIsParentListener._validate('bo', '1').then((response) => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
@@ -205,7 +205,7 @@ describe('ask is parent observer', () => {
       });
 
       it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
-        askIsParentListener._validateMessageAndCurrentPayload('me', '1').then((response) => {
+        askIsParentListener._validate('me', '1').then((response) => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
@@ -216,7 +216,7 @@ describe('ask is parent observer', () => {
       });
 
       it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
-        askIsParentListener._validateMessageAndCurrentPayload('chua co con', '1').then((response) => {
+        askIsParentListener._validate('chua co con', '1').then((response) => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',

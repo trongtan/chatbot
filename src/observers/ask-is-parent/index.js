@@ -49,24 +49,14 @@ export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayl
     });
   }
 
-  _validateMessageAndCurrentPayload(text, userId) {
-    logger.info('%s Validate message and current payload (%s, %s)', this.tag, text, userId);
-    return User.findById(userId).then(user => {
-      logger.info('%s Response to user %s', this.tag, JSON.stringify(user));
-      if (user && user.currentPayload) {
-        const currentPayload = user.currentPayload;
+  _validateMessageAndCurrentPayload(text, userId, currentPayload) {
+    if (currentPayload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
+      const parental = this._getParentalFromMessage(text);
 
-        if (currentPayload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
-          const parental = this._getParentalFromMessage(text);
-
-          if (parental) {
-            return Promise.resolve({ shouldHandle: true, userId: userId, payload: parental });
-          }
-        }
+      if (parental) {
+        return Promise.resolve({ shouldHandle: true, userId: userId, payload: parental });
       }
-
-      return Promise.resolve({ shouldHandle: false });
-    });
+    }
   }
 
   _getParentalFromMessage(text) {

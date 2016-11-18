@@ -1,6 +1,7 @@
 import Promise from 'promise';
 
 import AnalyzeListener from './analyze-listener';
+import { User } from 'models';
 import { logger } from 'logs/winston-logger';
 
 export default class AnalyzeQuickReplyAndCurrentPayloadListener extends AnalyzeListener {
@@ -28,7 +29,7 @@ export default class AnalyzeQuickReplyAndCurrentPayloadListener extends AnalyzeL
       } else if (isValidText) {
         const text = messageEvent.message.text;
         if (text) {
-          return this._validateMessageAndCurrentPayload(text, userId);
+          return this._validate(text, userId);
         }
       }
     }
@@ -55,6 +56,19 @@ export default class AnalyzeQuickReplyAndCurrentPayloadListener extends AnalyzeL
     return payload !== '';
   }
 
-  _validateMessageAndCurrentPayload(text, userId) {
+  _validate(text, userId) {
+    logger.info('%sValidate message and current payload', this.tag, text, userId);
+
+    return User.findById(userId).then(user => {
+      logger.info('%sValidate on user', this.tag, JSON.stringify(user));
+      if (user && user.currentPayload) {
+        return this._validateMessageAndCurrentPayload(text, userId, user.currentPayload);
+      }
+
+      return Promise.resolve({ shouldHandle: false });
+    });
+  }
+
+  _validateMessageAndCurrentPayload(text, userId, currentPayload) {
   }
 }

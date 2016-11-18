@@ -99,8 +99,8 @@ describe('ready to chat observer', () => {
     });
 
     context('validate message and current payload', () => {
-      it('calls validateMessageAndCurrentPayload method', (done) => {
-        sinon.stub(readyToChatListener, '_validateMessageAndCurrentPayload', () => Promise.resolve('Success'));
+      it('calls validate method', (done) => {
+        sinon.stub(readyToChatListener, '_validate', () => Promise.resolve('Success'));
 
         readyToChatListener._analyze({
           message: { text: 'co' },
@@ -111,7 +111,7 @@ describe('ready to chat observer', () => {
         });
       });
 
-      it('doesn\'t call validateMessageAndCurrentPayload method if text is invalid', (done) => {
+      it('doesn\'t call validate method if text is invalid', (done) => {
         readyToChatListener._analyze({
           message: { text: 'text' },
           sender: { id: '1' },
@@ -179,10 +179,10 @@ describe('ready to chat observer', () => {
     });
   });
 
-  context('#validateMessageAndCurrentPayload', () => {
+  context('#validate', () => {
     context('database not ready', () => {
       it('return false', (done) => {
-        readyToChatListener._validateMessageAndCurrentPayload('co', '1').then((response) => {
+        readyToChatListener._validate('co', '1').then((response) => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
           done();
         });
@@ -205,7 +205,7 @@ describe('ready to chat observer', () => {
       });
 
       it('returns true if current payload is GET_STARTED_PAYLOAD', (done) => {
-        readyToChatListener._validateMessageAndCurrentPayload('co', '1').then((response) => {
+        readyToChatListener._validate('co', '1').then((response) => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
@@ -216,7 +216,7 @@ describe('ready to chat observer', () => {
       });
 
       it('returns true if current payload is GET_STARTED_PAYLOAD', (done) => {
-        readyToChatListener._validateMessageAndCurrentPayload('ko', '1').then((response) => {
+        readyToChatListener._validate('ko', '1').then((response) => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',

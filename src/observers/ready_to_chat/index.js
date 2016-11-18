@@ -24,34 +24,24 @@ export default class ReadyToChatListener extends AnalyzeQuickReplyAndCurrentPayl
     return [payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD].includes(payload);
   }
 
-  _validateMessageAndCurrentPayload(text, userId) {
-    logger.info('%sValidate message and current payload', this.tag, text, userId);
-    return User.findById(userId).then(user => {
-      logger.info('%sValidate on user', this.tag, JSON.stringify(user));
-      if (user && user.currentPayload) {
-        const currentPayload = user.currentPayload;
-
-        if (currentPayload === payloadConstants.GET_STARTED_PAYLOAD) {
-          if (isSynonymTextInArray(text, readyToChatResponse)) {
-            return Promise.resolve({
-              shouldHandle: true,
-              userId: userId,
-              payload: payloadConstants.READY_TO_CHAT_PAYLOAD
-            });
-          }
-
-          if (isSynonymTextInArray(text, notReadyToChatResponse)) {
-            return Promise.resolve({
-              shouldHandle: true,
-              userId: userId,
-              payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD
-            });
-          }
-        }
+  _validateMessageAndCurrentPayload(text, userId, currentPayload) {
+    if (currentPayload === payloadConstants.GET_STARTED_PAYLOAD) {
+      if (isSynonymTextInArray(text, readyToChatResponse)) {
+        return Promise.resolve({
+          shouldHandle: true,
+          userId: userId,
+          payload: payloadConstants.READY_TO_CHAT_PAYLOAD
+        });
       }
 
-      return Promise.resolve({ shouldHandle: false });
-    });
+      if (isSynonymTextInArray(text, notReadyToChatResponse)) {
+        return Promise.resolve({
+          shouldHandle: true,
+          userId: userId,
+          payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD
+        });
+      }
+    }
   }
 
   _respond(userId, payload) {
