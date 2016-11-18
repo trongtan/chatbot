@@ -26,6 +26,7 @@ export default class GetStartedListener extends ValidateListener {
 
   _saveUserProfileToDatabase(userId) {
     return getUserProfile(userId).then(userProfile => {
+      logger.info('[Get started] Get user profile', JSON.stringify(userProfile));
       return User.saveProfileForUser(userId, userProfile);
     });
   };

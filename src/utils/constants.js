@@ -11,10 +11,16 @@ const payloadConstants = constantMirror(
   'IS_DAD_PAYLOAD',
   'IS_MOM_PAYLOAD',
   'NO_CHILDREN_PAYLOAD',
+  'ASK_PARENT_PAYLOAD',
   'GREETING_PAYLOAD',
   'DISEASE_PAYLOAD'
 );
 
+const parentalConstants = constantMirror(
+  'DAD', 'MOM', 'NA'
+);
+
 export {
-  payloadConstants
+  payloadConstants,
+  parentalConstants
 };
