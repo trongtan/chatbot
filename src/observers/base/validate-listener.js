@@ -1,6 +1,7 @@
+import BaseListener from './base-listener';
 import { logger } from 'logs/winston-logger';
 
-export default class ValidateListener {
+export default class ValidateListener extends BaseListener {
   perform(messageEvent) {
     if (this._shouldHandle(messageEvent)) {
       this._handle(messageEvent).catch(exception => {

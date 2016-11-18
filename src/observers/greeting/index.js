@@ -1,9 +1,6 @@
-import services from 'services';
-import messages from './messages';
 import ValidateListener from 'observers/base/validate-listener';
-import { logger } from 'logs/winston-logger';
 import { replaceVietnameseCharacters } from 'utils/text-utils';
-import { getRandomObjectFromArray } from 'utils/helpers';
+import { payloadConstants } from 'utils/constants';
 
 const keywords = {
   'hi': ['hi'],
@@ -16,6 +13,11 @@ const keywords = {
 };
 
 export default class GreetingListener extends ValidateListener {
+  constructor() {
+    super();
+    this.tag = '[Greeting]';
+  }
+
   _shouldHandle(messageEvent) {
     if (!(messageEvent && messageEvent.message && messageEvent.message.text)) {
       return false;
@@ -29,15 +31,9 @@ export default class GreetingListener extends ValidateListener {
 
   _handle(messageEvent) {
     if (messageEvent && messageEvent.sender && messageEvent.sender.id) {
-      const recipientId = messageEvent.sender.id;
-      const message = this._buildResponseMessage();
+      const userId = messageEvent.sender.id;
 
-      logger.log('info', 'Write response message %j to recipient %j', message, recipientId);
-      return services.sendTextWithQuickReplyMessage(recipientId, message.text, message.replyOptions);
+      return this._sendResponseMessage(userId, payloadConstants.GREETING_PAYLOAD);
     }
   }
-
-  _buildResponseMessage() {
-    return getRandomObjectFromArray(messages);
-  };
 }

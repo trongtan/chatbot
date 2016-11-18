@@ -6,6 +6,7 @@ export const DEFAULT_MAXIMUM_PAYLOAD_ELEMENT = 10;
 
 const payloadConstants = constantMirror(
   'GET_STARTED_PAYLOAD',
+  'GREETING_PAYLOAD',
   'READY_TO_CHAT_PAYLOAD',
   'NOT_READY_TO_CHAT_PAYLOAD',
   'IS_DAD_PAYLOAD',

@@ -1,6 +1,7 @@
+import BaseListener from './base-listener';
 import { logger } from 'logs/winston-logger';
 
-export default class AnalyzeListener {
+export default class AnalyzeListener extends BaseListener {
   perform(messageEvent) {
     this._analyze(messageEvent).then(dataAnalysis => {
       this._handle(messageEvent, dataAnalysis).catch(exception => {
@@ -12,6 +13,6 @@ export default class AnalyzeListener {
   _analyze(messageEvent) {
   }
 
-  _handle(dataAnalysis) {
+  _handle(messageEvent, dataAnalysis) {
   }
 }
