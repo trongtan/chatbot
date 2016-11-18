@@ -44,6 +44,12 @@ export default (sequelize, DataTypes) => {
       updateCurrentPayload: (userId, currentPayload) => {
         return User.update({ currentPayload: currentPayload }, { where: { userId: userId } });
       },
+      updateParental: (userId, parental) => {
+        return User.update({
+          parental: parental,
+          currentPayload: payloadConstants.ASK_PARENT_PAYLOAD
+        }, { where: { userId: userId } });
+      }
     }
   });
 
