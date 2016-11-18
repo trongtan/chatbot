@@ -24,21 +24,14 @@ export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayl
       .includes(payload)
   }
 
-  _handle(messageEvent, dataAnalysis) {
-    logger.info('%s Handle (%j, %j)', this.tag, messageEvent, dataAnalysis);
-    const { shouldHandle, userId, payload } = dataAnalysis;
+  _respond(userId, payload) {
+    return this._buildResponseMessage(userId, payload).then((message) => {
+      logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
 
-    if (shouldHandle) {
-      return this._buildResponseMessage(userId, payload).then((message) => {
-        logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
-
-        return User.updateCurrentPayload(userId, payloadConstants.ASK_PARENT_PAYLOAD).then(() => {
-          return services.sendTextMessage(userId, message);
-        });
+      return User.updateCurrentPayload(userId, payloadConstants.ASK_PARENT_PAYLOAD).then(() => {
+        return services.sendTextMessage(userId, message);
       });
-    }
-
-    return Promise.resolve(`Ask-is-parent skip message ${JSON.stringify(messageEvent)}`);
+    });
   }
 
   _buildResponseMessage(userId, parental) {

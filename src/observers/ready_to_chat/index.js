@@ -54,27 +54,21 @@ export default class ReadyToChatListener extends AnalyzeQuickReplyAndCurrentPayl
     });
   }
 
-  _handle(messageEvent, dataAnalysis) {
-    const { shouldHandle, userId, payload } = dataAnalysis;
+  _respond(userId, payload) {
+    if (payload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
+      const message = this._buildReadyResponseMessage();
 
-    if (shouldHandle) {
-      if (payload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
-        const message = this._buildReadyResponseMessage();
+      logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
+      return User.updateCurrentPayload(userId, payloadConstants.READY_TO_CHAT_PAYLOAD).then(() => {
+        return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
+      });
+    } else if (payload === payloadConstants.NOT_READY_TO_CHAT_PAYLOAD) {
+      const message = this._buildNotReadyResponseMessage();
 
-        logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
-        return User.updateCurrentPayload(userId, payloadConstants.READY_TO_CHAT_PAYLOAD).then(() => {
-          return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
-        });
-      } else if (payload === payloadConstants.NOT_READY_TO_CHAT_PAYLOAD) {
-        const message = this._buildNotReadyResponseMessage();
+      logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
 
-        logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
-
-        return services.sendTextMessage(userId, message);
-      }
+      return services.sendTextMessage(userId, message);
     }
-
-    return Promise.resolve(`Ready-to-chat skip message ${JSON.stringify(messageEvent)}`);
   }
 
   _buildReadyResponseMessage() {
