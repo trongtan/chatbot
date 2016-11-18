@@ -42,7 +42,9 @@ export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayl
   }
 
   _execute(userId, payload) {
-    return this._sendResponseMessage(userId, payload);
+    return this._sendResponseMessage(userId, payload).then(() => {
+      return User.updateParental(userId, this._getParental(payload));
+    });
   }
 
   _buildResponseMessage(userId, parental) {
@@ -51,7 +53,7 @@ export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayl
 
     return User.findById(userId).then(user => {
       if (user) {
-        const parentalStatus = this._getParentalStatus(parental);
+        const parentalStatus = this._getParentalText(parental);
         const message = templateMessage.text
           .replace(/\{\{parentalStatus}}/g, parentalStatus)
           .replace(/\{\{userName}}/g, `${user.firstName} ${user.lastName}`);
@@ -64,9 +66,15 @@ export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayl
     });
   }
 
-  _getParentalStatus(payload) {
+  _getParentalText(payload) {
     if (payload === payloadConstants.IS_DAD_PAYLOAD) return 'Bố';
     if (payload === payloadConstants.IS_MOM_PAYLOAD) return 'Mẹ';
     return 'bạn';
+  }
+
+  _getParental(payload) {
+    if (payload === payloadConstants.IS_DAD_PAYLOAD) return 'DAD';
+    if (payload === payloadConstants.IS_MOM_PAYLOAD) return 'MOM';
+    return 'NA';
   }
 };

@@ -154,15 +154,17 @@ describe('ask is parent observer', () => {
 
     it('send message if payload is IS_DAD_PAYLOAD', (done) => {
       sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
+      sinon.stub(User, 'updateParental', () => Promise.resolve('Update database successfully'));
 
       askIsParentListener._handle(null, {
         shouldHandle: true,
         payload: payloadConstants.IS_DAD_PAYLOAD,
         userId: '1'
       }).then((response) => {
-        expect(response).to.be.equal('Success');
+        expect(response).to.be.equal('Update database successfully');
       }).done(() => {
         services.sendTextMessage.restore();
+        User.updateParental.restore();
         done();
       });
     });
@@ -222,6 +224,41 @@ describe('ask is parent observer', () => {
             userId: '1',
             payload: payloadConstants.NO_CHILDREN_PAYLOAD
           }));
+          done();
+        });
+      });
+    });
+  });
+
+  context('#execute', () => {
+    beforeEach((done) => {
+      User.sync({ force: true }).then(() => {
+        const userProfile = {
+          userId: '1',
+          firstName: 'First',
+          lastName: 'Last',
+          gender: 'Male',
+          currentPayload: '',
+          parental: ''
+        };
+
+        User.findOrCreate({
+          where: { userId: userProfile.userId },
+          defaults: userProfile
+        }).then(() => {
+          done();
+        });
+      });
+    });
+
+    it('calls send message and update user parental to database', (done) => {
+      const spy = sinon.stub(askIsParentListener, '_sendResponseMessage', () => Promise.resolve('Success'));
+
+      askIsParentListener._execute('1', payloadConstants.IS_DAD_PAYLOAD).then(() => {
+        expect(spy.called).to.be.true;
+        User.findOne().then((user) => {
+          expect(user.currentPayload).to.be.equal(payloadConstants.ASK_PARENT_PAYLOAD);
+          expect(user.parental).to.be.equal('DAD');
           done();
         });
       });
