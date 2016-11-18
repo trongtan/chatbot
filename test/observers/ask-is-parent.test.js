@@ -277,8 +277,8 @@ describe('ask is parent observer', () => {
         });
       }).then(() => {
         askIsParentListener._buildResponseMessage('1', payloadConstants.IS_DAD_PAYLOAD).then((response) => {
-          expect(response).to.contain('First');
-          expect(response).to.contain('Last');
+          expect(response.text).to.contain('First');
+          expect(response.text).to.contain('Last');
           done();
         });
       });

@@ -93,7 +93,7 @@ describe('get started observer', () => {
 
   context('#sendResponseMessage', () => {
     it('sends message to user', (done) => {
-      sinon.stub(getStartedListener, '_buildResponseMessage', () => 'Response message');
+      sinon.stub(getStartedListener, '_buildResponseMessage', () => Promise.resolve({ text: 'Response message' }));
       sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
 
       getStartedListener._sendResponseMessage('1').then((result) => {
@@ -106,9 +106,11 @@ describe('get started observer', () => {
   });
 
   context('#buildResponseMessage', () => {
-    it('returns no message', () => {
-      const responseMessage = getStartedListener._buildResponseMessage(payloadConstants.GET_STARTED_PAYLOAD);
-      expect(responseMessage).to.be.null;
+    it('returns no message', (done) => {
+      getStartedListener._buildResponseMessage(payloadConstants.GET_STARTED_PAYLOAD).then((responseMessage) => {
+        expect(responseMessage).to.be.null;
+        done();
+      });
     });
   });
 });
