@@ -3,49 +3,31 @@ import Promise from 'promise';
 import services from 'services';
 import readyMessages from './ready-to-chat-messages';
 import notReadyMessages from './not-ready-to-chat-messages';
-import AnalyzeListener from 'observers/base/analyze-listener';
+import AnalyzeQuickReplyAndCurrentPayloadListener
+  from 'observers/base/analyze-quick-reply-and-current-payload-listener';
 import { User } from 'models';
 import { payloadConstants } from 'utils/constants';
 import { getRandomObjectFromArray, isSynonymTextInArray } from 'utils/helpers';
 import { logger } from 'logs/winston-logger';
-import { replaceVietnameseCharacters } from 'utils/text-utils';
 
 const readyToChatResponse = ['co', 'san sang', 'yes'];
 const notReadyToChatResponse = ['khong', 'ko', 'no'];
 
-export default class ReadyToChatListener extends AnalyzeListener {
-  _analyze(messageEvent) {
+export default class ReadyToChatListener extends AnalyzeQuickReplyAndCurrentPayloadListener {
 
-    const isValidSender = messageEvent && messageEvent.sender && messageEvent.sender.id;
-    const isValidText = messageEvent && messageEvent.message && messageEvent.message.text;
-    const isValidPayload = messageEvent && messageEvent.message && messageEvent.message.quick_reply
-      && messageEvent.message.quick_reply.payload;
+  constructor() {
+    super();
+    this.tag = '[Ready To Chat]';
+  }
 
-    if (isValidSender) {
-      const userId = messageEvent.sender.id;
-
-      if (isValidPayload) {
-        const userId = messageEvent.sender.id;
-        const payload = messageEvent.message.quick_reply.payload;
-
-        if ([payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD].includes(payload)) {
-          return Promise.resolve({ shouldHandle: true, userId: userId, payload: payload })
-        }
-      } else if (isValidText) {
-        const text = messageEvent.message.text;
-        if (text) {
-          return this._validateMessageAndCurrentPayload(text, userId);
-        }
-      }
-    }
-
-    return Promise.resolve({ shouldHandle: false });
+  _isIntentPayload(payload) {
+    return [payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD].includes(payload);
   }
 
   _validateMessageAndCurrentPayload(text, userId) {
-    logger.info('[Ready To Chat]Validate message and current payload', text, userId);
+    logger.info('%sValidate message and current payload', this.tag, text, userId);
     return User.findById(userId).then(user => {
-      logger.info('[Ready To Chat]Validate on user', JSON.stringify(user));
+      logger.info('%sValidate on user', this.tag, JSON.stringify(user));
       if (user && user.currentPayload) {
         const currentPayload = user.currentPayload;
 
@@ -79,14 +61,14 @@ export default class ReadyToChatListener extends AnalyzeListener {
       if (payload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
         const message = this._buildReadyResponseMessage();
 
-        logger.log('info', '[Ready To Chat]Write response message %j to recipient %j', message, userId);
+        logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
         return User.updateCurrentPayload(userId, payloadConstants.READY_TO_CHAT_PAYLOAD).then(() => {
           return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
         });
       } else if (payload === payloadConstants.NOT_READY_TO_CHAT_PAYLOAD) {
         const message = this._buildNotReadyResponseMessage();
 
-        logger.log('info', '[Ready To Chat]Write response message %j to recipient %j', message, userId);
+        logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
 
         return services.sendTextMessage(userId, message);
       }

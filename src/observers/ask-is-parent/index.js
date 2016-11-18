@@ -1,7 +1,8 @@
 import Promise from 'promise';
 
 import services from 'services';
-import AnalyzeListener from 'observers/base/analyze-listener';
+import AnalyzeQuickReplyAndCurrentPayloadListener
+  from 'observers/base/analyze-quick-reply-and-current-payload-listener';
 import { User } from 'models';
 import { payloadConstants, parentalConstants } from 'utils/constants';
 import { isSynonymTextInArray } from 'utils/helpers';
@@ -11,42 +12,25 @@ const isDadResponse = ['bo', 'ba', 'cha'];
 const isMomResponse = ['me', 'ma'];
 const isNotParentResponse = ['chua co con', 'khong co con', 'khong co'];
 
-export default class AskIsParentListener extends AnalyzeListener {
-  _analyze(messageEvent) {
-    logger.info('[Ask is parent] Analyze (%j)', messageEvent);
-    const isValidSender = messageEvent && messageEvent.sender && messageEvent.sender.id;
-    const isValidText = messageEvent && messageEvent.message && messageEvent.message.text;
-    const isValidPayload = messageEvent && messageEvent.message && messageEvent.message.quick_reply
-      && messageEvent.message.quick_reply.payload;
+export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayloadListener {
 
-    if (isValidSender) {
-      const userId = messageEvent.sender.id;
+  constructor() {
+    super();
+    this.tag = '[Ask is parent]';
+  }
 
-      if (isValidPayload) {
-        const payload = messageEvent.message.quick_reply.payload;
-
-        if ([payloadConstants.IS_DAD_PAYLOAD, payloadConstants.IS_MOM_PAYLOAD, payloadConstants.NO_CHILDREN_PAYLOAD]
-            .includes(payload)) {
-          return Promise.resolve({ shouldHandle: true, userId: userId, parental: payload })
-        }
-      } else if (isValidText) {
-        const text = messageEvent.message.text;
-        if (text) {
-          return this._validateMessageAndCurrentPayload(text, userId);
-        }
-      }
-    }
-
-    return Promise.resolve({ shouldHandle: false });
+  _isIntentPayload(payload) {
+    return [payloadConstants.IS_DAD_PAYLOAD, payloadConstants.IS_MOM_PAYLOAD, payloadConstants.NO_CHILDREN_PAYLOAD]
+      .includes(payload)
   }
 
   _handle(messageEvent, dataAnalysis) {
-    logger.info('[Ask is parent] Handle (%j, %j)', messageEvent, dataAnalysis);
-    const { shouldHandle, userId, parental } = dataAnalysis;
+    logger.info('%s Handle (%j, %j)', this.tag, messageEvent, dataAnalysis);
+    const { shouldHandle, userId, payload } = dataAnalysis;
 
     if (shouldHandle) {
-      return this._buildResponseMessage(userId, parental).then((message) => {
-        logger.log('info', '[Ask is parent]Write response message %j to recipient %j', message, userId);
+      return this._buildResponseMessage(userId, payload).then((message) => {
+        logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
 
         return User.updateCurrentPayload(userId, payloadConstants.ASK_PARENT_PAYLOAD).then(() => {
           return services.sendTextMessage(userId, message);
@@ -58,24 +42,24 @@ export default class AskIsParentListener extends AnalyzeListener {
   }
 
   _buildResponseMessage(userId, parental) {
-    logger.info('[Ask is parent] Build Response message (%s, %s)', userId, parental);
+    logger.info('%s Build Response message (%s, %s)', this.tag, userId, parental);
     return User.findById(userId).then(user => {
       if (user) {
         const parentalStatus = this._getParentalStatus(parental);
         const message = `Ukie, xin chào ${parentalStatus} ${user.firstName} ${user.lastName}. Bé của bạn tên gì nè!`;
-        logger.info('[Ask is parent] Message built', message);
+        logger.info('%s Message built', message);
         return Promise.resolve(message);
       }
 
-      logger.info('[Ask is parent] Cannot build response message');
+      logger.info('%s Cannot build response message');
       return Promise.resolve('');
     });
   }
 
   _validateMessageAndCurrentPayload(text, userId) {
-    logger.info('[Ask is parent] Validate message and current payload (%s, %s)', text, userId);
+    logger.info('%s Validate message and current payload (%s, %s)', this.tag, text, userId);
     return User.findById(userId).then(user => {
-      logger.info('[Ask is parent] Response to user %s', JSON.stringify(user));
+      logger.info('%s Response to user %s', this.tag, JSON.stringify(user));
       if (user && user.currentPayload) {
         const currentPayload = user.currentPayload;
 
@@ -83,7 +67,7 @@ export default class AskIsParentListener extends AnalyzeListener {
           const parental = this._getParentalFromMessage(text);
 
           if (parental) {
-            return Promise.resolve({ shouldHandle: true, userId: userId, parental: parental });
+            return Promise.resolve({ shouldHandle: true, userId: userId, payload: parental });
           }
         }
       }

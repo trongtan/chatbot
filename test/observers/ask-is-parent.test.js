@@ -77,7 +77,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            parental: payloadConstants.IS_DAD_PAYLOAD
+            payload: payloadConstants.IS_DAD_PAYLOAD
           }));
           done();
         });
@@ -91,7 +91,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            parental: payloadConstants.IS_MOM_PAYLOAD
+            payload: payloadConstants.IS_MOM_PAYLOAD
           }));
           done();
         });
@@ -105,7 +105,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            parental: payloadConstants.NO_CHILDREN_PAYLOAD
+            payload: payloadConstants.NO_CHILDREN_PAYLOAD
           }));
           done();
         });
@@ -157,7 +157,7 @@ describe('ask is parent observer', () => {
 
       askIsParentListener._handle(null, {
         shouldHandle: true,
-        parental: payloadConstants.IS_DAD_PAYLOAD,
+        payload: payloadConstants.IS_DAD_PAYLOAD,
         userId: '1'
       }).then((response) => {
         expect(response).to.be.equal('Success');
@@ -198,7 +198,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            parental: parentalConstants.DAD
+            payload: parentalConstants.DAD
           }));
           done();
         });
@@ -209,7 +209,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            parental: parentalConstants.MOM
+            payload: parentalConstants.MOM
           }));
           done();
         });
@@ -220,7 +220,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            parental: parentalConstants.NA
+            payload: parentalConstants.NA
           }));
           done();
         });
