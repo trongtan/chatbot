@@ -19,5 +19,7 @@ const Type = sequelize.import('Type', TypeDefinition);
 const TypeDisease = sequelize.import('TypeDisease', TypeDiseaseDefinition);
 const TypeSynonym = sequelize.import('TypeSynonym', TypeSynonymDefinition);
 const User = sequelize.import('User', UserDefinition);
+const Link = sequelize.import('Link', UserDefinition);
+const TypeDiseaseLink = sequelize.import('TypeDiseaseLink', UserDefinition);
 
-export { Disease, DiseaseSynonym, Symptom, SymptomSynonym, Type, TypeDisease, TypeSynonym, User }
+export {Disease, DiseaseSynonym, Symptom, SymptomSynonym, Type, TypeDisease, TypeSynonym, User, Link, TypeDiseaseLink}

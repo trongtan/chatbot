@@ -3,6 +3,9 @@ export default (sequelize, DataTypes) => {
     articles: DataTypes.ARRAY(DataTypes.STRING)
   }, {
     freezeTableName: true,
+    associate: function (models) {
+      models.TypeDisease.belongsToMany(models.Link, {through: 'TypeDiseaseLink'});
+    },
     classMethods: {
       getArticles: (typeId, diseaseId) => {
         return TypeDisease.findOne({
