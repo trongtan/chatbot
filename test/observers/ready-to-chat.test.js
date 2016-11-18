@@ -127,7 +127,7 @@ describe('ready to chat observer', () => {
     let spy;
 
     beforeEach(() => {
-      spy = sinon.spy(readyToChatListener, '_buildReadyResponseMessage');
+      spy = sinon.spy(readyToChatListener, '_sendResponseMessage');
     });
 
     it('does nothing if shouldHandle is false', (done) => {

@@ -19,7 +19,7 @@ export default {
   ],
   READY_TO_CHAT_PAYLOAD: [
     {
-      'text': 'Đầu tiên hãy cung cấp cho bác sĩ một vài thông tin của bạn nhé! Bạn là bố hay mẹ?',
+      text: 'Đầu tiên hãy cung cấp cho bác sĩ một vài thông tin của bạn nhé! Bạn là bố hay mẹ?',
       replyOptions: [
         {
           content_type: 'text',
@@ -37,6 +37,11 @@ export default {
           payload: 'NO_CHILDREN_PAYLOAD'
         }
       ]
+    }
+  ],
+  NOT_READY_TO_CHAT_PAYLOAD: [
+    {
+      text: 'Cảm ơn bạn! Khi nào cần giúp đỡ thì cứ liên hệ bác sĩ Lifebuoy nhé.'
     }
   ],
   IS_DAD_PAYLOAD: [

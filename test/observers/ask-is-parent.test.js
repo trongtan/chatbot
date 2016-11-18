@@ -5,7 +5,7 @@ import { beforeEach } from 'mocha';
 
 import services from 'services';
 import AskIsParentListener from 'observers/ask-is-parent';
-import { payloadConstants, parentalConstants } from 'utils/constants';
+import { payloadConstants } from 'utils/constants';
 import { User } from 'models';
 
 describe('ask is parent observer', () => {
@@ -198,7 +198,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            payload: parentalConstants.DAD
+            payload: payloadConstants.IS_DAD_PAYLOAD
           }));
           done();
         });
@@ -209,7 +209,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            payload: parentalConstants.MOM
+            payload: payloadConstants.IS_MOM_PAYLOAD
           }));
           done();
         });
@@ -220,7 +220,7 @@ describe('ask is parent observer', () => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: '1',
-            payload: parentalConstants.NA
+            payload: payloadConstants.NO_CHILDREN_PAYLOAD
           }));
           done();
         });
@@ -239,7 +239,7 @@ describe('ask is parent observer', () => {
           currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
         });
       }).then(() => {
-        askIsParentListener._buildResponseMessage('1', parentalConstants.DAD).then((response) => {
+        askIsParentListener._buildResponseMessage('1', payloadConstants.IS_DAD_PAYLOAD).then((response) => {
           expect(response).to.contain('First');
           expect(response).to.contain('Last');
           done();
@@ -249,19 +249,19 @@ describe('ask is parent observer', () => {
 
     it('builds message contains user name', (done) => {
       User.sync({ force: true }).then(() => {
-        askIsParentListener._buildResponseMessage('1', parentalConstants.DAD).then((response) => {
-          expect(response).to.be.empty;
+        askIsParentListener._buildResponseMessage('1', payloadConstants.IS_DAD_PAYLOAD).then((response) => {
+          expect(response).to.contain('Cannot build response message');
           done();
         });
       });
     });
   });
 
-  context('#getParentalFromMessage', () => {
+  context('#getParentalPayload', () => {
     it('returns parental base on input message', () => {
-      expect(askIsParentListener._getParentalFromMessage('bo')).to.be.equal(parentalConstants.DAD);
-      expect(askIsParentListener._getParentalFromMessage('me')).to.be.equal(parentalConstants.MOM);
-      expect(askIsParentListener._getParentalFromMessage('chua co con')).to.be.equal(parentalConstants.NA);
+      expect(askIsParentListener._getParentalPayload('bo')).to.be.equal(payloadConstants.IS_DAD_PAYLOAD);
+      expect(askIsParentListener._getParentalPayload('me')).to.be.equal(payloadConstants.IS_MOM_PAYLOAD);
+      expect(askIsParentListener._getParentalPayload('chua co con')).to.be.equal(payloadConstants.NO_CHILDREN_PAYLOAD);
     });
   });
 });

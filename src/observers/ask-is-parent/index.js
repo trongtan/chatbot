@@ -1,12 +1,12 @@
 import Promise from 'promise';
 
-import services from 'services';
-import AnalyzeQuickReplyAndCurrentPayloadListener
-  from 'observers/base/analyze-quick-reply-and-current-payload-listener';
+import AnalyzeQuickReplyAndCurrentPayloadListener from 'observers/base/analyze-quick-reply-and-current-payload-listener';
+import messages from 'messages';
 import { User } from 'models';
-import { payloadConstants, parentalConstants } from 'utils/constants';
+import { payloadConstants } from 'utils/constants';
 import { isSynonymTextInArray } from 'utils/helpers';
 import { logger } from 'logs/winston-logger';
+import { getRandomObjectFromArray } from 'utils/helpers';
 
 const isDadResponse = ['bo', 'ba', 'cha'];
 const isMomResponse = ['me', 'ma'];
@@ -24,51 +24,49 @@ export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayl
       .includes(payload)
   }
 
-  _respond(userId, payload) {
-    return this._buildResponseMessage(userId, payload).then((message) => {
-      logger.log('info', '%sWrite response message %j to recipient %j', this.tag, message, userId);
+  _validateMessageAndCurrentPayload(text, userId, currentPayload) {
+    if (currentPayload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
+      const parentalPayload = this._getParentalPayload(text);
 
-      return User.updateCurrentPayload(userId, payloadConstants.ASK_PARENT_PAYLOAD).then(() => {
-        return services.sendTextMessage(userId, message);
-      });
-    });
+      return Promise.resolve({ shouldHandle: true, userId: userId, payload: parentalPayload });
+    }
+
+    return Promise.resolve({ shouldHandle: false });
+  }
+
+  _getParentalPayload(text) {
+    if (isSynonymTextInArray(text, isDadResponse)) return payloadConstants.IS_DAD_PAYLOAD;
+    if (isSynonymTextInArray(text, isMomResponse)) return payloadConstants.IS_MOM_PAYLOAD;
+    if (isSynonymTextInArray(text, isNotParentResponse)) return payloadConstants.NO_CHILDREN_PAYLOAD;
+    return null;
+  }
+
+  _execute(userId, payload) {
+    return this._sendResponseMessage(userId, payload);
   }
 
   _buildResponseMessage(userId, parental) {
     logger.info('%s Build Response message (%s, %s)', this.tag, userId, parental);
+    const templateMessage = getRandomObjectFromArray(messages[parental]);
+
     return User.findById(userId).then(user => {
       if (user) {
         const parentalStatus = this._getParentalStatus(parental);
-        const message = `Ukie, xin chào ${parentalStatus} ${user.firstName} ${user.lastName}. Bé của bạn tên gì nè!`;
+        const message = templateMessage.text
+          .replace(/\{\{parentalStatus}}/g, parentalStatus)
+          .replace(/\{\{userName}}/g, `${user.firstName} ${user.lastName}`);
         logger.info('%s Message built', message);
         return Promise.resolve(message);
       }
 
-      logger.info('%s Cannot build response message');
-      return Promise.resolve('');
+      logger.info('%s Cannot build response message', this.tag);
+      return Promise.resolve(`${this.tag}Cannot build response message`);
     });
   }
 
-  _validateMessageAndCurrentPayload(text, userId, currentPayload) {
-    if (currentPayload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
-      const parental = this._getParentalFromMessage(text);
-
-      if (parental) {
-        return Promise.resolve({ shouldHandle: true, userId: userId, payload: parental });
-      }
-    }
-  }
-
-  _getParentalFromMessage(text) {
-    if (isSynonymTextInArray(text, isDadResponse)) return parentalConstants.DAD;
-    if (isSynonymTextInArray(text, isMomResponse)) return parentalConstants.MOM;
-    if (isSynonymTextInArray(text, isNotParentResponse)) return parentalConstants.NA;
-    return null;
-  }
-
-  _getParentalStatus(parental) {
-    if (parental === parentalConstants.DAD) return 'Bố';
-    if (parental === parentalConstants.MOM) return 'Mẹ';
+  _getParentalStatus(payload) {
+    if (payload === payloadConstants.IS_DAD_PAYLOAD) return 'Bố';
+    if (payload === payloadConstants.IS_MOM_PAYLOAD) return 'Mẹ';
     return 'bạn';
   }
 };

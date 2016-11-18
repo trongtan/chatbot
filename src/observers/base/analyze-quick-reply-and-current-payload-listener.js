@@ -37,25 +37,6 @@ export default class AnalyzeQuickReplyAndCurrentPayloadListener extends AnalyzeL
     return Promise.resolve({ shouldHandle: false });
   }
 
-  _handle(messageEvent, dataAnalysis) {
-    logger.info('%s Handle (%j, %j)', this.tag, messageEvent, dataAnalysis);
-
-    const { shouldHandle, userId, payload } = dataAnalysis;
-
-    if (shouldHandle) {
-      return this._respond(userId, payload);
-    }
-
-    return Promise.resolve(`${this.tag} skip message ${JSON.stringify(messageEvent)}`);
-  }
-
-  _respond(userId, payload) {
-  }
-
-  _isIntentPayload(payload) {
-    return payload !== '';
-  }
-
   _validate(text, userId) {
     logger.info('%sValidate message and current payload', this.tag, text, userId);
 
@@ -69,6 +50,27 @@ export default class AnalyzeQuickReplyAndCurrentPayloadListener extends AnalyzeL
     });
   }
 
+  _handle(messageEvent, dataAnalysis) {
+    logger.info('%s Handle (%s, %s)', this.tag, JSON.stringify(messageEvent), dataAnalysis);
+
+    const { shouldHandle, userId, payload } = dataAnalysis;
+
+    if (shouldHandle) {
+      return this._execute(userId, payload);
+    }
+
+    return Promise.resolve(`${this.tag} skip message ${JSON.stringify(messageEvent)}`);
+  }
+
+  _execute(userId, payload) {
+    return Promise.resolve('Do nothing');
+  }
+
+  _isIntentPayload(payload) {
+    return payload !== '';
+  }
+
   _validateMessageAndCurrentPayload(text, userId, currentPayload) {
+    return Promise.resolve({ shouldHandle: false });
   }
 }
