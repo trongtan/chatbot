@@ -33,7 +33,7 @@ export default class GreetingListener extends ValidateListener {
     if (messageEvent && messageEvent.sender && messageEvent.sender.id) {
       const userId = messageEvent.sender.id;
 
-      return this._sendResponseMessage(userId, payloadConstants.GREETING_PAYLOAD);
+      return this._sendResponseMessage({ user: { userId: userId }, payload: payloadConstants.GREETING_PAYLOAD });
     }
   }
 }
