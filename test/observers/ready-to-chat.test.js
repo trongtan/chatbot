@@ -1,12 +1,15 @@
 import Promise from 'promise';
 import sinon from 'sinon';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
 import { beforeEach } from 'mocha';
+import chaiSubset from 'chai-subset';
 
 import services from 'services';
 import ReadyToChatListener from 'observers/analyze-listeners/ready-to-chat';
 import { payloadConstants } from 'utils/constants';
 import { User } from 'models';
+
+chai.use(chaiSubset);
 
 describe('ready to chat observer', () => {
   let readyToChatListener;
@@ -68,37 +71,9 @@ describe('ready to chat observer', () => {
           done();
         });
       });
-
-      it('returns true if messageEvent.message.quick_reply.payload is READY_TO_CHAT_PAYLOAD', (done) => {
-        readyToChatListener._analyze({
-          message: { quick_reply: { payload: payloadConstants.READY_TO_CHAT_PAYLOAD } },
-          sender: { id: '1' }
-        }).then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.READY_TO_CHAT_PAYLOAD
-          }));
-          done();
-        });
-      });
-
-      it('returns true if messageEvent.message.quick_reply.payload is NOT_READY_TO_CHAT_PAYLOAD', (done) => {
-        readyToChatListener._analyze({
-          message: { quick_reply: { payload: 'NOT_READY_TO_CHAT_PAYLOAD' } },
-          sender: { id: '1' }
-        }).then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: 'NOT_READY_TO_CHAT_PAYLOAD'
-          }));
-          done();
-        });
-      });
     });
 
-    context('#validate', () => {
+    context('validate', () => {
       it('calls validate method', (done) => {
         sinon.stub(readyToChatListener, '_validate', () => Promise.resolve('Success'));
 
@@ -152,73 +127,88 @@ describe('ready to chat observer', () => {
       });
     });
 
-    it('send message with quick reply options if payload is READY_TO_CHAT_PAYLOAD', (done) => {
-      sinon.stub(services, 'sendTextWithQuickReplyMessage', () => Promise.resolve('Success'));
+    context('valid', () => {
+      let user = {
+        userId: '1',
+        currentPayload: payloadConstants.GET_STARTED_PAYLOAD
+      };
 
-      readyToChatListener._handle(null, {
-        shouldHandle: true,
-        payload: payloadConstants.READY_TO_CHAT_PAYLOAD,
-        userId: '1'
-      }).then((response) => {
-        expect(response).to.be.equal('Success');
-      }).done(() => {
-        services.sendTextWithQuickReplyMessage.restore();
-        done();
+      beforeEach((done) => {
+        User.sync({ force: true }).then(() => {
+          return User.create(user).then(() => {
+            done();
+          });
+        });
       });
-    });
 
-    it('send message if payload is NOT_READY_TO_CHAT_PAYLOAD', (done) => {
-      sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
+      it('send message with quick reply options if payload is READY_TO_CHAT_PAYLOAD', (done) => {
+        sinon.stub(services, 'sendTextWithQuickReplyMessage', () => Promise.resolve('Success'));
 
-      readyToChatListener._handle(null, {
-        shouldHandle: true,
-        payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD,
-        userId: '1'
-      }).then((response) => {
-        expect(response).to.be.equal('Success');
-      }).done(() => {
-        services.sendTextMessage.restore();
-        done();
+        readyToChatListener._handle(null, {
+          shouldHandle: true,
+          payload: payloadConstants.READY_TO_CHAT_PAYLOAD,
+          user: user
+        }).then((response) => {
+          expect(response).to.be.equal('Success');
+        }).done(() => {
+          services.sendTextWithQuickReplyMessage.restore();
+          done();
+        });
+      });
+
+      it('send message if payload is NOT_READY_TO_CHAT_PAYLOAD', (done) => {
+        sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
+
+        readyToChatListener._handle(null, {
+          shouldHandle: true,
+          payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD,
+          user: user
+        }).then((response) => {
+          expect(response).to.be.equal('Success');
+        }).done(() => {
+          services.sendTextMessage.restore();
+          done();
+        });
       });
     });
   });
 
   context('#validate', () => {
-    context('database ready', () => {
-      beforeEach((done) => {
-        User.sync({ force: true }).then(function () {
-          return User.create({
-            userId: '1',
-            firstName: 'First',
-            lastName: 'Last',
-            gender: 'Male',
-            currentPayload: payloadConstants.GET_STARTED_PAYLOAD
-          });
-        }).then(() => {
-          done();
-        });
-      });
+    let user = {
+      userId: '1',
+      firstName: 'First',
+      lastName: 'Last',
+      gender: 'Male',
+      currentPayload: payloadConstants.GET_STARTED_PAYLOAD
+    };
 
-      it('returns true if current payload is GET_STARTED_PAYLOAD', (done) => {
-        readyToChatListener._validate('co', '1').then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.READY_TO_CHAT_PAYLOAD
-          }));
-          done();
-        });
+    beforeEach((done) => {
+      User.sync({ force: true }).then(function () {
+        return User.create(user);
+      }).then(() => {
+        done();
       });
+    });
 
-      it('returns true if current payload is GET_STARTED_PAYLOAD', (done) => {
-        readyToChatListener._validate('ko', '1').then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD
-          }));
-          done();
+    it('returns true if current payload is GET_STARTED_PAYLOAD', (done) => {
+      readyToChatListener._validate('co', '1').then((response) => {
+        expect(response).to.containSubset({
+          shouldHandle: true,
+          payload: payloadConstants.READY_TO_CHAT_PAYLOAD
         });
+        expect(response.user).to.containSubset(user);
+        done();
+      });
+    });
+
+    it('returns true if current payload is GET_STARTED_PAYLOAD', (done) => {
+      readyToChatListener._validate('ko', '1').then((response) => {
+        expect(response).to.containSubset({
+          shouldHandle: true,
+          payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD
+        });
+        expect(response.user).to.containSubset(user);
+        done();
       });
     });
   });

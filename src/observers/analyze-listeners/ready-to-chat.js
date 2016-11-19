@@ -3,6 +3,7 @@ import Promise from 'promise';
 import AnalyzeListener from 'observers/base/analyze-listener';
 import { payloadConstants } from 'utils/constants';
 import { isSynonymTextInArray } from 'utils/helpers';
+import { logger } from 'logs/winston-logger';
 
 const readyToChatResponse = ['co', 'san sang', 'yes'];
 const notReadyToChatResponse = ['khong', 'ko', 'no'];
@@ -19,23 +20,16 @@ export default class ReadyToChatListener extends AnalyzeListener {
   }
 
   _validateMessageAndUserState(text, user) {
-    const { userId, currentPayload } = user;
+    logger.info('%s Validate Message And User State (%s, %s)', this.tag, text, JSON.stringify(user));
+    const { currentPayload } = user;
 
     if (currentPayload === payloadConstants.GET_STARTED_PAYLOAD) {
-      if (isSynonymTextInArray(text, readyToChatResponse)) {
-        return Promise.resolve({
-          shouldHandle: true,
-          userId: userId,
-          payload: payloadConstants.READY_TO_CHAT_PAYLOAD
-        });
-      }
+      let payload;
+      if (isSynonymTextInArray(text, readyToChatResponse)) payload = payloadConstants.READY_TO_CHAT_PAYLOAD;
+      else if (isSynonymTextInArray(text, notReadyToChatResponse)) payload = payloadConstants.NOT_READY_TO_CHAT_PAYLOAD;
 
-      if (isSynonymTextInArray(text, notReadyToChatResponse)) {
-        return Promise.resolve({
-          shouldHandle: true,
-          userId: userId,
-          payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD
-        });
+      if (payload) {
+        return Promise.resolve({ shouldHandle: true, user: user, payload: payload });
       }
     }
 
@@ -43,7 +37,7 @@ export default class ReadyToChatListener extends AnalyzeListener {
   }
 
   _execute(dataAnalysis) {
-    const { userId, payload } = dataAnalysis;
-    return this._sendResponseMessage(userId, payload);
+    logger.info('%s Execute(%s)', this.tag, JSON.stringify(dataAnalysis));
+    return this._sendResponseMessage(dataAnalysis);
   }
 };

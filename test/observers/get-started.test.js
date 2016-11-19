@@ -8,7 +8,6 @@ import services from 'services';
 import GetStartedListener from 'observers/validate-listeners/get-started';
 import { FACEBOOK_GET_STARTED_PAYLOAD } from 'utils/constants';
 import { User } from 'models';
-import { payloadConstants } from 'utils/constants';
 
 describe('get started observer', () => {
   let getStartedListener;
@@ -63,29 +62,6 @@ describe('get started observer', () => {
         expect(spy.called).to.be.true;
       }).done(() => {
         services.sendTextWithQuickReplyMessage.restore();
-        done();
-      });
-    });
-  });
-
-  context('#sendResponseMessage', () => {
-    it('sends message to user', (done) => {
-      sinon.stub(getStartedListener, '_buildResponseMessage', () => Promise.resolve({ text: 'Response message' }));
-      sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
-
-      getStartedListener._sendResponseMessage('1').then((result) => {
-        expect(result).to.be.equal('Success');
-      }).done(() => {
-        services.sendTextMessage.restore();
-        done();
-      });
-    });
-  });
-
-  context('#buildResponseMessage', () => {
-    it('returns no message', (done) => {
-      getStartedListener._buildResponseMessage(payloadConstants.GET_STARTED_PAYLOAD).then((responseMessage) => {
-        expect(responseMessage).to.be.null;
         done();
       });
     });

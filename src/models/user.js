@@ -32,7 +32,8 @@ export default (sequelize, DataTypes) => {
 
         return User.findOrCreate({
           where: { userId: userId },
-          defaults: fullUserProfile
+          defaults: fullUserProfile,
+          raw: true
         });
       },
       findOrCreateById: (userId) => {
@@ -48,6 +49,9 @@ export default (sequelize, DataTypes) => {
             return getUserProfile(userId).then(userProfile => {
               logger.info('Get user profile', JSON.stringify(userProfile));
               return User._saveProfileForUser(userId, userProfile);
+            }).catch(() => {
+              logger.error('Get error on getting user profile %s', userId);
+              return Promise.reject(`Cannot get user profile of ${userId}`);
             });
           }
         });
@@ -55,11 +59,14 @@ export default (sequelize, DataTypes) => {
       updateCurrentPayload: (userId, currentPayload) => {
         return User.update({ currentPayload: currentPayload }, { where: { userId: userId } });
       },
-      updateParental: (userId, parental) => {
+      updateParental: (userId, payload, parental) => {
         return User.update({
           parental: parental,
-          currentPayload: payloadConstants.ASK_PARENT_PAYLOAD
+          currentPayload: payload
         }, { where: { userId: userId } });
+      },
+      updateChildName: (userId, childName) => {
+        return User.update({ childName: childName }, { where: { userId: userId } });
       }
     }
   });

@@ -27,7 +27,9 @@ export default class AnalyzeListener extends BaseListener {
         const payload = messageEvent.message.quick_reply.payload;
 
         if (this._isIntentPayload(payload)) {
-          return Promise.resolve({ shouldHandle: true, userId: userId, payload: payload });
+          return User.findOrCreateById(userId).then(user => {
+            return Promise.resolve({ shouldHandle: true, user: user, payload: payload });
+          });
         }
       } else if (isValidText) {
         return this._validate(messageEvent.message.text, userId);
@@ -42,7 +44,7 @@ export default class AnalyzeListener extends BaseListener {
   }
 
   _validate(text, userId) {
-    logger.info('%sValidate message and current payload', this.tag, text, userId);
+    logger.info('%sValidate message and current payload (%s, %s)', this.tag, text, userId);
 
     return User.findOrCreateById(userId).then(user => {
       logger.info('%sValidate on user', this.tag, JSON.stringify(user));
@@ -50,6 +52,8 @@ export default class AnalyzeListener extends BaseListener {
         return this._validateMessageAndUserState(text, user);
       }
 
+      return Promise.resolve({ shouldHandle: false });
+    }).catch(() => {
       return Promise.resolve({ shouldHandle: false });
     });
   }

@@ -1,5 +1,10 @@
 import { GetStartedListener, GreetingListener } from './validate-listeners';
-import { AskDiseaseArticlesListener, ReadyToChatListener, AskIsParentListener } from './analyze-listeners';
+import {
+  AskDiseaseArticlesListener,
+  ReadyToChatListener,
+  AskIsParentListener,
+  AskChildNameListener
+} from './analyze-listeners';
 import { logger } from 'logs/winston-logger';
 
 export default class RootObserver {
@@ -9,7 +14,8 @@ export default class RootObserver {
       new GreetingListener(),
       new AskDiseaseArticlesListener(),
       new ReadyToChatListener(),
-      new AskIsParentListener()
+      new AskIsParentListener(),
+      new AskChildNameListener()
     ];
   }
 

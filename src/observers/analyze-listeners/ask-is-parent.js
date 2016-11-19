@@ -20,17 +20,19 @@ export default class AskIsParentListener extends AnalyzeListener {
   }
 
   _isIntentPayload(payload) {
+    logger.info('%s Is Intent Payload (%s)', payload);
     return [payloadConstants.IS_DAD_PAYLOAD, payloadConstants.IS_MOM_PAYLOAD, payloadConstants.NO_CHILDREN_PAYLOAD]
       .includes(payload)
   }
 
   _validateMessageAndUserState(text, user) {
-    const { userId, currentPayload } = user;
+    logger.info('%s Validate Message And User State (%s, %s)', this.tag, text, JSON.stringify(user));
+    const { currentPayload } = user;
     if (currentPayload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
       const parentalPayload = this._getParentalPayload(text);
 
       if (parentalPayload) {
-        return Promise.resolve({ shouldHandle: true, userId: userId, payload: parentalPayload });
+        return Promise.resolve({ shouldHandle: true, user: user, payload: parentalPayload });
       }
     }
 
@@ -45,32 +47,34 @@ export default class AskIsParentListener extends AnalyzeListener {
   }
 
   _execute(dataAnalysis) {
-    const { userId, payload } = dataAnalysis;
-
-    return this._sendResponseMessage(userId, payload).then(() => {
-      return User.updateParental(userId, this._getParental(payload));
+    logger.info('%s Execute (%s)', this.tag, JSON.stringify(dataAnalysis));
+    return this._sendResponseMessage(dataAnalysis).then(() => {
+      const { payload } = dataAnalysis;
+      const { userId } = dataAnalysis.user;
+      return User.updateParental(userId, payload, this._getParental(payload));
     });
   }
 
-  _buildResponseMessage(userId, parental) {
-    logger.info('%s Build Response message (%s, %s)', this.tag, userId, parental);
+  _buildResponseMessage(dataAnalysis) {
+    logger.info('%s Build Response Message (%s)', this.tag, JSON.stringify(dataAnalysis));
+    const { user } = dataAnalysis;
+    const parental = dataAnalysis.payload;
+
     const templateMessage = getRandomObjectFromArray(messages[parental]);
 
-    return User.findById(userId).then(user => {
-      if (user) {
-        const parentalStatus = this._getParentalText(parental);
-        const message = {
-          text: templateMessage.text
+    if (user) {
+      const parentalStatus = this._getParentalText(parental);
+      const message = {
+        text: templateMessage.text
           .replace(/\{\{parentalStatus}}/g, parentalStatus)
           .replace(/\{\{userName}}/g, `${user.firstName} ${user.lastName}`)
-        };
-        logger.info('%s Message built', message);
-        return Promise.resolve(message);
-      }
+      };
+      logger.info('%s Message built', message);
+      return Promise.resolve(message);
+    }
 
-      logger.info('%s Cannot build response message', this.tag);
-      return Promise.resolve(`${this.tag}Cannot build response message`);
-    });
+    logger.info('%s Cannot build response message', this.tag);
+    return Promise.resolve(`${this.tag}Cannot build response message`);
   }
 
   _getParentalText(payload) {

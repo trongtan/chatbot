@@ -10,23 +10,29 @@ export default class BaseListener {
     this.tag = '';
   }
 
-  _sendResponseMessage(userId, payload) {
-    const recipientId = userId;
-    return this._buildResponseMessage(userId, payload).then(message => {
+  _sendResponseMessage(metaData) {
+    logger.info('%s Send Response Message (%s)', this.tag, JSON.stringify(metaData));
+    return this._buildResponseMessage(metaData).then(message => {
+
+      const { userId } = metaData.user;
+
       if (message) {
-        logger.info('%sWrite response message %s to recipient %s', this.tag, JSON.stringify(message), recipientId);
+        logger.info('%sWrite response message %s to recipient %s', this.tag, JSON.stringify(message), userId);
+
         if (message.replyOptions) {
-          return services.sendTextWithQuickReplyMessage(recipientId, message.text, message.replyOptions);
+          return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
         } else {
-          return services.sendTextMessage(recipientId, message.text);
+          return services.sendTextMessage(userId, message.text);
         }
       } else {
-        return Promise.resolve('Intentionally send no message to %s', recipientId);
+        return Promise.resolve('Intentionally send no message to %s', userId);
       }
     });
   };
 
-  _buildResponseMessage(userId, payload) {
+  _buildResponseMessage(metaData) {
+    const { payload } = metaData;
+
     return Promise.resolve(getRandomObjectFromArray(messages[payload]));
   }
 }
