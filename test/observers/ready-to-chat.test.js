@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { beforeEach } from 'mocha';
 
 import services from 'services';
-import ReadyToChatListener from 'observers/ready_to_chat';
+import ReadyToChatListener from 'observers/analyze-listeners/ready-to-chat';
 import { payloadConstants } from 'utils/constants';
 import { User } from 'models';
 

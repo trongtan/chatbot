@@ -1,8 +1,5 @@
-import GetStartedListener from './get_started';
-import GreetingListener from './greeting';
-import AskDiseaseArticlesListener from './ask-disease-articles';
-import ReadyToChatListener from './ready_to_chat';
-import AskIsParentListener from './ask-is-parent';
+import { GetStartedListener, GreetingListener } from './validate-listeners';
+import { AskDiseaseArticlesListener, ReadyToChatListener, AskIsParentListener } from './analyze-listeners';
 import { logger } from 'logs/winston-logger';
 
 export default class RootObserver {
