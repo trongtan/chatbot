@@ -1,12 +1,15 @@
 import Promise from 'promise';
 import sinon from 'sinon';
-import { expect } from 'chai';
+import chai, { expect } from 'chai';
 import { beforeEach } from 'mocha';
+import chaiSubset from 'chai-subset';
 
 import services from 'services';
 import AskIsParentListener from 'observers/analyze-listeners/ask-is-parent';
 import { payloadConstants } from 'utils/constants';
 import { User } from 'models';
+
+chai.use(chaiSubset);
 
 describe('ask is parent observer', () => {
   let askIsParentListener;
@@ -174,7 +177,11 @@ describe('ask is parent observer', () => {
       askIsParentListener._handle(null, {
         shouldHandle: true,
         payload: payloadConstants.IS_DAD_PAYLOAD,
-        userId: '1'
+        user: {
+          userId: '1',
+          firstName: 'First',
+          lastName: 'Last'
+        }
       }).then((response) => {
         expect(response).to.be.equal('Update database successfully');
       }).done(() => {
@@ -186,15 +193,19 @@ describe('ask is parent observer', () => {
   });
 
   context('#validate', () => {
+    let user;
+
     beforeEach((done) => {
+      user = {
+        userId: '1',
+        firstName: 'First',
+        lastName: 'Last',
+        gender: 'Male',
+        currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
+      };
+
       User.sync({ force: true }).then(function () {
-        return User.create({
-          userId: '1',
-          firstName: 'First',
-          lastName: 'Last',
-          gender: 'Male',
-          currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
-        });
+        return User.create(user);
       }).then(() => {
         done();
       });
@@ -202,53 +213,54 @@ describe('ask is parent observer', () => {
 
     it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
       askIsParentListener._validate('bo', '1').then((response) => {
-        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
+        expect(response).to.containSubset({
           shouldHandle: true,
-          userId: '1',
           payload: payloadConstants.IS_DAD_PAYLOAD
-        }));
+        });
+        expect(response.user).to.containSubset(user);
         done();
       });
     });
 
     it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
       askIsParentListener._validate('me', '1').then((response) => {
-        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
+        expect(response).to.containSubset({
           shouldHandle: true,
-          userId: '1',
           payload: payloadConstants.IS_MOM_PAYLOAD
-        }));
+        });
+        expect(response.user).to.containSubset(user);
         done();
       });
     });
 
     it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
       askIsParentListener._validate('chua co con', '1').then((response) => {
-        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
+        expect(response).to.containSubset({
           shouldHandle: true,
-          userId: '1',
           payload: payloadConstants.NO_CHILDREN_PAYLOAD
-        }));
+        });
+        expect(response.user).to.containSubset(user);
         done();
       });
     });
   });
 
   context('#execute', () => {
+    let user;
     beforeEach((done) => {
-      User.sync({ force: true }).then(() => {
-        const userProfile = {
-          userId: '1',
-          firstName: 'First',
-          lastName: 'Last',
-          gender: 'Male',
-          currentPayload: '',
-          parental: ''
-        };
+      user = {
+        userId: '1',
+        firstName: 'First',
+        lastName: 'Last',
+        gender: 'Male',
+        currentPayload: '',
+        parental: ''
+      };
 
+      User.sync({ force: true }).then(() => {
         User.findOrCreate({
-          where: { userId: userProfile.userId },
-          defaults: userProfile
+          where: { userId: user.userId },
+          defaults: user
         }).then(() => {
           done();
         });
@@ -258,7 +270,7 @@ describe('ask is parent observer', () => {
     it('calls send message and update user parental to database', (done) => {
       const spy = sinon.stub(askIsParentListener, '_sendResponseMessage', () => Promise.resolve('Success'));
 
-      askIsParentListener._execute({ userId: '1', payload: payloadConstants.IS_DAD_PAYLOAD }).then(() => {
+      askIsParentListener._execute({ user: user, payload: payloadConstants.IS_DAD_PAYLOAD }).then(() => {
         expect(spy.called).to.be.true;
         User.findOne().then((user) => {
           expect(user.currentPayload).to.be.equal(payloadConstants.ASK_PARENT_PAYLOAD);
@@ -271,16 +283,21 @@ describe('ask is parent observer', () => {
 
   context('#buildResponseMessage', () => {
     it('builds message contains user name', (done) => {
+      const user = {
+        userId: '1',
+        firstName: 'First',
+        lastName: 'Last',
+        gender: 'Male',
+        currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
+      };
+
       User.sync({ force: true }).then(function () {
-        return User.create({
-          userId: '1',
-          firstName: 'First',
-          lastName: 'Last',
-          gender: 'Male',
-          currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
-        });
+        return User.create(user);
       }).then(() => {
-        askIsParentListener._buildResponseMessage('1', payloadConstants.IS_DAD_PAYLOAD).then((response) => {
+        askIsParentListener._buildResponseMessage({
+          user: user,
+          payload: payloadConstants.IS_DAD_PAYLOAD
+        }).then((response) => {
           expect(response.text).to.contain('First');
           expect(response.text).to.contain('Last');
           done();
@@ -288,9 +305,12 @@ describe('ask is parent observer', () => {
       });
     });
 
-    it('builds message contains user name', (done) => {
+    it('cannot build response message if user is null', (done) => {
       User.sync({ force: true }).then(() => {
-        askIsParentListener._buildResponseMessage('1', payloadConstants.IS_DAD_PAYLOAD).then((response) => {
+        askIsParentListener._buildResponseMessage({
+          user: null,
+          payload: payloadConstants.IS_DAD_PAYLOAD
+        }).then((response) => {
           expect(response).to.contain('Cannot build response message');
           done();
         });
