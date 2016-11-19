@@ -61,7 +61,29 @@ export default {
   ],
   ASK_CHILD_NAME_PAYLOAD: [
     {
-      text: 'Xin chào {{parentalStatus}} {{userName}} và bé {{childName}} đã đồng hành cùng với bác sĩ lifebouy. Bạn sẽ thích chat với bác sĩ Lifebuoy vào khung giờ nào hàng ngày nè?'
+      text: 'Xin chào {{parentalStatus}} {{userName}} và bé {{childName}} đã đồng hành cùng với bác sĩ Lifebouy. Bạn sẽ thích chat với bác sĩ Lifebuoy vào khung giờ nào hàng ngày nè?',
+    }
+  ],
+  ASK_FAVORITE_TIME_PAYLOAD: [
+    {
+      text: 'Tuyệt vời! Chúng mình sẽ trò chuyện với nhau vào khung giờ này hàng ngày nhé! Còn bây giờ {{userName}} có muốn trò chuyện cùng với bác sĩ Lifebuoy không nè!',
+      replyOptions: [
+        {
+          content_type: 'text',
+          title: 'Có',
+          payload: 'CHAT_RIGHT_NOW_PAYLOAD'
+        },
+        {
+          content_type: 'text',
+          title: 'Mai nhé',
+          payload: 'CHAT_TOMORROW_PAYLOAD'
+        },
+        {
+          content_type: 'text',
+          title: 'Thay đổi lại',
+          payload: 'CHANGE_FAVORITE_TIME_PAYLOAD'
+        }
+      ]
     }
   ]
 }
