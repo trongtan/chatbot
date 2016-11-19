@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { beforeEach } from 'mocha';
 
 import services from 'services';
-import GreetingListener from 'observers/greeting';
+import GreetingListener from 'observers/validate-listeners/greeting';
 
 describe('greeting observer', () => {
   let greetingListener;

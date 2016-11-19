@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { beforeEach } from 'mocha';
 
 import services from 'services';
-import AskIsParentListener from 'observers/ask-is-parent';
+import AskIsParentListener from 'observers/analyze-listeners/ask-is-parent';
 import { payloadConstants } from 'utils/constants';
 import { User } from 'models';
 

@@ -6,7 +6,7 @@ import { beforeEach, afterEach } from 'mocha';
 import 'preload';
 import services from 'services';
 import * as serviceUtils from 'utils/service-utils';
-import GetStartedListener from 'observers/get_started';
+import GetStartedListener from 'observers/validate-listeners/get-started';
 import { FACEBOOK_GET_STARTED_PAYLOAD } from 'utils/constants';
 import { User } from 'models';
 import { payloadConstants } from 'utils/constants';

@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 import { beforeEach } from 'mocha';
 
-import AskDiseaseArticlesListener from 'observers/ask-disease-articles';
+import AskDiseaseArticlesListener from 'observers/analyze-listeners/ask-disease-articles';
 
 describe('ask disease articles observer', () => {
   let askDiseaseArticlesListener;
