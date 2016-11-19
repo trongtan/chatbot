@@ -37,6 +37,7 @@ export default class ReadyToChatListener extends AnalyzeListener {
   }
 
   _execute(dataAnalysis) {
+    logger.info('%s Execute(%s)', this.tag, JSON.stringify(dataAnalysis));
     return this._sendResponseMessage(dataAnalysis);
   }
 };

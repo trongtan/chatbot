@@ -51,7 +51,7 @@ export default class AskIsParentListener extends AnalyzeListener {
     return this._sendResponseMessage(dataAnalysis).then(() => {
       const { payload } = dataAnalysis;
       const { userId } = dataAnalysis.user;
-      return User.updateParental(userId, this._getParental(payload));
+      return User.updateParental(userId, payload, this._getParental(payload));
     });
   }
 

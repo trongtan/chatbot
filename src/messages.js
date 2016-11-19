@@ -58,5 +58,10 @@ export default {
     {
       text: 'Ukie, xin chào {{userName}} nhé. Bạn sẽ thích chat với bác sĩ Lifebuoy vào khung giờ nào hàng ngày nè?'
     }
+  ],
+  ASK_CHILD_NAME_PAYLOAD: [
+    {
+      text: 'Xin chào {{parentalStatus}} {{userName}} và bé {{childName}} đã đồng hành cùng với bác sĩ lifebouy. Bạn sẽ thích chat với bác sĩ Lifebuoy vào khung giờ nào hàng ngày nè?'
+    }
   ]
 }

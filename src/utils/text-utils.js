@@ -1,3 +1,5 @@
+import { payloadConstants } from 'utils/constants';
+
 export const replaceVietnameseCharacters = str => {
   str = str.toLowerCase();
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
@@ -8,4 +10,10 @@ export const replaceVietnameseCharacters = str => {
   str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
   str = str.replace(/đ/g, 'd');
   return str;
+};
+
+export const getParentalName = parental => {
+  if (parental === payloadConstants.IS_DAD_PAYLOAD) return 'Bố';
+  if (parental === payloadConstants.IS_MOM_PAYLOAD) return 'Mẹ';
+  return 'bạn';
 };

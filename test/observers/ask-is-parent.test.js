@@ -72,45 +72,60 @@ describe('ask is parent observer', () => {
         });
       });
 
-      it('returns true if messageEvent.message.quick_reply.payload is IS_DAD_PAYLOAD', (done) => {
-        askIsParentListener._analyze({
-          message: { quick_reply: { payload: payloadConstants.IS_DAD_PAYLOAD } },
-          sender: { id: '1' }
-        }).then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.IS_DAD_PAYLOAD
-          }));
-          done();
-        });
-      });
+      context('valid', () => {
+        let user = {
+          userId: '1',
+          currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
+        };
 
-      it('returns true if messageEvent.message.quick_reply.payload is IS_MOM_PAYLOAD', (done) => {
-        askIsParentListener._analyze({
-          message: { quick_reply: { payload: payloadConstants.IS_MOM_PAYLOAD } },
-          sender: { id: '1' }
-        }).then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.IS_MOM_PAYLOAD
-          }));
-          done();
+        beforeEach((done) => {
+          User.sync({ force: true }).then(() => {
+            User.create(user).then(() => {
+              done();
+            });
+          });
         });
-      });
 
-      it('returns true if messageEvent.message.quick_reply.payload is NO_CHILDREN_PAYLOAD', (done) => {
-        askIsParentListener._analyze({
-          message: { quick_reply: { payload: payloadConstants.NO_CHILDREN_PAYLOAD } },
-          sender: { id: '1' }
-        }).then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.NO_CHILDREN_PAYLOAD
-          }));
-          done();
+        it('returns true if messageEvent.message.quick_reply.payload is IS_DAD_PAYLOAD', (done) => {
+          askIsParentListener._analyze({
+            message: { quick_reply: { payload: payloadConstants.IS_DAD_PAYLOAD } },
+            sender: { id: '1' }
+          }).then((response) => {
+            expect(response).to.containSubset({
+              shouldHandle: true,
+              payload: payloadConstants.IS_DAD_PAYLOAD
+            });
+            expect(response.user).to.containSubset(user);
+            done();
+          });
+        });
+
+        it('returns true if messageEvent.message.quick_reply.payload is IS_MOM_PAYLOAD', (done) => {
+          askIsParentListener._analyze({
+            message: { quick_reply: { payload: payloadConstants.IS_MOM_PAYLOAD } },
+            sender: { id: '1' }
+          }).then((response) => {
+            expect(response).to.containSubset({
+              shouldHandle: true,
+              payload: payloadConstants.IS_MOM_PAYLOAD
+            });
+            expect(response.user).to.containSubset(user);
+            done();
+          });
+        });
+
+        it('returns true if messageEvent.message.quick_reply.payload is NO_CHILDREN_PAYLOAD', (done) => {
+          askIsParentListener._analyze({
+            message: { quick_reply: { payload: payloadConstants.NO_CHILDREN_PAYLOAD } },
+            sender: { id: '1' }
+          }).then((response) => {
+            expect(response).to.containSubset({
+              shouldHandle: true,
+              payload: payloadConstants.NO_CHILDREN_PAYLOAD
+            });
+            expect(response.user).to.containSubset(user);
+            done();
+          });
         });
       });
     });
@@ -273,7 +288,7 @@ describe('ask is parent observer', () => {
       askIsParentListener._execute({ user: user, payload: payloadConstants.IS_DAD_PAYLOAD }).then(() => {
         expect(spy.called).to.be.true;
         User.findOne().then((user) => {
-          expect(user.currentPayload).to.be.equal(payloadConstants.ASK_PARENT_PAYLOAD);
+          expect(user.currentPayload).to.be.equal(payloadConstants.IS_DAD_PAYLOAD);
           expect(user.parental).to.be.equal('DAD');
           done();
         });

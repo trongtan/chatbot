@@ -13,8 +13,7 @@ const payloadConstants = constantMirror(
   'IS_MOM_PAYLOAD',
   'NO_CHILDREN_PAYLOAD',
   'ASK_PARENT_PAYLOAD',
-  'GREETING_PAYLOAD',
-  'DISEASE_PAYLOAD'
+  'ASK_CHILD_NAME_PAYLOAD'
 );
 
 const parentalConstants = constantMirror(
