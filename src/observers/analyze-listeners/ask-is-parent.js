@@ -24,11 +24,14 @@ export default class AskIsParentListener extends AnalyzeListener {
       .includes(payload)
   }
 
-  _validateMessageAndCurrentPayload(text, userId, currentPayload) {
+  _validateMessageAndUserState(text, user) {
+    const { userId, currentPayload } = user;
     if (currentPayload === payloadConstants.READY_TO_CHAT_PAYLOAD) {
       const parentalPayload = this._getParentalPayload(text);
 
-      return Promise.resolve({ shouldHandle: true, userId: userId, payload: parentalPayload });
+      if (parentalPayload) {
+        return Promise.resolve({ shouldHandle: true, userId: userId, payload: parentalPayload });
+      }
     }
 
     return Promise.resolve({ shouldHandle: false });

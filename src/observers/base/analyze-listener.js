@@ -30,10 +30,7 @@ export default class AnalyzeListener extends BaseListener {
           return Promise.resolve({ shouldHandle: true, userId: userId, payload: payload });
         }
       } else if (isValidText) {
-        const text = messageEvent.message.text;
-        if (text) {
-          return this._validate(text, userId);
-        }
+        return this._validate(messageEvent.message.text, userId);
       }
     }
 
@@ -50,14 +47,15 @@ export default class AnalyzeListener extends BaseListener {
     return User.findOrCreateById(userId).then(user => {
       logger.info('%sValidate on user', this.tag, JSON.stringify(user));
       if (user && user.currentPayload) {
-        return this._validateMessageAndCurrentPayload(text, userId, user.currentPayload);
+        return this._validateMessageAndUserState(text, user);
       }
 
       return Promise.resolve({ shouldHandle: false });
     });
   }
 
-  _validateMessageAndCurrentPayload(text, userId, currentPayload) {
+  _validateMessageAndUserState(text, user) {
+    logger.info('%s Validate Message And User State (%s %s)', this.tag, text, JSON.stringify(user));
     return Promise.resolve({ shouldHandle: false });
   }
 

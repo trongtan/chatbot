@@ -112,7 +112,21 @@ describe('ask is parent observer', () => {
       });
     });
 
-    context('validate message and current payload', () => {
+    context('#validate', () => {
+      beforeEach((done) => {
+        User.sync({ force: true }).then(function () {
+          return User.create({
+            userId: '1',
+            firstName: 'First',
+            lastName: 'Last',
+            gender: 'Male',
+            currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
+          });
+        }).then(() => {
+          done();
+        });
+      });
+
       it('calls validate method', (done) => {
         sinon.stub(askIsParentListener, '_validate', () => Promise.resolve('Success'));
 
@@ -125,7 +139,8 @@ describe('ask is parent observer', () => {
         });
       });
 
-      it('doesn\'t call validateMessageAndCurrentPayload method if text is invalid', (done) => {
+      it('doesn\'t call _validateMessageAndUserState method if text is invalid', (done) => {
+
         askIsParentListener._analyze({
           message: { text: 'text' },
           sender: { id: '1' },
@@ -171,61 +186,50 @@ describe('ask is parent observer', () => {
   });
 
   context('#validate', () => {
-    context('database not ready', () => {
-      it('return false', (done) => {
-        askIsParentListener._validate('bo', '1').then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
-          done();
+    beforeEach((done) => {
+      User.sync({ force: true }).then(function () {
+        return User.create({
+          userId: '1',
+          firstName: 'First',
+          lastName: 'Last',
+          gender: 'Male',
+          currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
         });
+      }).then(() => {
+        done();
       });
     });
 
-    context('database ready', () => {
-      beforeEach((done) => {
-        User.sync({ force: true }).then(function () {
-          return User.create({
-            userId: '1',
-            firstName: 'First',
-            lastName: 'Last',
-            gender: 'Male',
-            currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
-          });
-        }).then(() => {
-          done();
-        });
+    it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
+      askIsParentListener._validate('bo', '1').then((response) => {
+        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
+          shouldHandle: true,
+          userId: '1',
+          payload: payloadConstants.IS_DAD_PAYLOAD
+        }));
+        done();
       });
+    });
 
-      it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
-        askIsParentListener._validate('bo', '1').then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.IS_DAD_PAYLOAD
-          }));
-          done();
-        });
+    it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
+      askIsParentListener._validate('me', '1').then((response) => {
+        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
+          shouldHandle: true,
+          userId: '1',
+          payload: payloadConstants.IS_MOM_PAYLOAD
+        }));
+        done();
       });
+    });
 
-      it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
-        askIsParentListener._validate('me', '1').then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.IS_MOM_PAYLOAD
-          }));
-          done();
-        });
-      });
-
-      it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
-        askIsParentListener._validate('chua co con', '1').then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
-            shouldHandle: true,
-            userId: '1',
-            payload: payloadConstants.NO_CHILDREN_PAYLOAD
-          }));
-          done();
-        });
+    it('returns true if current payload is READY_TO_CHAT_PAYLOAD', (done) => {
+      askIsParentListener._validate('chua co con', '1').then((response) => {
+        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
+          shouldHandle: true,
+          userId: '1',
+          payload: payloadConstants.NO_CHILDREN_PAYLOAD
+        }));
+        done();
       });
     });
   });
