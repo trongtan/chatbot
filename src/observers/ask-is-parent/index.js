@@ -1,6 +1,6 @@
 import Promise from 'promise';
 
-import AnalyzeQuickReplyAndCurrentPayloadListener from 'observers/base/analyze-quick-reply-and-current-payload-listener';
+import AnalyzeListener from 'observers/base/analyze-listener';
 import messages from 'messages';
 import { User } from 'models';
 import { payloadConstants } from 'utils/constants';
@@ -12,7 +12,7 @@ const isDadResponse = ['bo', 'ba', 'cha'];
 const isMomResponse = ['me', 'ma'];
 const isNotParentResponse = ['chua co con', 'khong co con', 'khong co'];
 
-export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayloadListener {
+export default class AskIsParentListener extends AnalyzeListener {
 
   constructor() {
     super();
@@ -41,7 +41,9 @@ export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayl
     return null;
   }
 
-  _execute(userId, payload) {
+  _execute(dataAnalysis) {
+    const { userId, payload } = dataAnalysis;
+
     return this._sendResponseMessage(userId, payload).then(() => {
       return User.updateParental(userId, this._getParental(payload));
     });
