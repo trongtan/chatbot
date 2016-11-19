@@ -5,7 +5,6 @@ import { beforeEach, afterEach } from 'mocha';
 
 import 'preload';
 import services from 'services';
-import * as serviceUtils from 'utils/service-utils';
 import GetStartedListener from 'observers/validate-listeners/get-started';
 import { FACEBOOK_GET_STARTED_PAYLOAD } from 'utils/constants';
 import { User } from 'models';
@@ -37,55 +36,33 @@ describe('get started observer', () => {
   });
 
   context('#handle', () => {
+    let findOrCreateUserSpy;
+    beforeEach(() => {
+      findOrCreateUserSpy = sinon.stub(User, 'findOrCreateById', () => Promise.resolve('Success'));
+    });
+    afterEach(() => {
+      User.findOrCreateById.restore();
+    });
     it('does nothing if messageEvent is null', () => {
-      let spy = sinon.spy(getStartedListener, '_saveUserProfileToDatabase');
       getStartedListener._handle(null);
-      expect(spy.called).to.be.false;
+      expect(findOrCreateUserSpy.called).to.be.false;
     });
 
     it('does nothing if messageEvent.sender is null', () => {
-      let spy = sinon.spy(getStartedListener, '_saveUserProfileToDatabase');
       getStartedListener._handle({});
-      expect(spy.called).to.be.false;
+      expect(findOrCreateUserSpy.called).to.be.false;
     });
 
     it('saves user profile to database and send response data', (done) => {
-      const saveUserProfileToDatabaseSpy = sinon.stub(getStartedListener, '_saveUserProfileToDatabase',
-        () => Promise.resolve('Success'));
-      const sendResponseMessageSpy = sinon.stub(getStartedListener, '_sendResponseMessage',
+      const spy = sinon.stub(getStartedListener, '_sendResponseMessage',
         () => Promise.resolve('Success'));
       sinon.stub(services, 'sendTextWithQuickReplyMessage', () => Promise.resolve('Success'));
 
       getStartedListener._handle({ sender: { id: '1' } }).then(() => {
-        expect(saveUserProfileToDatabaseSpy.called).to.be.true;
-        expect(sendResponseMessageSpy.called).to.be.true;
+        expect(findOrCreateUserSpy.called).to.be.true;
+        expect(spy.called).to.be.true;
       }).done(() => {
         services.sendTextWithQuickReplyMessage.restore();
-        done();
-      });
-    });
-  });
-
-  context('#saveUserProfileToDatabase', () => {
-    afterEach((done) => {
-      User.destroy({ truncate: true }).then(done);
-    });
-
-    it('gets data via facebook API and save to database', (done) => {
-      const userProfile = {
-        first_name: 'test',
-        last_name: 'test',
-        gender: 'Male'
-      };
-
-      sinon.stub(serviceUtils, 'getUserProfile', () => Promise.resolve(userProfile));
-
-      getStartedListener._saveUserProfileToDatabase('1').then(() => {
-        User.findAll().then((users) => {
-          expect(users.length).to.be.equal(1);
-        });
-      }).done(() => {
-        serviceUtils.getUserProfile.restore();
         done();
       });
     });

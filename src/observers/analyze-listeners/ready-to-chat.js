@@ -18,7 +18,9 @@ export default class ReadyToChatListener extends AnalyzeListener {
     return [payloadConstants.READY_TO_CHAT_PAYLOAD, payloadConstants.NOT_READY_TO_CHAT_PAYLOAD].includes(payload);
   }
 
-  _validateMessageAndCurrentPayload(text, userId, currentPayload) {
+  _validateMessageAndUserState(text, user) {
+    const { userId, currentPayload } = user;
+
     if (currentPayload === payloadConstants.GET_STARTED_PAYLOAD) {
       if (isSynonymTextInArray(text, readyToChatResponse)) {
         return Promise.resolve({

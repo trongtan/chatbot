@@ -98,7 +98,7 @@ describe('ready to chat observer', () => {
       });
     });
 
-    context('validate message and current payload', () => {
+    context('#validate', () => {
       it('calls validate method', (done) => {
         sinon.stub(readyToChatListener, '_validate', () => Promise.resolve('Success'));
 
@@ -112,11 +112,15 @@ describe('ready to chat observer', () => {
       });
 
       it('doesn\'t call validate method if text is invalid', (done) => {
+        sinon.stub(User, 'findOrCreateById', () => Promise.resolve({ shouldHandle: false }));
+
         readyToChatListener._analyze({
           message: { text: 'text' },
           sender: { id: '1' },
         }).then(response => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
+        }).done(() => {
+          User.findOrCreateById.restore();
           done();
         });
       });
@@ -180,15 +184,6 @@ describe('ready to chat observer', () => {
   });
 
   context('#validate', () => {
-    context('database not ready', () => {
-      it('return false', (done) => {
-        readyToChatListener._validate('co', '1').then((response) => {
-          expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
-          done();
-        });
-      });
-    });
-
     context('database ready', () => {
       beforeEach((done) => {
         User.sync({ force: true }).then(function () {
