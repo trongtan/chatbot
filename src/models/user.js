@@ -1,5 +1,8 @@
-import { logger } from 'logs/winston-logger';
+import Promise from 'promise';
+
 import { payloadConstants } from 'utils/constants';
+import { getUserProfile } from 'utils/service-utils';
+import { logger } from 'logs/winston-logger';
 
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -16,7 +19,7 @@ export default (sequelize, DataTypes) => {
   }, {
     freezeTableName: true,
     classMethods: {
-      saveProfileForUser: (userId, userProfile) => {
+      _saveProfileForUser: (userId, userProfile) => {
         const fullUserProfile = {
           userId: userId,
           firstName: userProfile.first_name,
@@ -32,13 +35,21 @@ export default (sequelize, DataTypes) => {
           defaults: fullUserProfile
         });
       },
-      getCurrentPayload: (userId) => {
+      findOrCreateById: (userId) => {
         return User.findOne({
-          attributes: ['currentPayload'],
           where: {
             userId: userId
           },
           raw: true
+        }).then(user => {
+          if (user) {
+            return Promise.resolve(user);
+          } else {
+            return getUserProfile(userId).then(userProfile => {
+              logger.info('Get user profile', JSON.stringify(userProfile));
+              return User._saveProfileForUser(userId, userProfile);
+            });
+          }
         });
       },
       updateCurrentPayload: (userId, currentPayload) => {

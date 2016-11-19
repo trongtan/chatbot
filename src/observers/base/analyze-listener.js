@@ -47,7 +47,7 @@ export default class AnalyzeListener extends BaseListener {
   _validate(text, userId) {
     logger.info('%sValidate message and current payload', this.tag, text, userId);
 
-    return User.findById(userId).then(user => {
+    return User.findOrCreateById(userId).then(user => {
       logger.info('%sValidate on user', this.tag, JSON.stringify(user));
       if (user && user.currentPayload) {
         return this._validateMessageAndCurrentPayload(text, userId, user.currentPayload);

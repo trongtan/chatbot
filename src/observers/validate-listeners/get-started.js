@@ -18,16 +18,9 @@ export default class GetStartedListener extends ValidateListener {
     if (messageEvent && messageEvent.sender && messageEvent.sender.id) {
       const userId = messageEvent.sender.id;
 
-      return this._saveUserProfileToDatabase(userId).then(() => {
+      return User.findOrCreateById(userId).then(() => {
         return this._sendResponseMessage(userId, payloadConstants.GET_STARTED_PAYLOAD);
       });
     }
   }
-
-  _saveUserProfileToDatabase(userId) {
-    return getUserProfile(userId).then(userProfile => {
-      logger.info('[Get started] Get user profile', JSON.stringify(userProfile));
-      return User.saveProfileForUser(userId, userProfile);
-    });
-  };
 }
