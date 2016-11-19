@@ -54,9 +54,11 @@ export default class AskIsParentListener extends AnalyzeQuickReplyAndCurrentPayl
     return User.findById(userId).then(user => {
       if (user) {
         const parentalStatus = this._getParentalText(parental);
-        const message = templateMessage.text
+        const message = {
+          text: templateMessage.text
           .replace(/\{\{parentalStatus}}/g, parentalStatus)
-          .replace(/\{\{userName}}/g, `${user.firstName} ${user.lastName}`);
+          .replace(/\{\{userName}}/g, `${user.firstName} ${user.lastName}`)
+        };
         logger.info('%s Message built', message);
         return Promise.resolve(message);
       }
