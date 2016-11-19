@@ -254,7 +254,7 @@ describe('ask is parent observer', () => {
     it('calls send message and update user parental to database', (done) => {
       const spy = sinon.stub(askIsParentListener, '_sendResponseMessage', () => Promise.resolve('Success'));
 
-      askIsParentListener._execute('1', payloadConstants.IS_DAD_PAYLOAD).then(() => {
+      askIsParentListener._execute({ userId: '1', payload: payloadConstants.IS_DAD_PAYLOAD }).then(() => {
         expect(spy.called).to.be.true;
         User.findOne().then((user) => {
           expect(user.currentPayload).to.be.equal(payloadConstants.ASK_PARENT_PAYLOAD);

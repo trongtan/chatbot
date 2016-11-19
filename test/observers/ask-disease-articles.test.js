@@ -1,3 +1,4 @@
+import Promise from 'promise';
 import sinon from 'sinon';
 import { expect } from 'chai';
 import { beforeEach } from 'mocha';
@@ -14,19 +15,19 @@ describe('ask disease articles observer', () => {
   context('#analyze', () => {
     it('returns false if messageEvent is null', () => {
       askDiseaseArticlesListener._analyze(null).then((response) => {
-        expect(response).to.be.deep.equal({ isAskingDisease: false });
+        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
       });
     });
 
     it('returns false if messageEvent.message is null', () => {
       askDiseaseArticlesListener._analyze({}).then((response) => {
-        expect(response).to.be.deep.equal({ isAskingDisease: false });
+        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
       });
     });
 
     it('returns false if messageEvent.message.text is null', () => {
       askDiseaseArticlesListener._analyze({ message: {} }).then((response) => {
-        expect(response).to.be.deep.equal({ isAskingDisease: false });
+        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
       });
     });
 
@@ -37,7 +38,7 @@ describe('ask disease articles observer', () => {
       }));
 
       askDiseaseArticlesListener._analyze({ message: { text: 'text' } }).then((response) => {
-        expect(response).to.be.deep.equal({ isAskingDisease: false });
+        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({ shouldHandle: false }));
       });
     });
 
@@ -48,50 +49,33 @@ describe('ask disease articles observer', () => {
       }));
 
       askDiseaseArticlesListener._analyze({ message: { text: 'text' } }).then((response) => {
-        expect(response).to.be.deep.equal({ isAskingDisease: true, requestedTypeIds: [1], requestedDiseaseIds: [1] });
+        expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
+          shouldHandle: true,
+          requestedTypeIds: [1],
+          requestedDiseaseIds: [1]
+        }));
       });
     });
   });
 
   context('#handle', () => {
-    let spy;
-
-    beforeEach(() => {
-      spy = sinon.spy(askDiseaseArticlesListener, '_sendResponseMessage');
+    it('does nothing if dataAnalysis.shouldHandle is false', (done) => {
+      askDiseaseArticlesListener._handle(null, {}).then((response) => {
+        expect(response).to.contain('skip');
+        done();
+      });
     });
 
-    it('does nothing if dataAnalysis is null', () => {
-      askDiseaseArticlesListener._handle(null, null);
-      expect(spy.called).to.be.false;
-    });
-
-    it('does nothing if dataAnalysis.isAskingDisease is false', () => {
-      askDiseaseArticlesListener._handle(null, {});
-      expect(spy.called).to.be.false;
-    });
-
-    it('does nothing if messageEvent is null', () => {
-      askDiseaseArticlesListener._handle(null, { isAskingDisease: true });
-      expect(spy.called).to.be.false;
-    });
-
-    it('does nothing if messageEvent.sender is null', () => {
-      askDiseaseArticlesListener._handle({}, { isAskingDisease: true });
-      expect(spy.called).to.be.false;
-    });
-
-    it('does nothing if messageEvent.sender.id is null', () => {
-      askDiseaseArticlesListener._handle({ sender: {} }, { isAskingDisease: true });
-      expect(spy.called).to.be.false;
-    });
-
-    it('sends response message', () => {
+    it('sends response message', (done) => {
+      sinon.stub(askDiseaseArticlesListener, '_sendResponseMessage', () => Promise.resolve('Success'));
       askDiseaseArticlesListener._handle({ sender: { id: '1' } }, {
-        isAskingDisease: true,
+        shouldHandle: true,
         typeIds: [1],
         diseaseIds: [1]
+      }).then(response => {
+        expect(response).to.be.equal('Success');
+        done();
       });
-      expect(spy.withArgs('1', [1], [1]).calledOnce).to.be.true;
     });
   });
 

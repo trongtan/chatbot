@@ -8,49 +8,32 @@ import { logger } from 'logs/winston-logger';
 import { DEFAULT_TYPE_KEYWORD } from 'utils/constants';
 
 export default class AskDiseaseArticlesListener extends AnalyzeListener {
-  _analyze(messageEvent) {
-    if (!(messageEvent && messageEvent.message && messageEvent.message.text)) {
-      return Promise.resolve({ isAskingDisease: false });
-    }
+  constructor() {
+    super();
+    this.tag = '[Ask Disease Articles]';
+  }
 
-    const text = messageEvent.message.text;
-    return this._getRequest(text).then((res) => {
+  _validate(text, userId) {
+    logger.info('%s Validate (%s, %s)', this.tag, text, userId);
+
+    return this._getRequest(text).then(res => {
       if (res.requestedTypeIds.length > 0 && res.requestedDiseaseIds.length > 0) {
-        return Promise.resolve({
-          isAskingDisease: true,
+        return Promise.resolve({ shouldHandle: true,
           typeIds: res.requestedTypeIds,
           diseaseIds: res.requestedDiseaseIds
         });
       } else {
-        return Promise.resolve({ isAskingDisease: false });
+        return Promise.resolve({ shouldHandle: false });
       }
     });
   }
 
-  _handle(messageEvent, dataAnalysis) {
-    if (dataAnalysis && dataAnalysis.isAskingDisease) {
-      if (messageEvent && messageEvent.sender && messageEvent.sender.id) {
-        return this._sendResponseMessage(messageEvent.sender.id, dataAnalysis.typeIds, dataAnalysis.diseaseIds);
-      } else {
-        logger.info('Sender id is invalid');
-        return Promise.resolve('Sender id is invalid');
-      }
-    } else {
-      logger.info('No data matches with request');
-      return Promise.resolve('No data matches with request');
-    }
-  }
-
   _getRequest(message) {
-
-    logger.log('info', 'Message: %j', message);
+    logger.info('%s Get request (%s)', this.tag, message);
 
     return co(function *() {
       const typeSynonyms = yield TypeSynonym.findAllTypeSynonyms();
       const diseaseSynonyms = yield DiseaseSynonym.findAllDiseaseSynonyms();
-
-      logger.log('info', 'List of typeSynonyms: %j', typeSynonyms);
-      logger.log('info', 'List of diseaseSynonyms: %j', diseaseSynonyms);
 
       const requestedTypeSynonyms = typeSynonyms.filter(typeSynonym => {
         return message.indexOf(typeSynonym.value) !== -1;
@@ -59,9 +42,6 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
       const requestedDiseaseSynonyms = diseaseSynonyms.filter(diseaseSynonym => {
         return message.indexOf(diseaseSynonym.name) !== -1;
       });
-
-      logger.log('info', 'List of requestedTypeSynonyms: %j', requestedTypeSynonyms);
-      logger.log('info', 'List of requestedDiseaseSynonyms: %j', requestedDiseaseSynonyms);
 
       let requestedTypeIds = requestedTypeSynonyms.map(requestedTypeSynonym => {
         return requestedTypeSynonym.typeId;
@@ -75,16 +55,22 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
         requestedTypeIds.push(yield Type.findTypeIdByValue(DEFAULT_TYPE_KEYWORD));
       }
 
-      logger.log('info', 'List of requestedTypeIds: %j', requestedTypeIds);
-      logger.log('info', 'List of requestedDiseaseIds: %j', requestedDiseaseIds);
-
       return { requestedTypeIds, requestedDiseaseIds };
     }).catch(exception => {
-      logger.log('error', 'Got exception on getRequest: %s', exception);
+      logger.error('%sGot exception on getRequest: %s', this.tag, exception);
     });
   };
 
+  _execute(dataAnalysis) {
+    logger.info('%s Execute %s', this.tag, JSON.stringify(dataAnalysis));
+    const { userId, typeIds, diseaseIds } = dataAnalysis;
+
+    return this._sendResponseMessage(userId, typeIds, diseaseIds);
+  }
+
   _sendResponseMessage(recipientId, typeIds, diseaseIds) {
+    logger.info('%s Send response message (%s, %s, %s)', recipientId, typeIds, diseaseIds);
+
     const self = this;
 
     co(function*() {

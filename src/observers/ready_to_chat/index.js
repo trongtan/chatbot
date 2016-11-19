@@ -1,14 +1,13 @@
 import Promise from 'promise';
 
-import AnalyzeQuickReplyAndCurrentPayloadListener
-  from 'observers/base/analyze-quick-reply-and-current-payload-listener';
+import AnalyzeListener from 'observers/base/analyze-listener';
 import { payloadConstants } from 'utils/constants';
 import { isSynonymTextInArray } from 'utils/helpers';
 
 const readyToChatResponse = ['co', 'san sang', 'yes'];
 const notReadyToChatResponse = ['khong', 'ko', 'no'];
 
-export default class ReadyToChatListener extends AnalyzeQuickReplyAndCurrentPayloadListener {
+export default class ReadyToChatListener extends AnalyzeListener {
 
   constructor() {
     super();
@@ -41,7 +40,8 @@ export default class ReadyToChatListener extends AnalyzeQuickReplyAndCurrentPayl
     return Promise.resolve({ shouldHandle: false });
   }
 
-  _execute(userId, payload) {
+  _execute(dataAnalysis) {
+    const { userId, payload } = dataAnalysis;
     return this._sendResponseMessage(userId, payload);
   }
 };
