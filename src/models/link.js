@@ -5,14 +5,7 @@ export default (sequelize, DataTypes) => {
     image: DataTypes.STRING,
     link: DataTypes.STRING
   }, {
-    freezeTableName: true,
-    associate: function (models) {
-      models.Link.belongsToMany(models.TypeDisease, {through: 'TypeDiseaseLink'});
-    },
-    classMethods: {
-      associate: function (models) {
-      }
-    }
+    freezeTableName: true
   });
 
   return Link;

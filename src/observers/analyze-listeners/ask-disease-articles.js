@@ -98,6 +98,8 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
       for (let typeId of typeIds) {
         for (let diseaseId of diseaseIds) {
           const additionalArticles = yield TypeDisease.getArticles(typeId, diseaseId);
+          logger.info('%s Get articles %j', self.tag, JSON.stringify(additionalArticles));
+
           if (additionalArticles && additionalArticles.length > 0) {
             articles = [...articles, ...additionalArticles];
           }

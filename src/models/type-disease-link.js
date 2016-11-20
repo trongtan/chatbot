@@ -1,8 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const TypeDiseaseLink = sequelize.define('TypeDiseaseLink', {
-    typeDiseaseId: DataTypes.INTEGER,
-    linkId: DataTypes.INTEGER
-  }, {
+  const TypeDiseaseLink = sequelize.define('TypeDiseaseLink', {}, {
     freezeTableName: true
   });
   return TypeDiseaseLink;

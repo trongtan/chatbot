@@ -1,331 +1,1367 @@
 [
   {
     "id": 1,
-    "typeDiseaseId": 1,
+    "typeDiseaseId": 7,
     "linkId": 1,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 2,
-    "typeDiseaseId": 1,
+    "typeDiseaseId": 7,
     "linkId": 2,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 3,
-    "typeDiseaseId": 1,
+    "typeDiseaseId": 7,
     "linkId": 3,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 4,
-    "typeDiseaseId": 1,
+    "typeDiseaseId": 7,
     "linkId": 4,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 5,
-    "typeDiseaseId": 1,
+    "typeDiseaseId": 7,
     "linkId": 5,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 6,
-    "typeDiseaseId": 1,
+    "typeDiseaseId": 7,
     "linkId": 6,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 7,
-    "typeDiseaseId": 1,
+    "typeDiseaseId": 7,
     "linkId": 7,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 8,
-    "typeDiseaseId": 1,
+    "typeDiseaseId": 7,
     "linkId": 8,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 9,
-    "typeDiseaseId": 6,
+    "typeDiseaseId": 17,
     "linkId": 9,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 10,
-    "typeDiseaseId": 6,
+    "typeDiseaseId": 17,
     "linkId": 10,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 11,
-    "typeDiseaseId": 6,
+    "typeDiseaseId": 17,
     "linkId": 11,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 12,
-    "typeDiseaseId": 6,
+    "typeDiseaseId": 17,
     "linkId": 12,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 13,
-    "typeDiseaseId": 6,
+    "typeDiseaseId": 17,
     "linkId": 13,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 14,
-    "typeDiseaseId": 6,
+    "typeDiseaseId": 17,
     "linkId": 14,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 15,
-    "typeDiseaseId": 6,
+    "typeDiseaseId": 17,
     "linkId": 15,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 16,
-    "typeDiseaseId": 3,
+    "typeDiseaseId": 27,
     "linkId": 16,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 17,
-    "typeDiseaseId": 3,
+    "typeDiseaseId": 27,
     "linkId": 17,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 18,
-    "typeDiseaseId": 3,
+    "typeDiseaseId": 27,
     "linkId": 18,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 19,
-    "typeDiseaseId": 3,
+    "typeDiseaseId": 27,
     "linkId": 19,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 20,
-    "typeDiseaseId": 4,
-    "linkId": 16,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 9,
+    "linkId": 20,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 21,
-    "typeDiseaseId": 4,
-    "linkId": 17,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 9,
+    "linkId": 21,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 22,
-    "typeDiseaseId": 4,
-    "linkId": 18,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 19,
+    "linkId": 22,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 23,
-    "typeDiseaseId": 4,
-    "linkId": 19,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 19,
+    "linkId": 23,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 24,
-    "typeDiseaseId": 2,
-    "linkId": 1,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 29,
+    "linkId": 24,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 25,
-    "typeDiseaseId": 2,
-    "linkId": 2,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 29,
+    "linkId": 25,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 26,
-    "typeDiseaseId": 2,
-    "linkId": 3,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 31,
+    "linkId": 26,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 27,
-    "typeDiseaseId": 2,
-    "linkId": 4,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 10,
+    "linkId": 27,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 28,
-    "typeDiseaseId": 2,
-    "linkId": 5,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 10,
+    "linkId": 28,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 29,
-    "typeDiseaseId": 2,
-    "linkId": 6,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 20,
+    "linkId": 29,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 30,
-    "typeDiseaseId": 2,
-    "linkId": 7,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 20,
+    "linkId": 30,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 31,
-    "typeDiseaseId": 2,
-    "linkId": 8,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 30,
+    "linkId": 31,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 32,
-    "typeDiseaseId": 3,
-    "linkId": 1,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 30,
+    "linkId": 32,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 33,
-    "typeDiseaseId": 3,
-    "linkId": 2,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 30,
+    "linkId": 33,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 34,
     "typeDiseaseId": 3,
-    "linkId": 3,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "linkId": 34,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 35,
     "typeDiseaseId": 3,
-    "linkId": 4,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "linkId": 35,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 36,
     "typeDiseaseId": 3,
-    "linkId": 5,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "linkId": 36,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 37,
     "typeDiseaseId": 3,
-    "linkId": 6,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "linkId": 37,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 38,
     "typeDiseaseId": 3,
-    "linkId": 7,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "linkId": 38,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 39,
     "typeDiseaseId": 3,
-    "linkId": 8,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "linkId": 39,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 40,
-    "typeDiseaseId": 5,
-    "linkId": 1,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 3,
+    "linkId": 40,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 41,
-    "typeDiseaseId": 5,
-    "linkId": 2,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 13,
+    "linkId": 41,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 42,
-    "typeDiseaseId": 5,
-    "linkId": 3,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 13,
+    "linkId": 42,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 43,
-    "typeDiseaseId": 5,
-    "linkId": 4,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 13,
+    "linkId": 43,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 44,
-    "typeDiseaseId": 5,
-    "linkId": 5,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 13,
+    "linkId": 44,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 45,
-    "typeDiseaseId": 5,
-    "linkId": 6,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 13,
+    "linkId": 45,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 46,
-    "typeDiseaseId": 5,
-    "linkId": 7,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "typeDiseaseId": 13,
+    "linkId": 46,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 47,
+    "typeDiseaseId": 23,
+    "linkId": 47,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 48,
+    "typeDiseaseId": 23,
+    "linkId": 48,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 49,
+    "typeDiseaseId": 23,
+    "linkId": 49,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 50,
+    "typeDiseaseId": 23,
+    "linkId": 50,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 51,
+    "typeDiseaseId": 23,
+    "linkId": 51,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 52,
+    "typeDiseaseId": 23,
+    "linkId": 52,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 53,
+    "typeDiseaseId": 23,
+    "linkId": 53,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 54,
+    "typeDiseaseId": 23,
+    "linkId": 54,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 55,
+    "typeDiseaseId": 6,
+    "linkId": 55,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 56,
+    "typeDiseaseId": 6,
+    "linkId": 56,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 57,
+    "typeDiseaseId": 6,
+    "linkId": 57,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 58,
+    "typeDiseaseId": 6,
+    "linkId": 58,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 59,
+    "typeDiseaseId": 6,
+    "linkId": 59,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 60,
+    "typeDiseaseId": 6,
+    "linkId": 60,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 61,
+    "typeDiseaseId": 16,
+    "linkId": 61,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 62,
+    "typeDiseaseId": 16,
+    "linkId": 62,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 63,
+    "typeDiseaseId": 16,
+    "linkId": 63,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 64,
+    "typeDiseaseId": 26,
+    "linkId": 64,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 65,
+    "typeDiseaseId": 26,
+    "linkId": 65,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 66,
+    "typeDiseaseId": 26,
+    "linkId": 66,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 67,
+    "typeDiseaseId": 26,
+    "linkId": 67,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 68,
+    "typeDiseaseId": 26,
+    "linkId": 68,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 69,
+    "typeDiseaseId": 1,
+    "linkId": 69,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 70,
+    "typeDiseaseId": 1,
+    "linkId": 70,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 71,
+    "typeDiseaseId": 1,
+    "linkId": 71,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 72,
+    "typeDiseaseId": 1,
+    "linkId": 72,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 73,
+    "typeDiseaseId": 1,
+    "linkId": 73,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 74,
+    "typeDiseaseId": 1,
+    "linkId": 74,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 75,
+    "typeDiseaseId": 1,
+    "linkId": 75,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 76,
+    "typeDiseaseId": 1,
+    "linkId": 76,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 77,
+    "typeDiseaseId": 11,
+    "linkId": 77,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 78,
+    "typeDiseaseId": 11,
+    "linkId": 78,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 79,
+    "typeDiseaseId": 11,
+    "linkId": 79,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 80,
+    "typeDiseaseId": 11,
+    "linkId": 80,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 81,
+    "typeDiseaseId": 11,
+    "linkId": 81,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 82,
+    "typeDiseaseId": 11,
+    "linkId": 82,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 83,
+    "typeDiseaseId": 11,
+    "linkId": 83,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 84,
+    "typeDiseaseId": 11,
+    "linkId": 84,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 85,
+    "typeDiseaseId": 11,
+    "linkId": 85,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 86,
+    "typeDiseaseId": 11,
+    "linkId": 86,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 87,
+    "typeDiseaseId": 21,
+    "linkId": 87,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 88,
+    "typeDiseaseId": 21,
+    "linkId": 88,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 89,
+    "typeDiseaseId": 21,
+    "linkId": 89,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 90,
+    "typeDiseaseId": 21,
+    "linkId": 90,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 91,
+    "typeDiseaseId": 21,
+    "linkId": 91,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 92,
+    "typeDiseaseId": 21,
+    "linkId": 92,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 93,
+    "typeDiseaseId": 21,
+    "linkId": 93,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 94,
+    "typeDiseaseId": 21,
+    "linkId": 94,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 95,
+    "typeDiseaseId": 21,
+    "linkId": 95,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 96,
+    "typeDiseaseId": 21,
+    "linkId": 96,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 97,
+    "typeDiseaseId": 21,
+    "linkId": 97,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 98,
+    "typeDiseaseId": 21,
+    "linkId": 98,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 99,
+    "typeDiseaseId": 21,
+    "linkId": 99,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 100,
+    "typeDiseaseId": 21,
+    "linkId": 100,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 101,
+    "typeDiseaseId": 2,
+    "linkId": 101,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 102,
+    "typeDiseaseId": 2,
+    "linkId": 102,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 103,
+    "typeDiseaseId": 2,
+    "linkId": 103,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 104,
+    "typeDiseaseId": 2,
+    "linkId": 104,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 105,
+    "typeDiseaseId": 2,
+    "linkId": 105,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 106,
+    "typeDiseaseId": 2,
+    "linkId": 106,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 107,
+    "typeDiseaseId": 2,
+    "linkId": 107,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 108,
+    "typeDiseaseId": 2,
+    "linkId": 108,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 109,
+    "typeDiseaseId": 2,
+    "linkId": 109,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 110,
+    "typeDiseaseId": 2,
+    "linkId": 110,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 111,
+    "typeDiseaseId": 12,
+    "linkId": 111,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 112,
+    "typeDiseaseId": 12,
+    "linkId": 112,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 113,
+    "typeDiseaseId": 12,
+    "linkId": 113,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 114,
+    "typeDiseaseId": 12,
+    "linkId": 114,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 115,
+    "typeDiseaseId": 12,
+    "linkId": 115,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 116,
+    "typeDiseaseId": 12,
+    "linkId": 116,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 117,
+    "typeDiseaseId": 22,
+    "linkId": 117,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 118,
+    "typeDiseaseId": 22,
+    "linkId": 118,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 119,
+    "typeDiseaseId": 22,
+    "linkId": 119,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 120,
+    "typeDiseaseId": 22,
+    "linkId": 120,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 121,
+    "typeDiseaseId": 22,
+    "linkId": 121,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 122,
+    "typeDiseaseId": 22,
+    "linkId": 122,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 123,
+    "typeDiseaseId": 22,
+    "linkId": 123,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 124,
+    "typeDiseaseId": 22,
+    "linkId": 124,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 125,
     "typeDiseaseId": 5,
-    "linkId": 8,
-    "createdAt": "11/18/2016 07:00:00+0700",
-    "updatedAt": "11/18/2016 07:00:00+0700"
+    "linkId": 125,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 126,
+    "typeDiseaseId": 5,
+    "linkId": 126,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 127,
+    "typeDiseaseId": 5,
+    "linkId": 127,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 128,
+    "typeDiseaseId": 5,
+    "linkId": 128,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 129,
+    "typeDiseaseId": 5,
+    "linkId": 129,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 130,
+    "typeDiseaseId": 5,
+    "linkId": 130,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 131,
+    "typeDiseaseId": 15,
+    "linkId": 131,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 132,
+    "typeDiseaseId": 15,
+    "linkId": 132,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 133,
+    "typeDiseaseId": 15,
+    "linkId": 133,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 134,
+    "typeDiseaseId": 15,
+    "linkId": 134,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 135,
+    "typeDiseaseId": 15,
+    "linkId": 135,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 136,
+    "typeDiseaseId": 15,
+    "linkId": 136,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 137,
+    "typeDiseaseId": 15,
+    "linkId": 137,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 138,
+    "typeDiseaseId": 15,
+    "linkId": 138,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 139,
+    "typeDiseaseId": 25,
+    "linkId": 139,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 140,
+    "typeDiseaseId": 25,
+    "linkId": 140,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 141,
+    "typeDiseaseId": 25,
+    "linkId": 141,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 142,
+    "typeDiseaseId": 25,
+    "linkId": 142,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 143,
+    "typeDiseaseId": 25,
+    "linkId": 143,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 144,
+    "typeDiseaseId": 25,
+    "linkId": 144,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 145,
+    "typeDiseaseId": 25,
+    "linkId": 145,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 146,
+    "typeDiseaseId": 4,
+    "linkId": 146,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 147,
+    "typeDiseaseId": 4,
+    "linkId": 147,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 148,
+    "typeDiseaseId": 4,
+    "linkId": 148,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 149,
+    "typeDiseaseId": 4,
+    "linkId": 149,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 150,
+    "typeDiseaseId": 4,
+    "linkId": 150,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 151,
+    "typeDiseaseId": 4,
+    "linkId": 151,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 152,
+    "typeDiseaseId": 4,
+    "linkId": 152,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 153,
+    "typeDiseaseId": 14,
+    "linkId": 153,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 154,
+    "typeDiseaseId": 14,
+    "linkId": 154,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 155,
+    "typeDiseaseId": 14,
+    "linkId": 155,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 156,
+    "typeDiseaseId": 14,
+    "linkId": 156,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 157,
+    "typeDiseaseId": 14,
+    "linkId": 157,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 158,
+    "typeDiseaseId": 14,
+    "linkId": 158,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 159,
+    "typeDiseaseId": 14,
+    "linkId": 159,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 160,
+    "typeDiseaseId": 14,
+    "linkId": 160,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 161,
+    "typeDiseaseId": 24,
+    "linkId": 161,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 162,
+    "typeDiseaseId": 24,
+    "linkId": 162,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 163,
+    "typeDiseaseId": 24,
+    "linkId": 163,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 164,
+    "typeDiseaseId": 24,
+    "linkId": 164,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 165,
+    "typeDiseaseId": 24,
+    "linkId": 165,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 166,
+    "typeDiseaseId": 24,
+    "linkId": 166,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 167,
+    "typeDiseaseId": 24,
+    "linkId": 167,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 168,
+    "typeDiseaseId": 24,
+    "linkId": 168,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 169,
+    "typeDiseaseId": 24,
+    "linkId": 169,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 170,
+    "typeDiseaseId": 24,
+    "linkId": 170,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 171,
+    "typeDiseaseId": 8,
+    "linkId": 171,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 172,
+    "typeDiseaseId": 8,
+    "linkId": 172,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 173,
+    "typeDiseaseId": 8,
+    "linkId": 173,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 174,
+    "typeDiseaseId": 8,
+    "linkId": 174,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 175,
+    "typeDiseaseId": 8,
+    "linkId": 175,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 176,
+    "typeDiseaseId": 8,
+    "linkId": 176,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 177,
+    "typeDiseaseId": 8,
+    "linkId": 177,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 178,
+    "typeDiseaseId": 8,
+    "linkId": 178,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 179,
+    "typeDiseaseId": 8,
+    "linkId": 179,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 180,
+    "typeDiseaseId": 8,
+    "linkId": 180,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 181,
+    "typeDiseaseId": 18,
+    "linkId": 181,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 182,
+    "typeDiseaseId": 18,
+    "linkId": 182,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 183,
+    "typeDiseaseId": 18,
+    "linkId": 183,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 184,
+    "typeDiseaseId": 18,
+    "linkId": 184,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 185,
+    "typeDiseaseId": 18,
+    "linkId": 185,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 186,
+    "typeDiseaseId": 18,
+    "linkId": 186,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 187,
+    "typeDiseaseId": 18,
+    "linkId": 187,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 188,
+    "typeDiseaseId": 28,
+    "linkId": 188,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 189,
+    "typeDiseaseId": 28,
+    "linkId": 189,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 190,
+    "typeDiseaseId": 28,
+    "linkId": 190,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 191,
+    "typeDiseaseId": 28,
+    "linkId": 191,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 192,
+    "typeDiseaseId": 28,
+    "linkId": 192,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 193,
+    "typeDiseaseId": 28,
+    "linkId": 193,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 194,
+    "typeDiseaseId": 28,
+    "linkId": 194,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 195,
+    "typeDiseaseId": 28,
+    "linkId": 195,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]
