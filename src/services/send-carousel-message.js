@@ -37,6 +37,7 @@ export const sendCarouselMessage = (recipientId, elements) => {
       }
     };
 
-    callSendAPI(messageData);
+    // FIXME handle if have more than DEFAULT_MAXIMUM_PAYLOAD_ELEMENT elements
+    return callSendAPI(messageData);
   });
 };

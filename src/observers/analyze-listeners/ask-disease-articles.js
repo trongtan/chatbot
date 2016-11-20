@@ -18,7 +18,9 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
 
     return this._getRequest(text).then(res => {
       if (res.requestedTypeIds.length > 0 && res.requestedDiseaseIds.length > 0) {
-        return Promise.resolve({ shouldHandle: true,
+        return Promise.resolve({
+          shouldHandle: true,
+          userId: userId,
           typeIds: res.requestedTypeIds,
           diseaseIds: res.requestedDiseaseIds
         });
@@ -69,11 +71,11 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
   }
 
   _sendResponseMessage(recipientId, typeIds, diseaseIds) {
-    logger.info('%s Send response message (%s, %s, %s)', recipientId, typeIds, diseaseIds);
+    logger.info('%s Send response message (%s, %s, %s)', this.tag, recipientId, typeIds, diseaseIds);
 
     const self = this;
 
-    co(function*() {
+    return co(function*() {
         const articles = yield self._getDiseaseResponseMessage(typeIds, diseaseIds);
 
         if (articles.length > 0) {
@@ -82,11 +84,14 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
         }
       }
     ).catch(exception => {
-      logger.error(`Got exception on writing disease response article ${exception}`);
+      logger.error(`${this.tag} Got exception on writing disease response article ${exception}`);
     });
   };
 
   _getDiseaseResponseMessage(typeIds, diseaseIds) {
+    logger.info('%s Get disease response message (%s, %s)', this.tag, typeIds, diseaseIds);
+    const self = this;
+
     return co(function*() {
       let articles = [];
 
@@ -99,7 +104,7 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
         }
       }
 
-      logger.log('info', 'Response message %j', articles);
+      logger.info('%s Response message %j', self.tag, JSON.stringify(articles));
       return articles;
     }).catch(exception => {
       logger.error(`Got on building disease response message ${exception}`);
