@@ -15,7 +15,8 @@ export default (sequelize, DataTypes) => {
     gender: DataTypes.STRING,
     currentPayload: DataTypes.STRING,
     parental: DataTypes.STRING,
-    childName: DataTypes.STRING
+    childName: DataTypes.STRING,
+    favoriteTime: DataTypes.INTEGER
   }, {
     freezeTableName: true,
     classMethods: {
@@ -56,9 +57,6 @@ export default (sequelize, DataTypes) => {
           }
         });
       },
-      updateCurrentPayload: (userId, currentPayload) => {
-        return User.update({ currentPayload: currentPayload }, { where: { userId: userId } });
-      },
       updateParental: (userId, payload, parental) => {
         return User.update({
           parental: parental,
@@ -66,7 +64,16 @@ export default (sequelize, DataTypes) => {
         }, { where: { userId: userId } });
       },
       updateChildName: (userId, childName) => {
-        return User.update({ childName: childName }, { where: { userId: userId } });
+        return User.update({
+          childName: childName,
+          currentPayload: payloadConstants.ASK_CHILD_NAME_PAYLOAD
+        }, { where: { userId: userId } });
+      },
+      updateFavoriteTime: (userId, favoriteTime) => {
+        return User.update({
+          favoriteTime: favoriteTime,
+          currentPayload: payloadConstants.ASK_FAVORITE_TIME_PAYLOAD
+        }, { where: { userId: userId } });
       }
     }
   });
