@@ -1,19 +1,33 @@
+import Promise from 'promise';
+
 export default (sequelize, DataTypes) => {
-  const TypeDisease = sequelize.define('TypeDisease', {
-    articles: DataTypes.ARRAY(DataTypes.STRING)
-  }, {
+  const TypeDisease = sequelize.define('TypeDisease', {}, {
     freezeTableName: true,
+    associate: function (models) {
+      this.belongsToMany(models.Link, { through: models.TypeDiseaseLink });
+    },
     classMethods: {
       getArticles: (typeId, diseaseId) => {
-        return TypeDisease.findOne({
-          attributes: ['articles'],
+        return TypeDisease.findAll({
           where: {
             typeId: typeId,
             diseaseId: diseaseId
           },
+          include: [{ model: sequelize.model('Link') }],
           raw: true
         }).then(result => {
-          return Promise.resolve(result && result.articles ? result.articles : []);
+          if (result) {
+            return Promise.resolve(result.map(item => {
+              return {
+                link: item['Links.link'],
+                title: item['Links.title'],
+                subtitle: item['Links.subtitle'],
+                image: item['Links.image']
+              }
+            }));
+          } else {
+            return Promise.resolve([]);
+          }
         });
       }
     }
