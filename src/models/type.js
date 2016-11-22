@@ -6,10 +6,6 @@ export default (sequelize, DataTypes) => {
   }, {
     freezeTableName: true,
     classMethods: {
-      associate: function (models) {
-        this.hasMany(models.TypeDisease);
-        this.hasMany(models.TypeSynonym);
-      },
       findTypesByIds: (ids) => {
         return Type.findAll({
           attributes: ['value'],

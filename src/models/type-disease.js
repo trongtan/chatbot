@@ -3,9 +3,6 @@ import Promise from 'promise';
 export default (sequelize, DataTypes) => {
   const TypeDisease = sequelize.define('TypeDisease', {}, {
     freezeTableName: true,
-    associate: function (models) {
-      this.belongsToMany(models.Link, { through: models.TypeDiseaseLink });
-    },
     classMethods: {
       getArticles: (typeId, diseaseId) => {
         return TypeDisease.findAll({
