@@ -27,21 +27,21 @@ const TypeDiseaseLink = sequelize.import('TypeDiseaseLink', TypeDiseaseLinkDefin
 const Link = sequelize.import('Link', LinkDefinition);
 
 // Disease <---m---|---n---> Symptom
-Disease.belongsToMany(Symptom, { through: { model: DiseaseSymptom }, foreignKey: 'diseaseId' });
-Symptom.belongsToMany(Disease, { through: { model: DiseaseSymptom }, foreignKey: 'symptomId' });
+Disease.belongsToMany(Symptom, { through: { model: DiseaseSymptom }, foreignKey: 'diseaseId', as: 'symptoms' });
+Symptom.belongsToMany(Disease, { through: { model: DiseaseSymptom }, foreignKey: 'symptomId', as: 'diseases' });
 
 // Disease <---1---|---n---> DiseaseSynonym
-Disease.hasMany(DiseaseSynonym);
+Disease.hasMany(DiseaseSynonym, { foreignKey: 'diseaseId' });
 
 // Disease <---m---|---n---> Type
 Disease.belongsToMany(Type, { through: { model: TypeDisease }, foreignKey: 'diseaseId' });
 Type.belongsToMany(Disease, { through: { model: TypeDisease }, foreignKey: 'typeId' });
 
 // Symptom <---1---|---n---> SymptomSynonym
-Symptom.hasMany(SymptomSynonym);
+Symptom.hasMany(SymptomSynonym, { foreignKey: 'symptomId', as: 'synonyms' });
 
 // Type <---1---|---n---> TypeSynonym
-Type.hasMany(TypeSynonym);
+Type.hasMany(TypeSynonym, { foreignKey: 'typeId' });
 
 
 // TypeDisease <---m---|---n---> Link

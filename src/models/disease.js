@@ -20,6 +20,22 @@ export default (sequelize, DataTypes) => {
             return disease.value;
           }));
         });
+      },
+      getAllDiseases: () => {
+        return Disease.findAll({
+          attributes: ['id', 'name'],
+          include: [{
+            model: sequelize.model('Symptom'),
+            as: 'symptoms',
+            attributes: ['id', 'name'],
+            include: [{
+              model: sequelize.model('SymptomSynonym'),
+              as: 'synonyms',
+              attributes: ['name']
+            }],
+            through: { attributes: [] }
+          }],
+        })
       }
     },
   });
