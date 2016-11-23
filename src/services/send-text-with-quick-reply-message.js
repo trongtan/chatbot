@@ -1,4 +1,3 @@
-import { logger } from 'logs/winston-logger';
 import { callSendAPI } from 'utils/service-utils';
 
 export const sendTextWithQuickReplyMessage = function (recipientId, messageText, replyOptions) {
@@ -12,6 +11,5 @@ export const sendTextWithQuickReplyMessage = function (recipientId, messageText,
     }
   };
 
-  logger.log('info', 'BBBBSend message %j', messageData);
   return callSendAPI(messageData);
 };

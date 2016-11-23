@@ -44,6 +44,7 @@ export default (sequelize, DataTypes) => {
           },
           raw: true
         }).then(user => {
+          console.log('Get userrrr %s', JSON.stringify(user));
           if (user) {
             return Promise.resolve(user);
           } else {

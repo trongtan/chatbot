@@ -6,7 +6,6 @@ import { User } from 'models';
 import { payloadConstants } from 'utils/constants';
 import { logger } from 'logs/winston-logger';
 import { getRandomObjectFromArray } from 'utils/helpers';
-import { getParentalName } from 'utils/text-utils';
 
 export default class AskChildNameListener extends AnalyzeListener {
   constructor() {
@@ -56,14 +55,5 @@ export default class AskChildNameListener extends AnalyzeListener {
 
     logger.info('%s Cannot build response message', this.tag);
     return Promise.resolve(`${this.tag}Cannot build response message`);
-  }
-
-  _getParentalName(parental) {
-    const parentalMap = {
-      'DAD': 'Bố',
-      'MOM': 'Mẹ',
-      'NA': 'bạn'
-    };
-    return parentalMap[parental];
   }
 };

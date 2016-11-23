@@ -15,6 +15,7 @@ export const callSendAPI = messageData => {
     logger.log('info', 'Sending message %j to %j', requestData, messageData);
 
     request(requestData, (error, response, body) => {
+      console.log('AAAA', JSON.stringify(error), response, body);
       if (!error && response.statusCode == 200) {
         var recipientId = body['recipient_id'];
         var messageId = body['message_id'];
@@ -45,15 +46,15 @@ export const getUserProfile = userId => {
       }
     };
 
-    logger.log('info', 'Getting user profile of %s', userId);
+    logger.log('info', 'Getting user profile of %s', JSON.stringify(requestData));
 
     request(requestData, (error, response, body) => {
       if (!error && response.statusCode == 200) {
         logger.log('info', 'Get user profile %j', body);
-        fulfill(JSON.parse(body));
+        return fulfill(JSON.parse(body));
       } else {
         logger.error('Failed getting user profile', response.statusCode, response.statusMessage, body.error);
-        reject(error);
+        return reject(error);
       }
     });
   });
