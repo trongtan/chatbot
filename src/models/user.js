@@ -35,6 +35,8 @@ export default (sequelize, DataTypes) => {
           where: { userId: userId },
           defaults: fullUserProfile,
           raw: true
+        }).spread(user => {
+          return Promise.resolve(user);
         });
       },
       findOrCreateById: (userId) => {
@@ -49,7 +51,7 @@ export default (sequelize, DataTypes) => {
           } else {
             return getUserProfile(userId).then(userProfile => {
               logger.info('Get user profile', JSON.stringify(userProfile));
-              return User._saveProfileForUser(userId, userProfile);
+              return User._saveProfileForUser(userId, JSON.parse(userProfile));
             }).catch(() => {
               logger.error('Get error on getting user profile %s', userId);
               return Promise.reject(`Cannot get user profile of ${userId}`);

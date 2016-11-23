@@ -6,8 +6,8 @@ import { User } from 'models';
 
 export default class AnalyzeListener extends BaseListener {
   perform(messageEvent) {
-    this._analyze(messageEvent).then(dataAnalysis => {
-      this._handle(messageEvent, dataAnalysis).catch(exception => {
+    return this._analyze(messageEvent).then(dataAnalysis => {
+      return this._handle(messageEvent, dataAnalysis).catch(exception => {
         logger.log('error', 'Get %s on handling %j', exception, messageEvent);
       });
     });
