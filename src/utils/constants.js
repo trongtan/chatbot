@@ -5,7 +5,8 @@ export const DEFAULT_TYPE_KEYWORD = 'thong tin';
 export const DEFAULT_MAXIMUM_PAYLOAD_ELEMENT = 10;
 
 const keywordGroupConstants = constantMirror(
-  'GREETING'
+  'GREETING',
+  'GUIDE'
 );
 
 const payloadConstants = constantMirror(

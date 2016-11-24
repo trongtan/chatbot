@@ -1,7 +1,7 @@
 import co from 'co';
 import Promise from 'promise';
 
-import { GetStartedListener, GreetingListener } from './validate-listeners';
+import { GetStartedListener, GreetingListener, AskGuideListener } from './validate-listeners';
 import {
   AskDiseaseArticlesListener,
   ReadyToChatListener,
@@ -16,6 +16,7 @@ export default class RootObserver {
     this.validateListeners = [
       new GetStartedListener(),
       new GreetingListener(),
+      new AskGuideListener()
     ];
 
     this.analyzeListeners = [

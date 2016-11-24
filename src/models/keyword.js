@@ -19,6 +19,19 @@ export default (sequelize, DataTypes) => {
             return result.value;
           });
         });
+      },
+      findKeyWordsByGroup: (group) => {
+        return Keyword.findAll({
+          attributes: ['value'],
+          where: {
+            group: group
+          },
+          raw: true
+        }).then(results => {
+          return results.map(result => {
+            return result.value;
+          });
+        });
       }
     }
   });

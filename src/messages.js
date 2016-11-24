@@ -101,5 +101,17 @@ export default {
         }
       ]
     }
+  ],
+  GUIDE_PAYLOAD: [
+    {
+      text: 'Thông tin này đang được update, {{userName}} có thể tìm hiểu những thông tin khác trước nhé!',
+      buttons: [
+        {
+          'type': 'postback',
+          'title': 'Tìm hiểu thông tin',
+          'payload': 'GET_INFORMATION_PAYLOAD'
+        }
+      ]
+    }
   ]
 }
