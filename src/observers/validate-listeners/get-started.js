@@ -10,7 +10,8 @@ export default class GetStartedListener extends ValidateListener {
   }
 
   _shouldHandle(messageEvent) {
-    return !!(messageEvent && messageEvent.postback && messageEvent.postback.payload === FACEBOOK_GET_STARTED_PAYLOAD);
+    return Promise.resolve(!!(messageEvent && messageEvent.postback
+    && messageEvent.postback.payload === FACEBOOK_GET_STARTED_PAYLOAD));
   }
 
   _handle(messageEvent) {
@@ -22,6 +23,8 @@ export default class GetStartedListener extends ValidateListener {
       return User.findOrCreateById(userId).then((user) => {
         return this._sendResponseMessage({ user: user, payload: payloadConstants.GET_STARTED_PAYLOAD });
       });
+    } else {
+      return Promise.reject('%s Not handle (%s)', JSON.stringify(messageEvent));
     }
   }
 }
