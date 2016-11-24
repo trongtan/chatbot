@@ -1,16 +1,11 @@
-import ValidateListener from 'observers/base/validate-listener';
-import { replaceVietnameseCharacters } from 'utils/text-utils';
-import { payloadConstants } from 'utils/constants';
+import co from 'co';
+import Promise from 'promise';
 
-const keywords = {
-  'hi': ['hi'],
-  'xin chao': ['xin chao', 'xin chào'],
-  'hello': ['hello'],
-  'hey': ['hey'],
-  'e': ['e', 'ê'],
-  'bs oi': ['bs oi', 'bs ơi'],
-  'bac si oi': ['bac si oi', 'bác sĩ ơi']
-};
+import ValidateListener from 'observers/base/validate-listener';
+import { isIntentionalPostback, isTextVisible, isSenderValid } from 'utils/FBMessageValidator';
+import { Keyword } from 'models';
+import { payloadConstants } from 'utils/constants';
+import { logger } from 'logs/winston-logger';
 
 export default class GreetingListener extends ValidateListener {
   constructor() {
@@ -19,21 +14,41 @@ export default class GreetingListener extends ValidateListener {
   }
 
   _shouldHandle(messageEvent) {
-    if (!(messageEvent && messageEvent.message && messageEvent.message.text)) {
-      return false;
-    } else {
-      const originText = messageEvent.message.text;
-      const synonymText = replaceVietnameseCharacters(originText).toLowerCase();
+    logger.log('%s Should Handle %s', this.tag, JSON.stringify(messageEvent));
 
-      return synonymText in keywords && keywords[synonymText].includes(originText);
+    if (messageEvent) {
+      if (isIntentionalPostback(messageEvent, payloadConstants.GREETING_PAYLOAD)) {
+        return Promise.resolve(true);
+      } else if (isTextVisible(messageEvent)) {
+        return this._validateTextMessage(messageEvent.message.text);
+      }
     }
+
+    return Promise.resolve(false);
   }
 
   _handle(messageEvent) {
-    if (messageEvent && messageEvent.sender && messageEvent.sender.id) {
+    if (isSenderValid(messageEvent)) {
       const userId = messageEvent.sender.id;
 
       return this._sendResponseMessage({ user: { userId: userId }, payload: payloadConstants.GREETING_PAYLOAD });
+    } else {
+      logger.info('%s Not handle (%s)', this.tag, JSON.stringify(messageEvent));
+      return Promise.reject(`${this.tag} Not handle (%s)`);
     }
+  }
+
+  _validateTextMessage(message) {
+    return co(function*() {
+      const greetingKeywords = yield Keyword.findAllGreeting();
+
+      for (let keyword of greetingKeywords) {
+        if (message.includes(keyword)) {
+          return Promise.resolve(true);
+        }
+      }
+
+      return Promise.resolve(false);
+    });
   }
 }

@@ -4,9 +4,15 @@ export const FACEBOOK_GET_STARTED_PAYLOAD = 'USER_DEFINED_PAYLOAD';
 export const DEFAULT_TYPE_KEYWORD = 'thong tin';
 export const DEFAULT_MAXIMUM_PAYLOAD_ELEMENT = 10;
 
+const keywordGroupConstants = constantMirror(
+  'GREETING'
+);
+
 const payloadConstants = constantMirror(
   'GET_STARTED_PAYLOAD',
   'GREETING_PAYLOAD',
+  'GET_INFORMATION_PAYLOAD',
+  'CHAT_PAYLOAD',
   'READY_TO_CHAT_PAYLOAD',
   'NOT_READY_TO_CHAT_PAYLOAD',
   'IS_DAD_PAYLOAD',
@@ -23,5 +29,6 @@ const parentalConstants = constantMirror(
 
 export {
   payloadConstants,
-  parentalConstants
+  parentalConstants,
+  keywordGroupConstants
 };
