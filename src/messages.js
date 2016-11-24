@@ -18,17 +18,17 @@ export default {
   ],
   GREETING_PAYLOAD: [
     {
-      text: 'Xin chào! Tôi là bác sĩ Lifebuoy. Bạn đã sẵn sàng để chat với chúng tôi chưa nè',
-      replyOptions: [
+      text: 'Xin chào! Tôi là bác sĩ Lifebuoy. Bạn có muốn trò chuyện với chúng tôi hay bạn muốn tìm hiểu thông tin về các dịch bệnh nào?',
+      buttons: [
         {
-          content_type: 'text',
-          title: 'Có',
-          payload: 'READY_TO_CHAT_PAYLOAD'
+          'type': 'postback',
+          'title': 'Tìm hiểu thông tin',
+          'payload': 'GET_INFORMATION_PAYLOAD'
         },
         {
-          content_type: 'text',
-          title: 'Không',
-          payload: 'NOT_READY_TO_CHAT_PAYLOAD'
+          'type': 'postback',
+          'title': 'Trò chuyện',
+          'payload': 'CHAT_PAYLOAD'
         }
       ]
     }

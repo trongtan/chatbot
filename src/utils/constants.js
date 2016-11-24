@@ -11,6 +11,8 @@ const keywordGroupConstants = constantMirror(
 const payloadConstants = constantMirror(
   'GET_STARTED_PAYLOAD',
   'GREETING_PAYLOAD',
+  'GET_INFORMATION_PAYLOAD',
+  'CHAT_PAYLOAD',
   'READY_TO_CHAT_PAYLOAD',
   'NOT_READY_TO_CHAT_PAYLOAD',
   'IS_DAD_PAYLOAD',

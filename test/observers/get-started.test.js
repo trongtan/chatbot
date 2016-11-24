@@ -17,27 +17,36 @@ describe('get started observer', () => {
   });
 
   context('#shouldHandle', () => {
-    it('returns false if messageEvent is null', () => {
-      expect(getStartedListener._shouldHandle(null)).to.be.false;
+    it('returns false if messageEvent is null', (done) => {
+      getStartedListener._shouldHandle(null).then(result => {
+        expect(result).to.be.false;
+        done();
+      });
     });
 
     it('returns false if messageEvent.postback is null', () => {
-      expect(getStartedListener._shouldHandle({ postback: null })).to.be.false;
+      getStartedListener._shouldHandle({ postback: null }).then(result => {
+        expect(result).to.be.false;
+      });
     });
 
     it('returns false if messageEvent.postback.payload is not FACEBOOK_GET_STARTED_PAYLOAD', () => {
-      expect(getStartedListener._shouldHandle({ postback: { payload: '' } })).to.be.false;
+      getStartedListener._shouldHandle({ postback: { payload: '' } }).then(result => {
+        expect(result).to.be.false;
+      });
     });
 
     it('returns true if messageEvent.postback.payload is FACEBOOK_GET_STARTED_PAYLOAD', () => {
-      expect(getStartedListener._shouldHandle({ postback: { payload: FACEBOOK_GET_STARTED_PAYLOAD } })).to.be.true;
+      getStartedListener._shouldHandle({ postback: { payload: FACEBOOK_GET_STARTED_PAYLOAD } }).then(result => {
+        expect(result).to.be.true;
+      });
     });
   });
 
   context('#handle', () => {
     let findOrCreateUserSpy;
     beforeEach(() => {
-      findOrCreateUserSpy = sinon.stub(User, 'findOrCreateById', () => Promise.resolve('Success'));
+      findOrCreateUserSpy = sinon.stub(User, 'findOrCreateById', () => Promise.resolve({ userId: '1' }));
     });
     afterEach(() => {
       User.findOrCreateById.restore();
@@ -55,13 +64,13 @@ describe('get started observer', () => {
     it('saves user profile to database and send response data', (done) => {
       const spy = sinon.stub(getStartedListener, '_sendResponseMessage',
         () => Promise.resolve('Success'));
-      sinon.stub(services, 'sendTextWithQuickReplyMessage', () => Promise.resolve('Success'));
+      sinon.stub(services, 'sendTextWithButtons', () => Promise.resolve('Success'));
 
       getStartedListener._handle({ sender: { id: '1' } }).then(() => {
         expect(findOrCreateUserSpy.called).to.be.true;
         expect(spy.called).to.be.true;
       }).done(() => {
-        services.sendTextWithQuickReplyMessage.restore();
+        services.sendTextWithButtons.restore();
         done();
       });
     });

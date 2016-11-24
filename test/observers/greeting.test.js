@@ -14,20 +14,32 @@ describe('greeting observer', () => {
   });
 
   context('#shouldHandle', () => {
-    it('returns false if messageEvent is null', () => {
-      expect(greetingListener._shouldHandle(null)).to.be.false;
+    it('returns false if messageEvent is null', (done) => {
+      greetingListener._shouldHandle(null).then(result => {
+        expect(result).to.be.false;
+        done();
+      });
     });
 
-    it('returns false if messageEvent.message is null', () => {
-      expect(greetingListener._shouldHandle({})).to.be.false;
+    it('returns false if messageEvent.message is null', (done) => {
+      greetingListener._shouldHandle({}).then(result => {
+        expect(result).to.be.false;
+        done();
+      });
     });
 
-    it('returns false if messageEvent.message.text is null', () => {
-      expect(greetingListener._shouldHandle({ message: {} })).to.be.false;
+    it('returns false if messageEvent.message.text is null', (done) => {
+      greetingListener._shouldHandle({ message: {} }).then(result => {
+        expect(result).to.be.false;
+        done();
+      });
     });
 
-    it('returns true if messageEvent.message.text is a greeting', () => {
-      expect(greetingListener._shouldHandle({ message: { text: 'xin chao' } })).to.be.true;
+    it('returns true if messageEvent.message.text is a greeting', (done) => {
+      greetingListener._shouldHandle({ message: { text: 'xin chao' } }).then(result => {
+        expect(result).to.be.true;
+        done();
+      });
     });
   });
 
@@ -38,28 +50,34 @@ describe('greeting observer', () => {
       spy = sinon.spy(greetingListener, '_buildResponseMessage');
     });
 
-    it('does nothing if messageEvent is null', () => {
-      greetingListener._handle(null);
-      expect(spy.called).to.be.false;
+    it('does nothing if messageEvent is null', (done) => {
+      greetingListener._handle(null).then(null, error => {
+        expect(error).to.include('Not handle');
+        done();
+      });
     });
 
-    it('does nothing if messageEvent.sender is null', () => {
-      greetingListener._handle({});
-      expect(spy.called).to.be.false;
+    it('does nothing if messageEvent.sender is null', (done) => {
+      greetingListener._handle({}).then(null, error => {
+        expect(error).to.include('Not handle');
+        done();
+      });
     });
 
-    it('does nothing if messageEvent.sender.id is null', () => {
-      greetingListener._handle({ sender: {} });
-      expect(spy.called).to.be.false;
+    it('does nothing if messageEvent.sender.id is null', (done) => {
+      greetingListener._handle({ sender: {} }).then(null, error => {
+        expect(error).to.include('Not handle');
+        done();
+      });
     });
 
     it('send text message to user', (done) => {
-      sinon.stub(services, 'sendTextWithQuickReplyMessage', () => Promise.resolve('Success'));
+      sinon.stub(services, 'sendTextWithButtons', () => Promise.resolve('Success'));
       greetingListener._handle({ sender: { id: '1' } }).then((response) => {
         expect(spy.called).to.be.true;
         expect(response).to.be.equal('Success');
       }).done(() => {
-        services.sendTextWithQuickReplyMessage.restore();
+        services.sendTextWithButtons.restore();
         done();
       });
     });

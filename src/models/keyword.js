@@ -9,9 +9,15 @@ export default (sequelize, DataTypes) => {
     classMethods: {
       findAllGreeting: () => {
         return Keyword.findAll({
+          attributes: ['value'],
           where: {
             group: keywordGroupConstants.GREETING
-          }
+          },
+          raw: true
+        }).then(results => {
+          return results.map(result => {
+            return result.value;
+          });
         });
       }
     }
