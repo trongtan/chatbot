@@ -1,5 +1,5 @@
-export const isIntentionalPostback = (messageEvent, payload) => {
-  return !!(messageEvent && messageEvent.postback && messageEvent.postback.payload === payload);
+export const isIntentionalPostback = (messageEvent, intentionalPostbackPayload) => {
+  return !!(messageEvent && messageEvent.postback && messageEvent.postback.payload === intentionalPostbackPayload);
 };
 
 export const isTextVisible = messageEvent => {

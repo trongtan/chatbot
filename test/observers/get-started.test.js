@@ -45,32 +45,23 @@ describe('get started observer', () => {
 
   context('#handle', () => {
     let findOrCreateUserSpy;
+
     beforeEach(() => {
       findOrCreateUserSpy = sinon.stub(User, 'findOrCreateById', () => Promise.resolve({ userId: '1' }));
-    });
-    afterEach(() => {
-      User.findOrCreateById.restore();
-    });
-    it('does nothing if messageEvent is null', () => {
-      getStartedListener._handle(null);
-      expect(findOrCreateUserSpy.called).to.be.false;
+      sinon.stub(services, 'sendTextWithButtons', () => Promise.resolve('Success'));
     });
 
-    it('does nothing if messageEvent.sender is null', () => {
-      getStartedListener._handle({});
-      expect(findOrCreateUserSpy.called).to.be.false;
+    afterEach(() => {
+      User.findOrCreateById.restore();
+      services.sendTextWithButtons.restore();
     });
 
     it('saves user profile to database and send response data', (done) => {
-      const spy = sinon.stub(getStartedListener, '_sendResponseMessage',
-        () => Promise.resolve('Success'));
-      sinon.stub(services, 'sendTextWithButtons', () => Promise.resolve('Success'));
+      const spy = sinon.stub(getStartedListener, '_sendResponseMessage', () => Promise.resolve('Success'));
 
       getStartedListener._handle({ sender: { id: '1' } }).then(() => {
         expect(findOrCreateUserSpy.called).to.be.true;
         expect(spy.called).to.be.true;
-      }).done(() => {
-        services.sendTextWithButtons.restore();
         done();
       });
     });

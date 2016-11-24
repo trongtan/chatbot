@@ -1,9 +1,10 @@
 import Promise from 'promise';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import { beforeEach } from 'mocha';
+import { beforeEach, afterEach } from 'mocha';
 
 import services from 'services';
+import { User } from 'models';
 import GreetingListener from 'observers/validate-listeners/greeting';
 
 describe('greeting observer', () => {
@@ -47,37 +48,20 @@ describe('greeting observer', () => {
     let spy;
 
     beforeEach(() => {
+      sinon.stub(services, 'sendTextWithButtons', () => Promise.resolve('Success'));
+      sinon.stub(User, 'findOrCreateById', () => Promise.resolve({ userId: '1' }));
       spy = sinon.spy(greetingListener, '_buildResponseMessage');
     });
 
-    it('does nothing if messageEvent is null', (done) => {
-      greetingListener._handle(null).then(null, error => {
-        expect(error).to.include('Not handle');
-        done();
-      });
-    });
-
-    it('does nothing if messageEvent.sender is null', (done) => {
-      greetingListener._handle({}).then(null, error => {
-        expect(error).to.include('Not handle');
-        done();
-      });
-    });
-
-    it('does nothing if messageEvent.sender.id is null', (done) => {
-      greetingListener._handle({ sender: {} }).then(null, error => {
-        expect(error).to.include('Not handle');
-        done();
-      });
+    afterEach(() => {
+      services.sendTextWithButtons.restore();
+      User.findOrCreateById.restore();
     });
 
     it('send text message to user', (done) => {
-      sinon.stub(services, 'sendTextWithButtons', () => Promise.resolve('Success'));
       greetingListener._handle({ sender: { id: '1' } }).then((response) => {
         expect(spy.called).to.be.true;
         expect(response).to.be.equal('Success');
-      }).done(() => {
-        services.sendTextWithButtons.restore();
         done();
       });
     });
