@@ -1,5 +1,21 @@
 export default {
-  GET_STARTED_PAYLOAD: [],
+  GET_STARTED_PAYLOAD: [
+    {
+      text: 'Hey! Xin chào {{userName}}. Chào mừng bạn đã tham gia chat cùng Bác sĩ Lifebuoy. Nhiệm vụ của tớ là trả lời các câu hỏi, đồng thời cập nhật những thông tin mới nhất về các loại bệnh hiện nay cho các bạn, kèm theo đó là cảnh báo dịch bệnh nếu có. Rất đơn giản, hãy nhấn vào nút xin chào bên dưới để bắt đầu',
+      buttons: [
+        {
+          'type': 'postback',
+          'title': 'Xin chào',
+          'payload': 'GREETING_PAYLOAD'
+        },
+        {
+          'type': 'postback',
+          'title': 'Hướng dẫn',
+          'payload': 'GUIDE_PAYLOAD'
+        }
+      ]
+    }
+  ],
   GREETING_PAYLOAD: [
     {
       text: 'Xin chào! Tôi là bác sĩ Lifebuoy. Bạn đã sẵn sàng để chat với chúng tôi chưa nè',

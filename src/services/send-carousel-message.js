@@ -1,9 +1,12 @@
 import { chunk } from 'lodash';
 
 import { callSendAPI } from 'utils/service-utils';
+import { logger } from 'logs/winston-logger';
 import { DEFAULT_MAXIMUM_PAYLOAD_ELEMENT } from 'utils/constants';
 
 export const sendCarouselMessage = (recipientId, elements) => {
+  logger.info('Send Carousel Message (%s, %s)', recipientId, JSON.stringify(elements));
+
   let elementsData = [];
   for (let element of elements) {
     if (element && element.link) {

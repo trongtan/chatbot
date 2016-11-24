@@ -1,3 +1,6 @@
+import co from 'co';
+import Promise from 'promise';
+
 import { GetStartedListener, GreetingListener } from './validate-listeners';
 import {
   AskDiseaseArticlesListener,
@@ -10,9 +13,12 @@ import { logger } from 'logs/winston-logger';
 
 export default class RootObserver {
   constructor() {
-    this.listeners = [
+    this.validateListeners = [
       new GetStartedListener(),
       new GreetingListener(),
+    ];
+
+    this.analyzeListeners = [
       new AskDiseaseArticlesListener(),
       new ReadyToChatListener(),
       new AskIsParentListener(),
@@ -22,9 +28,17 @@ export default class RootObserver {
   }
 
   perform(messageEvent) {
-    this.listeners.map(listener => {
-      logger.info('Get message %j', messageEvent);
-      listener.perform(messageEvent);
+    const self = this;
+
+    co(function* () {
+      for (let listener of [...self.validateListeners, ...self.analyzeListeners]) {
+        const listenerHandleResponse = yield listener.perform(messageEvent);
+        if (listenerHandleResponse.handled) {
+          return Promise.resolve('Handled successfully %s', JSON.stringify(messageEvent));
+        }
+      }
+    }).catch(exception => {
+      logger.error('Get exception %s on handling message', JSON.stringify(exception));
     });
   }
 }
