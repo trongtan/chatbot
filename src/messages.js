@@ -16,6 +16,18 @@ export default {
       ]
     }
   ],
+  GUIDE_PAYLOAD: [
+    {
+      text: 'Thông tin này đang được cập nhật, {{userName}} có thể tìm hiểu những thông tin khác trước nhé!',
+      buttons: [
+        {
+          'type': 'postback',
+          'title': 'Tìm hiểu thông tin',
+          'payload': 'GET_INFORMATION_PAYLOAD'
+        }
+      ]
+    }
+  ],
   GREETING_PAYLOAD: [
     {
       text: 'Xin chào! Tôi là bác sĩ Lifebuoy. Bạn có muốn trò chuyện với chúng tôi hay bạn muốn tìm hiểu thông tin về các dịch bệnh nào?',

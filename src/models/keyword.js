@@ -7,11 +7,11 @@ export default (sequelize, DataTypes) => {
   }, {
     freezeTableName: true,
     classMethods: {
-      findAllGreeting: () => {
+      findKeyWordsByGroup: (group) => {
         return Keyword.findAll({
           attributes: ['value'],
           where: {
-            group: keywordGroupConstants.GREETING
+            group: group
           },
           raw: true
         }).then(results => {

@@ -1,7 +1,7 @@
 import co from 'co';
 import Promise from 'promise';
 
-import { GetStartedListener, GreetingListener } from './validate-listeners';
+import { GetStartedListener, GreetingListener, AskGuideListener } from './validate-listeners';
 import {
   AskDiseaseArticlesListener,
   ReadyToChatListener,
@@ -9,13 +9,13 @@ import {
   AskChildNameListener,
   AskFavoriteTimeListener
 } from './analyze-listeners';
-import { logger } from 'logs/winston-logger';
 
 export default class RootObserver {
   constructor() {
     this.validateListeners = [
       new GetStartedListener(),
       new GreetingListener(),
+      new AskGuideListener()
     ];
 
     this.analyzeListeners = [
@@ -37,8 +37,6 @@ export default class RootObserver {
           return Promise.resolve('Handled successfully %s', JSON.stringify(messageEvent));
         }
       }
-    }).catch(exception => {
-      logger.error('Get exception %s on handling message', JSON.stringify(exception));
     });
   }
 }

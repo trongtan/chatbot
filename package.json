@@ -33,7 +33,7 @@
   },
   "scripts": {
     "dev": "yarn start -- --watch",
-    "start": "NODE_PATH=dist pm2 start dist/app.js --restart-delay 4000 --no-daemon",
+    "start": "NODE_PATH=dist pm2 start dist/app.js --restart-delay 4000",
     "debug": "node debug dist/app.js",
     "test": "NODE_PATH=dist ./node_modules/.bin/_mocha dist/test/",
     "test-coverage": "NODE_PATH=dist NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
