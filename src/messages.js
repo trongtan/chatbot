@@ -56,7 +56,7 @@ export default {
             {
               type: 'postback',
               title: 'Theo bệnh',
-              payload: 'UNSUPPORTED_PAYLOAD'
+              payload: 'SEARCH_BY_DISEASE_PAYLOAD'
             }
           ]
         },

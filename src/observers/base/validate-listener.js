@@ -11,6 +11,7 @@ export default class ValidateListener extends BaseListener {
     super();
     this.intentionalPostbackPayload = '';
     this.messagePayload = '';
+    this.originPayload = '';
   }
 
   perform(messageEvent) {
@@ -38,6 +39,7 @@ export default class ValidateListener extends BaseListener {
     logger.info('%s ? Should Handle %s', this.tag, JSON.stringify(messageEvent));
 
     if (isIntentionalPostback(messageEvent, this.intentionalPostbackPayload)) {
+      this.originPayload = messageEvent.postback.payload;
       return Promise.resolve(true);
     }
 
@@ -55,7 +57,7 @@ export default class ValidateListener extends BaseListener {
     const userId = messageEvent.sender.id;
     return co(function*() {
       const user = yield User.findOrCreateById(userId);
-      const payload = self.messagePayload ? self.messagePayload : self.intentionalPostbackPayload;
+      const payload = self._getOutputPayload();
       return yield self._sendResponseMessage({ user: user, payload: payload });
     });
   }
@@ -76,5 +78,11 @@ export default class ValidateListener extends BaseListener {
 
   _getIntentionalKeywords() {
     return Promise.resolve([]);
+  }
+
+  _getOutputPayload() {
+    if (this.messagePayload) return this.messagePayload;
+    if (this.originPayload) return this.originPayload;
+    return this.intentionalPostbackPayload;
   }
 }

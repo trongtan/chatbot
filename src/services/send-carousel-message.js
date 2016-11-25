@@ -20,23 +20,21 @@ export const sendCarouselMessage = (recipientId, elements) => {
     }
   }
 
-  chunk(elementsData, DEFAULT_MAXIMUM_PAYLOAD_ELEMENT).forEach(data => {
-    const messageData = {
-      recipient: {
-        id: recipientId
-      },
-      message: {
-        attachment: {
-          type: 'template',
-          payload: {
-            template_type: 'generic',
-            elements: data
-          }
+  const messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'generic',
+          elements: chunk(elementsData, DEFAULT_MAXIMUM_PAYLOAD_ELEMENT)[0]
         }
       }
-    };
+    }
+  };
 
-    // FIXME handle if have more than DEFAULT_MAXIMUM_PAYLOAD_ELEMENT elements
-    return callSendAPI(messageData);
-  });
+  // FIXME handle if have more than DEFAULT_MAXIMUM_PAYLOAD_ELEMENT elements
+  return callSendAPI(messageData);
 };
