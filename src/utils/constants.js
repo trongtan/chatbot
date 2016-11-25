@@ -10,6 +10,10 @@ const keywordGroupConstants = constantMirror(
   'MENU'
 );
 
+const payloadPrefixConstants = constantMirror(
+  'GET_INFO_DISEASE'
+);
+
 const payloadConstants = constantMirror(
   'GET_STARTED_PAYLOAD',
   'GREETING_PAYLOAD',
@@ -35,5 +39,6 @@ const parentalConstants = constantMirror(
 export {
   payloadConstants,
   parentalConstants,
-  keywordGroupConstants
+  payloadPrefixConstants,
+  keywordGroupConstants,
 };

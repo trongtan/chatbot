@@ -3,7 +3,7 @@ import { beforeEach } from 'mocha';
 
 import AskDiseaseMenuListener from 'observers/validate-listeners/ask-disease-menu';
 
-describe('ask guide observer', () => {
+describe('ask disease menu observer', () => {
   let askDiseaseMenuListener;
 
   beforeEach(() => {

@@ -1,7 +1,7 @@
 import co from 'co';
 
 import ValidateListener from 'observers/base/validate-listener';
-import { payloadConstants } from 'utils/constants';
+import { payloadConstants, payloadPrefixConstants } from 'utils/constants';
 import { logger } from 'logs/winston-logger';
 import { Disease } from 'models';
 
@@ -33,17 +33,17 @@ export default class AskDiseaseMenuListener extends ValidateListener {
           {
             type: "postback",
             title: "Thông tin",
-            payload: `GET_INFORMATION_DISEASE_${disease.id}`
+            payload: `${payloadPrefixConstants.GET_INFO_DISEASE}_${'INFORMATION'}_${disease.id}`
           },
           {
             type: "postback",
             title: "Cách phòng tránh",
-            payload: `GET_PRECAUTIONS_DISEASE_${disease.id}`
+            payload: `${payloadPrefixConstants.GET_INFO_DISEASE}_${'PRECAUTIONS'}_${disease.id}`
           },
           {
             type: "postback",
             title: "Cách điều trị",
-            payload: `GET_TREATMENTS_DISEASE_${disease.id}`
+            payload: `${payloadPrefixConstants.GET_INFO_DISEASE}_${'TREATMENTS'}_${disease.id}`
           }
         ]
       };

@@ -7,6 +7,7 @@ import {
   AskGuideListener,
   AskMenuListener,
   AskDiseaseMenuListener,
+  AskDiseaseInformationListener,
   AskUnsupportedPayloadsListener
 } from './validate-listeners';
 import {
@@ -25,6 +26,7 @@ export default class RootObserver {
       new AskGuideListener(),
       new AskMenuListener(),
       new AskDiseaseMenuListener(),
+      new AskDiseaseInformationListener(),
       new AskUnsupportedPayloadsListener()
     ];
 
