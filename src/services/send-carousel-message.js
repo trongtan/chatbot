@@ -9,17 +9,13 @@ export const sendCarouselMessage = (recipientId, elements) => {
 
   let elementsData = [];
   for (let element of elements) {
-    if (element && element.link) {
+    if (element) {
       elementsData.push({
         title: element.title,
+        subtitle: element.subtitle,
         item_url: element.link,
         image_url: element.image,
-        subtitle: element.subtitle,
-        buttons: [{
-          type: 'web_url',
-          url: element.link,
-          title: 'View Website'
-        }]
+        buttons: element.buttons
       });
     }
   }

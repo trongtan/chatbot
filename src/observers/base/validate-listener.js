@@ -65,7 +65,7 @@ export default class ValidateListener extends BaseListener {
 
     return this._getIntentionalKeywords().then(keywords => {
       for (let keyword of keywords) {
-        if (message.includes(keyword)) {
+        if (message.toLowerCase().includes(keyword)) {
           return true;
         }
       }

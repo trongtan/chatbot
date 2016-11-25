@@ -6,7 +6,8 @@ export const DEFAULT_MAXIMUM_PAYLOAD_ELEMENT = 10;
 
 const keywordGroupConstants = constantMirror(
   'GREETING',
-  'GUIDE'
+  'GUIDE',
+  'MENU'
 );
 
 const payloadConstants = constantMirror(

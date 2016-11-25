@@ -12,45 +12,47 @@ export default class BaseListener {
 
   _sendResponseMessage(metaData) {
     logger.info('%s Send Response Message (%s)', this.tag, JSON.stringify(metaData));
-    return this._buildResponseMessage(metaData).then((message, error) => {
+    return this._buildResponseMessage(metaData).then(message => {
+      const { userId } = metaData.user;
 
-      if (!error) {
-        const { userId } = metaData.user;
+      if (message) {
+        logger.info('%sWrite response message %s to recipient %s', this.tag, JSON.stringify(message), userId);
 
-        if (message) {
-          logger.info('%sWrite response message %s to recipient %s', this.tag, JSON.stringify(message), userId);
-
-          if (message.replyOptions) {
-            return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
-          } else if (message.buttons) {
-            return services.sendTextWithButtons(userId, message.text, message.buttons);
-          } else {
-            return services.sendTextMessage(userId, message.text);
-          }
+        if (message.replyOptions) {
+          return services.sendTextWithQuickReplyMessage(userId, message.text, message.replyOptions);
+        } else if (message.buttons) {
+          return services.sendTextWithButtons(userId, message.text, message.buttons);
+        } else if (message.elements) {
+          return services.sendCarouselMessage(userId, message.elements);
         } else {
-          return Promise.reject('%s Intentionally send no message to %s', userId);
+          return services.sendTextMessage(userId, message.text);
         }
       } else {
-        return Promise.reject('%s Cannot send message');
+        return Promise.reject('%s Intentionally send no message to %s', userId);
       }
+    }, error => {
+      return Promise.reject('%s Cannot send message %s', JSON.stringify(error));
     });
   };
 
   _buildResponseMessage(metaData) {
-    const { user, payload } = metaData;
+    logger.info('%s Build Response Message (%s)', this.tag, JSON.stringify(metaData));
 
+    const { user, payload } = metaData;
     let templateMessage = getRandomObjectFromArray(messages[payload]);
 
     if (user) {
       const { parental, firstName, lastName, childName } = user;
       const parentalStatus = this._getParentalName(parental);
+      const text = !templateMessage.text ? '' : templateMessage.text
+        .replace(/\{\{parentalStatus}}/g, parentalStatus)
+        .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
+        .replace(/\{\{childName}}/g, `${childName}`);
       const message = {
-        text: templateMessage.text
-          .replace(/\{\{parentalStatus}}/g, parentalStatus)
-          .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
-          .replace(/\{\{childName}}/g, `${childName}`),
+        text: text,
         replyOptions: templateMessage.replyOptions,
-        buttons: templateMessage.buttons
+        buttons: templateMessage.buttons,
+        elements: templateMessage.elements
       };
       logger.info('%s Message built %s', this.tag, JSON.stringify(message));
       return Promise.resolve(message);

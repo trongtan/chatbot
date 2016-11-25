@@ -110,5 +110,26 @@
     "group": "GUIDE",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 17,
+    "value": "tìm hiểu thông tin",
+    "group": "MENU",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 18,
+    "value": "tim hieu thong tin",
+    "group": "MENU",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 19,
+    "value": "menu",
+    "group": "MENU",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]
