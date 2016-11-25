@@ -24,7 +24,8 @@ const payloadConstants = constantMirror(
   'NO_CHILDREN_PAYLOAD',
   'ASK_PARENT_PAYLOAD',
   'ASK_CHILD_NAME_PAYLOAD',
-  'ASK_FAVORITE_TIME_PAYLOAD'
+  'ASK_FAVORITE_TIME_PAYLOAD',
+  'UNSUPPORTED_PAYLOAD'
 );
 
 const parentalConstants = constantMirror(
