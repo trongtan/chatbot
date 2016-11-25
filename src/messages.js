@@ -11,7 +11,7 @@ export default {
         {
           'type': 'postback',
           'title': 'Hướng dẫn',
-          'payload': 'GUIDE_PAYLOAD'
+          'payload': 'UNSUPPORTED_PAYLOAD'
         }
       ]
     }
@@ -40,7 +40,7 @@ export default {
         {
           'type': 'postback',
           'title': 'Trò chuyện',
-          'payload': 'CHAT_PAYLOAD'
+          'payload': 'UNSUPPORTED_PAYLOAD'
         }
       ]
     }
@@ -56,7 +56,7 @@ export default {
             {
               type: 'postback',
               title: 'Theo bệnh',
-              payload: 'SEARCH_BY_DISEASE_PAYLOAD'
+              payload: 'UNSUPPORTED_PAYLOAD'
             }
           ]
         },
@@ -68,7 +68,7 @@ export default {
             {
               type: 'postback',
               title: 'Theo vùng miền',
-              payload: 'SEARCH_BY_REGION_PAYLOAD'
+              payload: 'UNSUPPORTED_PAYLOAD'
             }
           ]
         },
@@ -80,12 +80,12 @@ export default {
             {
               type: 'postback',
               title: 'Tìm theo khu vực',
-              payload: 'SEARCH_HOSPITAL_BY_REGION_PAYLOAD'
+              payload: 'UNSUPPORTED_PAYLOAD'
             },
             {
               type: 'postback',
               title: 'Tìm theo khu vực',
-              payload: 'SEARCH_HOSPITAL_BY_NAME_PAYLOAD'
+              payload: 'UNSUPPORTED_PAYLOAD'
             }
           ]
         },
@@ -97,12 +97,12 @@ export default {
             {
               type: 'postback',
               title: 'Địa điểm tiêm vắc xin',
-              payload: 'SEARCH_VACCINATION_LOCATION_PAYLOAD',
+              payload: 'UNSUPPORTED_PAYLOAD',
             },
             {
               type: 'postback',
               title: 'Lịch tiêm vắc xin',
-              payload: 'ASK_VACCINATION_SCHEDULE_PAYLOAD',
+              payload: 'UNSUPPORTED_PAYLOAD',
             }
           ]
         },
@@ -114,7 +114,7 @@ export default {
             {
               type: 'postback',
               title: 'Thông báo dịch bệnh',
-              payload: 'INFORM_DISEASE_PAYLOAD'
+              payload: 'UNSUPPORTED_PAYLOAD'
             }
           ]
         }
@@ -186,6 +186,18 @@ export default {
           content_type: 'text',
           title: 'Thay đổi lại',
           payload: 'CHANGE_FAVORITE_TIME_PAYLOAD'
+        }
+      ]
+    }
+  ],
+  UNSUPPORTED_PAYLOAD: [
+    {
+      text: 'Thông tin này đang được cập nhật, {{userName}} có thể tìm hiểu những thông tin khác trước nhé!',
+      buttons: [
+        {
+          'type': 'postback',
+          'title': 'Tìm hiểu thông tin',
+          'payload': 'GET_INFORMATION_PAYLOAD'
         }
       ]
     }
