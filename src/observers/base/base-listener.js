@@ -1,4 +1,5 @@
 import Promise from 'promise';
+import co from 'co';
 
 import messages from 'messages';
 import services from 'services';
@@ -39,27 +40,35 @@ export default class BaseListener {
     logger.info('%s Build Response Message (%s)', this.tag, JSON.stringify(metaData));
 
     const { user, payload } = metaData;
-    let templateMessage = getRandomObjectFromArray(messages[payload]);
+    const self = this;
 
-    if (user) {
-      const { parental, firstName, lastName, childName } = user;
-      const parentalStatus = this._getParentalName(parental);
-      const text = !templateMessage.text ? '' : templateMessage.text
-        .replace(/\{\{parentalStatus}}/g, parentalStatus)
-        .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
-        .replace(/\{\{childName}}/g, `${childName}`);
-      const message = {
-        text: text,
-        replyOptions: templateMessage.replyOptions,
-        buttons: templateMessage.buttons,
-        elements: templateMessage.elements
-      };
-      logger.info('%s Message built %s', this.tag, JSON.stringify(message));
-      return Promise.resolve(message);
-    }
+    return co(function*() {
+      let templateMessage = yield self._getTemplateMessage(payload);
 
-    logger.info('%s Cannot build response message', this.tag);
-    return Promise.reject(`${this.tag}Cannot build response message`);
+      if (user) {
+        const { parental, firstName, lastName, childName } = user;
+        const parentalStatus = self._getParentalName(parental);
+        const text = !templateMessage.text ? '' : templateMessage.text
+          .replace(/\{\{parentalStatus}}/g, parentalStatus)
+          .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
+          .replace(/\{\{childName}}/g, `${childName}`);
+        const message = {
+          text: text,
+          replyOptions: templateMessage.replyOptions,
+          buttons: templateMessage.buttons,
+          elements: templateMessage.elements
+        };
+        logger.info('%s Message built %s', self.tag, JSON.stringify(message));
+        return Promise.resolve(message);
+      }
+
+      logger.info('%s Cannot build response message', self.tag);
+      return Promise.reject(`${self.tag}Cannot build response message`);
+    });
+  }
+
+  _getTemplateMessage(payload) {
+    return Promise.resolve(getRandomObjectFromArray(messages[payload]));
   }
 
   _getParentalName(parental) {
