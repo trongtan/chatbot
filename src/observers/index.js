@@ -5,7 +5,8 @@ import {
   GetStartedListener,
   GreetingListener,
   AskGuideListener,
-  AskMenuListener
+  AskMenuListener,
+  AskDiseaseMenuListener
 } from './validate-listeners';
 import {
   AskDiseaseArticlesListener,
@@ -21,7 +22,8 @@ export default class RootObserver {
       new GetStartedListener(),
       new GreetingListener(),
       new AskGuideListener(),
-      new AskMenuListener()
+      new AskMenuListener(),
+      new AskDiseaseMenuListener()
     ];
 
     this.analyzeListeners = [

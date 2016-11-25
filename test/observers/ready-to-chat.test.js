@@ -134,6 +134,9 @@ describe('ready to chat observer', () => {
       };
 
       beforeEach((done) => {
+        sinon.stub(services, 'sendTextWithQuickReplyMessage', () => Promise.resolve('Success'));
+        sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
+
         User.sync({ force: true }).then(() => {
           return User.create(user).then(() => {
             done();
@@ -141,8 +144,12 @@ describe('ready to chat observer', () => {
         });
       });
 
+      afterEach(() => {
+        services.sendTextWithQuickReplyMessage.restore();
+        services.sendTextMessage.restore();
+      });
+
       it('send message with quick reply options if payload is READY_TO_CHAT_PAYLOAD', (done) => {
-        sinon.stub(services, 'sendTextWithQuickReplyMessage', () => Promise.resolve('Success'));
 
         readyToChatListener._handle(null, {
           shouldHandle: true,
@@ -150,23 +157,17 @@ describe('ready to chat observer', () => {
           user: user
         }).then((response) => {
           expect(response).to.be.equal('Success');
-        }).done(() => {
-          services.sendTextWithQuickReplyMessage.restore();
           done();
         });
       });
 
       it('send message if payload is NOT_READY_TO_CHAT_PAYLOAD', (done) => {
-        sinon.stub(services, 'sendTextMessage', () => Promise.resolve('Success'));
-
         readyToChatListener._handle(null, {
           shouldHandle: true,
           payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD,
           user: user
         }).then((response) => {
           expect(response).to.be.equal('Success');
-        }).done(() => {
-          services.sendTextMessage.restore();
           done();
         });
       });
