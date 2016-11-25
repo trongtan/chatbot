@@ -14,7 +14,7 @@ describe('ask menu observer', () => {
     it('initializes successfully', () => {
       expect(askMenuListener.tag).to.be.equal('[Ask Menu]');
       expect(askMenuListener.intentionalPostbackPayload).to.be.equal('GET_INFORMATION_PAYLOAD');
-    })
+    });
   });
 
   context('#getIntentionalKeywords', () => {
@@ -25,6 +25,6 @@ describe('ask menu observer', () => {
         expect(results).to.include('menu');
         done();
       });
-    })
+    });
   });
 });
