@@ -20,7 +20,7 @@ export default class AskDiseaseInformationListener extends ValidateListener {
       const { typeId, diseaseId } = yield self._getDiseaseIdAndTypeId(payload);
       const articles = yield TypeDisease.getArticles(typeId, diseaseId);
 
-      return { elements: articles }
+      return { elements: self._buildArticlesResponse(articles) }
     });
   }
 
@@ -46,5 +46,23 @@ export default class AskDiseaseInformationListener extends ValidateListener {
     };
 
     return Type.findTypeIdByValue(typeMap[key]);
+  }
+
+  _buildArticlesResponse(articles) {
+    return articles.map(article => {
+      return {
+        link: article.link,
+        title: article.title,
+        subtitle: article.subtitle,
+        image: article.image,
+        buttons: [
+          {
+            type: 'web_url',
+            url: article.link,
+            title: 'Xem bài viết'
+          }
+        ]
+      }
+    });
   }
 };
