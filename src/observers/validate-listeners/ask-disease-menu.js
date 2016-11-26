@@ -31,18 +31,18 @@ export default class AskDiseaseMenuListener extends ValidateListener {
         image: disease.image,
         buttons: [
           {
-            type: "postback",
-            title: "Thông tin",
+            type: 'postback',
+            title: 'Thông tin',
             payload: `${payloadPrefixConstants.GET_INFO_DISEASE}_${'INFORMATION'}_${disease.id}`
           },
           {
-            type: "postback",
-            title: "Cách phòng tránh",
+            type: 'postback',
+            title: 'Cách phòng tránh',
             payload: `${payloadPrefixConstants.GET_INFO_DISEASE}_${'PRECAUTIONS'}_${disease.id}`
           },
           {
-            type: "postback",
-            title: "Cách điều trị",
+            type: 'postback',
+            title: 'Cách điều trị',
             payload: `${payloadPrefixConstants.GET_INFO_DISEASE}_${'TREATMENTS'}_${disease.id}`
           }
         ]

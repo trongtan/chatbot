@@ -5,6 +5,7 @@ import AskMenuListener from './ask-menu';
 import AskDiseaseMenuListener from './ask-disease-menu';
 import AskDiseaseInformationListener from './ask-disease-information';
 import AskUnsupportedPayloadsListener from './ask-unsupported-payloads';
+import AskRegionalMenuListener from './ask-regional-menu';
 
 export {
   GetStartedListener,
@@ -13,5 +14,6 @@ export {
   AskMenuListener,
   AskDiseaseMenuListener,
   AskDiseaseInformationListener,
-  AskUnsupportedPayloadsListener
+  AskUnsupportedPayloadsListener,
+  AskRegionalMenuListener
 }
