@@ -3,7 +3,7 @@ import co from 'co';
 
 import { User } from 'models';
 import BaseListener from './base-listener';
-import { isIntentionalPostback, isIntentionalQuickReply, isTextVisible, isSenderValid } from 'utils/FBMessageValidator';
+import { isIntentionalPostback, isIntentionalQuickReply, isTextVisible, isSenderValid, isMetaDataVisible } from 'utils/FBMessageValidator';
 import { logger } from 'logs/winston-logger';
 
 export default class ValidateListener extends BaseListener {
@@ -50,6 +50,10 @@ export default class ValidateListener extends BaseListener {
 
     if (isTextVisible(messageEvent)) {
       return this._isIntentionalMessage(messageEvent.message.text);
+    }
+
+    if (isMetaDataVisible(messageEvent)) {
+      return Promise.resolve(true);
     }
 
     return Promise.resolve(false);

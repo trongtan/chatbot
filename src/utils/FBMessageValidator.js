@@ -17,3 +17,12 @@ export const isTextVisible = messageEvent => {
 export const isSenderValid = messageEvent => {
   return !!(messageEvent && messageEvent.sender && messageEvent.sender.id);
 };
+
+export const isMetaDataVisible = (messageEvent, intentionalPostbackPayload) => {
+  try {
+    const metaData = JSON.parse(messageEvent.metaData);
+    return !!(metaData.payload.includes(intentionalPostbackPayload));
+  } catch (exception) {
+    return false;
+  }
+};

@@ -25,8 +25,10 @@ export default class BaseListener {
           return services.sendTextWithButtons(userId, message.text, message.buttons);
         } else if (message.elements) {
           return services.sendCarouselMessage(userId, message.elements);
+        } else if (message.video) {
+          return services.sendVideoMessage(userId, message.video.url, message.metadata);
         } else {
-          return services.sendTextMessage(userId, message.text);
+          return services.sendTextMessage(userId, message.text, message.metadata);
         }
       } else {
         return Promise.reject('%s Intentionally send no message to %s', userId);

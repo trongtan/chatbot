@@ -1,7 +1,7 @@
 import { callSendAPI } from 'utils/service-utils';
 import { logger } from 'logs/winston-logger';
 
-export const sendTextMessage = function (recipientId, messageText) {
+export const sendTextMessage = function (recipientId, messageText, metaData) {
   logger.info('Send Text Message (%s, %s)', recipientId, messageText);
 
   var messageData = {
@@ -10,7 +10,7 @@ export const sendTextMessage = function (recipientId, messageText) {
     },
     message: {
       text: messageText,
-      metadata: 'DEVELOPER_DEFINED_METADATA'
+      metadata: metaData
     }
   };
 

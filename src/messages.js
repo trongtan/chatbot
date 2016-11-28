@@ -187,7 +187,7 @@ export default {
         {
           content_type: 'text',
           title: 'Có',
-          payload: 'CHAT_RIGHT_NOW_PAYLOAD'
+          payload: 'ASK_VIDEO_INTRODUCTION'
         },
         {
           content_type: 'text',
@@ -210,6 +210,36 @@ export default {
           'type': 'postback',
           'title': 'Tìm hiểu thông tin',
           'payload': 'GET_INFORMATION_PAYLOAD'
+        }
+      ]
+    }
+  ],
+  ASK_VIDEO_INTRODUCTION: [
+    {
+      text: 'Trước khi bắt đầu xin mời {{parentalStatus}} {{userName}} cùng {{childName}} hãy cùng xem video clip này nha!.',
+      metadata: {
+        payload: 'ASK_VIDEO_INTRODUCTION',
+        nextPayload: 'ASK_VIDEO_INTRODUCTION_URL'
+      }
+    },
+    {
+      video: {
+        url: 'https://petersapparel.com/bin/clip.mp4',
+        metadata: 'ASK_VIDEO_INTRODUCTION_QUESTION'
+      }
+    },
+    {
+      text: 'Bạn thấy thế nào?',
+      replyOptions: [
+        {
+          content_type: 'text',
+          title: 'Tuyệt vời',
+          payload: 'UNSUPPORTED_PAYLOAD'
+        },
+        {
+          content_type: 'text',
+          title: 'Trò chuyện tiếp thôi',
+          payload: 'CONTINUING_CHATING_PAYLOAD'
         }
       ]
     }
