@@ -10,7 +10,8 @@ import {
   AskDiseaseInformationListener,
   AskUnsupportedPayloadsListener,
   AskRegionalMenuListener,
-  StartChatListener
+  StartChatListener,
+  AskHealthListener
 } from './validate-listeners';
 import {
   AskDiseaseArticlesListener,
@@ -31,7 +32,8 @@ export default class RootObserver {
       new AskDiseaseInformationListener(),
       new AskUnsupportedPayloadsListener(),
       new AskRegionalMenuListener(),
-      new StartChatListener()
+      new StartChatListener(),
+      new AskHealthListener()
     ];
 
     this.analyzeListeners = [

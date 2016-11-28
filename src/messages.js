@@ -187,7 +187,7 @@ export default {
         {
           content_type: 'text',
           title: 'Có',
-          payload: 'CHAT_RIGHT_NOW_PAYLOAD'
+          payload: 'ASK_HEALTH_PAYLOAD'
         },
         {
           content_type: 'text',

@@ -7,6 +7,7 @@ import AskDiseaseInformationListener from './ask-disease-information';
 import AskUnsupportedPayloadsListener from './ask-unsupported-payloads';
 import AskRegionalMenuListener from './ask-regional-menu';
 import StartChatListener from './start-chat';
+import AskHealthListener from './ask-health';
 
 export {
   GetStartedListener,
@@ -17,5 +18,6 @@ export {
   AskDiseaseInformationListener,
   AskUnsupportedPayloadsListener,
   AskRegionalMenuListener,
-  StartChatListener
+  StartChatListener,
+  AskHealthListener
 }
