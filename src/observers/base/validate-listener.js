@@ -3,13 +3,13 @@ import co from 'co';
 
 import { User } from 'models';
 import BaseListener from './base-listener';
-import { isIntentionalPostback, isTextVisible, isSenderValid } from 'utils/FBMessageValidator';
+import { isIntentionalPostback, isIntentionalQuickReply, isTextVisible, isSenderValid } from 'utils/FBMessageValidator';
 import { logger } from 'logs/winston-logger';
 
 export default class ValidateListener extends BaseListener {
   constructor() {
     super();
-    this.intentionalPostbackPayload = '';
+    this.intentionalPayload = '';
     this.messagePayload = '';
     this.originPayload = '';
   }
@@ -38,8 +38,13 @@ export default class ValidateListener extends BaseListener {
   _shouldHandle(messageEvent) {
     logger.info('%s ? Should Handle %s', this.tag, JSON.stringify(messageEvent));
 
-    if (isIntentionalPostback(messageEvent, this.intentionalPostbackPayload)) {
+    if (isIntentionalPostback(messageEvent, this.intentionalPayload)) {
       this.originPayload = messageEvent.postback.payload;
+      return Promise.resolve(true);
+    }
+
+    if (isIntentionalQuickReply(messageEvent, this.intentionalPayload)) {
+      this.originPayload = messageEvent.message.quick_reply.payload;
       return Promise.resolve(true);
     }
 
@@ -83,6 +88,6 @@ export default class ValidateListener extends BaseListener {
   _getOutputPayload() {
     if (this.messagePayload) return this.messagePayload;
     if (this.originPayload) return this.originPayload;
-    return this.intentionalPostbackPayload;
+    return this.intentionalPayload;
   }
 }

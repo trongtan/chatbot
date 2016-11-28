@@ -13,7 +13,7 @@ describe('ask regional menu observer', () => {
   context('#constructor', () => {
     it('initializes successfully', () => {
       expect(askRegionalMenuListener.tag).to.be.equal('[Ask Regional Menu]');
-      expect(askRegionalMenuListener.intentionalPostbackPayload).to.be.equal('SEARCH_BY_REGION_PAYLOAD');
+      expect(askRegionalMenuListener.intentionalPayload).to.be.equal('SEARCH_BY_REGION_PAYLOAD');
     });
   });
 
