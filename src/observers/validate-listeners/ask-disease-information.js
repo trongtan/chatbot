@@ -9,7 +9,7 @@ export default class AskDiseaseInformationListener extends ValidateListener {
   constructor() {
     super();
     this.tag = '[Ask Disease Information]';
-    this.intentionalPostbackPayload = payloadPrefixConstants.GET_INFO_DISEASE;
+    this.intentionalPayload = payloadPrefixConstants.GET_INFO_DISEASE;
   }
 
   _getTemplateMessage(payload) {

@@ -9,7 +9,7 @@ export default class AskRegionalMenuListener extends ValidateListener {
   constructor() {
     super();
     this.tag = '[Ask Regional Menu]';
-    this.intentionalPostbackPayload = payloadConstants.SEARCH_BY_REGION_PAYLOAD;
+    this.intentionalPayload = payloadConstants.SEARCH_BY_REGION_PAYLOAD;
   }
 
   _getTemplateMessage(payload) {

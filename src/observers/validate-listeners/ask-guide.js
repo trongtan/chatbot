@@ -6,7 +6,7 @@ export default class AskGuideListener extends ValidateListener {
   constructor() {
     super();
     this.tag = '[Ask Guide]';
-    this.intentionalPostbackPayload = payloadConstants.GUIDE_PAYLOAD;
+    this.intentionalPayload = payloadConstants.GUIDE_PAYLOAD;
   }
 
   _getIntentionalKeywords() {

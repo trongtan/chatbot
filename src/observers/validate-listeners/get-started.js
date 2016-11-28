@@ -6,7 +6,7 @@ export default class GetStartedListener extends ValidateListener {
   constructor() {
     super();
     this.tag = '[Get started]';
-    this.intentionalPostbackPayload = FACEBOOK_GET_STARTED_PAYLOAD;
+    this.intentionalPayload = FACEBOOK_GET_STARTED_PAYLOAD;
     this.messagePayload = payloadConstants.GET_STARTED_PAYLOAD;
   }
 }

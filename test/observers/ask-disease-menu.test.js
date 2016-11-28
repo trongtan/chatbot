@@ -13,7 +13,7 @@ describe('ask disease menu observer', () => {
   context('#constructor', () => {
     it('initializes successfully', () => {
       expect(askDiseaseMenuListener.tag).to.be.equal('[Ask Disease Menu]');
-      expect(askDiseaseMenuListener.intentionalPostbackPayload).to.be.equal('SEARCH_BY_DISEASE_PAYLOAD');
+      expect(askDiseaseMenuListener.intentionalPayload).to.be.equal('SEARCH_BY_DISEASE_PAYLOAD');
     });
   });
 

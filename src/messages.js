@@ -40,7 +40,7 @@ export default {
         {
           'type': 'postback',
           'title': 'Trò chuyện',
-          'payload': 'UNSUPPORTED_PAYLOAD'
+          'payload': 'CHAT_PAYLOAD'
         }
       ]
     }
@@ -166,6 +166,18 @@ export default {
   ASK_CHILD_NAME_PAYLOAD: [
     {
       text: 'Xin chào {{parentalStatus}} {{userName}} và bé {{childName}} đã đồng hành cùng với bác sĩ Lifebouy. Bạn sẽ thích chat với bác sĩ Lifebuoy vào khung giờ nào hàng ngày nè?',
+    }
+  ],
+  ASK_HEALTH_PAYLOAD: [
+    {
+      text: 'Chào bạn! Chúng tôi giúp được gì cho bạn?',
+      buttons: [
+        {
+          'type': 'postback',
+          'title': 'Tìm hiểu thông tin',
+          'payload': 'GET_INFORMATION_PAYLOAD'
+        }
+      ]
     }
   ],
   ASK_FAVORITE_TIME_PAYLOAD: [

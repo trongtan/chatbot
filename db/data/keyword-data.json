@@ -131,5 +131,26 @@
     "group": "MENU",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 20,
+    "value": "trò chuyện",
+    "group": "CHAT",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 21,
+    "value": "tro chuyen",
+    "group": "CHAT",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 22,
+    "value": "chat",
+    "group": "CHAT",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]

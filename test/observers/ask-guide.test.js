@@ -13,7 +13,7 @@ describe('ask guide observer', () => {
   context('#constructor', () => {
     it('initializes successfully', () => {
       expect(askGuideListener.tag).to.be.equal('[Ask Guide]');
-      expect(askGuideListener.intentionalPostbackPayload).to.be.equal('GUIDE_PAYLOAD');
+      expect(askGuideListener.intentionalPayload).to.be.equal('GUIDE_PAYLOAD');
     });
   });
 

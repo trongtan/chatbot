@@ -5,6 +5,6 @@ export default class AskUnsupportedPayloadsListener extends ValidateListener {
   constructor() {
     super();
     this.tag = '[Ask Unsupported Payloads]';
-    this.intentionalPostbackPayload = payloadConstants.UNSUPPORTED_PAYLOAD;
+    this.intentionalPayload = payloadConstants.UNSUPPORTED_PAYLOAD;
   }
 }

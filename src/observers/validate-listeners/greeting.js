@@ -6,7 +6,7 @@ export default class GreetingListener extends ValidateListener {
   constructor() {
     super();
     this.tag = '[Greeting]';
-    this.intentionalPostbackPayload = payloadConstants.GREETING_PAYLOAD;
+    this.intentionalPayload = payloadConstants.GREETING_PAYLOAD;
   }
 
   _getIntentionalKeywords() {
