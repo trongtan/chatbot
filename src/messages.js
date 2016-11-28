@@ -68,7 +68,7 @@ export default {
             {
               type: 'postback',
               title: 'Theo vùng miền',
-              payload: 'UNSUPPORTED_PAYLOAD'
+              payload: 'SEARCH_BY_REGION_PAYLOAD'
             }
           ]
         },
