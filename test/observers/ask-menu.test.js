@@ -13,7 +13,7 @@ describe('ask menu observer', () => {
   context('#constructor', () => {
     it('initializes successfully', () => {
       expect(askMenuListener.tag).to.be.equal('[Ask Menu]');
-      expect(askMenuListener.intentionalPostbackPayload).to.be.equal('GET_INFORMATION_PAYLOAD');
+      expect(askMenuListener.intentionalPayload).to.be.equal('GET_INFORMATION_PAYLOAD');
     });
   });
 

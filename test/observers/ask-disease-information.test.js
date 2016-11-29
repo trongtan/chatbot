@@ -14,7 +14,7 @@ describe('ask disease information observer', () => {
   context('#constructor', () => {
     it('initializes successfully', () => {
       expect(askDiseaseInformationListener.tag).to.be.equal('[Ask Disease Information]');
-      expect(askDiseaseInformationListener.intentionalPostbackPayload).to.be.equal('GET_INFO_DISEASE');
+      expect(askDiseaseInformationListener.intentionalPayload).to.be.equal('GET_INFO_DISEASE');
     });
   });
 

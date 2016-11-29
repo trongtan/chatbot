@@ -13,7 +13,7 @@ describe('ask unsupported payloads observer', () => {
   context('#constructor', () => {
     it('initializes successfully', () => {
       expect(askUnsupportedPayloadsListener.tag).to.be.equal('[Ask Unsupported Payloads]');
-      expect(askUnsupportedPayloadsListener.intentionalPostbackPayload).to.be.equal('UNSUPPORTED_PAYLOAD');
+      expect(askUnsupportedPayloadsListener.intentionalPayload).to.be.equal('UNSUPPORTED_PAYLOAD');
     });
   });
 });

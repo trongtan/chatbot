@@ -6,7 +6,7 @@ export default class AskMenuListener extends ValidateListener {
   constructor() {
     super();
     this.tag = '[Ask Menu]';
-    this.intentionalPostbackPayload = payloadConstants.GET_INFORMATION_PAYLOAD;
+    this.intentionalPayload = payloadConstants.GET_INFORMATION_PAYLOAD;
   }
 
   _getIntentionalKeywords() {

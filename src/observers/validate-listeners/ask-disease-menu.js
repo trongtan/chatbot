@@ -9,7 +9,7 @@ export default class AskDiseaseMenuListener extends ValidateListener {
   constructor() {
     super();
     this.tag = '[Ask Disease Menu]';
-    this.intentionalPostbackPayload = payloadConstants.SEARCH_BY_DISEASE_PAYLOAD;
+    this.intentionalPayload = payloadConstants.SEARCH_BY_DISEASE_PAYLOAD;
   }
 
   _getTemplateMessage(payload) {
