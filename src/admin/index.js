@@ -3,8 +3,11 @@ import expressAdmin from 'express-admin';
 import { logger } from 'logs/winston-logger';
 import { expressConfig } from 'admin/config';
 import { en } from 'admin/custom';
+import { injectStaticPath } from 'admin/resource-inject';
 
 const app = express();
+
+injectStaticPath();
 
 expressAdmin.init(expressConfig, function (err, admin) {
   if (err) {
