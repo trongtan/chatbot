@@ -32,6 +32,7 @@ TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKe
 Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
 
 export {
+  sequelize,
   Disease,
   DiseaseSynonym,
   Symptom,
