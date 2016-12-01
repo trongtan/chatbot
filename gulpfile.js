@@ -4,6 +4,7 @@ const gulpUtil = require('gulp-util');
 const shell = require('gulp-shell');
 const dotenv = require('gulp-dotenv');
 const rename = require('gulp-rename');
+const merge = require('gulp-merge-json');
 
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
@@ -44,6 +45,12 @@ const _seedDBTask = (dbUrl) => {
     ]));
 };
 
+const _mergeExpressAdminSettingsTask = (src, dest, output) => {
+  return gulp.src(src)
+    .pipe(merge(output))
+    .pipe(gulp.dest(dest));
+};
+
 /////////////////////////////////////////////////////////////////
 ///                        CLEAN TASKS                        ///
 /////////////////////////////////////////////////////////////////
@@ -79,7 +86,19 @@ gulp.task('import-db', ['build-env'], () => {
 });
 
 gulp.task('build', ['clean'], () => {
-  gulp.start('es6', 'import-db').on('error', gulpUtil.log);
+  gulp.start('es6', 'import-db', 'build-admin').on('error', gulpUtil.log);
+});
+
+gulp.task('copy-express-admin-config', () => {
+  return _copyTask('src/admin/config/*.json', 'dist/admin/config');
+});
+
+gulp.task('merge-admin-settings', () => {
+  return _mergeExpressAdminSettingsTask('src/admin/config/tables/*.json', 'dist/admin/config', 'settings.json');
+});
+
+gulp.task('build-admin', () => {
+  return gulp.start('copy-express-admin-config', 'merge-admin-settings').on('error', gulpUtil.log);
 });
 
 /////////////////////////////////////////////////////////////////
@@ -101,7 +120,7 @@ gulp.task('copy-mocha-options', () => {
 });
 
 gulp.task('build-test', () => {
-  gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test').on('error', gulpUtil.log);
+  return gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test', 'copy-express-admin-config').on('error', gulpUtil.log);
 });
 
 /////////////////////////////////////////////////////////////////

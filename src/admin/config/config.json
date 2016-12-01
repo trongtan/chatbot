@@ -1,0 +1,12 @@
+{
+  "pg": {},
+  "server": {
+    "port": 5432
+  },
+  "app": {
+    "root": "/admin",
+    "layouts": true,
+    "themes": true,
+    "languages": true
+  }
+}
