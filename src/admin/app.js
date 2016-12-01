@@ -2,6 +2,7 @@ import express from 'express';
 import expressAdmin from 'express-admin';
 import { logger } from 'logs/winston-logger';
 import { expressConfig } from 'admin/config';
+import { en } from 'admin/custom';
 
 const app = express();
 
@@ -11,7 +12,8 @@ expressAdmin.init(expressConfig, function (err, admin) {
     return;
   }
 
-  // mount express-admin
+  expressConfig.langs.en = en;
+
   app.use('/admin', admin);
 });
 

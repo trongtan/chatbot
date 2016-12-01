@@ -4,6 +4,7 @@ const config = require('./config.json');
 const custom = require('./custom.json');
 const settings = require('./settings.json');
 const users = require('./users.json');
+const en = require('./../custom/lang/en.json');
 
 const expressConfig = {
   dpath: path.join(__dirname),
