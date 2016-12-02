@@ -1,1 +1,13 @@
-{}
+{
+  "static": {
+    "public": {
+      "local": {
+        "path": "APP_DIR/admin/custom/static",
+        "js": [
+          "/theme.js",
+          "/js/layouts/base.js"
+        ]
+      }
+    }
+  }
+}
