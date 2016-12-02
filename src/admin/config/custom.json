@@ -9,5 +9,8 @@
         ]
       }
     }
+  },
+  "events": {
+    "events": "APP_DIR/admin/custom/events/index.js"
   }
 }

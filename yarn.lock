@@ -3033,15 +3033,15 @@ mocha@^3.1.2:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
+moment, moment@*, moment@^2.12.0, moment@^2.13.0, moment@^2.8.3, "moment@>= 2.6.0":
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.0.tgz#a4c292e02aac5ddefb29a6eed24f51938dd3b74f"
+
 moment-timezone@^0.5.4:
   version "0.5.9"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.9.tgz#e0ea82036d67d21d793544a91b5057f480eda2dd"
   dependencies:
     moment ">= 2.6.0"
-
-moment@*, moment@^2.12.0, moment@^2.13.0, moment@^2.8.3, "moment@>= 2.6.0":
-  version "2.17.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.0.tgz#a4c292e02aac5ddefb29a6eed24f51938dd3b74f"
 
 moment@2.8.3:
   version "2.8.3"
@@ -4004,6 +4004,10 @@ shelljs@^0.7.5:
 shimmer@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.1.0.tgz#97d7377137ffbbab425522e429fe0aa89a488b35"
+
+shortid:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.6.tgz#3abbefc6c51074cf2c1f1e72f6216a1b45876d72"
 
 sigmund@^1.0.1, sigmund@~1.0.0:
   version "1.0.1"
