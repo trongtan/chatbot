@@ -4,7 +4,7 @@
     "table": {
       "name": "TypeSynonym",
       "pk": "id",
-      "verbose": "TypeSynonym"
+      "verbose": "Type Synonym"
     },
     "columns": [
       {
@@ -17,15 +17,15 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "value",
-        "verbose": "value",
+        "verbose": "Type Synonym Value",
         "control": {
           "text": true
         },
@@ -49,10 +49,10 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
@@ -65,10 +65,10 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
@@ -81,10 +81,10 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       }
     ],

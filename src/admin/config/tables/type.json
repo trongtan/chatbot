@@ -25,7 +25,7 @@
       },
       {
         "name": "value",
-        "verbose": "Value",
+        "verbose": "Type Value",
         "control": {
           "text": true
         },
@@ -70,6 +70,15 @@
         "editview": {
           "show": false
         }
+      },
+      {
+        "oneToMany": {
+          "table": "user",
+          "pk": "id",
+          "columns": [
+            "firstname",
+            "lastname"
+          ]
       }
     ],
     "mainview": {
@@ -80,7 +89,10 @@
       "page": 25
     },
     "editview": {
-      "readonly": false
+      "readonly": false,
+      "manyToOne": {
+        "TypeSynonym": "typeId"
+      }
     }
   }
 }
