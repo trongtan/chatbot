@@ -38,7 +38,8 @@
     "test": "NODE_PATH=dist ./node_modules/.bin/_mocha dist/test/",
     "test-coverage": "NODE_PATH=dist NODE_ENV=test ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "eslint": "./node_modules/.bin/eslint src/**/*.js --quiet && ./node_modules/.bin/eslint test/**/*.js --quiet"
+    "eslint": "./node_modules/.bin/eslint src/**/*.js --quiet && ./node_modules/.bin/eslint test/**/*.js --quiet",
+    "postinstall": "node dist/admin/resource-inject.js"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
