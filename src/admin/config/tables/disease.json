@@ -88,6 +88,36 @@
         }
       },
       {
+        "verbose": "Disease Symptom",
+        "name": "disease_symptom",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "DiseaseSymptom",
+            "parentPk": "diseaseId",
+            "childPk": "symptomId"
+          },
+          "ref": {
+            "table": "Symptom",
+            "pk": "id",
+            "columns": [
+              "name"
+            ]
+          }
+        }
+      },
+      {
         "name": "createdAt",
         "verbose": "Created At",
         "control": {
