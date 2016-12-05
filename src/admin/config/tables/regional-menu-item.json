@@ -13,19 +13,19 @@
       "control": {
         "text": true
       },
-      "type": "integer",
+      "type": "varchar(255)",
       "allowNull": false,
       "defaultValue": null,
       "listview": {
-        "show": true
+        "show": false
       },
       "editview": {
-        "show": true
+        "show": false
       }
     },
     {
       "name": "title",
-      "verbose": "title",
+      "verbose": "Title",
       "control": {
         "text": true
       },
@@ -41,7 +41,7 @@
     },
     {
       "name": "subtitle",
-      "verbose": "subtitle",
+      "verbose": "Subtitle",
       "control": {
         "text": true
       },
@@ -57,7 +57,7 @@
     },
     {
       "name": "image",
-      "verbose": "image",
+      "verbose": "Image",
       "control": {
         "text": true
       },
@@ -73,7 +73,7 @@
     },
     {
       "name": "createdAt",
-      "verbose": "createdAt",
+      "verbose": "Created At",
       "control": {
         "text": true
       },
@@ -84,12 +84,12 @@
         "show": true
       },
       "editview": {
-        "show": true
+        "show": false
       }
     },
     {
       "name": "updatedAt",
-      "verbose": "updatedAt",
+      "verbose": "Updated At",
       "control": {
         "text": true
       },
@@ -100,12 +100,12 @@
         "show": true
       },
       "editview": {
-        "show": true
+        "show": false
       }
     }
   ],
     "mainview": {
-    "show": false
+    "show": true
   },
   "listview": {
     "order": {},

@@ -13,7 +13,7 @@
         "control": {
           "text": true
         },
-        "type": "integer",
+        "type": "varchar(255)",
         "allowNull": false,
         "defaultValue": null,
         "listview": {
@@ -41,11 +41,11 @@
       },
       {
         "name": "typeId",
-        "verbose": "typeId",
+        "verbose": "Type",
         "control": {
           "text": true
         },
-        "type": "integer",
+        "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {

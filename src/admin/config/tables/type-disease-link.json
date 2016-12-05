@@ -4,7 +4,7 @@
     "table": {
       "name": "TypeDiseaseLink",
       "pk": "id",
-      "verbose": "TypeDiseaseLink"
+      "verbose": "Type Disease Link"
     },
     "columns": [
       {
@@ -13,23 +13,23 @@
         "control": {
           "text": true
         },
-        "type": "integer",
+        "type": "varchar(255)",
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "typeDiseaseId",
-        "verbose": "typeDiseaseId",
+        "verbose": "Type Disease Id",
         "control": {
           "text": true
         },
-        "type": "integer",
+        "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -41,11 +41,11 @@
       },
       {
         "name": "linkId",
-        "verbose": "linkId",
+        "verbose": "Article",
         "control": {
-          "text": true
+          "select": true
         },
-        "type": "integer",
+        "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -57,7 +57,7 @@
       },
       {
         "name": "createdAt",
-        "verbose": "createdAt",
+        "verbose": "Created At",
         "control": {
           "text": true
         },
@@ -68,12 +68,12 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "updatedAt",
-        "verbose": "updatedAt",
+        "verbose": "UpdatedAt",
         "control": {
           "text": true
         },
@@ -84,7 +84,7 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       }
     ],

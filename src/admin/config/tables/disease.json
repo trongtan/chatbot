@@ -13,19 +13,19 @@
         "control": {
           "text": true
         },
-        "type": "integer",
+        "type": "varchar(255)",
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
-        "name": "name",
-        "verbose": "name",
+        "name": "akaName",
+        "verbose": "AkaName",
         "control": {
           "text": true
         },
@@ -40,40 +40,8 @@
         }
       },
       {
-        "name": "createdAt",
-        "verbose": "createdAt",
-        "control": {
-          "text": true
-        },
-        "type": "timestamp",
-        "allowNull": false,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "updatedAt",
-        "verbose": "updatedAt",
-        "control": {
-          "text": true
-        },
-        "type": "timestamp",
-        "allowNull": false,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "akaName",
-        "verbose": "akaName",
+        "name": "name",
+        "verbose": "Name",
         "control": {
           "text": true
         },
@@ -89,7 +57,7 @@
       },
       {
         "name": "subtitle",
-        "verbose": "subtitle",
+        "verbose": "Subtitle",
         "control": {
           "text": true
         },
@@ -105,7 +73,7 @@
       },
       {
         "name": "image",
-        "verbose": "image",
+        "verbose": "Image URL",
         "control": {
           "text": true
         },
@@ -118,17 +86,52 @@
         "editview": {
           "show": true
         }
+      },
+      {
+        "name": "createdAt",
+        "verbose": "Created At",
+        "control": {
+          "text": true
+        },
+        "type": "timestamp",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "updatedAt",
+        "verbose": "Updated At",
+        "control": {
+          "text": true
+        },
+        "type": "timestamp",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": false
+        }
       }
     ],
     "mainview": {
-      "show": false
+      "show": true
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false
+      "readonly": false,
+      "manyToOne": {
+        "DiseaseSynonym": "diseaseId"
+      }
     }
   }
 }

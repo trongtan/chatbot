@@ -4,7 +4,7 @@
     "table": {
       "name": "TypeDisease",
       "pk": "id",
-      "verbose": "TypeDisease"
+      "verbose": "Type Disease"
     },
     "columns": [
       {
@@ -13,23 +13,30 @@
         "control": {
           "text": true
         },
-        "type": "integer",
+        "type": "varchar(255)",
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "diseaseId",
-        "verbose": "diseaseId",
+        "verbose": "Disease",
         "control": {
-          "text": true
+          "select": true
         },
-        "type": "integer",
+        "oneToMany": {
+          "table": "Disease",
+          "pk": "id",
+          "columns": [
+            "name"
+          ]
+        },
+        "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -41,11 +48,18 @@
       },
       {
         "name": "typeId",
-        "verbose": "typeId",
+        "verbose": "Type",
         "control": {
-          "text": true
+          "select": true
         },
-        "type": "integer",
+        "oneToMany": {
+          "table": "Type",
+          "pk": "id",
+          "columns": [
+            "value"
+          ]
+        },
+        "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -56,8 +70,38 @@
         }
       },
       {
+        "verbose": "Articles",
+        "name": "links",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "TypeDiseaseLink",
+            "parentPk": "typeDiseaseId",
+            "childPk": "linkId"
+          },
+          "ref": {
+            "table": "Link",
+            "pk": "id",
+            "columns": [
+              "title"
+            ]
+          }
+        }
+      },
+      {
         "name": "createdAt",
-        "verbose": "createdAt",
+        "verbose": "Created At",
         "control": {
           "text": true
         },
@@ -68,12 +112,12 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "updatedAt",
-        "verbose": "updatedAt",
+        "verbose": "Updated At",
         "control": {
           "text": true
         },
@@ -84,12 +128,12 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       }
     ],
     "mainview": {
-      "show": false
+      "show": true
     },
     "listview": {
       "order": {},
