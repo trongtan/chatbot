@@ -34,11 +34,11 @@ const _cleanDBTask = (env) => {
   return shell.task([
     `dropdb life_pedia_${env}`,
     `createdb life_pedia_${env}`
-  ], { ignoreErrors: true });
+  ], {ignoreErrors: true});
 };
 
 const _seedDBTask = (dbUrl) => {
-  return gulp.src('*.js', { read: false })
+  return gulp.src('*.js', {read: false})
     .pipe(shell([
       `sequelize db:migrate --url ${dbUrl}`,
       `sequelize db:seed:all --url ${dbUrl}`
@@ -59,7 +59,7 @@ gulp.task('clean-db', _cleanDBTask('development'));
 gulp.task('clean-built-code', shell.task([
   'rm -r dist',
   'rm -r coverage'
-], { ignoreErrors: true }));
+], {ignoreErrors: true}));
 
 gulp.task('clean', () => {
   gulp.start('clean-db', 'clean-built-code').on('error', gulpUtil.log);
@@ -94,7 +94,25 @@ gulp.task('copy-express-admin-config', () => {
 });
 
 gulp.task('merge-admin-settings', () => {
-  return _mergeExpressAdminSettingsTask('src/admin/config/tables/*.json', 'dist/admin/config', 'settings.json');
+  return _mergeExpressAdminSettingsTask(
+    [ 'src/admin/config/tables/type.json',
+      'src/admin/config/tables/disease.json',
+      'src/admin/config/tables/symptom.json',
+      'src/admin/config/tables/link.json',
+      'src/admin/config/tables/regional-menu-item.json',
+      'src/admin/config/tables/user.json',
+      'src/admin/config/tables/keyword.json',
+      'src/admin/config/tables/disease-symptom.json',
+      'src/admin/config/tables/type-disease.json',
+      // Hiden table
+      'src/admin/config/tables/type-disease-link.json',
+      'src/admin/config/tables/disease-synonym.json',
+      'src/admin/config/tables/symptom-synonym.json',
+      'src/admin/config/tables/type-synonym.json',
+      'src/admin/config/tables/sequelize-meta.json',
+    ],
+    'dist/admin/config',
+    'settings.json');
 });
 
 gulp.task('copy-express-admin-static', () => {
