@@ -2,12 +2,9 @@
 module.exports = {
   up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('DiseaseSymptom', {
-      id: {
-        primaryKey: true,
-        type: Sequelize.STRING
-      },
       diseaseId: {
         type: Sequelize.STRING,
+        primaryKey: true,
         references: {
           model: 'Disease',
           key: 'id'
@@ -17,20 +14,13 @@ module.exports = {
       },
       symptomId: {
         type: Sequelize.STRING,
+        primaryKey: true,
         references: {
           model: 'Symptom',
           key: 'id'
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },
