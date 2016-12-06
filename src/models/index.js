@@ -51,5 +51,7 @@ export {
   Link,
   TypeDiseaseLink,
   Keyword,
-  RegionalMenuItem
+  RegionalMenuItem,
+  Group,
+  GroupMessage
 }

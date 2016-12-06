@@ -1,8 +1,8 @@
 export default (sequelize, DataTypes) => {
-  const groupMessage = sequelize.define('GroupMessage', {
+  const GroupMessage = sequelize.define('GroupMessage', {
     message: DataTypes.STRING
   }, {
     freezeTableName: true
   });
-  return groupMessage;
+  return GroupMessage;
 };
