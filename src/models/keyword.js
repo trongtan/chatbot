@@ -1,5 +1,3 @@
-import { keywordGroupConstants } from 'utils/constants';
-
 export default (sequelize, DataTypes) => {
   const Keyword = sequelize.define('Keyword', {
     value: DataTypes.STRING,
