@@ -1,10 +1,10 @@
 {
-  "Keyword": {
-    "slug": "Keyword",
+  "Group": {
+    "slug": "Group",
     "table": {
-      "name": "Keyword",
+      "name": "Group",
       "pk": "id",
-      "verbose": "Keyword"
+      "verbose": "Group"
     },
     "columns": [
       {
@@ -24,36 +24,13 @@
         }
       },
       {
-        "name": "value",
-        "verbose": "Value",
+        "name": "name",
+        "verbose": "Group Name",
         "control": {
           "text": true
         },
         "type": "varchar(255)",
         "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "groupId",
-        "verbose": "Group Name",
-        "control": {
-          "select": true
-        },
-        "oneToMany": {
-          "table": "Group",
-          "pk": "id",
-          "columns": [
-            "name"
-          ]
-        },
-        "type": "varchar(255)",
-        "allowNull": false,
         "defaultValue": null,
         "listview": {
           "show": true
