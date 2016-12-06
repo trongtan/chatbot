@@ -11,8 +11,8 @@ export default (sequelize, DataTypes) => {
           attributes: ['id', 'name'],
           where: {
             name: groupName
-          }
-          // raw: true
+          },
+          raw: true
         }).then(groups => {
           return Promise.resolve(groups.map(group => {
             return group.id;

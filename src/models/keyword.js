@@ -1,3 +1,6 @@
+import co from 'co';
+import { Group } from 'models';
+
 export default (sequelize, DataTypes) => {
   const Keyword = sequelize.define('Keyword', {
     value: DataTypes.STRING,
@@ -6,15 +9,19 @@ export default (sequelize, DataTypes) => {
     freezeTableName: true,
     classMethods: {
       findKeyWordsByGroup: (group) => {
-        return Keyword.findAll({
-          attributes: ['value'],
-          where: {
-            group: group
-          },
-          raw: true
-        }).then(results => {
-          return results.map(result => {
-            return result.value;
+        return co(function *() {
+          return Keyword.findAll({
+            attributes: ['value'],
+            where: {
+              groupId: {
+                $in: yield Group.findByName(group)
+              }
+            },
+            raw: true
+          }).then(results => {
+            return results.map(result => {
+              return result.value;
+            });
           });
         });
       }
