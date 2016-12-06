@@ -4,11 +4,10 @@ module.exports = {
     return queryInterface.createTable('TypeDisease', {
       id: {
         primaryKey: true,
-        type: Sequelize.INTEGER,
-        autoIncrement: true
+        type: Sequelize.STRING
       },
       diseaseId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: 'Disease',
           key: 'id'
@@ -17,7 +16,7 @@ module.exports = {
         onDelete: 'cascade'
       },
       typeId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: 'Type',
           key: 'id'

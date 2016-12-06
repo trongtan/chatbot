@@ -2,14 +2,10 @@
 module.exports = {
   up: function(queryInterface, Sequelize) {
     return queryInterface.createTable('TypeDiseaseLink', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
       typeDiseaseId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
+        primaryKey: true,
+        allowNull: false,
         references: {
           model: 'TypeDisease',
           key: 'id'
@@ -18,21 +14,15 @@ module.exports = {
         onDelete: 'cascade'
       },
       linkId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
+        allowNull: false,
+        primaryKey: true,
         references: {
           model: 'Link',
           key: 'id'
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
     });
   },

@@ -1,0 +1,68 @@
+{
+  "DiseaseSymptom": {
+    "slug": "DiseaseSymptom",
+    "table": {
+      "name": "DiseaseSymptom",
+      "pk": "id",
+      "verbose": "Disease Symptom"
+    },
+    "columns": [
+      {
+        "name": "diseaseId",
+        "verbose": "Disease",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Disease",
+          "pk": "id",
+          "columns": [
+            "name"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "symptomId",
+        "verbose": "Symptom",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Symptom",
+          "pk": "id",
+          "columns": [
+            "name"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      }
+    ],
+    "mainview": {
+      "show": false
+    },
+    "listview": {
+      "order": {},
+      "page": 25
+    },
+    "editview": {
+      "readonly": false
+    }
+  }
+}

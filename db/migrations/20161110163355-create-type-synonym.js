@@ -4,14 +4,13 @@ module.exports = {
     return queryInterface.createTable('TypeSynonym', {
       id: {
         primaryKey: true,
-        type: Sequelize.INTEGER,
-        autoIncrement: true
+        type: Sequelize.STRING
       },
       value: {
         type: Sequelize.STRING,
       },
       typeId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         references: {
           model: 'Type',
           key: 'id'

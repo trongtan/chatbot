@@ -4,8 +4,7 @@ module.exports = {
     return queryInterface.createTable('Disease', {
       id: {
         primaryKey: true,
-        type: Sequelize.INTEGER,
-        autoIncrement: true
+        type: Sequelize.STRING,
       },
       name: {
         type: Sequelize.STRING

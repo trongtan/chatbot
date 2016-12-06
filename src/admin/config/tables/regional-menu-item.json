@@ -1,0 +1,118 @@
+{
+  "RegionalMenuItem": {
+  "slug": "RegionalMenuItem",
+    "table": {
+    "name": "RegionalMenuItem",
+      "pk": "id",
+      "verbose": "RegionalMenuItem"
+  },
+  "columns": [
+    {
+      "name": "id",
+      "verbose": "id",
+      "control": {
+        "text": true
+      },
+      "type": "varchar(255)",
+      "allowNull": false,
+      "defaultValue": null,
+      "listview": {
+        "show": false
+      },
+      "editview": {
+        "show": false
+      }
+    },
+    {
+      "name": "title",
+      "verbose": "Title",
+      "control": {
+        "text": true
+      },
+      "type": "varchar(255)",
+      "allowNull": true,
+      "defaultValue": null,
+      "listview": {
+        "show": true
+      },
+      "editview": {
+        "show": true
+      }
+    },
+    {
+      "name": "subtitle",
+      "verbose": "Subtitle",
+      "control": {
+        "text": true
+      },
+      "type": "varchar(255)",
+      "allowNull": true,
+      "defaultValue": null,
+      "listview": {
+        "show": true
+      },
+      "editview": {
+        "show": true
+      }
+    },
+    {
+      "name": "image",
+      "verbose": "Image",
+      "control": {
+        "text": true
+      },
+      "type": "varchar(255)",
+      "allowNull": true,
+      "defaultValue": null,
+      "listview": {
+        "show": true
+      },
+      "editview": {
+        "show": true
+      }
+    },
+    {
+      "name": "createdAt",
+      "verbose": "Created At",
+      "control": {
+        "text": true
+      },
+      "type": "timestamp",
+      "allowNull": false,
+      "defaultValue": null,
+      "listview": {
+        "show": true
+      },
+      "editview": {
+        "show": false
+      }
+    },
+    {
+      "name": "updatedAt",
+      "verbose": "Updated At",
+      "control": {
+        "text": true
+      },
+      "type": "timestamp",
+      "allowNull": false,
+      "defaultValue": null,
+      "listview": {
+        "show": true
+      },
+      "editview": {
+        "show": false
+      }
+    }
+  ],
+    "mainview": {
+    "show": true
+  },
+  "listview": {
+    "order": {},
+    "page": 25
+  },
+  "editview": {
+    "readonly": false
+  }
+}
+}

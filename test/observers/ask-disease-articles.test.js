@@ -85,16 +85,16 @@ describe('ask disease articles observer', () => {
     it('returns corresponding types and diseases of message', (done) => {
       askDiseaseArticlesListener._getRequest('thong tin, trieu chung cam lanh')
         .then((response) => {
-          expect(response).to.have.property('requestedTypeIds').and.include(1).and.include(5);
-          expect(response).to.have.property('requestedDiseaseIds').and.include(1);
+          expect(response).to.have.property('requestedTypeIds').and.include('1').and.include('5');
+          expect(response).to.have.property('requestedDiseaseIds').and.include('1');
           done();
         });
     });
 
     it('returns corresponding diseases of message with default type', (done) => {
       askDiseaseArticlesListener._getRequest('cam lanh').then((response) => {
-        expect(response).to.have.property('requestedTypeIds').and.include(1);
-        expect(response).to.have.property('requestedDiseaseIds').and.include(1);
+        expect(response).to.have.property('requestedTypeIds').and.include('1');
+        expect(response).to.have.property('requestedDiseaseIds').and.include('1');
         done();
       });
     });
@@ -107,7 +107,7 @@ describe('ask disease articles observer', () => {
 
     context('there are some diseases match with type', () => {
       it('returns articles needed to send to recipient', (done) => {
-        let recipientId = 1, typeIds = [1], diseaseIds = [1];
+        let recipientId = 1, typeIds = ['1'], diseaseIds = ['1'];
         sinon.stub(Services, 'sendCarouselMessage', () => Promise.resolve('Success'));
         askDiseaseArticlesListener._sendResponseMessage(recipientId, typeIds, diseaseIds)
           .then((response) => {
@@ -119,7 +119,7 @@ describe('ask disease articles observer', () => {
 
     context('there are some error while trying fetch data', () => {
       it('logs the error to logger', (done) => {
-        let recipientId = 1, typeIds = [1], diseaseIds = [1];
+        let recipientId = '1', typeIds = ['1'], diseaseIds = ['1'];
         const errorCallback = sinon.spy(logger, 'error');
         sinon.stub(Services, 'sendCarouselMessage').throws();
         askDiseaseArticlesListener._sendResponseMessage(recipientId, typeIds, diseaseIds)
@@ -146,14 +146,14 @@ describe('ask disease articles observer', () => {
 
   context('the incoming message match with conditions', () => {
     it('returns true if the incoming message match conditions', (done) => {
-      let text = 'trieu chung cam lanh', userId = 1;
+      let text = 'trieu chung cam lanh', userId = '1';
       askDiseaseArticlesListener._validate(text, userId)
         .then((response) => {
           expect(JSON.stringify(response)).to.be.equal(JSON.stringify({
             shouldHandle: true,
             userId: userId,
-            typeIds: [5],
-            diseaseIds: [1]
+            typeIds: ['5'],
+            diseaseIds: ['1']
           }));
           done();
         });

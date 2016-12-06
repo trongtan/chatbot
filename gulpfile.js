@@ -4,6 +4,7 @@ const gulpUtil = require('gulp-util');
 const shell = require('gulp-shell');
 const dotenv = require('gulp-dotenv');
 const rename = require('gulp-rename');
+const merge = require('gulp-merge-json');
 
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
@@ -33,15 +34,21 @@ const _cleanDBTask = (env) => {
   return shell.task([
     `dropdb life_pedia_${env}`,
     `createdb life_pedia_${env}`
-  ], { ignoreErrors: true });
+  ], {ignoreErrors: true});
 };
 
 const _seedDBTask = (dbUrl) => {
-  return gulp.src('*.js', { read: false })
+  return gulp.src('*.js', {read: false})
     .pipe(shell([
       `sequelize db:migrate --url ${dbUrl}`,
       `sequelize db:seed:all --url ${dbUrl}`
     ]));
+};
+
+const _mergeExpressAdminSettingsTask = (src, dest, output) => {
+  return gulp.src(src)
+    .pipe(merge(output))
+    .pipe(gulp.dest(dest));
 };
 
 /////////////////////////////////////////////////////////////////
@@ -52,7 +59,7 @@ gulp.task('clean-db', _cleanDBTask('development'));
 gulp.task('clean-built-code', shell.task([
   'rm -r dist',
   'rm -r coverage'
-], { ignoreErrors: true }));
+], {ignoreErrors: true}));
 
 gulp.task('clean', () => {
   gulp.start('clean-db', 'clean-built-code').on('error', gulpUtil.log);
@@ -70,7 +77,7 @@ gulp.task('build-env', function () {
 });
 
 gulp.task('es6', () => {
-  return _es6Task(['src/**/*.js'], 'dist');
+  return _es6Task(['src/**/*.js', '!src/admin/custom/static/**/*.js'], 'dist');
 });
 
 gulp.task('import-db', ['build-env'], () => {
@@ -79,7 +86,41 @@ gulp.task('import-db', ['build-env'], () => {
 });
 
 gulp.task('build', ['clean'], () => {
-  gulp.start('es6', 'import-db').on('error', gulpUtil.log);
+  gulp.start('es6', 'import-db', 'build-admin').on('error', gulpUtil.log);
+});
+
+gulp.task('copy-express-admin-config', () => {
+  return _copyTask('src/admin/**/*.json', 'dist/admin/');
+});
+
+gulp.task('merge-admin-settings', () => {
+  return _mergeExpressAdminSettingsTask(
+    [ 'src/admin/config/tables/type.json',
+      'src/admin/config/tables/disease.json',
+      'src/admin/config/tables/symptom.json',
+      'src/admin/config/tables/link.json',
+      'src/admin/config/tables/regional-menu-item.json',
+      'src/admin/config/tables/user.json',
+      'src/admin/config/tables/keyword.json',
+      'src/admin/config/tables/disease-symptom.json',
+      'src/admin/config/tables/type-disease.json',
+      // Hidden table
+      'src/admin/config/tables/type-disease-link.json',
+      'src/admin/config/tables/disease-synonym.json',
+      'src/admin/config/tables/symptom-synonym.json',
+      'src/admin/config/tables/type-synonym.json',
+      'src/admin/config/tables/sequelize-meta.json',
+    ],
+    'dist/admin/config',
+    'settings.json');
+});
+
+gulp.task('copy-express-admin-static', () => {
+  return _copyTask('src/admin/custom/static/**/*.js', 'dist/admin/custom/static/');
+});
+
+gulp.task('build-admin', () => {
+  return gulp.start('copy-express-admin-config', 'merge-admin-settings', 'copy-express-admin-static').on('error', gulpUtil.log);
 });
 
 /////////////////////////////////////////////////////////////////
@@ -101,7 +142,7 @@ gulp.task('copy-mocha-options', () => {
 });
 
 gulp.task('build-test', () => {
-  gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test').on('error', gulpUtil.log);
+  return gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test', 'copy-express-admin-config').on('error', gulpUtil.log);
 });
 
 /////////////////////////////////////////////////////////////////

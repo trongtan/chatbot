@@ -1,632 +1,354 @@
 [
   {
-    "id": 1,
     "diseaseId": 1,
-    "symptomId": 9,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 9
   },
   {
-    "id": 2,
     "diseaseId": 1,
-    "symptomId": 3,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 3
   },
   {
-    "id": 3,
     "diseaseId": 1,
-    "symptomId": 10,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 10
   },
   {
-    "id": 4,
     "diseaseId": 1,
-    "symptomId": 11,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 11
   },
   {
-    "id": 5,
     "diseaseId": 1,
-    "symptomId": 12,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 12
   },
   {
-    "id": 6,
     "diseaseId": 1,
-    "symptomId": 13,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 13
   },
   {
-    "id": 7,
     "diseaseId": 1,
-    "symptomId": 14,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 14
   },
   {
-    "id": 8,
     "diseaseId": 1,
-    "symptomId": 17,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 17
   },
   {
-    "id": 9,
     "diseaseId": 2,
-    "symptomId": 1,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 1
   },
   {
-    "id": 10,
     "diseaseId": 2,
-    "symptomId": 2,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 2
   },
   {
-    "id": 11,
     "diseaseId": 2,
-    "symptomId": 3,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 3
   },
   {
-    "id": 12,
     "diseaseId": 2,
-    "symptomId": 9,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 9
   },
   {
-    "id": 13,
     "diseaseId": 2,
-    "symptomId": 4,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 4
   },
   {
-    "id": 14,
     "diseaseId": 2,
-    "symptomId": 5,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 5
   },
   {
-    "id": 15,
     "diseaseId": 2,
-    "symptomId": 6,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 6
   },
   {
-    "id": 16,
     "diseaseId": 2,
-    "symptomId": 7,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 7
   },
   {
-    "id": 17,
     "diseaseId": 2,
-    "symptomId": 8,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 8
   },
   {
-    "id": 18,
     "diseaseId": 3,
-    "symptomId": 56,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 56
   },
   {
-    "id": 19,
     "diseaseId": 3,
-    "symptomId": 57,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 57
   },
   {
-    "id": 20,
     "diseaseId": 3,
-    "symptomId": 58,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 58
   },
   {
-    "id": 21,
     "diseaseId": 3,
-    "symptomId": 59,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 59
   },
   {
-    "id": 22,
     "diseaseId": 3,
-    "symptomId": 60,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 60
   },
   {
-    "id": 23,
     "diseaseId": 3,
-    "symptomId": 40,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 40
   },
-
   {
-    "id": 24,
     "diseaseId": 4,
-    "symptomId": 47,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 47
   },
   {
-    "id": 25,
     "diseaseId": 4,
-    "symptomId": 48,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 48
   },
   {
-    "id": 26,
     "diseaseId": 4,
-    "symptomId": 49,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 49
   },
   {
-    "id": 27,
     "diseaseId": 4,
-    "symptomId": 50,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 50
   },
   {
-    "id": 28,
     "diseaseId": 4,
-    "symptomId": 51,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 51
   },
   {
-    "id": 29,
     "diseaseId": 4,
-    "symptomId": 52,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 52
   },
   {
-    "id": 30,
     "diseaseId": 4,
-    "symptomId": 53,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 53
   },
   {
-    "id": 31,
     "diseaseId": 4,
-    "symptomId": 54,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 54
   },
   {
-    "id": 32,
     "diseaseId": 4,
-    "symptomId": 55,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 55
   },
   {
-    "id": 33,
     "diseaseId": 4,
-    "symptomId": 38,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 38
   },
-
   {
-    "id": 34,
     "diseaseId": 5,
-    "symptomId": 15,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 15
   },
   {
-    "id": 35,
     "diseaseId": 5,
-    "symptomId": 16,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 16
   },
   {
-    "id": 36,
     "diseaseId": 5,
-    "symptomId": 17,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 17
   },
   {
-    "id": 37,
     "diseaseId": 5,
-    "symptomId": 18,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 18
   },
   {
-    "id": 38,
     "diseaseId": 5,
-    "symptomId": 19,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 19
   },
   {
-    "id": 39,
     "diseaseId": 5,
-    "symptomId": 20,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 20
   },
   {
-    "id": 40,
     "diseaseId": 5,
-    "symptomId": 21,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 21
   },
   {
-    "id": 41,
     "diseaseId": 5,
-    "symptomId": 22,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 22
   },
   {
-    "id": 42,
     "diseaseId": 5,
-    "symptomId": 23,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 23
   },
   {
-    "id": 43,
     "diseaseId": 5,
-    "symptomId": 24,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 24
   },
   {
-    "id": 44,
     "diseaseId": 5,
-    "symptomId": 25,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 25
   },
   {
-    "id": 45,
     "diseaseId": 5,
-    "symptomId": 26,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 26
   },
   {
-    "id": 46,
     "diseaseId": 5,
-    "symptomId": 27,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 27
   },
   {
-    "id": 47,
     "diseaseId": 5,
-    "symptomId": 28,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 28
   },
   {
-    "id": 48,
     "diseaseId": 5,
-    "symptomId": 29,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 29
   },
   {
-    "id": 49,
     "diseaseId": 5,
-    "symptomId": 30,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 30
   },
   {
-    "id": 50,
     "diseaseId": 5,
-    "symptomId": 24,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 68
   },
   {
-    "id": 51,
     "diseaseId": 5,
-    "symptomId": 69,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 69
   },
   {
-    "id": 52,
-    "diseaseId": 5,
-    "symptomId": 68,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
-  },
-
-  {
-    "id": 53,
     "diseaseId": 6,
-    "symptomId": 68,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 68
   },
   {
-    "id": 54,
     "diseaseId": 6,
-    "symptomId": 69,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 69
   },
   {
-    "id": 55,
     "diseaseId": 6,
-    "symptomId": 70,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 70
   },
   {
-    "id": 56,
     "diseaseId": 6,
-    "symptomId": 71,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 71
   },
   {
-    "id": 57,
     "diseaseId": 6,
-    "symptomId": 12,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 12
   },
   {
-    "id": 58,
     "diseaseId": 6,
-    "symptomId": 25,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 25
   },
   {
-    "id": 59,
     "diseaseId": 6,
-    "symptomId": 72,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 72
   },
   {
-    "id": 60,
     "diseaseId": 6,
-    "symptomId": 73,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 73
   },
   {
-    "id": 61,
     "diseaseId": 6,
-    "symptomId": 74,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 74
   },
   {
-    "id": 62,
     "diseaseId": 6,
-    "symptomId": 75,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 75
   },
   {
-    "id": 63,
     "diseaseId": 6,
-    "symptomId": 3,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 3
   },
   {
-    "id": 64,
     "diseaseId": 6,
-    "symptomId": 5,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 5
   },
-
   {
-    "id": 65,
     "diseaseId": 7,
-    "symptomId": 31,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 31
   },
   {
-    "id": 66,
     "diseaseId": 7,
-    "symptomId": 32,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 32
   },
   {
-    "id": 67,
     "diseaseId": 7,
-    "symptomId": 33,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 33
   },
   {
-    "id": 68,
     "diseaseId": 7,
-    "symptomId": 34,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 34
   },
   {
-    "id": 69,
     "diseaseId": 7,
-    "symptomId": 35,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 35
   },
-
   {
-    "id": 70,
     "diseaseId": 8,
-    "symptomId": 61,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 61
   },
   {
-    "id": 71,
     "diseaseId": 8,
-    "symptomId": 62,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 62
   },
   {
-    "id": 72,
     "diseaseId": 8,
-    "symptomId": 63,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 63
   },
   {
-    "id": 73,
     "diseaseId": 8,
-    "symptomId": 25,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 25
   },
   {
-    "id": 74,
     "diseaseId": 8,
-    "symptomId": 64,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 64
   },
   {
-    "id": 75,
     "diseaseId": 8,
-    "symptomId": 65,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 65
   },
   {
-    "id": 76,
     "diseaseId": 8,
-    "symptomId": 66,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 66
   },
   {
-    "id": 77,
     "diseaseId": 8,
-    "symptomId": 67,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 67
   },
-
   {
-    "id": 78,
     "diseaseId": 9,
-    "symptomId": 15,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 15
   },
   {
-    "id": 79,
     "diseaseId": 9,
-    "symptomId": 6,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 6
   },
   {
-    "id": 80,
     "diseaseId": 9,
-    "symptomId": 37,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
-  },
-
-  {
-    "id": 81,
-    "diseaseId": 10,
-    "symptomId": 38,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 37
   },
   {
-    "id": 82,
     "diseaseId": 10,
-    "symptomId": 39,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 38
   },
   {
-    "id": 83,
     "diseaseId": 10,
-    "symptomId": 40,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 39
   },
   {
-    "id": 84,
     "diseaseId": 10,
-    "symptomId": 41,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 40
   },
   {
-    "id": 85,
     "diseaseId": 10,
-    "symptomId": 42,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 41
   },
   {
-    "id": 86,
     "diseaseId": 10,
-    "symptomId": 43,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 42
   },
   {
-    "id": 87,
     "diseaseId": 10,
-    "symptomId": 44,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 43
   },
   {
-    "id": 88,
     "diseaseId": 10,
-    "symptomId": 45,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 44
   },
   {
-    "id": 89,
     "diseaseId": 10,
-    "symptomId": 46,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "symptomId": 45
+  },
+  {
+    "diseaseId": 10,
+    "symptomId": 46
   }
 ]
