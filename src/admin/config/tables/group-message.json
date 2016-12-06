@@ -1,10 +1,10 @@
 {
-  "Group": {
-    "slug": "Group",
+  "GroupMessage": {
+    "slug": "GroupMessage",
     "table": {
-      "name": "Group",
+      "name": "GroupMessage",
       "pk": "id",
-      "verbose": "Group"
+      "verbose": "Messages"
     },
     "columns": [
       {
@@ -24,8 +24,8 @@
         }
       },
       {
-        "name": "name",
-        "verbose": "Group Name",
+        "name": "message",
+        "verbose": "Message",
         "control": {
           "text": true
         },
@@ -40,8 +40,24 @@
         }
       },
       {
+        "name": "groupId",
+        "verbose": "groupId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
         "name": "createdAt",
-        "verbose": "Created At",
+        "verbose": "createdAt",
         "control": {
           "text": true
         },
@@ -49,7 +65,7 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
           "show": false
@@ -57,7 +73,7 @@
       },
       {
         "name": "updatedAt",
-        "verbose": "Updated At",
+        "verbose": "updatedAt",
         "control": {
           "text": true
         },
@@ -65,7 +81,7 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
           "show": false
@@ -73,17 +89,14 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false,
-      "manyToOne": {
-        "GroupMessage": "groupId"
-      }
+      "readonly": false
     }
   }
 }

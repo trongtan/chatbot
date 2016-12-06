@@ -5,11 +5,13 @@ import { DEFAULT_DATE_FORMAT } from 'utils/constants';
 import TypeSynonymEvent from './type-synonym';
 import DiseaseSynonymEvent from './disease-synonym';
 import SymptomSynonymEvent from './symptom-synonym';
+import GroupEvent from './group';
 
 const childEvents = {
   'Type': new TypeSynonymEvent(),
   'Disease': new DiseaseSynonymEvent(),
-  'Symptom': new SymptomSynonymEvent()
+  'Symptom': new SymptomSynonymEvent(),
+  'Group': new GroupEvent()
 };
 
 export const preSave = (req, res, args, next) => {
