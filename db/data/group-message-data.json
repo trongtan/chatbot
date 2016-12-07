@@ -54,5 +54,12 @@
     "groupId": 12,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 9,
+    "text": "Ukie, xin chào {{userName}} nhé. Bạn sẽ thích chat với bác sĩ Lifebuoy vào khung giờ nào hàng ngày nè?",
+    "groupId": 13,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]
