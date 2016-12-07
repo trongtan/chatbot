@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "typeValue": "postback",
+    "title": "Xin chào",
+    "postbackId": 7,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "typeValue": "postback",
+    "title": "Hướng dẫn",
+    "postbackId": 17,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 3,
+    "typeValue": "postback",
+    "title": "Tìm hiểu thông tin",
+    "postbackId": 8,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 4,
+    "typeValue": "postback",
+    "title": "Trò chuyện",
+    "postbackId": 9,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  }
+]

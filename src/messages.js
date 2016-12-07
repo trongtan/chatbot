@@ -1,50 +1,4 @@
 export default {
-  GET_STARTED_PAYLOAD: [
-    {
-      text: 'Hey! Xin chào {{userName}}. Chào mừng bạn đã tham gia chat cùng Bác sĩ Lifebuoy. Nhiệm vụ của tớ là trả lời các câu hỏi, đồng thời cập nhật những thông tin mới nhất về các loại bệnh hiện nay cho các bạn, kèm theo đó là cảnh báo dịch bệnh nếu có. Rất đơn giản, hãy nhấn vào nút xin chào bên dưới để bắt đầu',
-      buttons: [
-        {
-          'type': 'postback',
-          'title': 'Xin chào',
-          'payload': 'GREETING_PAYLOAD'
-        },
-        {
-          'type': 'postback',
-          'title': 'Hướng dẫn',
-          'payload': 'UNSUPPORTED_PAYLOAD'
-        }
-      ]
-    }
-  ],
-  GUIDE_PAYLOAD: [
-    {
-      text: 'Thông tin này đang được cập nhật, {{userName}} có thể tìm hiểu những thông tin khác trước nhé!',
-      buttons: [
-        {
-          'type': 'postback',
-          'title': 'Tìm hiểu thông tin',
-          'payload': 'GET_INFORMATION_PAYLOAD'
-        }
-      ]
-    }
-  ],
-  GREETING_PAYLOAD: [
-    {
-      text: 'Xin chào! Tôi là bác sĩ Lifebuoy. Bạn có muốn trò chuyện với chúng tôi hay bạn muốn tìm hiểu thông tin về các dịch bệnh nào?',
-      buttons: [
-        {
-          'type': 'postback',
-          'title': 'Tìm hiểu thông tin',
-          'payload': 'GET_INFORMATION_PAYLOAD'
-        },
-        {
-          'type': 'postback',
-          'title': 'Trò chuyện',
-          'payload': 'CHAT_PAYLOAD'
-        }
-      ]
-    }
-  ],
   GET_INFORMATION_PAYLOAD: [
     {
       elements: [
@@ -198,18 +152,6 @@ export default {
           content_type: 'text',
           title: 'Thay đổi lại',
           payload: 'CHANGE_FAVORITE_TIME_PAYLOAD'
-        }
-      ]
-    }
-  ],
-  UNSUPPORTED_PAYLOAD: [
-    {
-      text: 'Thông tin này đang được cập nhật, {{userName}} có thể tìm hiểu những thông tin khác trước nhé!',
-      buttons: [
-        {
-          'type': 'postback',
-          'title': 'Tìm hiểu thông tin',
-          'payload': 'GET_INFORMATION_PAYLOAD'
         }
       ]
     }

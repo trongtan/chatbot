@@ -2,154 +2,154 @@
   {
     "id": 1,
     "value": "Hi",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 2,
     "value": "alo",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 3,
     "value": "xin chào",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 4,
     "value": "hello",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 5,
     "value": "xinchao",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 6,
     "value": "hallo",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 7,
     "value": "chào",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 8,
     "value": "xin chao",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 9,
     "value": "chao",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 10,
     "value": "hey",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 11,
     "value": "bác sĩ ơi",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 12,
     "value": "bac si oi",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 13,
     "value": "bs ơi",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 14,
     "value": "bs oi",
-    "groupId": 1,
+    "groupId": 7,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 15,
     "value": "huong dan",
-    "groupId": 2,
+    "groupId": 6,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 16,
     "value": "hướng dẫn",
-    "groupId": 2,
+    "groupId": 6,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 17,
     "value": "tìm hiểu thông tin",
-    "groupId": 3,
+    "groupId": 8,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 18,
     "value": "tim hieu thong tin",
-    "groupId": 3,
+    "groupId": 8,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 19,
     "value": "menu",
-    "groupId": 3,
+    "groupId": 8,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 20,
     "value": "trò chuyện",
-    "groupId": 4,
+    "groupId": 18,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 21,
     "value": "tro chuyen",
-    "groupId": 4,
+    "groupId": 18,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 22,
     "value": "chat",
-    "groupId": 4,
+    "groupId": 18,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   }
