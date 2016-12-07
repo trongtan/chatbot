@@ -22,5 +22,9 @@
   {
     "groupId": 17,
     "buttonId": 3
+  },
+  {
+    "groupId": 15,
+    "buttonId": 3
   }
 ]

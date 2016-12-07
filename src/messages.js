@@ -122,18 +122,6 @@ export default {
       text: 'Xin chào {{parentalStatus}} {{userName}} và bé {{childName}} đã đồng hành cùng với bác sĩ Lifebouy. Bạn sẽ thích chat với bác sĩ Lifebuoy vào khung giờ nào hàng ngày nè?',
     }
   ],
-  ASK_HEALTH_PAYLOAD: [
-    {
-      text: 'Chào bạn! Chúng tôi giúp được gì cho bạn?',
-      buttons: [
-        {
-          'type': 'postback',
-          'title': 'Tìm hiểu thông tin',
-          'payload': 'GET_INFORMATION_PAYLOAD'
-        }
-      ]
-    }
-  ],
   ASK_FAVORITE_TIME_PAYLOAD: [
     {
       text: 'Tuyệt vời! Chúng mình sẽ trò chuyện với nhau vào khung giờ này hàng ngày nhé! Còn bây giờ {{userName}} có muốn trò chuyện cùng với bác sĩ Lifebuoy không nè!',
