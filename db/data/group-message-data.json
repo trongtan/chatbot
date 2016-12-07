@@ -29,8 +29,15 @@
   },
   {
     "id": 5,
-    "text": "'Chào bạn! Chúng tôi giúp được gì cho bạn?",
+    "text": "Chào bạn! Chúng tôi giúp được gì cho bạn?",
     "groupId": 15,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 6,
+    "text": "Cảm ơn bạn! Khi nào cần giúp đỡ thì cứ liên hệ bác sĩ Lifebuoy nhé.",
+    "groupId": 10,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   }

@@ -97,11 +97,6 @@ export default {
       ]
     }
   ],
-  NOT_READY_TO_CHAT_PAYLOAD: [
-    {
-      text: 'Cảm ơn bạn! Khi nào cần giúp đỡ thì cứ liên hệ bác sĩ Lifebuoy nhé.'
-    }
-  ],
   IS_DAD_PAYLOAD: [
     {
       text: 'Ukie, xin chào {{parentalStatus}} {{userName}}. Bé của bạn tên gì nè!'
