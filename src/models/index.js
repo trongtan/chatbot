@@ -14,6 +14,7 @@ import KeywordDefinition from './keyword';
 import RegionalMenuItemDefinition from './regional-menu-item';
 import GroupDefinition from './group';
 import GroupMessageDefinition from './group-message';
+import ButtonDefinition from './button';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -29,15 +30,17 @@ const TypeDiseaseLink = sequelize.import('TypeDiseaseLink', TypeDiseaseLinkDefin
 const Link = sequelize.import('Link', LinkDefinition);
 const Keyword = sequelize.import('Keyword', KeywordDefinition);
 const RegionalMenuItem = sequelize.import('RegionalMenuItem', RegionalMenuItemDefinition);
-
 const Group = sequelize.import('Group', GroupDefinition);
 const GroupMessage = sequelize.import('GroupMessage', GroupMessageDefinition);
+const Button = sequelize.import('Button', ButtonDefinition);
+
 
 TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
 Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
 
 GroupMessage.belongsTo(Group);
 Keyword.belongsTo(Group);
+Button.belongsTo(Group);
 
 export {
   Disease,
@@ -53,5 +56,6 @@ export {
   Keyword,
   RegionalMenuItem,
   Group,
-  GroupMessage
+  GroupMessage,
+  Button
 }

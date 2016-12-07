@@ -1,6 +1,6 @@
 import ValidateListener from 'observers/base/validate-listener';
 import { Keyword } from 'models';
-import { payloadConstants, keywordGroupConstants } from 'utils/constants';
+import { payloadConstants } from 'utils/constants';
 
 export default class GreetingListener extends ValidateListener {
   constructor() {
@@ -10,6 +10,6 @@ export default class GreetingListener extends ValidateListener {
   }
 
   _getIntentionalKeywords() {
-    return Keyword.findKeyWordsByGroup(keywordGroupConstants.GREETING);
+    return Keyword.findKeyWordsByGroup(payloadConstants.GREETING_PAYLOAD);
   }
 }

@@ -1,7 +1,7 @@
 import co from 'co';
 
 import ValidateListener from 'observers/base/validate-listener';
-import { payloadConstants, keywordGroupConstants } from 'utils/constants';
+import { payloadConstants } from 'utils/constants';
 import { Keyword } from 'models';
 import { logger } from 'logs/winston-logger';
 
@@ -13,7 +13,7 @@ export default class StartChatListener extends ValidateListener {
   }
 
   _getIntentionalKeywords() {
-    return Keyword.findKeyWordsByGroup(keywordGroupConstants.CHAT);
+    return Keyword.findKeyWordsByGroup(payloadConstants.CHAT_PAYLOAD);
   }
 
   _buildResponseMessage(metaData) {

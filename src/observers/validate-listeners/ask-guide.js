@@ -1,5 +1,5 @@
 import ValidateListener from 'observers/base/validate-listener';
-import { payloadConstants, keywordGroupConstants } from 'utils/constants';
+import { payloadConstants } from 'utils/constants';
 import { Keyword } from 'models';
 
 export default class AskGuideListener extends ValidateListener {
@@ -10,6 +10,6 @@ export default class AskGuideListener extends ValidateListener {
   }
 
   _getIntentionalKeywords() {
-    return Keyword.findKeyWordsByGroup(keywordGroupConstants.GUIDE);
+    return Keyword.findKeyWordsByGroup(payloadConstants.GUIDE_PAYLOAD);
   }
 }
