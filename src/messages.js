@@ -97,11 +97,6 @@ export default {
       ]
     }
   ],
-  IS_DAD_PAYLOAD: [
-    {
-      text: 'Ukie, xin chào {{parentalStatus}} {{userName}}. Bé của bạn tên gì nè!'
-    }
-  ],
   IS_MOM_PAYLOAD: [
     {
       text: 'Ukie, xin chào {{parentalStatus}} {{userName}}. Bé của bạn tên gì nè!'
