@@ -1,10 +1,10 @@
 {
-  "Group": {
-    "slug": "Group",
+  "Button": {
+    "slug": "Button",
     "table": {
-      "name": "Group",
+      "name": "Button",
       "pk": "id",
-      "verbose": "Group"
+      "verbose": "Button"
     },
     "columns": [
       {
@@ -24,8 +24,8 @@
         }
       },
       {
-        "name": "name",
-        "verbose": "Group Name",
+        "name": "title",
+        "verbose": "Button Title",
         "control": {
           "text": true
         },
@@ -40,38 +40,47 @@
         }
       },
       {
-        "verbose": "Group Button",
-        "name": "group_button",
+        "name": "typeValue",
+        "verbose": "typeValue",
         "control": {
-          "select": true,
-          "multiple": true
+          "text": true
         },
         "type": "varchar(255)",
-        "allowNull": false,
+        "allowNull": true,
+        "defaultValue": "postback",
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "postbackId",
+        "verbose": "Postback",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Group",
+          "pk": "id",
+          "columns": [
+            "name"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
         "listview": {
           "show": true
         },
         "editview": {
           "show": true
-        },
-        "manyToMany": {
-          "link": {
-            "table": "GroupButton",
-            "parentPk": "groupId",
-            "childPk": "buttonId"
-          },
-          "ref": {
-            "table": "Button",
-            "pk": "id",
-            "columns": [
-              "title"
-            ]
-          }
         }
       },
       {
         "name": "createdAt",
-        "verbose": "Created At",
+        "verbose": "createdAt",
         "control": {
           "text": true
         },
@@ -87,7 +96,7 @@
       },
       {
         "name": "updatedAt",
-        "verbose": "Updated At",
+        "verbose": "updatedAt",
         "control": {
           "text": true
         },
@@ -107,16 +116,10 @@
     },
     "listview": {
       "order": {},
-      "page": 25,
-      "manyToOne": {
-        "GroupMessage": "groupId"
-      }
+      "page": 25
     },
     "editview": {
-      "readonly": false,
-      "manyToOne": {
-        "GroupMessage": "groupId"
-      }
+      "readonly": false
     }
   }
 }

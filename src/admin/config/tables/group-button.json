@@ -1,0 +1,57 @@
+{
+  "GroupButton": {
+    "slug": "GroupButton",
+    "table": {
+      "name": "GroupButton",
+      "pk": [
+        "groupId",
+        "buttonId"
+      ],
+      "verbose": "GroupButton"
+    },
+    "columns": [
+      {
+        "name": "groupId",
+        "verbose": "groupId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "buttonId",
+        "verbose": "buttonId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      }
+    ],
+    "mainview": {
+      "show": false
+    },
+    "listview": {
+      "order": {},
+      "page": 25
+    },
+    "editview": {
+      "readonly": false
+    }
+  }
+}

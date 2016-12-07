@@ -24,12 +24,12 @@
         }
       },
       {
-        "name": "message",
+        "name": "text",
         "verbose": "Message",
         "control": {
-          "text": true
+          "textarea": true
         },
-        "type": "varchar(255)",
+        "type": "text",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -41,15 +41,22 @@
       },
       {
         "name": "groupId",
-        "verbose": "groupId",
+        "verbose": "Group",
         "control": {
-          "text": true
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Group",
+          "pk": "id",
+          "columns": [
+            "name"
+          ]
         },
         "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
           "show": false
@@ -65,7 +72,7 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
           "show": false
@@ -81,7 +88,7 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
           "show": false
