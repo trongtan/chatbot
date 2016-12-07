@@ -1,16 +1,19 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('GroupMessage', {
+    return queryInterface.createTable('Button', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
-      text: {
-        type: Sequelize.TEXT
+      title: {
+        type: Sequelize.STRING
       },
-      groupId: {
+      typeValue: {
+        type: Sequelize.STRING
+      },
+      postbackId: {
         type: Sequelize.STRING,
         references: {
           model: 'Group',
@@ -30,6 +33,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('GroupMessage');
+    return queryInterface.dropTable('Button');
   }
 };
