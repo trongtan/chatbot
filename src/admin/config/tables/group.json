@@ -47,7 +47,7 @@
           "multiple": true
         },
         "type": "varchar(255)",
-        "allowNull": false,
+        "allowNull": true,
         "listview": {
           "show": true
         },
@@ -107,10 +107,7 @@
     },
     "listview": {
       "order": {},
-      "page": 25,
-      "manyToOne": {
-        "GroupMessage": "groupId"
-      }
+      "page": 25
     },
     "editview": {
       "readonly": false,

@@ -58,7 +58,7 @@ describe('greeting observer', () => {
       User.findOrCreateById.restore();
     });
 
-    it('send text message to user', (done) => {
+    it('sends text message to user', (done) => {
       greetingListener._handle({ sender: { id: '1' } }).then((response) => {
         expect(spy.called).to.be.true;
         expect(response).to.be.equal('Success');

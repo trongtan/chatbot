@@ -1,7 +1,7 @@
 import Promise from 'promise';
+import co from 'co';
 
 import AnalyzeListener from 'observers/base/analyze-listener';
-import messages from 'messages';
 import { User } from 'models';
 import { payloadConstants } from 'utils/constants';
 import { isSynonymTextInArray } from 'utils/helpers';
@@ -59,22 +59,26 @@ export default class AskIsParentListener extends AnalyzeListener {
     logger.info('%s Build Response Message (%s)', this.tag, JSON.stringify(dataAnalysis));
     const { user } = dataAnalysis;
     const parental = dataAnalysis.payload;
+    const self = this;
 
-    const templateMessage = getRandomObjectFromArray(messages[parental]);
+    return co(function*() {
+      if (user) {
+        let templateMessage = yield self._getTemplateMessage(parental);
 
-    if (user) {
-      const parentalStatus = this._getParentalText(parental);
-      const message = {
-        text: templateMessage.text
-          .replace(/\{\{parentalStatus}}/g, parentalStatus)
-          .replace(/\{\{userName}}/g, `${user.firstName} ${user.lastName}`)
-      };
-      logger.info('%s Message built', message);
-      return Promise.resolve(message);
-    }
+        const parentalStatus = self._getParentalText(parental);
+        const message = {
+          text: templateMessage.text
+            .replace(/\{\{parentalStatus}}/g, parentalStatus)
+            .replace(/\{\{userName}}/g, `${user.firstName} ${user.lastName}`)
+        };
+        logger.info('%s Message built', message);
+        return Promise.resolve(message);
+      }
 
-    logger.info('%s Cannot build response message', this.tag);
-    return Promise.resolve(`${this.tag}Cannot build response message`);
+      logger.info('%s Cannot build response message', self.tag);
+      return Promise.resolve(`${self.tag}Cannot build response message`);
+    });
+
   }
 
   _getParentalText(payload) {

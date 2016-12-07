@@ -86,9 +86,9 @@ export default class BaseListener {
 
         message = {
           text: templateMessage.text,
-          buttons: map(buttons, ({ title, typeValue, postbackName }) => {
+          buttons: buttons ? map(buttons, ({ title, typeValue, postbackName }) => {
             return { title, type: typeValue, payload: postbackName }
-          })
+          }) : null
         };
 
         logger.info('_getTemplateMessage %s', JSON.stringify(message));

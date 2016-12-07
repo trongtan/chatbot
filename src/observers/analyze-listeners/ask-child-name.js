@@ -1,7 +1,7 @@
 import Promise from 'promise';
+import co from 'co';
 
 import AnalyzeListener from 'observers/base/analyze-listener';
-import messages from 'messages';
 import { User } from 'models';
 import { payloadConstants } from 'utils/constants';
 import { logger } from 'logs/winston-logger';
@@ -38,24 +38,28 @@ export default class AskChildNameListener extends AnalyzeListener {
     logger.info('%s Build Response message (%s)', this.tag, JSON.stringify(dataAnalysis));
 
     const { user, childName } = dataAnalysis;
-    let templateMessage = getRandomObjectFromArray(messages[payloadConstants.ASK_CHILD_NAME_PAYLOAD]);
+    const self = this;
 
-    if (user) {
-      const { parental, firstName, lastName } = user;
-      const parentalStatus = this._getParentalName(parental);
-      const message = {
-        text: templateMessage.text
-          .replace(/\{\{parentalStatus}}/g, parentalStatus)
-          .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
-          .replace(/\{\{childName}}/g, `${childName}`),
-        replyOptions: templateMessage.replyOptions
-      };
-      logger.info('%s Message built %s', this.tag, JSON.stringify(message));
-      return Promise.resolve(message);
-    }
+    return co(function*() {
+      if (user) {
+        let templateMessage = yield self._getTemplateMessage(payloadConstants.ASK_CHILD_NAME_PAYLOAD);
 
-    logger.info('%s Cannot build response message', this.tag);
-    return Promise.resolve(`${this.tag}Cannot build response message`);
+        const { parental, firstName, lastName } = user;
+        const parentalStatus = self._getParentalName(parental);
+        const message = {
+          text: templateMessage.text
+            .replace(/\{\{parentalStatus}}/g, parentalStatus)
+            .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
+            .replace(/\{\{childName}}/g, `${childName}`),
+          replyOptions: templateMessage.replyOptions
+        };
+        logger.info('%s Message built %s', self.tag, JSON.stringify(message));
+        return Promise.resolve(message);
+      }
+
+      logger.info('%s Cannot build response message', self.tag);
+      return Promise.resolve(`${self.tag}Cannot build response message`);
+    });
   }
 
   _getParentalName(parental) {

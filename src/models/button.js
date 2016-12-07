@@ -21,7 +21,7 @@ export default (sequelize, DataTypes) => {
               }
             }
           ).then(result => {
-            return result ? result : [];
+            return result.length > 0 ? result : null;
         });
       }
     }
