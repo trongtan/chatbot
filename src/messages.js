@@ -97,11 +97,6 @@ export default {
       ]
     }
   ],
-  IS_MOM_PAYLOAD: [
-    {
-      text: 'Ukie, xin chào {{parentalStatus}} {{userName}}. Bé của bạn tên gì nè!'
-    }
-  ],
   NO_CHILDREN_PAYLOAD: [
     {
       text: 'Ukie, xin chào {{userName}} nhé. Bạn sẽ thích chat với bác sĩ Lifebuoy vào khung giờ nào hàng ngày nè?'
