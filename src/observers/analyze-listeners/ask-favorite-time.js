@@ -21,10 +21,9 @@ export default class AskFavoriteTimeListener extends AnalyzeListener {
 
     if (text
       && [payloadConstants.ASK_CHILD_NAME_PAYLOAD, payloadConstants.NO_CHILDREN_PAYLOAD].includes(currentPayload)) {
-      for (let hour = 1; hour <= 24; hour++) {
-        if (text.includes(hour)) {
-          return Promise.resolve({ shouldHandle: true, user: user, hour: hour });
-        }
+      const hour = text.replace(/^\D+/g, '');
+      if (hour > 0 && hour <= 24) {
+        return Promise.resolve({ shouldHandle: true, user: user, hour: hour });
       }
     }
 
@@ -34,29 +33,10 @@ export default class AskFavoriteTimeListener extends AnalyzeListener {
   _execute(dataAnalysis) {
     const { user, hour } = dataAnalysis;
     const { userId } = user;
+    dataAnalysis['payload'] = payloadConstants.ASK_FAVORITE_TIME_PAYLOAD;
 
     return this._sendResponseMessage(dataAnalysis).then(() => {
       return User.updateFavoriteTime(userId, hour);
     });
-  }
-
-  _buildResponseMessage(dataAnalysis) {
-    logger.info('%s Build Response message (%s)', this.tag, JSON.stringify(dataAnalysis));
-
-    const { user } = dataAnalysis;
-    let templateMessage = getRandomObjectFromArray(messages[payloadConstants.ASK_FAVORITE_TIME_PAYLOAD]);
-
-    if (user) {
-      const { firstName, lastName } = user;
-      const message = {
-        text: templateMessage.text.replace(/\{\{userName}}/g, `${firstName} ${lastName}`),
-        replyOptions: templateMessage.replyOptions
-      };
-      logger.info('%s Message built %s', this.tag, JSON.stringify(message));
-      return Promise.resolve(message);
-    }
-
-    logger.info('%s Cannot build response message', this.tag);
-    return Promise.resolve(`${this.tag}Cannot build response message`);
   }
 };

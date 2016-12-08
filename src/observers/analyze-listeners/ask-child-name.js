@@ -14,7 +14,7 @@ export default class AskChildNameListener extends AnalyzeListener {
   }
 
   _validateMessageAndUserState(text, user) {
-    logger.info('%s Validate Message And User State (%s, %s, %s)', this.tag, text, JSON.stringify(user));
+    logger.info('%s Validate Message And User State (%s, %s)', this.tag, text, JSON.stringify(user));
     return this._isAnsweringChildName(text, user);
   }
 
