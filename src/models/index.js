@@ -15,6 +15,7 @@ import RegionalMenuItemDefinition from './regional-menu-item';
 import GroupDefinition from './group';
 import GroupMessageDefinition from './group-message';
 import ButtonDefinition from './button';
+import QuickReplyDefinition from './quick-reply';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -33,7 +34,7 @@ const RegionalMenuItem = sequelize.import('RegionalMenuItem', RegionalMenuItemDe
 const Group = sequelize.import('Group', GroupDefinition);
 const GroupMessage = sequelize.import('GroupMessage', GroupMessageDefinition);
 const Button = sequelize.import('Button', ButtonDefinition);
-
+const QuickReply = sequelize.import('QuickReply', QuickReplyDefinition);
 
 TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
 Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
@@ -41,6 +42,9 @@ Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKe
 GroupMessage.belongsTo(Group);
 Keyword.belongsTo(Group);
 Button.belongsTo(Group);
+
+Group.hasMany(QuickReply);
+QuickReply.belongsTo(Group);
 
 export {
   Disease,
@@ -57,5 +61,6 @@ export {
   RegionalMenuItem,
   Group,
   GroupMessage,
-  Button
+  Button,
+  QuickReply
 }
