@@ -39,57 +39,26 @@ export default class AskIsParentListener extends AnalyzeListener {
     return Promise.resolve({ shouldHandle: false });
   }
 
-  _getParentalPayload(text) {
-    if (isSynonymTextInArray(text, isDadResponse)) return payloadConstants.IS_DAD_PAYLOAD;
-    if (isSynonymTextInArray(text, isMomResponse)) return payloadConstants.IS_MOM_PAYLOAD;
-    if (isSynonymTextInArray(text, isNotParentResponse)) return payloadConstants.NO_CHILDREN_PAYLOAD;
-    return null;
-  }
-
   _execute(dataAnalysis) {
     logger.info('%s Execute (%s)', this.tag, JSON.stringify(dataAnalysis));
+    const { user, payload } = dataAnalysis;
+    user['parental'] = this._getParental(payload);
+
     return this._sendResponseMessage(dataAnalysis).then(() => {
-      const { payload } = dataAnalysis;
-      const { userId } = dataAnalysis.user;
-      return User.updateParental(userId, payload, this._getParental(payload));
+      return User.updateParental(user.userId, payload, this._getParental(payload));
     });
-  }
-
-  _buildResponseMessage(dataAnalysis) {
-    logger.info('%s Build Response Message (%s)', this.tag, JSON.stringify(dataAnalysis));
-    const { user } = dataAnalysis;
-    const parental = dataAnalysis.payload;
-    const self = this;
-
-    return co(function*() {
-      if (user) {
-        let templateMessage = yield self._getTemplateMessage(parental);
-
-        const parentalStatus = self._getParentalText(parental);
-        const message = {
-          text: templateMessage.text
-            .replace(/\{\{parentalStatus}}/g, parentalStatus)
-            .replace(/\{\{userName}}/g, `${user.firstName} ${user.lastName}`)
-        };
-        logger.info('%s Message built', message);
-        return Promise.resolve(message);
-      }
-
-      logger.info('%s Cannot build response message', self.tag);
-      return Promise.resolve(`${self.tag}Cannot build response message`);
-    });
-
-  }
-
-  _getParentalText(payload) {
-    if (payload === payloadConstants.IS_DAD_PAYLOAD) return 'Bố';
-    if (payload === payloadConstants.IS_MOM_PAYLOAD) return 'Mẹ';
-    return 'bạn';
   }
 
   _getParental(payload) {
     if (payload === payloadConstants.IS_DAD_PAYLOAD) return 'DAD';
     if (payload === payloadConstants.IS_MOM_PAYLOAD) return 'MOM';
     return 'NA';
+  }
+
+  _getParentalPayload(text) {
+    if (isSynonymTextInArray(text, isDadResponse)) return payloadConstants.IS_DAD_PAYLOAD;
+    if (isSynonymTextInArray(text, isMomResponse)) return payloadConstants.IS_MOM_PAYLOAD;
+    if (isSynonymTextInArray(text, isNotParentResponse)) return payloadConstants.NO_CHILDREN_PAYLOAD;
+    return null;
   }
 };

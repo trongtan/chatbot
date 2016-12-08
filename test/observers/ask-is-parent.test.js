@@ -325,8 +325,8 @@ describe('ask is parent observer', () => {
         askIsParentListener._buildResponseMessage({
           user: null,
           payload: payloadConstants.IS_DAD_PAYLOAD
-        }).then((response) => {
-          expect(response).to.contain('Cannot build response message');
+        }).then(null, error => {
+          expect(error).to.include('Cannot build response message');
           done();
         });
       });
