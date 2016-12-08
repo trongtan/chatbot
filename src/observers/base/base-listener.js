@@ -50,30 +50,30 @@ export default class BaseListener {
         return self._buildMessageOnTemplate(templateMessage, user);
       }
 
-      logger.info('%s Cannot build response message', this.tag);
-      return Promise.reject(`${this.tag}Cannot build response message`);
+      logger.info('%s Cannot build response message', self.tag);
+      return Promise.reject(`${self.tag}Cannot build response message`);
     });
   }
 
   _buildMessageOnTemplate(templateMessage, user) {
     logger.info('%s Build Message On Template (%s)', this.tag, JSON.stringify(templateMessage), JSON.stringify(user));
+    const self = this;
 
-    const { parental, firstName, lastName, childName } = user;
-    const parentalStatus = this._getParentalName(parental);
-    const text = !templateMessage.text ? '' : templateMessage.text
-      .replace(/\{\{parentalStatus}}/g, parentalStatus)
-      .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
-      .replace(/\{\{childName}}/g, `${childName}`);
+    return co(function*() {
+      // const { parental, firstName, lastName, childName } = user;
+      // const parentalStatus = this._getParentalName(parental);
+      const text = self._bindPlaceHolderToTemplateMessage(templateMessage.text, user);
 
-    const message = {
-      text: text,
-      replyOptions: templateMessage.replyOptions,
-      buttons: templateMessage.buttons,
-      elements: templateMessage.elements
-    };
+      const message = {
+        text: text,
+        replyOptions: templateMessage.replyOptions,
+        buttons: templateMessage.buttons,
+        elements: templateMessage.elements
+      };
 
-    logger.info('%s Message built %s', this.tag, JSON.stringify(message));
-    return Promise.resolve(message);
+      logger.info('%s Message built %s', self.tag, JSON.stringify(message));
+      return Promise.resolve(message);
+    });
   }
 
   _getTemplateMessage(payload) {
@@ -105,5 +105,20 @@ export default class BaseListener {
       'NA': 'bạn'
     };
     return parentalMap[parental];
+  }
+
+  _bindPlaceHolderToTemplateMessage(templateMessage, user) {
+    logger.info('%s Bind Place Holder To Template Message (%s), (%s)',
+      this.tag,
+      JSON.stringify(templateMessage),
+      JSON.stringify(user));
+    if (!templateMessage) return '';
+
+    const { parental, firstName, lastName, childName } = user;
+    const parentalStatus = this._getParentalName(parental);
+
+    return templateMessage.replace(/\{\{parentalStatus}}/g, parentalStatus)
+      .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
+      .replace(/\{\{childName}}/g, `${childName}`)
   }
 }

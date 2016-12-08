@@ -1,5 +1,4 @@
 import Promise from 'promise';
-import co from 'co';
 
 import AnalyzeListener from 'observers/base/analyze-listener';
 import { User } from 'models';
@@ -16,58 +15,26 @@ export default class AskChildNameListener extends AnalyzeListener {
 
   _validateMessageAndUserState(text, user) {
     logger.info('%s Validate Message And User State (%s, %s, %s)', this.tag, text, JSON.stringify(user));
-
-    const { currentPayload } = user;
-    if ([payloadConstants.IS_DAD_PAYLOAD, payloadConstants.IS_MOM_PAYLOAD].includes(currentPayload)) {
-      return Promise.resolve({ shouldHandle: true, user: user, childName: text });
-    }
-
-    return Promise.resolve({ shouldHandle: false });
+    return this._isAnsweringChildName(text, user);
   }
 
   _execute(dataAnalysis) {
-    const { user, childName } = dataAnalysis;
-    const { userId } = user;
+    const { user } = dataAnalysis;
+    const { userId, childName } = user;
+    dataAnalysis['payload'] = payloadConstants.ASK_CHILD_NAME_PAYLOAD;
 
     return this._sendResponseMessage(dataAnalysis).then(() => {
       return User.updateChildName(userId, childName);
     });
   }
 
-  _buildResponseMessage(dataAnalysis) {
-    logger.info('%s Build Response message (%s)', this.tag, JSON.stringify(dataAnalysis));
+  _isAnsweringChildName(childName, user) {
+    const { currentPayload } = user;
+    if ([payloadConstants.IS_DAD_PAYLOAD, payloadConstants.IS_MOM_PAYLOAD].includes(currentPayload)) {
+      user['childName'] = childName;
+      return Promise.resolve({ shouldHandle: true, user: user});
+    }
 
-    const { user, childName } = dataAnalysis;
-    const self = this;
-
-    return co(function*() {
-      if (user) {
-        let templateMessage = yield self._getTemplateMessage(payloadConstants.ASK_CHILD_NAME_PAYLOAD);
-
-        const { parental, firstName, lastName } = user;
-        const parentalStatus = self._getParentalName(parental);
-        const message = {
-          text: templateMessage.text
-            .replace(/\{\{parentalStatus}}/g, parentalStatus)
-            .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
-            .replace(/\{\{childName}}/g, `${childName}`),
-          replyOptions: templateMessage.replyOptions
-        };
-        logger.info('%s Message built %s', self.tag, JSON.stringify(message));
-        return Promise.resolve(message);
-      }
-
-      logger.info('%s Cannot build response message', self.tag);
-      return Promise.resolve(`${self.tag}Cannot build response message`);
-    });
-  }
-
-  _getParentalName(parental) {
-    const parentalMap = {
-      'DAD': 'Bố',
-      'MOM': 'Mẹ',
-      'NA': 'bạn'
-    };
-    return parentalMap[parental];
+    return Promise.resolve({ shouldHandle: false });
   }
 };
