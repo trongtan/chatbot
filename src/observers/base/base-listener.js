@@ -81,14 +81,16 @@ export default class BaseListener {
       let message = getRandomObjectFromArray(messages[payload]);
       if (!message) {
         const templateMessages = yield GroupMessage.findMesageByGroup(payload);
-        const buttons = yield Button.findButtonsByGroup(payload);
+        const templateButtons = yield Button.findButtonsByGroup(payload);
         const templateMessage = getRandomObjectFromArray(templateMessages);
+
+        const buttons = templateButtons ? map(templateButtons, ({ title, typeValue, postbackName }) => {
+          return { title, type: typeValue, payload: postbackName }
+        }) : null;
 
         message = {
           text: templateMessage.text,
-          buttons: buttons ? map(buttons, ({ title, typeValue, postbackName }) => {
-            return { title, type: typeValue, payload: postbackName }
-          }) : null
+          buttons: buttons
         };
 
         logger.info('_getTemplateMessage %s', JSON.stringify(message));

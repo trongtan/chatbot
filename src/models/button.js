@@ -20,9 +20,8 @@ export default (sequelize, DataTypes) => {
                 groupName: groupName
               }
             }
-          ).then(result => {
-            return result.length > 0 ? result : null;
-        });
+          ).then(result => result.length > 0 ? result : null
+        );
       }
     }
   });
