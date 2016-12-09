@@ -40,8 +40,12 @@ TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKe
 Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
 
 GroupMessage.belongsTo(Group);
-Keyword.belongsTo(Group);
+
+Keyword.belongsTo(Group, { foreignKey: 'groupId' });
+Group.hasMany(Keyword, { foreignKey: 'groupId' });
+
 Button.belongsTo(Group);
+
 
 Group.hasMany(QuickReply);
 QuickReply.belongsTo(Group);

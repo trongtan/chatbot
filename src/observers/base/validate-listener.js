@@ -49,7 +49,8 @@ export default class ValidateListener extends BaseListener {
     }
 
     if (isTextVisible(messageEvent)) {
-      return this._isIntentionalMessage(messageEvent.message.text);
+      this.messageText = messageEvent.message.text;
+      return this._isIntentionalMessage(this.messageText);
     }
 
     return Promise.resolve(false);
@@ -62,22 +63,26 @@ export default class ValidateListener extends BaseListener {
     const userId = messageEvent.sender.id;
     return co(function*() {
       const user = yield User.findOrCreateById(userId);
-      const payload = self._getOutputPayload();
+      const payload = yield self._getOutputPayload();
       return yield self._sendResponseMessage({ user: user, payload: payload });
     });
   }
 
   _isIntentionalMessage(message) {
-    logger.info('%s ? Is Intentional Message %s', this.tag, JSON.stringify(message));
+    const self = this;
 
-    return this._getIntentionalKeywords().then(keywords => {
+    return co(function*() {
+      const keywords = yield self._getIntentionalKeywords();
+
+      logger.info('%s ? Is Intentional Message %s %s', self.tag, JSON.stringify(message), JSON.stringify(keywords));
+
       for (let keyword of keywords) {
         if (message.toLowerCase().includes(keyword)) {
-          return true;
+          return Promise.resolve(true);
         }
       }
 
-      return false;
+      return Promise.resolve(false);
     });
   }
 
@@ -86,8 +91,8 @@ export default class ValidateListener extends BaseListener {
   }
 
   _getOutputPayload() {
-    if (this.messagePayload) return this.messagePayload;
-    if (this.originPayload) return this.originPayload;
-    return this.intentionalPayload;
+    if (this.messagePayload) return Promise.resolve(this.messagePayload);
+    if (this.originPayload) return Promise.resolve(this.originPayload);
+    return Promise.resolve(this.intentionalPayload);
   }
 }

@@ -11,6 +11,7 @@ import { map } from 'lodash';
 export default class BaseListener {
   constructor() {
     this.tag = '';
+    this.messageText = '';
   }
 
   _sendResponseMessage(metaData) {

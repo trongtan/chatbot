@@ -1,10 +1,11 @@
 import co from 'co';
+
+import { payloadConstants } from 'utils/constants';
 import { Group } from 'models';
 
 export default (sequelize, DataTypes) => {
   const Keyword = sequelize.define('Keyword', {
-    value: DataTypes.STRING,
-    group: DataTypes.STRING
+    value: DataTypes.STRING
   }, {
     freezeTableName: true,
     classMethods: {
@@ -16,13 +17,24 @@ export default (sequelize, DataTypes) => {
               groupId: {
                 $in: yield Group.findByName(group)
               }
-            },
-            raw: true
+            }
           }).then(results => {
             return results.map(result => {
               return result.value;
             });
           });
+        });
+      },
+      findGroupNameByKeyword: (keyword) => {
+        return Keyword.findOne({
+          include: Group,
+          where: {
+            value: {
+              $like: keyword
+            }
+          }
+        }).then( result => {
+          return result ? result.Group.name : payloadConstants.UNSUPPORTED_PAYLOAD
         });
       }
     }
