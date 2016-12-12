@@ -71,5 +71,6 @@ export {
   Group,
   GroupMessage,
   Button,
-  QuickReply
+  QuickReply,
+  TypeMessage
 }

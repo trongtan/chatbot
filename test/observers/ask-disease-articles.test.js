@@ -4,6 +4,8 @@ import { expect } from 'chai';
 import { beforeEach, afterEach } from 'mocha';
 
 import AskDiseaseArticlesListener from 'observers/analyze-listeners/ask-disease-articles';
+import { User } from 'models';
+
 import Services from 'services';
 import { logger } from 'logs/winston-logger';
 
@@ -102,13 +104,17 @@ describe('ask disease articles observer', () => {
 
   context('#sendResponseMessage', () => {
     afterEach(() => {
+      Services.sendTextMessage.restore();
       Services.sendCarouselMessage.restore();
+      User.findOrCreateById.restore();
     });
 
     context('there are some diseases match with type', () => {
       it('returns articles needed to send to recipient', (done) => {
-        let recipientId = 1, typeIds = ['1'], diseaseIds = ['1'];
+        let recipientId = '1', typeIds = ['1'], diseaseIds = ['1'];
+        sinon.stub(Services, 'sendTextMessage', () => Promise.resolve('Success'));
         sinon.stub(Services, 'sendCarouselMessage', () => Promise.resolve('Success'));
+        sinon.stub(User, 'findOrCreateById', () => Promise.resolve({ firstName: 'firstName', lastName: 'lastName' }));
         askDiseaseArticlesListener._sendResponseMessage(recipientId, typeIds, diseaseIds)
           .then((response) => {
             expect(response).to.be.equal('Success');
@@ -121,6 +127,8 @@ describe('ask disease articles observer', () => {
       it('logs the error to logger', (done) => {
         let recipientId = '1', typeIds = ['1'], diseaseIds = ['1'];
         const errorCallback = sinon.spy(logger, 'error');
+        sinon.stub(User, 'findOrCreateById', () => Promise.resolve({ firstName: 'firstName', lastName: 'lastName' }));
+        sinon.stub(Services, 'sendTextMessage').throws();
         sinon.stub(Services, 'sendCarouselMessage').throws();
         askDiseaseArticlesListener._sendResponseMessage(recipientId, typeIds, diseaseIds)
           .then(() => {
