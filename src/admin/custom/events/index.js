@@ -2,13 +2,13 @@ import moment from 'moment';
 import shortid from 'shortid';
 
 import { DEFAULT_DATE_FORMAT } from 'utils/constants';
-import TypeSynonymEvent from './type-synonym';
+import TypeEvent from './type';
 import DiseaseSynonymEvent from './disease-synonym';
 import SymptomSynonymEvent from './symptom-synonym';
 import GroupEvent from './group';
 
 const childEvents = {
-  'Type': new TypeSynonymEvent(),
+  'Type': new TypeEvent(),
   'Disease': new DiseaseSynonymEvent(),
   'Symptom': new SymptomSynonymEvent(),
   'Group': new GroupEvent()

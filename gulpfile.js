@@ -109,6 +109,7 @@ gulp.task('merge-admin-settings', () => {
       'src/admin/config/tables/button.json',
       'src/admin/config/tables/quick-reply.json',
       // Hidden table
+      'src/admin/config/tables/type-message.json',
       'src/admin/config/tables/group-button.json',
       'src/admin/config/tables/type-disease-link.json',
       'src/admin/config/tables/disease-synonym.json',

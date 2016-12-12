@@ -16,6 +16,7 @@ import GroupDefinition from './group';
 import GroupMessageDefinition from './group-message';
 import ButtonDefinition from './button';
 import QuickReplyDefinition from './quick-reply';
+import TypeMessageDefinition from './type-message';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -35,6 +36,7 @@ const Group = sequelize.import('Group', GroupDefinition);
 const GroupMessage = sequelize.import('GroupMessage', GroupMessageDefinition);
 const Button = sequelize.import('Button', ButtonDefinition);
 const QuickReply = sequelize.import('QuickReply', QuickReplyDefinition);
+const TypeMessage = sequelize.import('TypeMessage', TypeMessageDefinition);
 
 TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
 Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
@@ -44,6 +46,9 @@ Group.hasMany(GroupMessage, { foreignKey: 'groupId' });
 
 Keyword.belongsTo(Group, { as: 'Groups', foreignKey: 'groupId' });
 Group.hasMany(Keyword, { foreignKey: 'groupId' });
+
+TypeMessage.belongsTo(Type, { as: 'Types', foreignKey: 'typeId' });
+Type.hasMany(TypeMessage, { foreignKey: 'typeId' });
 
 Button.belongsTo(Group);
 
