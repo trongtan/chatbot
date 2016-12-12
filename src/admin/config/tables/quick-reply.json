@@ -1,10 +1,10 @@
 {
-  "Group": {
-    "slug": "Group",
+  "QuickReply": {
+    "slug": "QuickReply",
     "table": {
-      "name": "Group",
+      "name": "QuickReply",
       "pk": "id",
-      "verbose": "Group"
+      "verbose": "QuickReply"
     },
     "columns": [
       {
@@ -24,8 +24,27 @@
         }
       },
       {
-        "name": "name",
-        "verbose": "Group Name",
+        "name": "contentType",
+        "verbose": "contentType",
+        "control": {
+          "select": true,
+          "options": [
+            "text"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "title",
+        "verbose": "title",
         "control": {
           "text": true
         },
@@ -40,38 +59,63 @@
         }
       },
       {
-        "verbose": "Group Button",
-        "name": "group_button",
+        "name": "imageUrl",
+        "verbose": "imageUrl",
         "control": {
-          "select": true,
-          "multiple": true
+          "text": true
         },
         "type": "varchar(255)",
         "allowNull": true,
+        "defaultValue": null,
         "listview": {
           "show": true
         },
         "editview": {
           "show": true
+        }
+      },
+      {
+        "name": "groupId",
+        "verbose": "groupId",
+        "control": {
+          "text": true
         },
-        "manyToMany": {
-          "link": {
-            "table": "GroupButton",
-            "parentPk": "groupId",
-            "childPk": "buttonId"
-          },
-          "ref": {
-            "table": "Button",
-            "pk": "id",
-            "columns": [
-              "title"
-            ]
-          }
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "payloadId",
+        "verbose": "payloadId",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Group",
+          "pk": "id",
+          "columns": [
+            "name"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
         }
       },
       {
         "name": "createdAt",
-        "verbose": "Created At",
+        "verbose": "createdAt",
         "control": {
           "text": true
         },
@@ -87,7 +131,7 @@
       },
       {
         "name": "updatedAt",
-        "verbose": "Updated At",
+        "verbose": "updatedAt",
         "control": {
           "text": true
         },
@@ -103,18 +147,14 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false,
-      "manyToOne": {
-        "GroupMessage": "groupId",
-        "QuickReply": "groupId"
-      }
+      "readonly": false
     }
   }
 }

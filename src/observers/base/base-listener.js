@@ -5,7 +5,7 @@ import messages from 'messages';
 import services from 'services';
 import { getRandomObjectFromArray } from 'utils/helpers';
 import { logger } from 'logs/winston-logger';
-import { GroupMessage, Group, Button } from 'models';
+import { GroupMessage, Group, Button, QuickReply } from 'models';
 import { map } from 'lodash';
 
 export default class BaseListener {
@@ -60,8 +60,6 @@ export default class BaseListener {
     const self = this;
 
     return co(function*() {
-      // const { parental, firstName, lastName, childName } = user;
-      // const parentalStatus = this._getParentalName(parental);
       const text = self._bindPlaceHolderToTemplateMessage(templateMessage.text, user);
 
       const message = {
@@ -82,15 +80,22 @@ export default class BaseListener {
       if (!message) {
         const templateMessages = yield GroupMessage.findMesageByGroup(payload);
         const templateButtons = yield Button.findButtonsByGroup(payload);
+        const templateQuickReplies = yield QuickReply.findByGroup(payload);
+
         const templateMessage = getRandomObjectFromArray(templateMessages);
 
         const buttons = templateButtons ? map(templateButtons, ({ title, typeValue, postbackName }) => {
           return { title, type: typeValue, payload: postbackName }
         }) : null;
 
+        const quickReplies = templateQuickReplies ? map(templateQuickReplies, ({ contentType, title, imageUrl, name }) => {
+          return { title, content_type: contentType, image_url: imageUrl, payload: name }
+        }) : null;
+
         message = {
           text: templateMessage.text,
-          buttons: buttons
+          buttons: buttons,
+          replyOptions: quickReplies
         };
 
         logger.info('_getTemplateMessage %s', JSON.stringify(message));

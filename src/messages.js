@@ -74,49 +74,5 @@ export default {
         }
       ]
     }
-  ],
-  READY_TO_CHAT_PAYLOAD: [
-    {
-      text: 'Đầu tiên hãy cung cấp cho bác sĩ một vài thông tin của bạn nhé! Bạn là bố hay mẹ?',
-      replyOptions: [
-        {
-          content_type: 'text',
-          title: 'Bố',
-          payload: 'IS_DAD_PAYLOAD'
-        },
-        {
-          content_type: 'text',
-          title: 'Mẹ',
-          payload: 'IS_MOM_PAYLOAD'
-        },
-        {
-          content_type: 'text',
-          title: 'Mình chưa có con',
-          payload: 'NO_CHILDREN_PAYLOAD'
-        }
-      ]
-    }
-  ],
-  ASK_FAVORITE_TIME_PAYLOAD: [
-    {
-      text: 'Tuyệt vời! Chúng mình sẽ trò chuyện với nhau vào khung giờ này hàng ngày nhé! Còn bây giờ {{userName}} có muốn trò chuyện cùng với bác sĩ Lifebuoy không nè!',
-      replyOptions: [
-        {
-          content_type: 'text',
-          title: 'Có',
-          payload: 'ASK_HEALTH_PAYLOAD'
-        },
-        {
-          content_type: 'text',
-          title: 'Mai nhé',
-          payload: 'CHAT_TOMORROW_PAYLOAD'
-        },
-        {
-          content_type: 'text',
-          title: 'Thay đổi lại',
-          payload: 'CHANGE_FAVORITE_TIME_PAYLOAD'
-        }
-      ]
-    }
   ]
 }

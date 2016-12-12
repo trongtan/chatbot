@@ -63,10 +63,8 @@ describe('ask child name observer', () => {
         user: { parental: 'DAD', firstName: 'First', lastName: 'Last', childName: 'Child' },
         payload: 'ASK_CHILD_NAME_PAYLOAD'
       }).then(response => {
-        expect(response.text).to.contain('Bố');
         expect(response.text).to.contain('First');
         expect(response.text).to.contain('Last');
-        expect(response.text).to.contain('Child');
         done();
       });
     });
