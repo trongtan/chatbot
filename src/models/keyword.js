@@ -39,6 +39,15 @@ export default (sequelize, DataTypes) => {
         }).then(result => {
           return result ? result.Groups.name : payloadConstants.UNSUPPORTED_PAYLOAD
         });
+      },
+      findKeywordByName: (keywordName) => {
+        return Keyword.findOne({
+          where: {
+            value: {
+              $like: keywordName
+            }
+          }
+        })
       }
     }
   });

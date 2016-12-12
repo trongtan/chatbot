@@ -11,15 +11,15 @@ import {
   AskUnsupportedPayloadsListener,
   AskRegionalMenuListener,
   StartChatListener,
-  AskHealthListener,
-  AskCustomListener
+  AskHealthListener
 } from './validate-listeners';
 import {
   AskDiseaseArticlesListener,
   ReadyToChatListener,
   AskIsParentListener,
   AskChildNameListener,
-  AskFavoriteTimeListener
+  AskFavoriteTimeListener,
+  AskCustomListener
 } from './analyze-listeners';
 
 export default class RootObserver {
@@ -34,8 +34,7 @@ export default class RootObserver {
       new AskUnsupportedPayloadsListener(),
       new AskRegionalMenuListener(),
       new StartChatListener(),
-      new AskHealthListener(),
-      new AskCustomListener()
+      new AskHealthListener()
     ];
 
     this.analyzeListeners = [
@@ -43,7 +42,8 @@ export default class RootObserver {
       new ReadyToChatListener(),
       new AskIsParentListener(),
       new AskChildNameListener(),
-      new AskFavoriteTimeListener()
+      new AskFavoriteTimeListener(),
+      new AskCustomListener()
     ];
   }
 

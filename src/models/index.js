@@ -39,13 +39,13 @@ const QuickReply = sequelize.import('QuickReply', QuickReplyDefinition);
 TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
 Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
 
-GroupMessage.belongsTo(Group);
+GroupMessage.belongsTo(Group, { as: 'Groups', foreignKey: 'groupId' });
+Group.hasMany(GroupMessage, { foreignKey: 'groupId' });
 
 Keyword.belongsTo(Group, { as: 'Groups', foreignKey: 'groupId' });
 Group.hasMany(Keyword, { foreignKey: 'groupId' });
 
 Button.belongsTo(Group);
-
 
 Group.hasMany(QuickReply);
 QuickReply.belongsTo(Group);

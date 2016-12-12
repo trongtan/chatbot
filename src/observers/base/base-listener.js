@@ -79,7 +79,7 @@ export default class BaseListener {
     return co(function*() {
       let message = getRandomObjectFromArray(messages[payload]);
       if (!message) {
-        const templateMessages = yield GroupMessage.findMesageByGroup(payload);
+        const templateMessages = yield GroupMessage.findMesageByGroupName(payload);
         const templateButtons = yield Button.findButtonsByGroup(payload);
         const templateQuickReplies = yield QuickReply.findByGroup(payload);
 

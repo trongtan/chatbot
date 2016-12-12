@@ -8,7 +8,6 @@ import AskUnsupportedPayloadsListener from './ask-unsupported-payloads';
 import AskRegionalMenuListener from './ask-regional-menu';
 import StartChatListener from './start-chat';
 import AskHealthListener from './ask-health';
-import AskCustomListener from './ask-custom-message';
 
 export {
   GetStartedListener,
@@ -20,6 +19,5 @@ export {
   AskUnsupportedPayloadsListener,
   AskRegionalMenuListener,
   StartChatListener,
-  AskHealthListener,
-  AskCustomListener
+  AskHealthListener
 }
