@@ -10,21 +10,6 @@ export default (sequelize, DataTypes) => {
         this.hasMany(models.TypeDisease);
         this.hasMany(models.TypeSynonym);
       },
-      findTypesByIds: (ids) => {
-        return Type.findAll({
-          attributes: ['value'],
-          where: {
-            id: {
-              $in: ids
-            }
-          },
-          raw: true
-        }).then(types => {
-          return Promise.resolve(types.map(type => {
-            return type.value;
-          }));
-        });
-      },
       findTypeIdByValue: (value) => {
         return Type.findOne({
           attributes: ['id'],
