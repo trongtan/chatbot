@@ -10,6 +10,6 @@ export default class GreetingListener extends ValidateListener {
   }
 
   _getIntentionalKeywords() {
-    return Keyword.findKeyWordsByGroup(payloadConstants.GREETING_PAYLOAD);
+    return Keyword.findKeyWordsByGroupName(payloadConstants.GREETING_PAYLOAD);
   }
 }

@@ -9,15 +9,15 @@ export default (sequelize, DataTypes) => {
   }, {
     freezeTableName: true,
     classMethods: {
-      findKeyWordsByGroup: (group) => {
+      findKeyWordsByGroupName: (groupName) => {
         return co(function *() {
           return Keyword.findAll({
             attributes: ['value'],
-            where: {
-              groupId: {
-                $in: yield Group.findByName(group)
-              }
-            }
+            include: [{
+              model: Group,
+              as: 'Groups',
+              where: { name: groupName }
+            }]
           }).then(results => {
             return results.map(result => {
               return result.value;
@@ -27,14 +27,17 @@ export default (sequelize, DataTypes) => {
       },
       findGroupNameByKeyword: (keyword) => {
         return Keyword.findOne({
-          include: Group,
+          include: [{
+            model: Group,
+            as: 'Groups',
+          }],
           where: {
             value: {
               $like: keyword
             }
           }
-        }).then( result => {
-          return result ? result.Group.name : payloadConstants.UNSUPPORTED_PAYLOAD
+        }).then(result => {
+          return result ? result.Groups.name : payloadConstants.UNSUPPORTED_PAYLOAD
         });
       }
     }

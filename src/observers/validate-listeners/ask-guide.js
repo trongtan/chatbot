@@ -10,6 +10,6 @@ export default class AskGuideListener extends ValidateListener {
   }
 
   _getIntentionalKeywords() {
-    return Keyword.findKeyWordsByGroup(payloadConstants.GUIDE_PAYLOAD);
+    return Keyword.findKeyWordsByGroupName(payloadConstants.GUIDE_PAYLOAD);
   }
 }

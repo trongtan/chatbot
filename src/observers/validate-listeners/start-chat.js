@@ -13,7 +13,7 @@ export default class StartChatListener extends ValidateListener {
   }
 
   _getIntentionalKeywords() {
-    return Keyword.findKeyWordsByGroup(payloadConstants.CHAT_PAYLOAD);
+    return Keyword.findKeyWordsByGroupName(payloadConstants.CHAT_PAYLOAD);
   }
 
   _buildResponseMessage(metaData) {
