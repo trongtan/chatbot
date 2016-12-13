@@ -9,16 +9,15 @@ export default (sequelize, DataTypes) => {
   }, {
     freezeTableName: true,
     classMethods: {
-      findMesageByGroup: (group) => {
+      findMesageByGroupName: (groupName) => {
         return co(function *() {
           return GroupMessage.findAll({
             attributes: ['id', 'text'],
-            where: {
-              groupId: {
-                $in: yield Group.findByName(group)
-              }
-            },
-            raw: true
+            include: [{
+              model: Group,
+              as: 'Groups',
+              where: { name: groupName }
+            }]
           }).then(groupMessages => {
             return Promise.resolve(groupMessages);
           });

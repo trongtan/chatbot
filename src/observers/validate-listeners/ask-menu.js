@@ -10,6 +10,6 @@ export default class AskMenuListener extends ValidateListener {
   }
 
   _getIntentionalKeywords() {
-    return Keyword.findKeyWordsByGroup(payloadConstants.GET_INFORMATION_PAYLOAD);
+    return Keyword.findKeyWordsByGroupName(payloadConstants.GET_INFORMATION_PAYLOAD);
   }
 }

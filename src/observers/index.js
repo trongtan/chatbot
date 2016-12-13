@@ -18,7 +18,8 @@ import {
   ReadyToChatListener,
   AskIsParentListener,
   AskChildNameListener,
-  AskFavoriteTimeListener
+  AskFavoriteTimeListener,
+  AskCustomListener
 } from './analyze-listeners';
 
 export default class RootObserver {
@@ -41,7 +42,8 @@ export default class RootObserver {
       new ReadyToChatListener(),
       new AskIsParentListener(),
       new AskChildNameListener(),
-      new AskFavoriteTimeListener()
+      new AskFavoriteTimeListener(),
+      new AskCustomListener()
     ];
   }
 

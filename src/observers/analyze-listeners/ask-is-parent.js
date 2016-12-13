@@ -1,5 +1,4 @@
 import Promise from 'promise';
-import co from 'co';
 
 import AnalyzeListener from 'observers/base/analyze-listener';
 import { User } from 'models';
