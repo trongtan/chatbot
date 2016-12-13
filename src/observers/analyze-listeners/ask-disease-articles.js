@@ -3,9 +3,10 @@ import co from 'co';
 
 import services from 'services';
 import AnalyzeListener from 'observers/base/analyze-listener';
-import { TypeSynonym, DiseaseSynonym, TypeDisease, Type } from 'models';
+import { TypeSynonym, DiseaseSynonym, TypeDisease, Type, TypeMessage, User } from 'models';
 import { logger } from 'logs/winston-logger';
 import { DEFAULT_TYPE_KEYWORD } from 'utils/constants';
+import { getRandomObjectFromArray } from 'utils/helpers';
 
 export default class AskDiseaseArticlesListener extends AnalyzeListener {
   constructor() {
@@ -77,10 +78,16 @@ export default class AskDiseaseArticlesListener extends AnalyzeListener {
 
     return co(function*() {
         const articles = yield self._getDiseaseResponseMessage(typeIds, diseaseIds);
+        const user = yield User.findOrCreateById(recipientId);
 
         if (articles.length > 0) {
-          logger.log('info', 'Write response articles %j to recipient %j', articles, recipientId);
-          return services.sendCarouselMessage(recipientId, articles);
+          let preMessageTemplate = getRandomObjectFromArray(yield TypeMessage.findMessageByTypeId(typeIds[0]));
+          const text = self._bindPlaceHolderToTemplateMessage(preMessageTemplate.text, user);
+
+          logger.log('info', 'Write response articles %j to recipient %j, PreMessage: (%s)', articles, recipientId, JSON.stringify(preMessageTemplate));
+          return services.sendTextMessage(recipientId, text).then(() => {
+            return services.sendCarouselMessage(recipientId, articles);
+          });
         }
       }
     ).catch(exception => {

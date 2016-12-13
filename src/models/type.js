@@ -17,7 +17,8 @@ export default (sequelize, DataTypes) => {
             value: value
           }
         }).then(type => {
-          return Promise.resolve(type.id);
+          const id = type ? type.id : '';
+          return Promise.resolve(id);
         })
       }
     }

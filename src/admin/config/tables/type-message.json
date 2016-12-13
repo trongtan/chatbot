@@ -1,10 +1,10 @@
 {
-  "Type": {
-    "slug": "Type",
+  "TypeMessage": {
+    "slug": "TypeMessage",
     "table": {
-      "name": "Type",
+      "name": "TypeMessage",
       "pk": "id",
-      "verbose": "Type"
+      "verbose": "Messages"
     },
     "columns": [
       {
@@ -24,12 +24,12 @@
         }
       },
       {
-        "name": "value",
-        "verbose": "Type Value",
+        "name": "text",
+        "verbose": "text",
         "control": {
-          "text": true
+          "textarea": true
         },
-        "type": "varchar(255)",
+        "type": "text",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -40,8 +40,24 @@
         }
       },
       {
+        "name": "typeId",
+        "verbose": "typeId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
         "name": "createdAt",
-        "verbose": "Created At",
+        "verbose": "createdAt",
         "control": {
           "text": true
         },
@@ -49,7 +65,7 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
           "show": false
@@ -57,7 +73,7 @@
       },
       {
         "name": "updatedAt",
-        "verbose": "Updated At",
+        "verbose": "updatedAt",
         "control": {
           "text": true
         },
@@ -65,7 +81,7 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
           "show": false
@@ -73,18 +89,14 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false,
-      "manyToOne": {
-        "TypeSynonym": "typeId",
-        "TypeMessage": "typeId"
-      }
+      "readonly": false
     }
   }
 }
