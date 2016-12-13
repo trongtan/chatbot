@@ -18,11 +18,7 @@ export default (sequelize, DataTypes) => {
               as: 'Groups',
               where: { name: groupName }
             }]
-          }).then(results => {
-            return results.map(result => {
-              return result.value;
-            });
-          });
+          }).then(results => results.map(result => result.value));
         });
       },
       findGroupNameByKeyword: (keyword) => {
