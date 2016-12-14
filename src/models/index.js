@@ -18,6 +18,10 @@ import ButtonDefinition from './button';
 import QuickReplyDefinition from './quick-reply';
 import TypeMessageDefinition from './type-message';
 
+import WatchwordDefinition from './watchword';
+import SynonymDefinition from './synonym';
+import PostbackDefinition from './postback';
+
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
 const Disease = sequelize.import('Disease', DiseaseDefinition);
@@ -38,6 +42,11 @@ const Button = sequelize.import('Button', ButtonDefinition);
 const QuickReply = sequelize.import('QuickReply', QuickReplyDefinition);
 const TypeMessage = sequelize.import('TypeMessage', TypeMessageDefinition);
 
+const Watchword = sequelize.import('Watchword', WatchwordDefinition);
+const Synonym = sequelize.import('Synonym', SynonymDefinition);
+const Postback = sequelize.import('Postback', PostbackDefinition);
+
+
 TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
 Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
 
@@ -54,6 +63,12 @@ Button.belongsTo(Group);
 
 Group.hasMany(QuickReply);
 QuickReply.belongsTo(Group);
+
+Postback.hasMany(Watchword, { foreignKey: 'postbackId' });
+Watchword.belongsTo(Postback, { as: 'Postbacks', foreignKey: 'postbackId' });
+
+Watchword.hasMany(Synonym, { foreignKey: 'watchwordId' });
+Synonym.belongsTo(Watchword, { as: 'Watchwords', foreignKey: 'watchwordId' });
 
 export {
   Disease,
@@ -72,5 +87,8 @@ export {
   GroupMessage,
   Button,
   QuickReply,
-  TypeMessage
+  TypeMessage,
+  Synonym,
+  Watchword,
+  Postback
 }
