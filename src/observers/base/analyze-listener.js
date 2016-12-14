@@ -19,6 +19,7 @@ export default class AnalyzeListener extends BaseListener {
     const isValidText = messageEvent && messageEvent.message && messageEvent.message.text;
     const isValidPayload = messageEvent && messageEvent.message && messageEvent.message.quick_reply
       && messageEvent.message.quick_reply.payload;
+    const isValidPayloadButton =  messageEvent && messageEvent.postback && messageEvent.postback.payload;
 
     if (isValidSender) {
       const userId = messageEvent.sender.id;
@@ -33,6 +34,8 @@ export default class AnalyzeListener extends BaseListener {
         }
       } else if (isValidText) {
         return this._validate(messageEvent.message.text, userId);
+      } else if (isValidPayloadButton) {
+        return this._validatePostbackButton(messageEvent, userId);
       }
     }
 
@@ -60,6 +63,11 @@ export default class AnalyzeListener extends BaseListener {
 
   _validateMessageAndUserState(text, user) {
     logger.info('%s Validate Message And User State (%s %s)', this.tag, text, JSON.stringify(user));
+    return Promise.resolve({ shouldHandle: false });
+  }
+
+  _validatePostbackButton(messageEvent, userId) {
+    logger.info('%s Validate Postback button(%s)', this.tag, JSON.stringify(messageEvent));
     return Promise.resolve({ shouldHandle: false });
   }
 

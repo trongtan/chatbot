@@ -6,12 +6,14 @@ import TypeEvent from './type';
 import DiseaseSynonymEvent from './disease-synonym';
 import SymptomSynonymEvent from './symptom-synonym';
 import GroupEvent from './group';
+import ButtonEvent from './button';
 
 const childEvents = {
   'Type': new TypeEvent(),
   'Disease': new DiseaseSynonymEvent(),
   'Symptom': new SymptomSynonymEvent(),
-  'Group': new GroupEvent()
+  'Group': new GroupEvent(),
+  'Button': new (ButtonEvent)
 };
 
 export const preSave = (req, res, args, next) => {

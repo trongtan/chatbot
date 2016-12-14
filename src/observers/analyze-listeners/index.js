@@ -4,6 +4,7 @@ import AskIsParentListener from './ask-is-parent';
 import AskChildNameListener from './ask-child-name';
 import AskFavoriteTimeListener from './ask-favorite-time';
 import AskCustomListener from './ask-custom-message';
+import AskPostbackListener from './ask-postback';
 
 export {
   AskDiseaseArticlesListener,
@@ -11,5 +12,6 @@ export {
   AskIsParentListener,
   AskChildNameListener,
   AskFavoriteTimeListener,
-  AskCustomListener
+  AskCustomListener,
+  AskPostbackListener
 }

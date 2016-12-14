@@ -3,15 +3,10 @@ import Promise from 'promise';
 
 import {
   GetStartedListener,
-  GreetingListener,
-  AskGuideListener,
-  AskMenuListener,
   AskDiseaseMenuListener,
   AskDiseaseInformationListener,
-  AskUnsupportedPayloadsListener,
   AskRegionalMenuListener,
-  StartChatListener,
-  AskHealthListener
+  StartChatListener
 } from './validate-listeners';
 import {
   AskDiseaseArticlesListener,
@@ -19,22 +14,18 @@ import {
   AskIsParentListener,
   AskChildNameListener,
   AskFavoriteTimeListener,
-  AskCustomListener
+  AskCustomListener,
+  AskPostbackListener
 } from './analyze-listeners';
 
 export default class RootObserver {
   constructor() {
     this.validateListeners = [
       new GetStartedListener(),
-      new GreetingListener(),
-      new AskGuideListener(),
-      new AskMenuListener(),
       new AskDiseaseMenuListener(),
       new AskDiseaseInformationListener(),
-      new AskUnsupportedPayloadsListener(),
       new AskRegionalMenuListener(),
-      new StartChatListener(),
-      new AskHealthListener()
+      new StartChatListener()
     ];
 
     this.analyzeListeners = [
@@ -43,7 +34,8 @@ export default class RootObserver {
       new AskIsParentListener(),
       new AskChildNameListener(),
       new AskFavoriteTimeListener(),
-      new AskCustomListener()
+      new AskCustomListener(),
+      new AskPostbackListener()
     ];
   }
 
