@@ -80,17 +80,21 @@ gulp.task('es6', () => {
   return _es6Task(['src/**/*.js', '!src/admin/custom/static/**/*.js'], 'dist');
 });
 
+gulp.task('copy-express-admin-config', () => {
+  return _copyTask('src/admin/**/*.json', 'dist/admin/');
+});
+
 gulp.task('import-db', ['build-env'], () => {
   const dbUrl = require('./dist/env.json').DB_URL;
   return _seedDBTask(dbUrl);
 });
 
 gulp.task('build', ['clean'], () => {
-  gulp.start('es6', 'import-db', 'build-admin').on('error', gulpUtil.log);
+  gulp.start('es6', 'copy-message-structure', 'import-db', 'build-admin').on('error', gulpUtil.log);
 });
 
-gulp.task('copy-express-admin-config', () => {
-  return _copyTask('src/admin/**/*.json', 'dist/admin/');
+gulp.task('copy-message-structure', () => {
+  return _copyTask('src/message/producer/**/*.json', 'dist/message/producer/');
 });
 
 gulp.task('merge-admin-settings', () => {

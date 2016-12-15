@@ -9,9 +9,8 @@ module.exports = {
       },
       postbackId: {
         type: Sequelize.STRING,
-        allowNull: false,
         references: {
-          model: 'Postbacks',
+          model: 'Postback',
           key: 'id'
         },
         onUpdate: 'cascade',

@@ -1,10 +1,22 @@
+import { Messages, Postback } from 'models';
+
 export default (sequelize, DataTypes) => {
-  const Text = sequelize.define('Text', {
-    messageId: DataTypes.STRING
-  }, {
+  const Text = sequelize.define('Text', {}, {
     classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+      findAllByPostbackValue: (postback) => {
+        return Text.findAll({
+          include: [
+            {
+              model: Messages
+            },
+            {
+              model: Postback,
+              as: 'Postback',
+              where: {
+                value: postback
+              }
+            }]
+        });
       }
     }
   });

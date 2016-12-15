@@ -38,27 +38,28 @@ export default class MessageClassifier extends EventEmitter {
   }
 
   _listenHandlersEvent() {
-    this.textMessageHandler.on(FINISHED_HANDLE_MESSAGE_EVENT, payloads => {
-      this.emit(FINISHED_HANDLE_MESSAGE_EVENT, payloads);
+    this.textMessageHandler.on(FINISHED_HANDLE_MESSAGE_EVENT, (senderId, payloads) => {
+      this.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
     });
 
-    this.quickReplyMessageHandler.on(FINISHED_HANDLE_MESSAGE_EVENT, payloads => {
-      this.emit(FINISHED_HANDLE_MESSAGE_EVENT, payloads);
+    this.quickReplyMessageHandler.on(FINISHED_HANDLE_MESSAGE_EVENT, (senderId, payloads) => {
+      this.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
     });
 
-    this.attachmentMessageHandler.on(FINISHED_HANDLE_MESSAGE_EVENT, payloads => {
-      this.emit(FINISHED_HANDLE_MESSAGE_EVENT, payloads);
+    this.attachmentMessageHandler.on(FINISHED_HANDLE_MESSAGE_EVENT, (senderId, payloads) => {
+      this.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
     });
 
-    this.postbackMessageHandler.on(FINISHED_HANDLE_MESSAGE_EVENT, payloads => {
-      this.emit(FINISHED_HANDLE_MESSAGE_EVENT, payloads);
+    this.postbackMessageHandler.on(FINISHED_HANDLE_MESSAGE_EVENT, (senderId, payloads) => {
+      this.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
     });
   }
 
   _emitEventToDispatcher() {
-    this.on(FINISHED_HANDLE_MESSAGE_EVENT, (payloads => {
-      logger.info('Classifier: FINISHED_HANDLE_MESSAGE_EVENT: (%s)', JSON.stringify(payloads));
-      this.emit(BUILD_MESSAGE_EVENT, payloads);
-    }));
+    this.on(FINISHED_HANDLE_MESSAGE_EVENT, (senderId, payloads) => {
+      logger.info('Classifier: FINISHED_HANDLE_MESSAGE_EVENT: (%s), sender: (%s)', JSON.stringify(payloads), senderId);
+
+      this.emit(BUILD_MESSAGE_EVENT, senderId, payloads);
+    });
   }
 }

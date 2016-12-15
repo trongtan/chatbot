@@ -14,7 +14,7 @@ module.exports = {
       postbackId: {
         type: Sequelize.STRING,
         references: {
-          model: 'Postbacks',
+          model: 'Postback',
           key: 'id'
         },
         onUpdate: 'cascade',

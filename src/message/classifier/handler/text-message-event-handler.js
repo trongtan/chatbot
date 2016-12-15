@@ -18,9 +18,11 @@ export default class TextMessageHandler extends EventEmitter {
 
       return co(function *() {
         const payloads = yield self.findPostbackInMessageEvent(messageEvent);
+        const senderId = messageEvent.sender.id;
+
         logger.info('Handle Text Message: %s %s', JSON.stringify(payloads), classifier);
         if (payloads.length > 0) {
-          self.emit(FINISHED_HANDLE_MESSAGE_EVENT, payloads);
+          self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
         }
       });
     });
@@ -49,7 +51,7 @@ export default class TextMessageHandler extends EventEmitter {
 
       const requestedWatchwords = self.filterKeywordsInMessageEvent(messageEvent, watchwords);
       return uniq(requestedWatchwords.map(requestedWatchword => {
-        return requestedWatchword.Postbacks.value;
+        return requestedWatchword.Postback.value;
       }));
     });
   }
@@ -64,7 +66,7 @@ export default class TextMessageHandler extends EventEmitter {
       const requestedKeywordSynonyms = self.filterKeywordsInMessageEvent(messageEvent, synonyms);
 
       return uniq(requestedKeywordSynonyms.map(requestedKeywordSynonym => {
-        return requestedKeywordSynonym.Watchwords.Postbacks.value;
+        return requestedKeywordSynonym.Watchwords.Postback.value;
       }));
     });
   }

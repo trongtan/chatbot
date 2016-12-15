@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Postbacks', {
+    return queryInterface.createTable('Postback', {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -21,6 +21,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Postbacks');
+    return queryInterface.dropTable('Postback');
   }
 };

@@ -29,3 +29,9 @@ export const isPostbackmessage = (messageEvent) => {
   return messageEvent
     && messageEvent.postback;
 };
+
+export const isEchoMessage = (messageEvent) => {
+  return messageEvent
+    && messageEvent.message
+    && messageEvent.message.is_echo;
+};
