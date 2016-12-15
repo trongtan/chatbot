@@ -7,11 +7,12 @@ import { logger } from 'logs/winston-logger';
 export default class PostbackMessageHandler extends EventEmitter {
   constructor() {
     super();
-    this.on(HANDLE_MESSAGE_EVENT, (dispatcher, messageEvent) => {
+    this.on(HANDLE_MESSAGE_EVENT, (classifier, messageEvent) => {
       logger.info('Handle Postback Message: %s', JSON.stringify(messageEvent));
       const payload = messageEvent.postback.payload;
 
-      dispatcher.emit(FINISHED_HANDLE_MESSAGE_EVENT, [payload]);
+      classifier.emit(FINISHED_HANDLE_MESSAGE_EVENT, [payload]);
     })
   }
 }
+

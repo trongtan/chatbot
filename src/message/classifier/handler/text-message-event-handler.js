@@ -12,15 +12,15 @@ import { logger } from 'logs/winston-logger';
 export default class TextMessageHandler extends EventEmitter {
   constructor() {
     super();
-    this.on(HANDLE_MESSAGE_EVENT, (dispatcher, messageEvent) => {
+    this.on(HANDLE_MESSAGE_EVENT, (classifier, messageEvent) => {
       logger.info('Handle Text Message: %s', JSON.stringify(messageEvent));
       const self = this;
 
       return co(function *() {
         const payloads = yield self.findPostbackInMessageEvent(messageEvent);
-        logger.info('Handle Text Message: %s %s', JSON.stringify(payloads), dispatcher);
+        logger.info('Handle Text Message: %s %s', JSON.stringify(payloads), classifier);
         if (payloads.length > 0) {
-          dispatcher.emit(FINISHED_HANDLE_MESSAGE_EVENT, payloads);
+          self.emit(FINISHED_HANDLE_MESSAGE_EVENT, payloads);
         }
       });
     });

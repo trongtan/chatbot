@@ -1,12 +1,12 @@
 import Express from 'express';
 
-import Dispatcher from 'message';
+import { DispatcherFactory } from 'message';
 import { RECEIVED_MESSAGE_EVENT } from 'utils/event-constants';
 
 import { logger } from 'logs/winston-logger';
 
 const webHookApp = new Express();
-const dispatcher = new Dispatcher();
+const dispatcher = new DispatcherFactory().build();
 
 webHookApp.get('/', (req, res) => {
   res.send('Hello from Life Pedia - Chatbot');
