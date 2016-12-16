@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 import co from 'co';
 
-import { Texts } from 'models';
+import { Texts, Elements } from 'models';
 
 import { BUILD_MESSAGE_EVENT, FINISHED_BUILD_MESSAGE } from 'utils/event-constants';
 
@@ -27,27 +27,45 @@ export default class MessageProducer extends EventEmitter {
 
     const self = this;
     return co(function *() {
-      const templateMessages = yield Texts.findAllByPostbackValue(payloads[0]);
+      //FIXME: We temporary handle first payload here.
+      const firstPayload = payloads[0];
+      const templateMessages = yield Texts.findAllByPostbackValue(firstPayload);
+      const elementMessages = yield Elements.findAllByPostbackValue(firstPayload);
+
+      logger.info('[Message Producer][Build Message From Payloads][data]: %s', JSON.stringify(elementMessages));
+
+      let builtMessage;
 
       if (templateMessages.length > 0) {
-        const templateMessage = templateMessages[0];
-        logger.info('[Message Producer] [Build Message From Payloads]: %s', JSON.stringify(templateMessage));
-
-        let builtMessage = require('./template/message.json');
-        builtMessage.recipient.id = senderId;
-
-        if (templateMessage.Messages) {
-          builtMessage.message.text = yield self.messageBuilder.buildTextMessage(senderId, templateMessage);
-        }
-
-        if (templateMessage.QuickReplies) {
-          builtMessage.message.quick_replies = self.messageBuilder.buildQuickReplies(templateMessage.QuickReplies);
-        }
-
-        if (builtMessage) {
-          self.emit(FINISHED_BUILD_MESSAGE, builtMessage)
-        }
+        builtMessage = yield self._buildMessageFromText(senderId, templateMessages);
+      } else if (elementMessages.length > 0) {
+        builtMessage = self.messageBuilder.buildElementMessage(senderId, elementMessages);
       }
+
+      logger.info('[Message Producer][Build Message From Payloads]: %s', JSON.stringify(builtMessage));
+      if (builtMessage) {
+        self.emit(FINISHED_BUILD_MESSAGE, builtMessage)
+      }
+    });
+  }
+
+  _buildMessageFromText(senderId, templateMessages) {
+    const self = this;
+    return co(function *() {
+      const templateMessage = templateMessages[0];
+      let builtMessage = require('./template/message.json');
+      builtMessage.recipient.id = senderId;
+      logger.info('[Message Producer] [Build Message From Payloads]: %s', JSON.stringify(templateMessage));
+
+      if (templateMessage.Messages) {
+        builtMessage.message.text = yield self.messageBuilder.buildTextMessage(senderId, templateMessage);
+      }
+
+      if (templateMessage.QuickReplies) {
+        builtMessage.message.quick_replies = self.messageBuilder.buildQuickReplies(templateMessage.QuickReplies);
+      }
+
+      return builtMessage;
     });
   }
 }

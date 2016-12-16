@@ -1,3 +1,5 @@
+import { Postback } from 'models';
+
 export default (sequelize, DataTypes) => {
   const Element = sequelize.define('Element', {
     title: DataTypes.STRING,
@@ -6,8 +8,17 @@ export default (sequelize, DataTypes) => {
     subtitle: DataTypes.TEXT
   }, {
     classMethods: {
-      associate: function (models) {
-        // associations can be defined here
+      findAllByPostbackValue: (postback) => {
+        return Element.findAll({
+          include: [
+            {
+              model: Postback,
+              as: 'Postback',
+              where: {
+                value: postback
+              }
+            }]
+        });
       }
     }
   });

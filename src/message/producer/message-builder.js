@@ -37,8 +37,40 @@ export default class MessageTempalate {
       }
     });
 
-    logger.info('[Message Producer] [Build Quick Reply Message]: %s', JSON.stringify(quickReplies));
     return quickReplies;
+  }
+
+  buildElementMessage(senderId, elements) {
+    let builtElements = [];
+    elements.forEach(element => {
+      builtElements.push({
+        title: element.title,
+        image_url: element.imageURL,
+        subtitle: element.subtitle,
+        default_action: {
+          type: 'web_url',
+          url: element.itemURL,
+          messenger_extensions: true,
+          webview_height_ratio: 'tall',
+          fallback_url: element.itemURL
+        }
+      })
+    });
+
+    return {
+      recipient: {
+        id: senderId
+      },
+      message: {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'generic',
+            elements: builtElements
+          }
+        }
+      }
+    };
   }
 
   _bindPlaceHolderToTemplateMessage(templateMessage, userId) {
