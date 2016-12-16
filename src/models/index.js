@@ -42,7 +42,6 @@ const RegionalMenuItem = sequelize.import('RegionalMenuItem', RegionalMenuItemDe
 const Group = sequelize.import('Group', GroupDefinition);
 const GroupMessage = sequelize.import('GroupMessage', GroupMessageDefinition);
 const Button = sequelize.import('Button', ButtonDefinition);
-const QuickReply = sequelize.import('QuickReply', QuickReplyDefinition);
 const TypeMessage = sequelize.import('TypeMessage', TypeMessageDefinition);
 
 const Watchword = sequelize.import('Watchword', WatchwordDefinition);
@@ -51,6 +50,7 @@ const Postback = sequelize.import('Postback', PostbackDefinition);
 const Texts = sequelize.import('Texts', TextDefinition);
 const Messages = sequelize.import('Messages', MessageDefinition);
 const TextMessages = sequelize.import('TextMessages', TextMessageDefinition);
+const QuickReply = sequelize.import('QuickReply', QuickReplyDefinition);
 
 
 TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
@@ -67,9 +67,6 @@ Type.hasMany(TypeMessage, { foreignKey: 'typeId' });
 
 Button.belongsTo(Group);
 
-Group.hasMany(QuickReply);
-QuickReply.belongsTo(Group);
-
 Postback.hasMany(Watchword, { foreignKey: 'postbackId' });
 Watchword.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
@@ -80,6 +77,8 @@ Texts.belongsToMany(Messages, { through: { model: TextMessages }, foreignKey: 't
 Messages.belongsToMany(Texts, { through: { model: TextMessages }, foreignKey: 'messageId' });
 
 Texts.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
+
+QuickReply.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 export {
   Disease,

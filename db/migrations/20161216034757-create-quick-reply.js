@@ -1,11 +1,12 @@
 'use strict';
 module.exports = {
-  up: function (queryInterface, Sequelize) {
-    return queryInterface.createTable('QuickReply', {
+  up: function(queryInterface, Sequelize) {
+    return queryInterface.createTable('QuickReplies', {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       contentType: {
         type: Sequelize.STRING
@@ -13,22 +14,13 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      imageUrl: {
+      imageURL: {
         type: Sequelize.STRING
       },
-      groupId: {
+      postbackId: {
         type: Sequelize.STRING,
         references: {
-          model: 'Group',
-          key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
-      },
-      payloadId: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'Group',
+          model: 'Postback',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -44,7 +36,7 @@ module.exports = {
       }
     });
   },
-  down: function (queryInterface, Sequelize) {
-    return queryInterface.dropTable('QuickReply');
+  down: function(queryInterface, Sequelize) {
+    return queryInterface.dropTable('QuickReplies');
   }
 };
