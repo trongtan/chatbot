@@ -76,6 +76,14 @@ export default (sequelize, DataTypes) => {
           favoriteTime: favoriteTime,
           currentPayload: payloadConstants.ASK_FAVORITE_TIME_PAYLOAD
         }, { where: { userId: userId } });
+      },
+      getParentalName(parental) {
+        const parentalMap = {
+          'DAD': 'Bố',
+          'MOM': 'Mẹ',
+          'NA': 'bạn'
+        };
+        return parentalMap[parental];
       }
     }
   });

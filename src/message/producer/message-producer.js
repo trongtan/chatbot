@@ -2,7 +2,7 @@ import EventEmitter from 'events';
 import Promise from 'promise';
 import co from 'co';
 
-import { Texts } from 'models';
+import { User, Texts } from 'models';
 
 import { BUILD_MESSAGE_EVENT, FINISHED_BUILD_MESSAGE } from 'utils/event-constants';
 import { getRandomObjectFromArray } from 'utils/helpers';
@@ -17,7 +17,9 @@ export default class MessageProducer extends EventEmitter {
 
   _listenEvent() {
     this.on(BUILD_MESSAGE_EVENT, (senderId, payloads) => {
-      this.buildMessageFromPayloads(senderId, payloads);
+      this.buildMessageFromPayloads(senderId, payloads).catch(error => {
+        logger.error('[Message Producer] [Could not build message]: %s', JSON.stringify(error));
+      });
     });
   }
 
@@ -43,13 +45,39 @@ export default class MessageProducer extends EventEmitter {
     const self = this;
 
     return co(function *() {
-      const message = getRandomObjectFromArray(templateMessage.Messages);
+      const rawMessage = getRandomObjectFromArray(templateMessage.Messages);
 
       let textMessageStructure = require('./template/text-message.json');
-      textMessageStructure.message.text = message.message;
+      const message = yield self._bindPlaceHolderToTemplateMessage(rawMessage.message, senderId)
+        .catch( error => {
+        return Promise.reject(error);
+      });
+
+      textMessageStructure.message.text = message;
       textMessageStructure.recipient.id = senderId;
 
       return Promise.resolve(self.emit(FINISHED_BUILD_MESSAGE, textMessageStructure));
+    });
+  }
+
+  _bindPlaceHolderToTemplateMessage(templateMessage, userId) {
+    logger.info('Bind Place Holder To Template Message (%s), (%s)',
+      JSON.stringify(templateMessage),
+      JSON.stringify(userId));
+
+    if (!templateMessage) return Promise.resolve('');
+    if (!userId) return Promise.reject('UserId must be present');
+
+    return co(function *() {
+      const user = yield User.findOrCreateById(userId);
+      if (user) {
+        const { parental, firstName, lastName, childName } = user;
+        const parentalStatus = User.getParentalName(parental);
+
+        return templateMessage.replace(/\{\{parentalStatus}}/g, parentalStatus)
+          .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
+          .replace(/\{\{childName}}/g, `${childName}`)
+      }
     });
   }
 }
