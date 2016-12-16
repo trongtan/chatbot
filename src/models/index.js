@@ -25,6 +25,7 @@ import TextDefinition from './text';
 import MessageDefinition from './message';
 import TextMessageDefinition from './text-message';
 import TextQuickReplyDefinition from './text-quick-reply';
+import ElementDefinition from './element';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -53,6 +54,7 @@ const Messages = sequelize.import('Messages', MessageDefinition);
 const TextMessages = sequelize.import('TextMessages', TextMessageDefinition);
 const QuickReplies = sequelize.import('QuickReply', QuickReplyDefinition);
 const TextQuickReplies = sequelize.import('TextQuickReply', TextQuickReplyDefinition);
+const Elements = sequelize.import('Element', ElementDefinition);
 
 
 TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
@@ -78,6 +80,7 @@ Synonym.belongsTo(Watchword, { as: 'Watchwords', foreignKey: 'watchwordId' });
 Texts.belongsToMany(Messages, { through: { model: TextMessages }, foreignKey: 'textId' });
 Messages.belongsToMany(Texts, { through: { model: TextMessages }, foreignKey: 'messageId' });
 
+//Texts 1 - 1 Postback
 Texts.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 QuickReplies.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
@@ -85,6 +88,9 @@ QuickReplies.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 //Texts n-m QuickReply
 Texts.belongsToMany(QuickReplies, { through: { model: TextQuickReplies }, foreignKey: 'textId' });
 QuickReplies.belongsToMany(Texts, { through: { model: TextQuickReplies }, foreignKey: 'quickReplyId' });
+
+//Element 1 - 1 Postback
+Elements.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 export {
   Disease,
@@ -109,5 +115,6 @@ export {
   Postback,
   Texts,
   Messages,
-  TextMessages
+  TextMessages,
+  Elements
 }
