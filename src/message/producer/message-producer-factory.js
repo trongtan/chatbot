@@ -1,7 +1,9 @@
 import MessageProducer from './message-producer';
+import MessageTemplate from './message-builder';
 
 export default class MessageProducerFactory {
   build() {
-    return new MessageProducer();
+    const messageBuilder = new MessageTemplate();
+    return new MessageProducer(messageBuilder);
   }
 }

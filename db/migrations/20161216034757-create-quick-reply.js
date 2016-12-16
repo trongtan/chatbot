@@ -4,9 +4,8 @@ module.exports = {
     return queryInterface.createTable('QuickReplies', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       contentType: {
         type: Sequelize.STRING

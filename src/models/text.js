@@ -1,4 +1,4 @@
-import { Messages, Postback } from 'models';
+import { Messages, Postback, QuickReplies } from 'models';
 
 export default (sequelize, DataTypes) => {
   const Text = sequelize.define('Text', {}, {
@@ -6,6 +6,9 @@ export default (sequelize, DataTypes) => {
       findAllByPostbackValue: (postback) => {
         return Text.findAll({
           include: [
+            {
+              model: QuickReplies
+            },
             {
               model: Messages
             },
