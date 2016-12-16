@@ -1,19 +1,13 @@
 [
   {
     "id": 1,
-    "buttonTypeId": 1,
-    "title": "Theo bệnh",
-    "url": "",
-    "postbackId": 3,
+    "value": "postback",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 2,
-    "buttonTypeId": 1,
-    "title": "Theo vùng miền",
-    "url": "",
-    "postbackId": 4,
+    "value": "web_url",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   }

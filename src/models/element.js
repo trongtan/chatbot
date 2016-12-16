@@ -1,4 +1,4 @@
-import { Postback } from 'models';
+import { Postback, Buttons, ButtonTypes } from 'models';
 
 export default (sequelize, DataTypes) => {
   const Element = sequelize.define('Element', {
@@ -11,6 +11,9 @@ export default (sequelize, DataTypes) => {
       findAllByPostbackValue: (postback) => {
         return Element.findAll({
           include: [
+            {
+              model: Buttons
+            },
             {
               model: Postback,
               as: 'Postback',

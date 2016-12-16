@@ -1,8 +1,8 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Button = sequelize.define('Button', {
-    url: DataTypes.STRING,
-    title: DataTypes.STRING
+  var ElementButton = sequelize.define('ElementButton', {
+    elementId: DataTypes.STRING,
+    buttonId: DataTypes.STRING
   }, {
     classMethods: {
       associate: function(models) {
@@ -10,5 +10,5 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   });
-  return Button;
+  return ElementButton;
 };

@@ -1,22 +1,31 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Button', {
+    return queryInterface.createTable('Buttons', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
-      title: {
+      buttonTypeId: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'ButtonTypes',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
+      url: {
         type: Sequelize.STRING
       },
-      typeValue: {
+      title: {
         type: Sequelize.STRING
       },
       postbackId: {
         type: Sequelize.STRING,
         references: {
-          model: 'Group',
+          model: 'Postback',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -33,6 +42,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Button');
+    return queryInterface.dropTable('Buttons');
   }
 };

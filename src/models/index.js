@@ -14,7 +14,6 @@ import KeywordDefinition from './keyword';
 import RegionalMenuItemDefinition from './regional-menu-item';
 import GroupDefinition from './group';
 import GroupMessageDefinition from './group-message';
-import ButtonDefinition from './button';
 import QuickReplyDefinition from './quick-reply';
 import TypeMessageDefinition from './type-message';
 
@@ -26,6 +25,9 @@ import MessageDefinition from './message';
 import TextMessageDefinition from './text-message';
 import TextQuickReplyDefinition from './text-quick-reply';
 import ElementDefinition from './element';
+import ButtonDefinition from './button';
+import ButtonTypeDefinition from './button-type';
+import ElementButtonDefinition from './element-button';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -43,7 +45,6 @@ const Keyword = sequelize.import('Keyword', KeywordDefinition);
 const RegionalMenuItem = sequelize.import('RegionalMenuItem', RegionalMenuItemDefinition);
 const Group = sequelize.import('Group', GroupDefinition);
 const GroupMessage = sequelize.import('GroupMessage', GroupMessageDefinition);
-const Button = sequelize.import('Button', ButtonDefinition);
 const TypeMessage = sequelize.import('TypeMessage', TypeMessageDefinition);
 
 const Watchword = sequelize.import('Watchword', WatchwordDefinition);
@@ -55,7 +56,9 @@ const TextMessages = sequelize.import('TextMessages', TextMessageDefinition);
 const QuickReplies = sequelize.import('QuickReply', QuickReplyDefinition);
 const TextQuickReplies = sequelize.import('TextQuickReply', TextQuickReplyDefinition);
 const Elements = sequelize.import('Element', ElementDefinition);
-
+const Buttons = sequelize.import('Button', ButtonDefinition);
+const ButtonTypes = sequelize.import('ButtonType', ButtonTypeDefinition);
+const ElementButtons = sequelize.import('ElementButton', ElementButtonDefinition);
 
 TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
 Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
@@ -68,8 +71,6 @@ Group.hasMany(Keyword, { foreignKey: 'groupId' });
 
 TypeMessage.belongsTo(Type, { as: 'Types', foreignKey: 'typeId' });
 Type.hasMany(TypeMessage, { foreignKey: 'typeId' });
-
-Button.belongsTo(Group);
 
 Postback.hasMany(Watchword, { foreignKey: 'postbackId' });
 Watchword.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
@@ -92,6 +93,16 @@ QuickReplies.belongsToMany(Texts, { through: { model: TextQuickReplies }, foreig
 //Element 1 - 1 Postback
 Elements.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
+//Button 1 - n ButtonType
+Buttons.belongsTo(ButtonTypes, { as: 'ButtonType', foreignKey: 'buttonTypeId' });
+
+//Button 1 - 1 Postback
+Buttons.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
+
+//Element n-m Button
+Elements.belongsToMany(Buttons, { through: { model: ElementButtons }, foreignKey: 'elementId' });
+Buttons.belongsToMany(Elements, { through: { model: ElementButtons }, foreignKey: 'buttonId' });
+
 export {
   Disease,
   DiseaseSynonym,
@@ -107,7 +118,6 @@ export {
   RegionalMenuItem,
   Group,
   GroupMessage,
-  Button,
   QuickReplies,
   TypeMessage,
   Synonym,
@@ -116,5 +126,7 @@ export {
   Texts,
   Messages,
   TextMessages,
-  Elements
+  Elements,
+  Buttons,
+  ButtonTypes
 }
