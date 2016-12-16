@@ -75,9 +75,11 @@ Type.hasMany(TypeMessage, { foreignKey: 'typeId' });
 Postback.hasMany(Watchword, { foreignKey: 'postbackId' });
 Watchword.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
+//Watchword 1 - n Synonym
 Watchword.hasMany(Synonym, { foreignKey: 'watchwordId' });
 Synonym.belongsTo(Watchword, { as: 'Watchwords', foreignKey: 'watchwordId' });
 
+//Texts n - m Messages
 Texts.belongsToMany(Messages, { through: { model: TextMessages }, foreignKey: 'textId' });
 Messages.belongsToMany(Texts, { through: { model: TextMessages }, foreignKey: 'messageId' });
 
@@ -94,7 +96,10 @@ QuickReplies.belongsToMany(Texts, { through: { model: TextQuickReplies }, foreig
 Elements.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 //Button 1 - n ButtonType
-Buttons.belongsTo(ButtonTypes, { as: 'ButtonType', foreignKey: 'buttonTypeId' });
+ButtonTypes.hasMany(Buttons, { foreignKey: 'buttonTypeId' });
+Buttons.belongsTo(ButtonTypes, { as: 'ButtonTypes', foreignKey: 'buttonTypeId' });
+
+ButtonTypes.hasMany(Buttons, { foreignKey: 'buttonTypeId' });
 
 //Button 1 - 1 Postback
 Buttons.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });

@@ -12,14 +12,24 @@ export default (sequelize, DataTypes) => {
         return Element.findAll({
           include: [
             {
-              model: Buttons
-            },
-            {
               model: Postback,
               as: 'Postback',
               where: {
                 value: postback
               }
+            },
+            {
+              model: Buttons,
+              as: "Buttons",
+              include: [
+                {
+                  model: ButtonTypes,
+                  as: 'ButtonTypes'
+                },
+                {
+                  model: Postback,
+                  as: 'Postback'
+                }]
             }]
         });
       }
