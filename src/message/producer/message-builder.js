@@ -41,7 +41,25 @@ export default class MessageTempalate {
   }
 
   buildElementMessage(senderId, elements) {
+    return {
+      recipient: {
+        id: senderId
+      },
+      message: {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'generic',
+            elements: this._buildElement(elements),
+          }
+        }
+      }
+    };
+  }
+
+  _buildElement(elements) {
     let builtElements = [];
+
     elements.forEach(element => {
       builtElements.push({
         title: element.title,
@@ -53,24 +71,34 @@ export default class MessageTempalate {
           messenger_extensions: true,
           webview_height_ratio: 'tall',
           fallback_url: element.itemURL
-        }
+        },
+        buttons: this._buildElementButtons(element)
       })
     });
 
-    return {
-      recipient: {
-        id: senderId
-      },
-      message: {
-        attachment: {
-          type: 'template',
-          payload: {
-            template_type: 'generic',
-            elements: builtElements
-          }
-        }
+    return builtElements;
+  }
+
+  _buildElementButtons(element) {
+    let buttons = [];
+
+    element.Buttons.forEach(button => {
+      if (button.ButtonTypes.value === 'postback') {
+        buttons.push({
+          type: 'postback',
+          title: button.title,
+          payload: button.Postback.value
+        })
+      } else if (element.Buttons.ButtonTypes.value === 'web_url') {
+        buttons.push({
+          type: 'web_url',
+          url: button.url,
+          title: button.title
+        })
       }
-    };
+    });
+
+    return buttons;
   }
 
   _bindPlaceHolderToTemplateMessage(templateMessage, userId) {
