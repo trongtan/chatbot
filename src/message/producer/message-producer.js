@@ -1,71 +1,48 @@
 import EventEmitter from 'events';
 import co from 'co';
 
-import { Texts, Elements } from 'models';
+import { Texts, Elements, ButtonTemplates } from 'models';
 
 import { BUILD_MESSAGE_EVENT, FINISHED_BUILD_MESSAGE } from 'utils/event-constants';
+import { BUILD_TEXT_MESSAGE, BUILD_GENERIC_MESSAGE, BUILD_BUTTON_TEMPLATE_MESSAGE } from 'utils/event-constants';
 
 import { logger } from 'logs/winston-logger';
 
 export default class MessageProducer extends EventEmitter {
-  constructor(messageBuilder) {
+  constructor(messageTemplate) {
     super();
-    this.messageBuilder = messageBuilder;
+    this.messageTemplate = messageTemplate;
     this._listenEvent();
   }
 
   _listenEvent() {
     this.on(BUILD_MESSAGE_EVENT, (senderId, payloads) => {
-      this.buildMessageFromPayloads(senderId, payloads).catch(error => {
-        logger.error('[Message Producer] [Could not build message]: %s', JSON.stringify(error));
-      });
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT]: %s', JSON.stringify(payloads));
+      this.buildMessageFromPayloads(senderId, payloads);
+    });
+
+    this.messageTemplate.on(FINISHED_BUILD_MESSAGE, message => {
+      logger.info('[Message Producer] [FINISHED_BUILD_MESSAGE]: %s', JSON.stringify(message));
+      this.emit(FINISHED_BUILD_MESSAGE, message);
     });
   }
 
   buildMessageFromPayloads(senderId, payloads) {
-    logger.info('[Message Producer] [BUILD_MESSAGE_EVENT]: %s', JSON.stringify(payloads));
-
     const self = this;
     return co(function *() {
       //FIXME: We temporary handle first payload here.
       const firstPayload = payloads[0];
       const templateMessages = yield Texts.findAllByPostbackValue(firstPayload);
       const elementMessages = yield Elements.findAllByPostbackValue(firstPayload);
-
-      logger.info('[Message Producer][Build Message From Payloads][data]: %s', JSON.stringify(elementMessages));
-
-      let builtMessage;
+      const buttonTemplateMessages = yield ButtonTemplates.findAllByPostbackValue(firstPayload);
 
       if (templateMessages.length > 0) {
-        builtMessage = yield self._buildMessageFromText(senderId, templateMessages);
+        self.messageTemplate.emit(BUILD_TEXT_MESSAGE, senderId, templateMessages);
       } else if (elementMessages.length > 0) {
-        builtMessage = self.messageBuilder.buildElementMessage(senderId, elementMessages);
+        self.messageTemplate.emit(BUILD_GENERIC_MESSAGE, senderId, elementMessages);
+      } else if (buttonTemplateMessages.length > 0) {
+        self.messageTemplate.emit(BUILD_BUTTON_TEMPLATE_MESSAGE, senderId, buttonTemplateMessages);
       }
-
-      logger.info('[Message Producer][Build Message From Payloads]: %s', JSON.stringify(builtMessage));
-      if (builtMessage) {
-        self.emit(FINISHED_BUILD_MESSAGE, builtMessage)
-      }
-    });
-  }
-
-  _buildMessageFromText(senderId, templateMessages) {
-    const self = this;
-    return co(function *() {
-      const templateMessage = templateMessages[0];
-      let builtMessage = require('./template/message.json');
-      builtMessage.recipient.id = senderId;
-      logger.info('[Message Producer] [Build Message From Payloads]: %s', JSON.stringify(templateMessage));
-
-      if (templateMessage.Messages) {
-        builtMessage.message.text = yield self.messageBuilder.buildTextMessage(senderId, templateMessage);
-      }
-
-      if (templateMessage.QuickReplies) {
-        builtMessage.message.quick_replies = self.messageBuilder.buildQuickReplies(templateMessage.QuickReplies);
-      }
-
-      return builtMessage;
     });
   }
 }
