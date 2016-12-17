@@ -1,10 +1,9 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var ButtonType = sequelize.define('ButtonType', {
+export default (sequelize, DataTypes) => {
+  const ButtonType = sequelize.define('ButtonType', {
     value: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         // associations can be defined here
       }
     }
