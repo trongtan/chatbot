@@ -3,11 +3,7 @@ export default (sequelize, DataTypes) => {
     url: DataTypes.STRING,
     title: DataTypes.STRING
   }, {
-    classMethods: {
-      associate: function (models) {
-        // associations can be defined here
-      }
-    }
+    classMethods: {}
   });
   return Button;
 };
