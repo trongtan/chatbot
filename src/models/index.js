@@ -28,6 +28,9 @@ import ElementDefinition from './element';
 import ButtonDefinition from './button';
 import ButtonTypeDefinition from './button-type';
 import ElementButtonDefinition from './element-button';
+import ButtonTemplateDefinition from './button-template';
+import ButtonTemplateButtonDefinition from './button-template-button';
+import ButtonTemplateMessageDefinition from './button-template-message';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -59,54 +62,68 @@ const Elements = sequelize.import('Element', ElementDefinition);
 const Buttons = sequelize.import('Button', ButtonDefinition);
 const ButtonTypes = sequelize.import('ButtonType', ButtonTypeDefinition);
 const ElementButtons = sequelize.import('ElementButton', ElementButtonDefinition);
+const ButtonTemplates = sequelize.import('ButtonTemplate', ButtonTemplateDefinition);
+const ButtonTemplateButtons = sequelize.import('ButtonTemplateButton', ButtonTemplateButtonDefinition);
+const ButtonTemplateMessages = sequelize.import('ButtonTemplateMessage', ButtonTemplateMessageDefinition);
 
-TypeDisease.belongsToMany(Link, { through: { model: TypeDiseaseLink }, foreignKey: 'typeDiseaseId' });
-Link.belongsToMany(TypeDisease, { through: { model: TypeDiseaseLink }, foreignKey: 'linkId' });
+TypeDisease.belongsToMany(Link, {through: {model: TypeDiseaseLink}, foreignKey: 'typeDiseaseId'});
+Link.belongsToMany(TypeDisease, {through: {model: TypeDiseaseLink}, foreignKey: 'linkId'});
 
-GroupMessage.belongsTo(Group, { as: 'Groups', foreignKey: 'groupId' });
-Group.hasMany(GroupMessage, { foreignKey: 'groupId' });
+GroupMessage.belongsTo(Group, {as: 'Groups', foreignKey: 'groupId'});
+Group.hasMany(GroupMessage, {foreignKey: 'groupId'});
 
-Keyword.belongsTo(Group, { as: 'Groups', foreignKey: 'groupId' });
-Group.hasMany(Keyword, { foreignKey: 'groupId' });
+Keyword.belongsTo(Group, {as: 'Groups', foreignKey: 'groupId'});
+Group.hasMany(Keyword, {foreignKey: 'groupId'});
 
-TypeMessage.belongsTo(Type, { as: 'Types', foreignKey: 'typeId' });
-Type.hasMany(TypeMessage, { foreignKey: 'typeId' });
+TypeMessage.belongsTo(Type, {as: 'Types', foreignKey: 'typeId'});
+Type.hasMany(TypeMessage, {foreignKey: 'typeId'});
 
-Postback.hasMany(Watchword, { foreignKey: 'postbackId' });
-Watchword.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
+Postback.hasMany(Watchword, {foreignKey: 'postbackId'});
+Watchword.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
 
 //Watchword 1 - n Synonym
-Watchword.hasMany(Synonym, { foreignKey: 'watchwordId' });
-Synonym.belongsTo(Watchword, { as: 'Watchwords', foreignKey: 'watchwordId' });
+Watchword.hasMany(Synonym, {foreignKey: 'watchwordId'});
+Synonym.belongsTo(Watchword, {as: 'Watchwords', foreignKey: 'watchwordId'});
 
 //Texts n - m Messages
-Texts.belongsToMany(Messages, { through: { model: TextMessages }, foreignKey: 'textId' });
-Messages.belongsToMany(Texts, { through: { model: TextMessages }, foreignKey: 'messageId' });
+Texts.belongsToMany(Messages, {through: {model: TextMessages}, foreignKey: 'textId'});
+Messages.belongsToMany(Texts, {through: {model: TextMessages}, foreignKey: 'messageId'});
 
 //Texts 1 - 1 Postback
-Texts.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
+Texts.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
 
-QuickReplies.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
+QuickReplies.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
 
 //Texts n-m QuickReply
-Texts.belongsToMany(QuickReplies, { through: { model: TextQuickReplies }, foreignKey: 'textId' });
-QuickReplies.belongsToMany(Texts, { through: { model: TextQuickReplies }, foreignKey: 'quickReplyId' });
+Texts.belongsToMany(QuickReplies, {through: {model: TextQuickReplies}, foreignKey: 'textId'});
+QuickReplies.belongsToMany(Texts, {through: {model: TextQuickReplies}, foreignKey: 'quickReplyId'});
 
 //Element 1 - 1 Postback
-Elements.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
+Elements.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
 
 //Button 1 - n ButtonType
-ButtonTypes.hasMany(Buttons, { foreignKey: 'buttonTypeId' });
-Buttons.belongsTo(ButtonTypes, { as: 'ButtonTypes', foreignKey: 'buttonTypeId' });
+ButtonTypes.hasMany(Buttons, {foreignKey: 'buttonTypeId'});
+Buttons.belongsTo(ButtonTypes, {as: 'ButtonTypes', foreignKey: 'buttonTypeId'});
 
-ButtonTypes.hasMany(Buttons, { foreignKey: 'buttonTypeId' });
+ButtonTypes.hasMany(Buttons, {foreignKey: 'buttonTypeId'});
 
 //Button 1 - 1 Postback
-Buttons.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
+Buttons.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
 
 //Element n-m Button
-Elements.belongsToMany(Buttons, { through: { model: ElementButtons }, foreignKey: 'elementId' });
-Buttons.belongsToMany(Elements, { through: { model: ElementButtons }, foreignKey: 'buttonId' });
+Elements.belongsToMany(Buttons, {through: {model: ElementButtons}, foreignKey: 'elementId'});
+Buttons.belongsToMany(Elements, {through: {model: ElementButtons}, foreignKey: 'buttonId'});
+
+//ButtonTemplate 1 - 1 Postback
+ButtonTemplates.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+
+//ButtonTemplate n - m Button
+ButtonTemplates.belongsToMany(Buttons, {through: {model: ButtonTemplateButtons}, foreignKey: 'buttonTemplateId'});
+Buttons.belongsToMany(ButtonTemplates, {through: {model: ButtonTemplateButtons}, foreignKey: 'buttonId'});
+
+//ButtonTemplate n - m Message
+ButtonTemplates.belongsToMany(Messages, {through: {model: ButtonTemplateMessages}, foreignKey: 'buttonTemplateId'});
+Messages.belongsToMany(ButtonTemplates, {through: {model: ButtonTemplateMessages}, foreignKey: 'messageId'});
 
 export {
   Disease,
@@ -133,5 +150,6 @@ export {
   TextMessages,
   Elements,
   Buttons,
-  ButtonTypes
+  ButtonTypes,
+  ButtonTemplates
 }
