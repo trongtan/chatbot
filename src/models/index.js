@@ -95,10 +95,10 @@ Diseases.belongsToMany(Articles, {through: {model: DiseaseArticles}, foreignKey:
 Articles.belongsToMany(Diseases, {through: {model: DiseaseArticles}, foreignKey: 'articleId'});
 
 //Disease 1 - 1 Postback (Type)
-Diseases.belongsTo(Postback, {as: 'Postback', foreignKey: 'typePostbackId'});
+Diseases.belongsTo(Postback, {as: 'TypePostback', foreignKey: 'typePostbackId'});
 
 //Disease 1 - 1 Postback (Disease)
-Diseases.belongsTo(Postback, {as: 'Postback', foreignKey: 'diseasePostbackId'});
+Diseases.belongsTo(Postback, {as: 'DiseasePostback', foreignKey: 'diseasePostbackId'});
 
 export {
   User,

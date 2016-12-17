@@ -8,6 +8,7 @@ import {
   BUILD_TEXT_MESSAGE,
   BUILD_GENERIC_MESSAGE,
   BUILD_BUTTON_TEMPLATE_MESSAGE,
+  BUILD_DISEASE_TEMPLATE_MESSAGE,
   FINISHED_BUILD_MESSAGE
 } from 'utils/event-constants';
 
@@ -27,6 +28,10 @@ export default class MessageTemplate extends EventEmitter {
 
     this.on(BUILD_BUTTON_TEMPLATE_MESSAGE, (senderId, templateMessages) => {
       this.buildButtonTemplateMessage(senderId, templateMessages)
+    });
+
+    this.on(BUILD_DISEASE_TEMPLATE_MESSAGE, (senderId, diseaseMessages) => {
+      this.buildDiseaseTemplateMessage(senderId, diseaseMessages)
     });
 
     this.on(ASSIGN_SENDER_ID_TO_MESSAGE, (senderId, builtMessage) => {
@@ -80,6 +85,23 @@ export default class MessageTemplate extends EventEmitter {
 
     return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, senderId, builtMessage);
   }
+
+  buildDiseaseTemplateMessage(senderId, diseaseMessages) {
+    const diseaseMessage = diseaseMessages[0];
+
+    const builtMessage = {
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'generic',
+          elements: this._buildArticles(diseaseMessage.Articles),
+        }
+      }
+    };
+
+    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, senderId, builtMessage);
+  }
+
 
   _assignSenderIdAndPlaceHolderMessage(senderId, builtMessage) {
     const self = this;
@@ -163,24 +185,53 @@ export default class MessageTemplate extends EventEmitter {
     return builtElements;
   }
 
+  _buildArticles(articles) {
+    let builtArticles = [];
+
+    articles.forEach(article => {
+      builtArticles.push({
+        title: article.title,
+        image_url: article.imageURL,
+        subtitle: article.subtitle,
+        default_action: {
+          type: 'web_url',
+          url: article.itemURL,
+          messenger_extensions: true,
+          webview_height_ratio: 'tall',
+          fallback_url: article.itemURL
+        },
+        buttons: [
+          {
+            type: 'web_url',
+            url: article.itemURL,
+            title: 'Xem bài viết'
+          }
+        ]
+      })
+    });
+
+    return builtArticles;
+  }
+
   _buildButtons(buttons) {
     let builtButtons = [];
-
-    buttons.forEach(button => {
-      if (button.ButtonTypes.value === 'postback') {
-        builtButtons.push({
-          type: 'postback',
-          title: button.title,
-          payload: button.Postback.value
-        })
-      } else if (buttons.ButtonTypes.value === 'web_url') {
-        builtButtons.push({
-          type: 'web_url',
-          url: button.url,
-          title: button.title
-        })
-      }
-    });
+    if (buttons) {
+      buttons.forEach(button => {
+        if (button.ButtonTypes.value === 'postback') {
+          builtButtons.push({
+            type: 'postback',
+            title: button.title,
+            payload: button.Postback.value
+          })
+        } else if (buttons.ButtonTypes.value === 'web_url') {
+          builtButtons.push({
+            type: 'web_url',
+            url: button.url,
+            title: button.title
+          })
+        }
+      });
+    }
 
     return builtButtons;
   }
