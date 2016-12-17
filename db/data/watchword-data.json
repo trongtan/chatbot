@@ -16,6 +16,20 @@
   {
     "id": 3,
     "value": "thong tin",
+    "postbackId": 6,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 4,
+    "value": "cam cum",
+    "postbackId": 7,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 5,
+    "value": "cam lanh",
     "postbackId": 5,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
