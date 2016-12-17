@@ -17,6 +17,9 @@ import ElementButtonDefinition from './element-button';
 import ButtonTemplateDefinition from './button-template';
 import ButtonTemplateButtonDefinition from './button-template-button';
 import ButtonTemplateMessageDefinition from './button-template-message';
+import ArticleDefinition from './article';
+import DiseaseDefinition from './disease';
+import DiseaseArticleDefinition from './disease-article';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -36,6 +39,9 @@ const ElementButtons = sequelize.import('ElementButton', ElementButtonDefinition
 const ButtonTemplates = sequelize.import('ButtonTemplate', ButtonTemplateDefinition);
 const ButtonTemplateButtons = sequelize.import('ButtonTemplateButton', ButtonTemplateButtonDefinition);
 const ButtonTemplateMessages = sequelize.import('ButtonTemplateMessage', ButtonTemplateMessageDefinition);
+const Articles = sequelize.import('Article', ArticleDefinition);
+const Diseases = sequelize.import('Disease', DiseaseDefinition);
+const DiseaseArticles = sequelize.import('DiseaseArticle', DiseaseArticleDefinition);
 
 Postback.hasMany(Watchword, {foreignKey: 'postbackId'});
 Watchword.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
@@ -84,6 +90,16 @@ Buttons.belongsToMany(ButtonTemplates, {through: {model: ButtonTemplateButtons},
 ButtonTemplates.belongsToMany(Messages, {through: {model: ButtonTemplateMessages}, foreignKey: 'buttonTemplateId'});
 Messages.belongsToMany(ButtonTemplates, {through: {model: ButtonTemplateMessages}, foreignKey: 'messageId'});
 
+//Disease n - m Article
+Diseases.belongsToMany(Articles, {through: {model: DiseaseArticles}, foreignKey: 'diseaseId'});
+Articles.belongsToMany(Diseases, {through: {model: DiseaseArticles}, foreignKey: 'articleId'});
+
+//Disease 1 - 1 Postback (Type)
+Diseases.belongsTo(Postback, {as: 'Postback', foreignKey: 'typePostbackId'});
+
+//Disease 1 - 1 Postback (Disease)
+Diseases.belongsTo(Postback, {as: 'Postback', foreignKey: 'diseasePostbackId'});
+
 export {
   User,
   QuickReplies,
@@ -96,5 +112,7 @@ export {
   Elements,
   Buttons,
   ButtonTypes,
-  ButtonTemplates
+  ButtonTemplates,
+  Diseases,
+  Articles
 }
