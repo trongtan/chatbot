@@ -1,0 +1,23 @@
+[
+  {
+    "id": "askingMenu",
+    "description": "Check the user is asking menu or not",
+    "rules": [
+      "includes(askingPayloads, 'MENU_PAYLOAD')"
+    ]
+  },
+  {
+    "id": "greeting",
+    "description": "",
+    "rules": [
+      "includes(askingPayloads, 'GREETING_PAYLOAD')"
+    ]
+  },
+  {
+    "id": "askingColdInformation",
+    "description": "",
+    "rules": [
+      "includes(askingPayloads, 'REQUEST_INFORMATION_PAYLOAD') && includes(askingPayloads, 'DISEASE_COLDS_PAYLOAD')"
+    ]
+  }
+]

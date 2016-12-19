@@ -1,0 +1,16 @@
+{
+  "id": "asking_menu_definition",
+  "enabled": true,
+  "event_ids": [
+    "poll_event"
+  ],
+  "when": "askingMenu",
+  "then": {
+    "sendMessageWithPayloads": [
+      {
+        "type": "button_template",
+        "payloads": ["MENU_PAYLOAD"]
+      }
+    ]
+  }
+}

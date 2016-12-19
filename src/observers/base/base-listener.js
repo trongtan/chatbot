@@ -85,7 +85,7 @@ export default class BaseListener {
 
         const templateMessage = getRandomObjectFromArray(templateMessages);
 
-        const buttons = templateButtons ? map(templateButtons, ({ title, typeValue, postbackName }) => {
+          const buttons = templateButtons ? map(templateButtons, ({ title, typeValue, postbackName }) => {
           return { title, type: typeValue, payload: postbackName }
         }) : null;
 

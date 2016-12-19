@@ -42,6 +42,7 @@
     "inject-admin-resources": "node dist/admin/resource-inject.js"
   },
   "dependencies": {
+    "async": "^2.1.4",
     "body-parser": "^1.15.2",
     "co": "^4.6.0",
     "constant-mirror": "^1.1.1",

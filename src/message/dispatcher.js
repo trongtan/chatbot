@@ -7,16 +7,18 @@ import { FINISHED_HANDLE_MESSAGE_EVENT,
   BUILD_MESSAGE_EVENT,
   FINISHED_BUILD_MESSAGE,
   SHIPPING_MESSAGE_EVENT,
-  FINISHED_SHIPPING_MESSAGE_EVENT } from 'utils/event-constants';
+  FINISHED_SHIPPING_MESSAGE_EVENT,
+  ANALYSE_REQUESTING_PAYLOADS } from 'utils/event-constants';
 
 import { logger } from 'logs/winston-logger';
 
 export default class Dispatcher extends EventEmitter {
-  constructor(messageClassifier, messageProducer, messageShipper) {
+  constructor(messageClassifier, messageProducer, messageShipper, messageReferee) {
     super();
     this.messageClassifier = messageClassifier;
     this.messageProducer = messageProducer;
     this.messageShipper = messageShipper;
+    this.messageReferee = messageReferee;
 
     this._listenIncomingMessageEvent();
     this._listenMessageProducerEvent();
@@ -36,6 +38,10 @@ export default class Dispatcher extends EventEmitter {
   _listenMessageProducerEvent() {
     this.messageClassifier.on(FINISHED_HANDLE_MESSAGE_EVENT, (senderId, payloads) => {
       logger.info('Dispatcher: FINISHED_HANDLE_MESSAGE_EVENT: (%s)', JSON.stringify(payloads));
+      this.messageReferee.emit(ANALYSE_REQUESTING_PAYLOADS, senderId, payloads);
+    });
+
+    this.messageReferee.on(BUILD_MESSAGE_EVENT, (senderId, payloads) => {
       this.messageProducer.emit(BUILD_MESSAGE_EVENT, senderId, payloads);
     });
   }

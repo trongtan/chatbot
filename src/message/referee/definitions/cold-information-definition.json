@@ -1,0 +1,20 @@
+{
+  "id": "cold-information-definition",
+  "enabled": true,
+  "event_ids": [
+    "poll_event"
+  ],
+  "when": "askingColdInformation",
+  "then": {
+    "sendMessageWithPayloads": [
+      {
+        "type": "",
+        "payloads": ["GREETING_PAYLOAD"]
+      },
+      {
+        "type": "",
+        "payloads": ["REQUEST_INFORMATION_PAYLOAD", "DISEASE_COLDS_PAYLOAD"]
+      }
+    ]
+  }
+}

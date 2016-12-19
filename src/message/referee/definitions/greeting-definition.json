@@ -1,0 +1,16 @@
+{
+  "id": "greeting_definition",
+  "enabled": true,
+  "event_ids": [
+    "poll_event"
+  ],
+  "when": "greeting",
+  "then": {
+    "sendMessageWithPayloads": [
+      {
+        "type": "button_template",
+        "payloads": ["GREETING_PAYLOAD"]
+      }
+    ]
+  }
+}

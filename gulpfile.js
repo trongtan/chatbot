@@ -94,7 +94,7 @@ gulp.task('build', ['clean'], () => {
 });
 
 gulp.task('copy-message-structure', () => {
-  return _copyTask('src/message/producer/**/*.json', 'dist/message/producer/');
+  return _copyTask('src/message/referee/**/*.json', 'dist/message/referee/');
 });
 
 gulp.task('merge-admin-settings', () => {
