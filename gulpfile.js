@@ -101,10 +101,12 @@ gulp.task('merge-admin-settings', () => {
   return _mergeExpressAdminSettingsTask(
     [ 'src/admin/config/tables/watchword.json',
       'src/admin/config/tables/synonym.json',
+      'src/admin/config/tables/button.json',
+      'src/admin/config/tables/text.json',
       'src/admin/config/tables/button-template-buttons.json',
       'src/admin/config/tables/button-template-messages.json',
 
-      'src/admin/config/tables/button.json',
+
       'src/admin/config/tables/disease-articles.json',
       'src/admin/config/tables/messages.json',
       'src/admin/config/tables/postback.json',

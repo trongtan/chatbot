@@ -1,10 +1,10 @@
 {
-  "Messages": {
-    "slug": "Messages",
+  "Texts": {
+    "slug": "Texts",
     "table": {
-      "name": "Messages",
+      "name": "Texts",
       "pk": "id",
-      "verbose": "Messages"
+      "verbose": "Texts"
     },
     "columns": [
       {
@@ -24,10 +24,17 @@
         }
       },
       {
-        "name": "title",
-        "verbose": "Title",
+        "name": "postbackId",
+        "verbose": "Postback Value",
         "control": {
-          "text": true
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Postback",
+          "pk": "id",
+          "columns": [
+            "value"
+          ]
         },
         "type": "varchar(255)",
         "allowNull": true,
@@ -40,19 +47,33 @@
         }
       },
       {
-        "name": "message",
-        "verbose": "Message",
+        "verbose": "Text Messages",
+        "name": "TextMessages",
         "control": {
-          "textarea": true
+          "select": true,
+          "multiple": true
         },
-        "type": "text",
-        "allowNull": true,
-        "defaultValue": null,
+        "type": "varchar(255)",
+        "allowNull": false,
         "listview": {
           "show": true
         },
         "editview": {
           "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "TextMessages",
+            "parentPk": "textId",
+            "childPk": "messageId"
+          },
+          "ref": {
+            "table": "Messages",
+            "pk": "id",
+            "columns": [
+              "message"
+            ]
+          }
         }
       },
       {
