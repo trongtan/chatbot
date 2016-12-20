@@ -17,15 +17,15 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "value",
-        "verbose": "value",
+        "verbose": "Value",
         "control": {
           "text": true
         },
@@ -52,12 +52,12 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "createdAt",
-        "verbose": "createdAt",
+        "verbose": "Created At",
         "control": {
           "text": true
         },
@@ -68,12 +68,12 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "updatedAt",
-        "verbose": "updatedAt",
+        "verbose": "Updated At",
         "control": {
           "text": true
         },
@@ -84,12 +84,12 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},

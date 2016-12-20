@@ -99,7 +99,9 @@ gulp.task('copy-message-structure', () => {
 
 gulp.task('merge-admin-settings', () => {
   return _mergeExpressAdminSettingsTask(
-    [ 'src/admin/config/tables/button-template-buttons.json',
+    [ 'src/admin/config/tables/watchword.json',
+      'src/admin/config/tables/synonym.json',
+      'src/admin/config/tables/button-template-buttons.json',
       'src/admin/config/tables/button-template-messages.json',
       'src/admin/config/tables/button-type.json',
       'src/admin/config/tables/button.json',
@@ -107,11 +109,10 @@ gulp.task('merge-admin-settings', () => {
       'src/admin/config/tables/messages.json',
       'src/admin/config/tables/postback.json',
       'src/admin/config/tables/quick-replies.json',
-      'src/admin/config/tables/synonym.json',
       'src/admin/config/tables/text-messages.json',
       'src/admin/config/tables/text-quick-replies.json',
       'src/admin/config/tables/user.json',
-      'src/admin/config/tables/watchword.json'
+
     ],
     'dist/admin/config',
     'settings.json');
