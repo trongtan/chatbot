@@ -103,7 +103,7 @@ gulp.task('merge-admin-settings', () => {
       'src/admin/config/tables/synonym.json',
       'src/admin/config/tables/button-template-buttons.json',
       'src/admin/config/tables/button-template-messages.json',
-      'src/admin/config/tables/button-type.json',
+
       'src/admin/config/tables/button.json',
       'src/admin/config/tables/disease-articles.json',
       'src/admin/config/tables/messages.json',
@@ -112,6 +112,8 @@ gulp.task('merge-admin-settings', () => {
       'src/admin/config/tables/text-messages.json',
       'src/admin/config/tables/text-quick-replies.json',
       'src/admin/config/tables/user.json',
+      //Hidden table
+      'src/admin/config/tables/button-type.json',
 
     ],
     'dist/admin/config',

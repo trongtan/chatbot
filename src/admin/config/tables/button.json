@@ -17,6 +17,22 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "title",
+        "verbose": "Title",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
           "show": true
         },
         "editview": {
@@ -27,10 +43,17 @@
         "name": "buttonTypeId",
         "verbose": "buttonTypeId",
         "control": {
-          "text": true
+          "select": true
+        },
+        "oneToMany": {
+          "table": "ButtonTypes",
+          "pk": "id",
+          "columns": [
+            "value"
+          ]
         },
         "type": "varchar(255)",
-        "allowNull": true,
+        "allowNull": false,
         "defaultValue": null,
         "listview": {
           "show": true
@@ -41,23 +64,7 @@
       },
       {
         "name": "url",
-        "verbose": "url",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "title",
-        "verbose": "title",
+        "verbose": "URL",
         "control": {
           "text": true
         },
@@ -73,9 +80,16 @@
       },
       {
         "name": "postbackId",
-        "verbose": "postbackId",
+        "verbose": "Postback Value",
         "control": {
-          "text": true
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Postback",
+          "pk": "id",
+          "columns": [
+            "value"
+          ]
         },
         "type": "varchar(255)",
         "allowNull": true,
@@ -89,7 +103,7 @@
       },
       {
         "name": "createdAt",
-        "verbose": "createdAt",
+        "verbose": "Created At",
         "control": {
           "text": true
         },
@@ -100,12 +114,12 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
         "name": "updatedAt",
-        "verbose": "updatedAt",
+        "verbose": "Updated At",
         "control": {
           "text": true
         },
@@ -116,7 +130,7 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
         }
       }
     ],
