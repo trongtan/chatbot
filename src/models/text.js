@@ -1,7 +1,9 @@
 import { Messages, Postback, QuickReplies } from 'models';
 
 export default (sequelize, DataTypes) => {
-  const Text = sequelize.define('Text', {}, {
+  const Text = sequelize.define('Text', {
+    title: DataTypes.STRING
+  }, {
     classMethods: {
       findAllByPostbackValue: (postback) => {
         return Text.findAll({

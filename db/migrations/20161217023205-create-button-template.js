@@ -7,6 +7,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
+      title: {
+        type: Sequelize.STRING
+      },
       postbackId: {
         type: Sequelize.STRING,
         references: {

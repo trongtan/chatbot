@@ -1,7 +1,9 @@
 import { Postback, Buttons, ButtonTypes, Messages } from 'models';
 
 export default (sequelize, DataTypes) => {
-  const ButtonTemplate = sequelize.define('ButtonTemplate', {}, {
+  const ButtonTemplate = sequelize.define('ButtonTemplate', {
+    title: DataTypes.STRING
+  }, {
     classMethods: {
       findAllByPostbackValue: (postback) => {
         return ButtonTemplate.findAll({

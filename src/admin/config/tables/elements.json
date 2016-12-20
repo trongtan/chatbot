@@ -24,29 +24,6 @@
         }
       },
       {
-        "name": "postbackId",
-        "verbose": "Postback Value",
-        "control": {
-          "select": true
-        },
-        "oneToMany": {
-          "table": "Postback",
-          "pk": "id",
-          "columns": [
-            "value"
-          ]
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
         "name": "title",
         "verbose": "Title",
         "control": {
@@ -69,6 +46,29 @@
           "textarea": true
         },
         "type": "text",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "postbackId",
+        "verbose": "Postback Value",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Postback",
+          "pk": "id",
+          "columns": [
+            "value"
+          ]
+        },
+        "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
