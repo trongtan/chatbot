@@ -1,0 +1,54 @@
+{
+  "TextQuickReplies": {
+    "slug": "TextQuickReplies",
+    "table": {
+      "name": "TextQuickReplies",
+      "pk": "",
+      "verbose": "TextQuickReplies"
+    },
+    "columns": [
+      {
+        "name": "textId",
+        "verbose": "textId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "quickReplyId",
+        "verbose": "quickReplyId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      }
+    ],
+    "mainview": {
+      "show": true
+    },
+    "listview": {
+      "order": {},
+      "page": 25
+    },
+    "editview": {
+      "readonly": false
+    }
+  }
+}
