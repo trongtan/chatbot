@@ -1,7 +1,9 @@
 import { Postback, Articles } from 'models';
 
 export default (sequelize, DataTypes) => {
-  const Disease = sequelize.define('Disease', {}, {
+  const Disease = sequelize.define('Disease', {
+    title: DataTypes.STRING
+  }, {
     classMethods: {
       findAllByPostbackValue: (typePostback, diseasePostback) => {
         return Disease.findAll({

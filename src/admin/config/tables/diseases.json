@@ -24,6 +24,22 @@
         }
       },
       {
+        "name": "title",
+        "verbose": "Title",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
         "name": "typePostbackId",
         "verbose": "Type Postback",
         "control": {

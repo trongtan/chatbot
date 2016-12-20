@@ -7,6 +7,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
+      title: {
+        type: Sequelize.STRING
+      },
       typePostbackId: {
         type: Sequelize.STRING,
         allowNull: false,
