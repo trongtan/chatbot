@@ -1,10 +1,10 @@
 {
-  "Button": {
-    "slug": "Button",
+  "Buttons": {
+    "slug": "Buttons",
     "table": {
-      "name": "Button",
+      "name": "Buttons",
       "pk": "id",
-      "verbose": "Button"
+      "verbose": "Buttons"
     },
     "columns": [
       {
@@ -17,15 +17,15 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
-        "name": "title",
-        "verbose": "Button Title",
+        "name": "buttonTypeId",
+        "verbose": "buttonTypeId",
         "control": {
           "text": true
         },
@@ -40,33 +40,42 @@
         }
       },
       {
-        "name": "typeValue",
-        "verbose": "typeValue",
+        "name": "url",
+        "verbose": "url",
         "control": {
           "text": true
         },
         "type": "varchar(255)",
-        "allowNull": false,
-        "defaultValue": "postback",
+        "allowNull": true,
+        "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
-          "show": false
+          "show": true
+        }
+      },
+      {
+        "name": "title",
+        "verbose": "title",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
         }
       },
       {
         "name": "postbackId",
-        "verbose": "Postback",
+        "verbose": "postbackId",
         "control": {
-          "select": true
-        },
-        "oneToMany": {
-          "table": "Group",
-          "pk": "id",
-          "columns": [
-            "name"
-          ]
+          "text": true
         },
         "type": "varchar(255)",
         "allowNull": true,
@@ -91,7 +100,7 @@
           "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
@@ -107,7 +116,7 @@
           "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       }
     ],
