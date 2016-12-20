@@ -3,17 +3,9 @@ import shortid from 'shortid';
 
 import { DEFAULT_DATE_FORMAT } from 'utils/constants';
 import WatchwordEvent from './watchword';
-import DiseaseSynonymEvent from './disease-synonym';
-import SymptomSynonymEvent from './symptom-synonym';
-import GroupEvent from './group';
-import ButtonEvent from './button';
 
 const childEvents = {
-  'Watchword': new WatchwordEvent(),
-  'Disease': new DiseaseSynonymEvent(),
-  'Symptom': new SymptomSynonymEvent(),
-  'Group': new GroupEvent(),
-  'Button': new (ButtonEvent)
+  'Watchword': new WatchwordEvent()
 };
 
 export const preSave = (req, res, args, next) => {

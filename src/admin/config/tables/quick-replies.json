@@ -43,11 +43,17 @@
         "name": "contentType",
         "verbose": "Content Type",
         "control": {
-          "text": true
+          "select": true,
+          "options": [
+            {
+              "text": "text",
+              "location": "location"
+            }
+          ]
         },
         "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
+        "allowNull": false,
+        "defaultValue": "text",
         "listview": {
           "show": true
         },

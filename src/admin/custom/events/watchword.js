@@ -1,7 +1,7 @@
 import { get } from 'lodash';
 import { updateTimeStamptAndAssignIdValue } from 'utils/admin-utils';
 
-export default class Watchword {
+export default class WatchwordEvent {
   preSave(req, res, args, next) {
     const synonymRecords = get(args, 'data.manyToOne.Synonym.records', []);
 

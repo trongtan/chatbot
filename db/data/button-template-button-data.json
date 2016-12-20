@@ -1,14 +1,10 @@
 [
   {
     "buttonTemplateId": 1,
-    "buttonId": 1,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "buttonId": 1
   },
   {
     "buttonTemplateId": 1,
-    "buttonId": 2,
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
+    "buttonId": 2
   }
 ]
