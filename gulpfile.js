@@ -108,7 +108,7 @@ gulp.task('merge-admin-settings', () => {
       'src/admin/config/tables/button-template-messages.json',
 
 
-      'src/admin/config/tables/disease-articles.json',
+      'src/admin/config/tables/diseases.json',
       'src/admin/config/tables/messages.json',
       'src/admin/config/tables/postback.json',
       'src/admin/config/tables/quick-replies.json',
