@@ -77,6 +77,36 @@
         }
       },
       {
+        "verbose": "Text Quick Replies",
+        "name": "TextQuickReplies",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "TextQuickReplies",
+            "parentPk": "textId",
+            "childPk": "quickReplyId"
+          },
+          "ref": {
+            "table": "QuickReplies",
+            "pk": "id",
+            "columns": [
+              "title"
+            ]
+          }
+        }
+      },
+      {
         "name": "createdAt",
         "verbose": "Created At",
         "control": {
