@@ -297,29 +297,6 @@ describe('ask is parent observer', () => {
   });
 
   context('#buildResponseMessage', () => {
-    it('builds message contains user name', (done) => {
-      const user = {
-        userId: '1',
-        firstName: 'First',
-        lastName: 'Last',
-        gender: 'Male',
-        currentPayload: payloadConstants.READY_TO_CHAT_PAYLOAD
-      };
-
-      User.sync({ force: true }).then(function () {
-        return User.create(user);
-      }).then(() => {
-        askIsParentListener._buildResponseMessage({
-          user: user,
-          payload: payloadConstants.IS_DAD_PAYLOAD
-        }).then((response) => {
-          expect(response.text).to.contain('First');
-          expect(response.text).to.contain('Last');
-          done();
-        });
-      });
-    });
-
     it('cannot build response message if user is null', (done) => {
       User.sync({ force: true }).then(() => {
         askIsParentListener._buildResponseMessage({

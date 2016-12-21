@@ -12,17 +12,6 @@ export default class AskRegionalMenuListener extends ValidateListener {
     this.intentionalPayload = payloadConstants.SEARCH_BY_REGION_PAYLOAD;
   }
 
-  _getTemplateMessage(payload) {
-    logger.info('%s Get Template Message (%s)', this.tag, payload);
-
-    const self = this;
-    return co(function*() {
-      const menuItems = yield RegionalMenuItem.findAll({ raw: true });
-
-      return { elements: self._buildRegionalMenu(menuItems) }
-    });
-  }
-
   _buildRegionalMenu(menuItems) {
     return menuItems.map(item => {
       return {

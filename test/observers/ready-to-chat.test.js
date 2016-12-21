@@ -148,29 +148,6 @@ describe('ready to chat observer', () => {
         services.sendTextWithQuickReplyMessage.restore();
         services.sendTextMessage.restore();
       });
-
-      it('send message with quick reply options if payload is READY_TO_CHAT_PAYLOAD', (done) => {
-
-        readyToChatListener._handle(null, {
-          shouldHandle: true,
-          payload: payloadConstants.READY_TO_CHAT_PAYLOAD,
-          user: user
-        }).then((response) => {
-          expect(response).to.be.equal('Success');
-          done();
-        });
-      });
-
-      it('send message if payload is NOT_READY_TO_CHAT_PAYLOAD', (done) => {
-        readyToChatListener._handle(null, {
-          shouldHandle: true,
-          payload: payloadConstants.NOT_READY_TO_CHAT_PAYLOAD,
-          user: user
-        }).then((response) => {
-          expect(response).to.be.equal('Success');
-          done();
-        });
-      });
     });
   });
 

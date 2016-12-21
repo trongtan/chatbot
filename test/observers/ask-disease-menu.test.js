@@ -16,13 +16,4 @@ describe('ask disease menu observer', () => {
       expect(askDiseaseMenuListener.intentionalPayload).to.be.equal('SEARCH_BY_DISEASE_PAYLOAD');
     });
   });
-
-  context('#getTemplateMessage', () => {
-    it('returns list of diseases', (done) => {
-      askDiseaseMenuListener._getTemplateMessage().then((result) => {
-        expect(result.elements).to.have.lengthOf(10);
-        done();
-      });
-    });
-  });
 });

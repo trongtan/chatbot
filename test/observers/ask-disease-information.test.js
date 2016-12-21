@@ -18,27 +18,6 @@ describe('ask disease information observer', () => {
     });
   });
 
-  context('#getTemplateMessage', () => {
-    it('returns list of diseases', (done) => {
-      askDiseaseInformationListener._getTemplateMessage('GET_INFO_DISEASE_INFORMATION_1').then((result) => {
-        expect(result.elements).to.be.exist;
-        done();
-      });
-    });
-  });
-
-  context('#getDiseaseIdAndTypeId', () => {
-    it('returns diseaseId and typeId', (done) => {
-      sinon.stub(askDiseaseInformationListener, '_getTypeId', () => Promise.resolve('1'));
-
-      askDiseaseInformationListener._getDiseaseIdAndTypeId('GET_INFO_DISEASE_INFORMATION_1').then(result => {
-        expect(result.diseaseId).to.be.equal('1');
-        expect(result.typeId).to.be.equal('1');
-        done();
-      });
-    });
-  });
-
   context('#buildArticlesResponse', () => {
     it('appends button `Xem bai viet` to each article', () => {
       const originArticles = [

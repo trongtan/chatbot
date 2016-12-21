@@ -50,26 +50,6 @@ describe('ask child name observer', () => {
     });
   });
 
-  context('#buildResponseMessage', () => {
-    it('does nothing if user is null', (done) => {
-      askChildNameListener._buildResponseMessage({}).then(null, error => {
-        expect(error).to.include('Cannot build response message');
-        done();
-      });
-    });
-
-    it('builds response message with parental, user name and child name', (done) => {
-      askChildNameListener._buildResponseMessage({
-        user: { parental: 'DAD', firstName: 'First', lastName: 'Last', childName: 'Child' },
-        payload: 'ASK_CHILD_NAME_PAYLOAD'
-      }).then(response => {
-        expect(response.text).to.contain('First');
-        expect(response.text).to.contain('Last');
-        done();
-      });
-    });
-  });
-
   context('#getParentalName', () => {
     it('return "Bố" if parental is DAD', () => {
       expect(askChildNameListener._getParentalName('DAD')).to.be.equal('Bố');

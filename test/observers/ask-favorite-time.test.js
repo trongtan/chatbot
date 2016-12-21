@@ -66,24 +66,4 @@ describe('ask child name observer', () => {
       });
     });
   });
-
-  context('#buildResponseMessage', () => {
-    it('does nothing if user is null', (done) => {
-      askFavoriteTimeListener._buildResponseMessage({}).then(null, error => {
-        expect(error).to.include('Cannot build response message');
-        done();
-      });
-    });
-
-    it('builds response message includes first name and last name', (done) => {
-      askFavoriteTimeListener._buildResponseMessage({
-        user: { firstName: 'First', lastName: 'Last', childName: 'Child' },
-        payload: 'ASK_FAVORITE_TIME_PAYLOAD'
-      }).then(response => {
-        expect(response.text).to.contain('First');
-        expect(response.text).to.contain('Last');
-        done();
-      });
-    });
-  });
 });

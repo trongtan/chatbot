@@ -110,12 +110,5 @@ describe('base listener', () => {
         done();
       });
     });
-
-    it('resolves', (done) => {
-      baseListener._buildResponseMessage(metaData).then(res => {
-        expect(res.text).to.exist;
-        done();
-      });
-    });
   });
 });

@@ -17,16 +17,7 @@ describe('ask regional menu observer', () => {
     });
   });
 
-  context('#getTemplateMessage', () => {
-    it('returns list of regional menu items', (done) => {
-      askRegionalMenuListener._getTemplateMessage().then((result) => {
-        expect(result.elements).to.have.lengthOf(8);
-        done();
-      });
-    });
-  });
-
-  context('#getTemplateMessage', () => {
+  context('#buildRegionalMenu', () => {
     it('appends button `Thong tin ${region}` to each item', () => {
       const originRegionalMenuItems = [
         {

@@ -12,10 +12,6 @@ export default class StartChatListener extends ValidateListener {
     this.intentionalPayload = payloadConstants.CHAT_PAYLOAD;
   }
 
-  _getIntentionalKeywords() {
-    return Keyword.findKeyWordsByGroupName(payloadConstants.CHAT_PAYLOAD);
-  }
-
   _buildResponseMessage(metaData) {
     logger.info('%s Build Response Message (%s)', this.tag, JSON.stringify(metaData));
 

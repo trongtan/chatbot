@@ -12,17 +12,6 @@ export default class AskDiseaseMenuListener extends ValidateListener {
     this.intentionalPayload = payloadConstants.SEARCH_BY_DISEASE_PAYLOAD;
   }
 
-  _getTemplateMessage(payload) {
-    logger.info('%s Get Template Message (%s)', this.tag, payload);
-
-    const self = this;
-    return co(function*() {
-      const diseases = yield Disease.findAll({ raw: true });
-
-      return { elements: self._buildDiseasesMessage(diseases) }
-    });
-  }
-
   _buildDiseasesMessage(diseases) {
     return diseases.map(disease => {
       return {
