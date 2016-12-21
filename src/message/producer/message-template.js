@@ -48,7 +48,7 @@ export default class MessageTemplate extends EventEmitter {
         text: getRandomObjectFromArray(templateMessage.Messages).message
       };
     }
-    if (templateMessage.QuickReplies) {
+    if (templateMessage.QuickReplies.length > 0) {
       builtMessage['quick_replies'] = this._buildQuickReplies(templateMessage.QuickReplies);
     }
 

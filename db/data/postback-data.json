@@ -40,5 +40,23 @@
     "value": "DISEASE_COLDS_PAYLOAD",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 8,
+    "value": "REQUEST_INFORMATION_PAYLOAD-DISEASE_COLDS_PAYLOAD",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 9,
+    "value": "REQUEST_PRECAUTIONS_PAYLOAD-DISEASE_COLDS_PAYLOAD",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 10,
+    "value": "REQUEST_TREATMENTS_PAYLOAD-DISEASE_COLDS_PAYLOAD",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]

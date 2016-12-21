@@ -12,7 +12,7 @@ export default class PostbackMessageHandler extends EventEmitter {
       const payload = messageEvent.postback.payload;
       const senderId = messageEvent.sender.id;
 
-      classifier.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, [payload]);
+      classifier.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payload.split('-'));
     })
   }
 }
