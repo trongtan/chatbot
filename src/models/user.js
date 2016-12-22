@@ -1,7 +1,7 @@
 import Promise from 'promise';
 
 import { payloadConstants } from 'utils/constants';
-import { getUserProfile } from 'utils/service-utils';
+import Utils from 'utils';
 import { logger } from 'logs/winston-logger';
 
 export default (sequelize, DataTypes) => {
@@ -49,7 +49,7 @@ export default (sequelize, DataTypes) => {
           if (user) {
             return Promise.resolve(user);
           } else {
-            return getUserProfile(userId).then(userProfile => {
+            return Utils.getUserProfile(userId).then(userProfile => {
               logger.info('Get user profile', JSON.stringify(userProfile));
               return User._saveProfileForUser(userId, JSON.parse(userProfile));
             }).catch(() => {
