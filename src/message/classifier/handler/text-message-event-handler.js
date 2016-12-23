@@ -17,22 +17,30 @@ export default class TextMessageHandler extends EventEmitter {
       const self = this;
 
       return co(function *() {
-        const payloads = yield self.findPostbackInMessageEvent(messageEvent);
-        const senderId = messageEvent.sender.id;
-
-        logger.info('Handle Text Message: %s %s', JSON.stringify(payloads), classifier);
-        if (payloads.length > 0) {
-          self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
-        }
+        return self.findPostbackAndEmitEvent(messageEvent);
       });
     });
   }
 
-  findPostbackInMessageEvent(messageEvent) {
+  findPostbackAndEmitEvent(messageEvent) {
+    const self = this;
+
+    return co(function *() {
+      const payloads = yield self._findPostbackInMessageEvent(messageEvent);
+      const senderId = messageEvent.sender.id;
+
+      logger.info('Handle Text Message - Payload: %s', JSON.stringify(payloads));
+      if (payloads.length > 0) {
+        self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
+      }
+    });
+  }
+
+  _findPostbackInMessageEvent(messageEvent) {
     const self = this;
     return co(function*() {
-      const payloadFromWatchword = yield self.findPostbackByWatchwordsInMessageEvent(messageEvent);
-      const payloadFromSynonym = yield self.findPostbackBySynonymInMessageEvent(messageEvent);
+      const payloadFromWatchword = yield self._findPostbackByWatchwordsInMessageEvent(messageEvent);
+      const payloadFromSynonym = yield self._findPostbackBySynonymInMessageEvent(messageEvent);
 
       logger.info('[Handle Text Message][Postback Found][Keywords]: By Watchword: (%s), Synonym: (%s)',
         JSON.stringify(payloadFromWatchword),
@@ -42,7 +50,7 @@ export default class TextMessageHandler extends EventEmitter {
     });
   }
 
-  findPostbackByWatchwordsInMessageEvent(messageEvent) {
+  _findPostbackByWatchwordsInMessageEvent(messageEvent) {
     const self = this;
     return co(function*() {
       const watchwords = yield Watchword.findAllWatchword();
@@ -56,7 +64,7 @@ export default class TextMessageHandler extends EventEmitter {
     });
   }
 
-  findPostbackBySynonymInMessageEvent(messageEvent) {
+  _findPostbackBySynonymInMessageEvent(messageEvent) {
     const self = this;
 
     return co(function*() {
