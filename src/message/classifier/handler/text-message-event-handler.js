@@ -57,7 +57,7 @@ export default class TextMessageHandler extends EventEmitter {
 
       logger.info('[Handle Text Message][Find Postback By Watchwords In Message Event][Keywords]: %s', JSON.stringify(watchwords));
 
-      const requestedWatchwords = self.filterKeywordsInMessageEvent(messageEvent, watchwords);
+      const requestedWatchwords = self._filterKeywordsInMessageEvent(messageEvent, watchwords);
       return uniq(requestedWatchwords.map(requestedWatchword => {
         return requestedWatchword.Postback.value;
       }));
@@ -71,7 +71,7 @@ export default class TextMessageHandler extends EventEmitter {
       const synonyms = yield Synonym.findAllWatchwordSynonyms();
 
       logger.info('[Handle Text Message][Find Postback By Synonyms In Message Event][Keywords]: %s', JSON.stringify(synonyms));
-      const requestedKeywordSynonyms = self.filterKeywordsInMessageEvent(messageEvent, synonyms);
+      const requestedKeywordSynonyms = self._filterKeywordsInMessageEvent(messageEvent, synonyms);
 
       return uniq(requestedKeywordSynonyms.map(requestedKeywordSynonym => {
         return requestedKeywordSynonym.Watchwords.Postback.value;
@@ -79,7 +79,7 @@ export default class TextMessageHandler extends EventEmitter {
     });
   }
 
-  filterKeywordsInMessageEvent(messageEvent, keywords) {
+  _filterKeywordsInMessageEvent(messageEvent, keywords) {
     const messageText = messageEvent.message.text;
 
     const requestedKeyword = keywords.filter(keyword => {

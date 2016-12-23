@@ -21,8 +21,8 @@ describe('TextMessageHandler', () => {
     messageHandler = new TextMessageHandler();
   });
 
-  context('#HANDLE_MESSAGE_EVENT', () => {
-    it('calls findPostbackAndEmitEvent func', () => {
+  context('constructor', () => {
+    it('handles message on HANDLE_MESSAGE_EVENT emitted', () => {
       const spy = sinon.spy(messageHandler, 'findPostbackAndEmitEvent');
       messageHandler.emit('HANDLE_MESSAGE_EVENT', null, validMessageEvent);
       expect(spy.calledOnce).to.be.true;

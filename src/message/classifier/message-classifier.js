@@ -24,13 +24,10 @@ export default class MessageClassifier extends EventEmitter {
 
       if (isTextMessasge(messageEvent)) {
         this.textMessageHandler.emit(HANDLE_MESSAGE_EVENT, this, messageEvent);
-
       } else if (isQuickReplyMessage(messageEvent)) {
         this.quickReplyMessageHandler.emit(HANDLE_MESSAGE_EVENT, messageEvent);
-
       } if (isAttachmentMessage(messageEvent)) {
         this.attachmentMessageHandler.emit(HANDLE_MESSAGE_EVENT, messageEvent);
-
       } if (isPostbackmessage(messageEvent)) {
         this.postbackMessageHandler.emit(HANDLE_MESSAGE_EVENT, this, messageEvent);
       }
