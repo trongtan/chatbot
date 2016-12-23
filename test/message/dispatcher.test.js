@@ -20,7 +20,7 @@ describe('Dispatcher', () => {
     };
 
     it('emits to message classifier ', () => {
-      var spy = sinon.spy(messageClassifier, 'emit');
+      const spy = sinon.spy(messageClassifier, 'emit');
       dispatcher.emit('RECEIVED_MESSAGE_EVENT', validMessageEvent);
       expect(spy.calledOnce).to.be.true;
       messageClassifier.emit.restore();
@@ -28,10 +28,10 @@ describe('Dispatcher', () => {
   });
 
   context('#RECEIVED_MESSAGE_EVENT with invalid event', () => {
-    const invalidMessageEvent = { };
+    const invalidMessageEvent = {};
 
     it('emits to message classifier ', () => {
-      var spy = sinon.spy(messageClassifier, 'emit');
+      const spy = sinon.spy(messageClassifier, 'emit');
       dispatcher.emit('RECEIVED_MESSAGE_EVENT', invalidMessageEvent);
       sinon.assert.notCalled(spy);
       messageClassifier.emit.restore();
@@ -40,7 +40,7 @@ describe('Dispatcher', () => {
 
   context('#FINISHED_HANDLE_MESSAGE_EVENT', () => {
     it('emits to message producer ', () => {
-      var spy = sinon.spy(messageProducer, 'emit');
+      const spy = sinon.spy(messageProducer, 'emit');
       messageClassifier.emit('FINISHED_HANDLE_MESSAGE_EVENT');
       expect(spy.calledOnce).to.be.true;
       messageProducer.emit.restore();
@@ -49,7 +49,7 @@ describe('Dispatcher', () => {
 
   context('#FINISHED_BUILD_MESSAGE', () => {
     it('emits to message producer ', () => {
-      var spy = sinon.spy(messageShipper, 'emit');
+      const spy = sinon.spy(messageShipper, 'emit');
       messageProducer.emit('FINISHED_BUILD_MESSAGE');
       expect(spy.calledOnce).to.be.true;
       messageShipper.emit.restore();
