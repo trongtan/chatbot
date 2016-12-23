@@ -18,7 +18,7 @@ export default class MessageProducer extends EventEmitter {
   _listenEvent() {
     this.on(BUILD_MESSAGE_EVENT, (senderId, payloads) => {
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT]: %s', JSON.stringify(payloads));
-      this.buildMessageFromPayloads(senderId, payloads);
+      this._buildMessageFromPayloads(senderId, payloads);
     });
 
     this.messageTemplate.on(FINISHED_BUILD_MESSAGE, message => {
@@ -27,7 +27,7 @@ export default class MessageProducer extends EventEmitter {
     });
   }
 
-  buildMessageFromPayloads(senderId, payloads) {
+  _buildMessageFromPayloads(senderId, payloads) {
     const self = this;
     return co(function *() {
       //FIXME: We temporary handle first payload here.
@@ -38,16 +38,19 @@ export default class MessageProducer extends EventEmitter {
       const elementMessages = yield Elements.findAllByPostbackValue(firstPayload);
       const buttonTemplateMessages = yield ButtonTemplates.findAllByPostbackValue(firstPayload);
       const diseaseMessages = yield Diseases.findAllByPostbackValue(firstPayload, secondPayload);
-      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT]: %s', JSON.stringify(diseaseMessages));
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][templateMessages]: %s', JSON.stringify(templateMessages));
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][elementMessages]: %s', JSON.stringify(elementMessages));
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][buttonTemplateMessages]: %s', JSON.stringify(buttonTemplateMessages));
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][diseaseMessages]: %s', JSON.stringify(diseaseMessages));
 
       if (templateMessages.length > 0) {
-        self.messageTemplate.emit(BUILD_TEXT_MESSAGE, senderId, templateMessages);
+        return self.messageTemplate.emit(BUILD_TEXT_MESSAGE, senderId, templateMessages);
       } else if (elementMessages.length > 0) {
-        self.messageTemplate.emit(BUILD_GENERIC_MESSAGE, senderId, elementMessages);
+        return self.messageTemplate.emit(BUILD_GENERIC_MESSAGE, senderId, elementMessages);
       } else if (buttonTemplateMessages.length > 0) {
-        self.messageTemplate.emit(BUILD_BUTTON_TEMPLATE_MESSAGE, senderId, buttonTemplateMessages);
+        return self.messageTemplate.emit(BUILD_BUTTON_TEMPLATE_MESSAGE, senderId, buttonTemplateMessages);
       } else if (diseaseMessages.length > 0) {
-        self.messageTemplate.emit(BUILD_DISEASE_TEMPLATE_MESSAGE, senderId, diseaseMessages);
+        return self.messageTemplate.emit(BUILD_DISEASE_TEMPLATE_MESSAGE, senderId, diseaseMessages);
       }
     });
   }
