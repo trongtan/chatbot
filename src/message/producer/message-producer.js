@@ -38,6 +38,7 @@ export default class MessageProducer extends EventEmitter {
       const elementMessages = yield Elements.findAllByPostbackValue(firstPayload);
       const buttonTemplateMessages = yield ButtonTemplates.findAllByPostbackValue(firstPayload);
       const diseaseMessages = yield Diseases.findAllByPostbackValue(firstPayload, secondPayload);
+
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][templateMessages]: %s', JSON.stringify(templateMessages));
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][elementMessages]: %s', JSON.stringify(elementMessages));
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][buttonTemplateMessages]: %s', JSON.stringify(buttonTemplateMessages));

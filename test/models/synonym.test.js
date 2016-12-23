@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 
 import { Synonym } from 'models';
+
 describe('Synonym', () => {
   context('#findAllWatchword', () => {
     it('returns all synonyms', (done) => {
