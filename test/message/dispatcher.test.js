@@ -6,17 +6,22 @@ import Dispatcher from 'message/dispatcher';
 import { MessageProducerFactory } from 'message/producer';
 import { MessageClassifierFactory } from 'message/classifier';
 import { MessageShipperFactory } from 'message/shipper';
+import MessageTracker from 'message/tracker/message-tracker';
 
 describe('Dispatcher', () => {
   const messageClassifier = new MessageClassifierFactory().build();
   const messageProducer = new MessageProducerFactory().build();
   const messageShipper = new MessageShipperFactory().build();
-  const dispatcher = new Dispatcher(messageClassifier, messageProducer, messageShipper);
+  const messageTracker = new MessageTracker();
+  const dispatcher = new Dispatcher(messageClassifier, messageProducer, messageShipper, messageTracker);
 
   context('#RECEIVED_MESSAGE_EVENT with valid event', () => {
     const validMessageEvent = {
       sender: {
         id: '1'
+      },
+      message: {
+        text: 'text'
       }
     };
 
@@ -49,11 +54,27 @@ describe('Dispatcher', () => {
   });
 
   context('#FINISHED_BUILD_MESSAGE', () => {
-    it('emits to message producer ', () => {
+    const validMessageEvent = {
+      recipient: {
+        id: '1'
+      },
+      message: {
+        text: 'text'
+      }
+    };
+
+    it('emits to message shipper ', () => {
       const spy = sinon.spy(messageShipper, 'emit');
-      messageProducer.emit('FINISHED_BUILD_MESSAGE');
+      messageProducer.emit('FINISHED_BUILD_MESSAGE', validMessageEvent);
       expect(spy.calledOnce).to.be.true;
       messageShipper.emit.restore();
+    });
+
+    it('emits to message tracker ', () => {
+      const spy = sinon.spy(messageTracker, 'emit');
+      messageProducer.emit('FINISHED_BUILD_MESSAGE', validMessageEvent);
+      expect(spy.calledOnce).to.be.true;
+      messageTracker.emit.restore();
     });
   });
 

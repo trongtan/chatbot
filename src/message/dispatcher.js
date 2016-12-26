@@ -1,25 +1,33 @@
 import co from 'co';
 import EventEmitter from 'events';
 
-import { isValidSender, isEchoMessage } from 'utils/message-utils';
-import { FINISHED_HANDLE_MESSAGE_EVENT,
+import { isValidSender, isEchoMessage, isDeliveryMessage } from 'utils/message-utils';
+import {
+  FINISHED_HANDLE_MESSAGE_EVENT,
   CLASSIFY_MESSAGE_EVENT,
   RECEIVED_MESSAGE_EVENT,
   BUILD_MESSAGE_EVENT,
   FINISHED_BUILD_MESSAGE,
   SHIPPING_MESSAGE_EVENT,
-  FINISHED_SHIPPING_MESSAGE_EVENT } from 'utils/event-constants';
+  FINISHED_SHIPPING_MESSAGE_EVENT
+} from 'utils/event-constants';
+
+import {
+  TRACK_INCOMING_MESSAGE_EVENT,
+  TRACK_OUT_GOING_MESSAGE_EVENT
+} from 'utils/event-constants';
 
 import { User } from 'models';
 
 import { logger } from 'logs/winston-logger';
 
 export default class Dispatcher extends EventEmitter {
-  constructor(messageClassifier, messageProducer, messageShipper) {
+  constructor(messageClassifier, messageProducer, messageShipper, messageTracker) {
     super();
     this.messageClassifier = messageClassifier;
     this.messageProducer = messageProducer;
     this.messageShipper = messageShipper;
+    this.messageTracker = messageTracker;
 
     this._listenIncomingMessageEvent();
     this._listenMessageProducerEvent();
@@ -30,8 +38,9 @@ export default class Dispatcher extends EventEmitter {
     this.on(RECEIVED_MESSAGE_EVENT, (messageEvent) => {
       logger.info('Dispatcher: RECEIVED_MESSAGE_EVENT: (%s)', JSON.stringify(messageEvent));
 
-      if (isValidSender(messageEvent) && !isEchoMessage(messageEvent)) {
+      if (isValidSender(messageEvent) && !isEchoMessage(messageEvent) && !isDeliveryMessage(messageEvent)) {
         this.messageClassifier.emit(CLASSIFY_MESSAGE_EVENT, messageEvent);
+        this.messageTracker.emit(TRACK_INCOMING_MESSAGE_EVENT, messageEvent);
       }
     });
   }
@@ -46,10 +55,13 @@ export default class Dispatcher extends EventEmitter {
   _listenMessageShipperEvent() {
     this.messageProducer.on(FINISHED_BUILD_MESSAGE, messageStructure => {
       logger.info('Dispatcher: FINISHED_BUILD_MESSAGE: (%s)', JSON.stringify(messageStructure));
+
       this.messageShipper.emit(SHIPPING_MESSAGE_EVENT, messageStructure);
+      this.messageTracker.emit(TRACK_OUT_GOING_MESSAGE_EVENT, messageStructure);
     });
 
     this.messageShipper.on(FINISHED_SHIPPING_MESSAGE_EVENT, messageStructure => {
+
       logger.info('Dispatcher: FINISHED_SHIPPING_MESSAGE_EVENT: (%s)', JSON.stringify(messageStructure));
       logger.info('Dispatcher: FINISHED_SHIPPING_MESSAGE_EVENT:  ------------------------');
     });
