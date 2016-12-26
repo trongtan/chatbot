@@ -204,6 +204,9 @@ export default class MessageTemplate extends EventEmitter {
             type: 'web_url',
             url: article.itemURL,
             title: 'Xem bài viết'
+          },
+          {
+            type: 'element_share'
           }
         ]
       })
