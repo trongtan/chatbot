@@ -60,7 +60,7 @@ export default class Dispatcher extends EventEmitter {
     return co(function *() {
       const user = yield self._bindSenderToCurrentUser(senderId);
       if (user) {
-        self.messageProducer.emit(BUILD_MESSAGE_EVENT, user, payloads);
+        return self.messageProducer.emit(BUILD_MESSAGE_EVENT, user, payloads);
       }
     });
   }

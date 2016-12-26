@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
+import { beforeEach, afterEach } from 'mocha';
 
 import Dispatcher from 'message/dispatcher';
 import { MessageProducerFactory } from 'message/producer';
@@ -40,10 +41,10 @@ describe('Dispatcher', () => {
 
   context('#FINISHED_HANDLE_MESSAGE_EVENT', () => {
     it('emits to message producer ', () => {
-      const spy = sinon.spy(messageProducer, 'emit');
+      const spy = sinon.spy(dispatcher, '_emitBuildMessageEvent');
       messageClassifier.emit('FINISHED_HANDLE_MESSAGE_EVENT');
       expect(spy.calledOnce).to.be.true;
-      messageProducer.emit.restore();
+      dispatcher._emitBuildMessageEvent.restore();
     });
   });
 
@@ -53,6 +54,45 @@ describe('Dispatcher', () => {
       messageProducer.emit('FINISHED_BUILD_MESSAGE');
       expect(spy.calledOnce).to.be.true;
       messageShipper.emit.restore();
+    });
+  });
+
+  context('#emitBuildMessageEvent', () => {
+    let spy;
+
+    beforeEach(() => {
+      spy = sinon.spy(messageProducer, 'emit');
+    });
+
+    afterEach(() => {
+      messageProducer.emit.restore();
+      dispatcher._bindSenderToCurrentUser.restore();
+    });
+
+    context('senderId is valid on facebook', () => {
+      beforeEach(() => {
+        sinon.stub(dispatcher, '_bindSenderToCurrentUser', () => Promise.resolve({ userId: 'userId' }));
+      });
+
+      it('emits to message producer ', (done) => {
+        dispatcher._emitBuildMessageEvent('userId', 'GREETING_PAYLOAD').then(() => {
+          expect(spy.calledOnce).to.be.true;
+          done();
+        });
+      });
+    });
+
+    context('senderId is not valid on facebook', () => {
+      beforeEach(() => {
+        sinon.stub(dispatcher, '_bindSenderToCurrentUser', () => Promise.resolve(null));
+      });
+
+      it('does not emit to message producer ', (done) => {
+        dispatcher._emitBuildMessageEvent('userId', 'GREETING_PAYLOAD').then(() => {
+          expect(spy.calledOnce).to.be.false;
+          done();
+        });
+      });
     });
   });
 });
