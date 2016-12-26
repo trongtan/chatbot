@@ -26,5 +26,12 @@
     "message": "Chức năng này đang được phát triển, bạn qua lại sau nhé.",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 5,
+    "title": "disease message 1",
+    "message": "Thông tin mà bạn đang tìm kiếm đây {{userName}}",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]
