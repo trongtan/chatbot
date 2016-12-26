@@ -40,6 +40,22 @@
         }
       },
       {
+        "name": "description",
+        "verbose": "Description",
+        "control": {
+          "textarea": true
+        },
+        "type": "text",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
         "name": "createdAt",
         "verbose": "Created At",
         "control": {

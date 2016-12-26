@@ -2,60 +2,70 @@
   {
     "id": 1,
     "value": "GREETING_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 2,
     "value": "MENU_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 3,
     "value": "SEARCH_BY_DISEASE_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 4,
     "value": "SEARCH_BY_REGION_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 5,
     "value": "UNSUPPORTED_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 6,
     "value": "REQUEST_INFORMATION_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 7,
     "value": "DISEASE_COLDS_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 8,
     "value": "REQUEST_INFORMATION_PAYLOAD-DISEASE_COLDS_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 9,
     "value": "REQUEST_PRECAUTIONS_PAYLOAD-DISEASE_COLDS_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 10,
     "value": "REQUEST_TREATMENTS_PAYLOAD-DISEASE_COLDS_PAYLOAD",
+    "description": "",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   }
