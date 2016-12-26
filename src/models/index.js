@@ -20,6 +20,7 @@ import ButtonTemplateMessageDefinition from './button-template-message';
 import ArticleDefinition from './article';
 import DiseaseDefinition from './disease';
 import DiseaseArticleDefinition from './disease-article';
+import DiseaseMessageDefinition from './disease-messages';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -42,6 +43,7 @@ const ButtonTemplateMessages = sequelize.import('ButtonTemplateMessage', ButtonT
 const Articles = sequelize.import('Article', ArticleDefinition);
 const Diseases = sequelize.import('Disease', DiseaseDefinition);
 const DiseaseArticles = sequelize.import('DiseaseArticle', DiseaseArticleDefinition);
+const DiseaseMessages = sequelize.import('DiseaseMessage', DiseaseMessageDefinition);
 
 Postback.hasMany(Watchword, {foreignKey: 'postbackId'});
 Watchword.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
@@ -99,6 +101,10 @@ Diseases.belongsTo(Postback, {as: 'TypePostback', foreignKey: 'typePostbackId'})
 
 //Disease 1 - 1 Postback (Disease)
 Diseases.belongsTo(Postback, {as: 'DiseasePostback', foreignKey: 'diseasePostbackId'});
+
+//Disease n - m Messages
+Diseases.belongsToMany(Messages, {through: {model: DiseaseMessages}, foreignKey: 'diseaseId'});
+Messages.belongsToMany(Diseases, {through: {model: DiseaseMessages}, foreignKey: 'messageId'});
 
 export {
   User,

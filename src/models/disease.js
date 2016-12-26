@@ -1,4 +1,4 @@
-import { Postback, Articles } from 'models';
+import { Postback, Articles, Messages } from 'models';
 
 export default (sequelize, DataTypes) => {
   const Disease = sequelize.define('Disease', {
@@ -21,6 +21,10 @@ export default (sequelize, DataTypes) => {
               where: {
                 value: diseasePostback
               }
+            },
+            {
+              model: Messages,
+              as: 'Messages'
             },
             {
               model: Articles,
