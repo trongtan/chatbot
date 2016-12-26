@@ -1,6 +1,4 @@
 import EventEmitter from 'events';
-import Promise from 'promise';
-import co from 'co';
 
 import { User } from 'models';
 import {
@@ -18,28 +16,30 @@ import { logger } from 'logs/winston-logger';
 export default class MessageTemplate extends EventEmitter {
   constructor() {
     super();
-    this.on(BUILD_TEXT_MESSAGE, (senderId, templateMessages) => {
-      this.buildTextMessage(senderId, templateMessages)
+    this.on(BUILD_TEXT_MESSAGE, (user, templateMessages) => {
+      this.buildTextMessage(user, templateMessages)
     });
 
-    this.on(BUILD_GENERIC_MESSAGE, (senderId, templateMessages) => {
-      this.buildGenericTemplateMessage(senderId, templateMessages)
+    this.on(BUILD_GENERIC_MESSAGE, (user, templateMessages) => {
+      this.buildGenericTemplateMessage(user, templateMessages)
     });
 
-    this.on(BUILD_BUTTON_TEMPLATE_MESSAGE, (senderId, templateMessages) => {
-      this.buildButtonTemplateMessage(senderId, templateMessages)
+    this.on(BUILD_BUTTON_TEMPLATE_MESSAGE, (user, templateMessages) => {
+      this.buildButtonTemplateMessage(user, templateMessages)
     });
 
-    this.on(BUILD_DISEASE_TEMPLATE_MESSAGE, (senderId, diseaseMessages) => {
-      this.buildDiseaseTemplateMessage(senderId, diseaseMessages)
+    this.on(BUILD_DISEASE_TEMPLATE_MESSAGE, (user, diseaseMessages) => {
+      this.buildTextMessage(user, diseaseMessages)
+      this.buildDiseaseTemplateMessage(user, diseaseMessages)
+
     });
 
-    this.on(ASSIGN_SENDER_ID_TO_MESSAGE, (senderId, builtMessage) => {
-      this._assignSenderIdAndPlaceHolderMessage(senderId, builtMessage);
+    this.on(ASSIGN_SENDER_ID_TO_MESSAGE, (user, builtMessage) => {
+      this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
     });
   }
 
-  buildTextMessage(senderId, templateMessages) {
+  buildTextMessage(user, templateMessages) {
     const templateMessage = templateMessages[0];
     let builtMessage = {};
 
@@ -48,14 +48,14 @@ export default class MessageTemplate extends EventEmitter {
         text: getRandomObjectFromArray(templateMessage.Messages).message
       };
     }
-    if (templateMessage.QuickReplies.length > 0) {
+    if (templateMessage.QuickReplies && templateMessage.QuickReplies.length > 0) {
       builtMessage['quick_replies'] = this._buildQuickReplies(templateMessage.QuickReplies);
     }
 
-    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, senderId, builtMessage);
+    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage);
   }
 
-  buildGenericTemplateMessage(senderId, elements) {
+  buildGenericTemplateMessage(user, elements) {
     const builtMessage = {
       attachment: {
         type: 'template',
@@ -66,10 +66,10 @@ export default class MessageTemplate extends EventEmitter {
       }
     };
 
-    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, senderId, builtMessage);
+    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage);
   }
 
-  buildButtonTemplateMessage(senderId, buttonTemplates) {
+  buildButtonTemplateMessage(user, buttonTemplates) {
     const buttonTemplate = buttonTemplates[0];
 
     const builtMessage = {
@@ -83,10 +83,10 @@ export default class MessageTemplate extends EventEmitter {
       }
     };
 
-    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, senderId, builtMessage);
+    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage);
   }
 
-  buildDiseaseTemplateMessage(senderId, diseaseMessages) {
+  buildDiseaseTemplateMessage(user, diseaseMessages) {
     const diseaseMessage = diseaseMessages[0];
 
     const builtMessage = {
@@ -99,46 +99,43 @@ export default class MessageTemplate extends EventEmitter {
       }
     };
     console.log(JSON.stringify(builtMessage));
-    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, senderId, builtMessage);
+    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage);
   }
 
-  _assignSenderIdAndPlaceHolderMessage(senderId, builtMessage) {
-    const self = this;
-    return co(function *() {
-      //FIXME: Duplicate logic here
-      let message = builtMessage;
-      let text = '';
-      const isTextMessage = message.text;
-      const isButtonTemplateMessage = message.attachment && message.attachment.payload && message.attachment.payload.text;
+  _assignSenderIdAndPlaceHolderMessage(user, builtMessage) {
+    //FIXME: Duplicate logic here
+    let message = builtMessage;
+    let text = '';
+    const isTextMessage = message.text;
+    const isButtonTemplateMessage = message.attachment && message.attachment.payload && message.attachment.payload.text;
 
-      if (isTextMessage) {
-        text = message.text;
-      } else if (isButtonTemplateMessage) {
-        text = message.attachment.payload.text;
-      }
+    if (isTextMessage) {
+      text = message.text;
+    } else if (isButtonTemplateMessage) {
+      text = message.attachment.payload.text;
+    }
 
-      text = yield self._bindPlaceHolderToTemplateMessage(text, senderId).catch(error => {
-        logger.error('[MessageTemplate][Bind Place Holder To Template Message][Error] (%s)',
-          JSON.stringify(error));
-      });
+    text = this._bindPlaceHolderToTemplateMessage(text, user);
 
-      if (isTextMessage) {
-        message.text = text;
-      } else if (isButtonTemplateMessage) {
-        message.attachment.payload.text = text;
-      }
+    logger.info('[MessageTemplate][Bind Place Holder To Template Message][Bound Message] (%s)', text);
 
-      const messages = {
-        recipient: {
-          id: senderId
-        },
-        message: message
-      };
+    if (isTextMessage) {
+      message.text = text;
+    } else if (isButtonTemplateMessage) {
+      message.attachment.payload.text = text;
+    }
 
-      logger.error('[Message Template][Bind Place Holder To Template Message] (%s)', messages);
+    const messages = {
+      recipient: {
+        id: user.userId
+      },
+      message: message
+    };
 
-      return self.emit(FINISHED_BUILD_MESSAGE, messages)
-    });
+    logger.error('[Message Template][Bind Place Holder To Template Message] (%s)', messages);
+
+    return this.emit(FINISHED_BUILD_MESSAGE, messages)
+
   }
 
   _buildQuickReplies(quickRelies) {
@@ -232,26 +229,18 @@ export default class MessageTemplate extends EventEmitter {
     return builtButtons;
   }
 
-  _bindPlaceHolderToTemplateMessage(templateMessage, senderId) {
+  _bindPlaceHolderToTemplateMessage(templateMessage, user) {
     logger.info('[MessageTemplate][Bind Place Holder To Template Message] (%s), (%s)',
       JSON.stringify(templateMessage),
-      JSON.stringify(senderId));
+      JSON.stringify(user));
 
-    if (!templateMessage) return Promise.resolve('');
-    if (!senderId) return Promise.reject('UserId must be present');
+    if (!templateMessage) return ('');
 
-    return co(function *() {
-      const user = yield User.findOrCreateById(senderId);
-      if (user) {
-        const {parental, firstName, lastName, childName} = user;
-        const parentalStatus = User.getParentalName(parental);
+    const { parental, firstName, lastName, childName } = user;
+    const parentalStatus = User.getParentalName(parental);
 
-        return templateMessage.replace(/\{\{parentalStatus}}/g, parentalStatus)
-          .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
-          .replace(/\{\{childName}}/g, `${childName}`)
-      } else {
-        return templateMessage;
-      }
-    });
+    return templateMessage.replace(/\{\{parentalStatus}}/g, parentalStatus)
+      .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
+      .replace(/\{\{childName}}/g, `${childName}`);
   }
 }
