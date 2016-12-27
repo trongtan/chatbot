@@ -1,7 +1,7 @@
 import co from 'co';
 import EventEmitter from 'events';
 
-import { isValidSender, isEchoMessage, isDeliveryMessage } from 'utils/message-utils';
+import { isValidSender, isEchoMessage, isDeliveryMessage, isReadMessage } from 'utils/message-utils';
 import {
   FINISHED_HANDLE_MESSAGE_EVENT,
   CLASSIFY_MESSAGE_EVENT,
@@ -38,7 +38,7 @@ export default class Dispatcher extends EventEmitter {
     this.on(RECEIVED_MESSAGE_EVENT, (messageEvent) => {
       logger.info('Dispatcher: RECEIVED_MESSAGE_EVENT: (%s)', JSON.stringify(messageEvent));
 
-      if (isValidSender(messageEvent) && !isEchoMessage(messageEvent) && !isDeliveryMessage(messageEvent)) {
+      if (isValidSender(messageEvent) && !isEchoMessage(messageEvent) && !isDeliveryMessage(messageEvent) && !isReadMessage(messageEvent)) {
         this.messageClassifier.emit(CLASSIFY_MESSAGE_EVENT, messageEvent);
         this.messageTracker.emit(TRACK_INCOMING_MESSAGE_EVENT, messageEvent);
       }

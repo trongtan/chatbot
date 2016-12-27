@@ -40,3 +40,8 @@ export const isDeliveryMessage = (messageEvent) => {
   return messageEvent
     && messageEvent.delivery;
 };
+
+export const isReadMessage = (messageEvent) => {
+  return messageEvent
+    && messageEvent.read;
+};
