@@ -1,12 +1,34 @@
+import { Postback, Articles } from 'models';
+
 export default (sequelize, DataTypes) => {
   const Disease = sequelize.define('Disease', {
-    name: DataTypes.STRING,
-    akaName: DataTypes.STRING,
-    image: DataTypes.STRING,
-    subtitle: DataTypes.STRING
+    title: DataTypes.STRING
   }, {
-    freezeTableName: true
+    classMethods: {
+      findAllByPostbackValue: (typePostback, diseasePostback) => {
+        return Disease.findAll({
+          include: [
+            {
+              model: Postback,
+              as: 'TypePostback',
+              where: {
+                value: typePostback
+              }
+            },
+            {
+              model: Postback,
+              as: 'DiseasePostback',
+              where: {
+                value: diseasePostback
+              }
+            },
+            {
+              model: Articles,
+              as: "Articles"
+            }]
+        });
+      }
+    }
   });
-
   return Disease;
 };

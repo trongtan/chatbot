@@ -1,0 +1,169 @@
+{
+  "Texts": {
+    "slug": "Texts",
+    "table": {
+      "name": "Texts",
+      "pk": "id",
+      "verbose": "Texts"
+    },
+    "columns": [
+      {
+        "name": "id",
+        "verbose": "id",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "title",
+        "verbose": "Title",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "postbackId",
+        "verbose": "Postback Value",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Postback",
+          "pk": "id",
+          "columns": [
+            "value"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "verbose": "Text Messages",
+        "name": "TextMessages",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "TextMessages",
+            "parentPk": "textId",
+            "childPk": "messageId"
+          },
+          "ref": {
+            "table": "Messages",
+            "pk": "id",
+            "columns": [
+              "message"
+            ]
+          }
+        }
+      },
+      {
+        "verbose": "Text Quick Replies",
+        "name": "TextQuickReplies",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "TextQuickReplies",
+            "parentPk": "textId",
+            "childPk": "quickReplyId"
+          },
+          "ref": {
+            "table": "QuickReplies",
+            "pk": "id",
+            "columns": [
+              "title"
+            ]
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "verbose": "Created At",
+        "control": {
+          "text": true
+        },
+        "type": "timestamp",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "updatedAt",
+        "verbose": "Updated At",
+        "control": {
+          "text": true
+        },
+        "type": "timestamp",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": false
+        }
+      }
+    ],
+    "mainview": {
+      "show": true
+    },
+    "listview": {
+      "order": {},
+      "page": 25
+    },
+    "editview": {
+      "readonly": false
+    }
+  }
+}

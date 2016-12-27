@@ -1,10 +1,12 @@
 import Express from 'express';
 
-import RootObserver from 'observers';
+import { DispatcherFactory } from 'message';
+import { RECEIVED_MESSAGE_EVENT } from 'utils/event-constants';
+
 import { logger } from 'logs/winston-logger';
 
 const webHookApp = new Express();
-const rootObserver = new RootObserver();
+const dispatcher = new DispatcherFactory().build();
 
 webHookApp.get('/', (req, res) => {
   res.send('Hello from Life Pedia - Chatbot');
@@ -27,7 +29,7 @@ webHookApp.post('/webhook', (req, res) => {
   if (data.object == 'page') {
     data.entry.forEach(pageEntry => {
       pageEntry.messaging.forEach(messagingEvent => {
-        rootObserver.perform(messagingEvent);
+        dispatcher.emit(RECEIVED_MESSAGE_EVENT, messagingEvent);
       });
     });
 

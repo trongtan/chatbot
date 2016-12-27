@@ -1,10 +1,10 @@
 {
-  "Button": {
-    "slug": "Button",
+  "Buttons": {
+    "slug": "Buttons",
     "table": {
-      "name": "Button",
+      "name": "Buttons",
       "pk": "id",
-      "verbose": "Button"
+      "verbose": "Buttons"
     },
     "columns": [
       {
@@ -25,7 +25,7 @@
       },
       {
         "name": "title",
-        "verbose": "Button Title",
+        "verbose": "Title",
         "control": {
           "text": true
         },
@@ -40,32 +40,55 @@
         }
       },
       {
-        "name": "typeValue",
-        "verbose": "typeValue",
+        "name": "buttonTypeId",
+        "verbose": "buttonTypeId",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "ButtonTypes",
+          "pk": "id",
+          "columns": [
+            "value"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "url",
+        "verbose": "URL",
         "control": {
           "text": true
         },
         "type": "varchar(255)",
         "allowNull": true,
-        "defaultValue": "postback",
+        "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
         "name": "postbackId",
-        "verbose": "Postback",
+        "verbose": "Postback Value",
         "control": {
           "select": true
         },
         "oneToMany": {
-          "table": "Group",
+          "table": "Postback",
           "pk": "id",
           "columns": [
-            "name"
+            "value"
           ]
         },
         "type": "varchar(255)",
@@ -80,7 +103,7 @@
       },
       {
         "name": "createdAt",
-        "verbose": "createdAt",
+        "verbose": "Created At",
         "control": {
           "text": true
         },
@@ -96,7 +119,7 @@
       },
       {
         "name": "updatedAt",
-        "verbose": "updatedAt",
+        "verbose": "Updated At",
         "control": {
           "text": true
         },

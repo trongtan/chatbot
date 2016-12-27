@@ -80,41 +80,41 @@ gulp.task('es6', () => {
   return _es6Task(['src/**/*.js', '!src/admin/custom/static/**/*.js'], 'dist');
 });
 
+gulp.task('copy-express-admin-config', () => {
+  return _copyTask('src/admin/**/*.json', 'dist/admin/');
+});
+
 gulp.task('import-db', ['build-env'], () => {
   const dbUrl = require('./dist/env.json').DB_URL;
   return _seedDBTask(dbUrl);
 });
 
 gulp.task('build', ['clean'], () => {
-  gulp.start('es6', 'import-db', 'build-admin').on('error', gulpUtil.log);
+  gulp.start('es6', 'copy-message-structure', 'import-db', 'build-admin').on('error', gulpUtil.log);
 });
 
-gulp.task('copy-express-admin-config', () => {
-  return _copyTask('src/admin/**/*.json', 'dist/admin/');
+gulp.task('copy-message-structure', () => {
+  return _copyTask('src/message/producer/**/*.json', 'dist/message/producer/');
 });
 
 gulp.task('merge-admin-settings', () => {
   return _mergeExpressAdminSettingsTask(
-    [ 'src/admin/config/tables/type.json',
-      'src/admin/config/tables/disease.json',
-      'src/admin/config/tables/symptom.json',
-      'src/admin/config/tables/link.json',
-      'src/admin/config/tables/regional-menu-item.json',
-      'src/admin/config/tables/user.json',
-      'src/admin/config/tables/keyword.json',
-      'src/admin/config/tables/disease-symptom.json',
-      'src/admin/config/tables/type-disease.json',
-      'src/admin/config/tables/group-message.json',
-      'src/admin/config/tables/group.json',
+    [ 'src/admin/config/tables/postback.json',
+      'src/admin/config/tables/watchword.json',
       'src/admin/config/tables/button.json',
-      'src/admin/config/tables/quick-reply.json',
-      // Hidden table
-      'src/admin/config/tables/type-message.json',
-      'src/admin/config/tables/group-button.json',
-      'src/admin/config/tables/type-disease-link.json',
-      'src/admin/config/tables/disease-synonym.json',
-      'src/admin/config/tables/symptom-synonym.json',
-      'src/admin/config/tables/type-synonym.json',
+      'src/admin/config/tables/messages.json',
+      'src/admin/config/tables/articles.json',
+      'src/admin/config/tables/quick-replies.json',
+
+      'src/admin/config/tables/text.json',
+      'src/admin/config/tables/elements.json',
+      'src/admin/config/tables/button-templates.json',
+      'src/admin/config/tables/diseases.json',
+
+      'src/admin/config/tables/user.json',
+      //Hidden table
+      'src/admin/config/tables/synonym.json',
+      'src/admin/config/tables/button-type.json',
       'src/admin/config/tables/sequelize-meta.json',
     ],
     'dist/admin/config',

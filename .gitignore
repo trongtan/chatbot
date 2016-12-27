@@ -13,3 +13,4 @@ dist/
 /scripts/add_get_started_button.sh
 /scripts/subscribe_app_to_page.sh
 /setup.sh
+/scripts/add_white_list-domain.sh
