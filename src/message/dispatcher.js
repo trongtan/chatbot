@@ -1,3 +1,4 @@
+import co from 'co';
 import EventEmitter from 'events';
 
 import { isValidSender, isEchoMessage } from 'utils/message-utils';
@@ -8,6 +9,8 @@ import { FINISHED_HANDLE_MESSAGE_EVENT,
   FINISHED_BUILD_MESSAGE,
   SHIPPING_MESSAGE_EVENT,
   FINISHED_SHIPPING_MESSAGE_EVENT } from 'utils/event-constants';
+
+import { User } from 'models';
 
 import { logger } from 'logs/winston-logger';
 
@@ -36,7 +39,7 @@ export default class Dispatcher extends EventEmitter {
   _listenMessageProducerEvent() {
     this.messageClassifier.on(FINISHED_HANDLE_MESSAGE_EVENT, (senderId, payloads) => {
       logger.info('Dispatcher: FINISHED_HANDLE_MESSAGE_EVENT: (%s)', JSON.stringify(payloads));
-      this.messageProducer.emit(BUILD_MESSAGE_EVENT, senderId, payloads);
+      this._emitBuildMessageEvent(senderId, payloads);
     });
   }
 
@@ -49,6 +52,22 @@ export default class Dispatcher extends EventEmitter {
     this.messageShipper.on(FINISHED_SHIPPING_MESSAGE_EVENT, messageStructure => {
       logger.info('Dispatcher: FINISHED_SHIPPING_MESSAGE_EVENT: (%s)', JSON.stringify(messageStructure));
       logger.info('Dispatcher: FINISHED_SHIPPING_MESSAGE_EVENT:  ------------------------');
+    });
+  }
+
+  _emitBuildMessageEvent(senderId, payloads) {
+    const self = this;
+    return co(function *() {
+      const user = yield self._bindSenderToCurrentUser(senderId);
+      if (user) {
+        return self.messageProducer.emit(BUILD_MESSAGE_EVENT, user, payloads);
+      }
+    });
+  }
+
+  _bindSenderToCurrentUser(senderId) {
+    return co(function *() {
+      return yield User.findOrCreateById(senderId);
     });
   }
 }

@@ -86,6 +86,36 @@
         }
       },
       {
+        "verbose": "Disease Messages",
+        "name": "DiseaseMessages",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "DiseaseMessages",
+            "parentPk": "diseaseId",
+            "childPk": "messageId"
+          },
+          "ref": {
+            "table": "Messages",
+            "pk": "id",
+            "columns": [
+              "title"
+            ]
+          }
+        }
+      },
+      {
         "verbose": "Disease Articles",
         "name": "DiseaseArticles",
         "control": {
