@@ -192,18 +192,15 @@ export default class MessageTemplate extends EventEmitter {
         title: article.title,
         image_url: article.imageURL,
         subtitle: article.subtitle,
-        default_action: {
-          type: 'web_url',
-          url: article.itemURL,
-          messenger_extensions: true,
-          webview_height_ratio: 'tall',
-          fallback_url: article.itemURL
-        },
         buttons: [
           {
-            type: 'web_url',
             url: article.itemURL,
+            type: 'web_url',
+            webview_height_ratio: 'tall',
             title: 'Xem bài viết'
+          },
+          {
+            type: 'element_share'
           }
         ]
       })

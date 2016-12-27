@@ -127,29 +127,31 @@ describe('MessageTemplate', () => {
       }]
     }];
 
-    it('build the generic messages', () => {
+    it('build the disease messages with share button', () => {
       const spy = sinon.spy(messageTemplate, 'emit');
       const diseaseMessages = {
-          attachment: {
-            type: 'template',
-            payload: {
-              template_type: 'generic',
-              elements: [{
-                title: 'element title',
-                image_url: 'image_url',
-                subtitle: 'sub title',
-                default_action: {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'generic',
+            elements: [{
+              title: 'element title',
+              image_url: 'image_url',
+              subtitle: 'sub title',
+              buttons: [
+                {
                   type: 'web_url',
                   url: 'item_url',
-                  messenger_extensions: true,
-                  webview_height_ratio: 'tall',
-                  fallback_url: 'item_url'
+                  title: 'Xem bài viết',
+                  webview_height_ratio: 'tall'
                 },
-                buttons: [{ type: 'web_url', url: 'item_url', title: 'Xem bài viết' }]
-              }]
-            }
+                {
+                  type: 'element_share'
+                }]
+            }]
           }
-        };
+        }
+      };
       messageTemplate.buildDiseaseTemplateMessage(senderId, disease);
 
       expect(spy.calledWith(ASSIGN_SENDER_ID_TO_MESSAGE, senderId, diseaseMessages)).to.be.true;
