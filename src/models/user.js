@@ -2,6 +2,8 @@ import Promise from 'promise';
 
 import { payloadConstants } from 'utils/constants';
 import Utils from 'utils';
+import { trackUserProfile } from 'utils/bot-analytics';
+
 import { logger } from 'logs/winston-logger';
 
 export default (sequelize, DataTypes) => {
@@ -28,6 +30,8 @@ export default (sequelize, DataTypes) => {
           gender: userProfile.gender,
           currentPayload: payloadConstants.GET_STARTED_PAYLOAD
         };
+
+        trackUserProfile(fullUserProfile.firstName, fullUserProfile.lastName, fullUserProfile.gender, fullUserProfile.userId);
 
         logger.log('info', 'Save to user profile to database %j', fullUserProfile);
 

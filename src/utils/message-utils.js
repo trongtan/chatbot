@@ -35,3 +35,13 @@ export const isEchoMessage = (messageEvent) => {
     && messageEvent.message
     && messageEvent.message.is_echo;
 };
+
+export const isDeliveryMessage = (messageEvent) => {
+  return messageEvent
+    && messageEvent.delivery;
+};
+
+export const isReadMessage = (messageEvent) => {
+  return messageEvent
+    && messageEvent.read;
+};
