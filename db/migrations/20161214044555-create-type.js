@@ -1,14 +1,17 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('Postback', {
+    return queryInterface.createTable('Types', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
-      value: {
+      title: {
         type: Sequelize.STRING
+      },
+      priority: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -21,6 +24,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('Postback');
+    return queryInterface.dropTable('Types');
   }
 };

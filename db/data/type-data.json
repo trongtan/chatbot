@@ -1,37 +1,22 @@
 [
   {
     "id": 1,
-    "value": "thong tin",
+    "title": "General",
+    "priority": 1,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 2,
-    "value": "tac hai",
+    "title": "Information, Prevention, Treatment",
+    "priority": 2,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   },
   {
     "id": 3,
-    "value": "dieu tri",
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
-  },
-  {
-    "id": 4,
-    "value": "dinh duong",
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
-  },
-  {
-    "id": 5,
-    "value": "trieu chung",
-    "createdAt": "11/08/2016 07:00:00+0700",
-    "updatedAt": "11/08/2016 07:00:00+0700"
-  },
-  {
-    "id": 6,
-    "value": "de phong",
+    "title": "Disease",
+    "priority": 3,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
   }
