@@ -6,5 +6,9 @@
   {
     "diseaseId": "1",
     "articleId": "2"
+  },
+  {
+    "diseaseId": "2",
+    "articleId": "80"
   }
 ]

@@ -88,5 +88,14 @@
     "typeId": 1,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 11,
+    "title": "REQUEST_TREATMENTS_PAYLOAD",
+    "value": "REQUEST_TREATMENTS_PAYLOAD",
+    "description": "",
+    "typeId": 2,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]
