@@ -1,10 +1,18 @@
 import EventEmitter from 'events';
 import co from 'co';
+import async from 'async';
 
-import { Texts, Elements, ButtonTemplates, Diseases } from 'models';
+import { filter, map } from 'lodash';
+
+import { Texts, Elements, ButtonTemplates, Diseases, Postback } from 'models';
 
 import { BUILD_MESSAGE_EVENT, FINISHED_BUILD_MESSAGE } from 'utils/event-constants';
-import { BUILD_TEXT_MESSAGE, BUILD_GENERIC_MESSAGE, BUILD_BUTTON_TEMPLATE_MESSAGE, BUILD_DISEASE_TEMPLATE_MESSAGE } from 'utils/event-constants';
+import {
+  BUILD_TEXT_MESSAGE,
+  BUILD_GENERIC_MESSAGE,
+  BUILD_BUTTON_TEMPLATE_MESSAGE,
+  BUILD_DISEASE_TEMPLATE_MESSAGE
+} from 'utils/event-constants';
 
 import { logger } from 'logs/winston-logger';
 
@@ -18,6 +26,7 @@ export default class MessageProducer extends EventEmitter {
   _listenEvent() {
     this.on(BUILD_MESSAGE_EVENT, (user, payloads) => {
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT]: %s', JSON.stringify(payloads));
+
       this._buildMessageFromPayloads(user, payloads);
     });
 
@@ -27,7 +36,38 @@ export default class MessageProducer extends EventEmitter {
     });
   }
 
-  _buildMessageFromPayloads(user, payloads) {
+  _filterRequestingPayloads(payloads) {
+    return co(function *() {
+      let returnedPayloads = [];
+      const postbacks = yield Postback.getAllPostbackFromValues(payloads);
+
+      const generalPayloads = filter(postbacks, (postback) => {
+        return postback.Types.priority == 1;
+      });
+
+      const infoPreventTreatmentPayloads = filter(postbacks, (postback) => {
+        return postback.Types.priority == 2;
+      });
+
+      const diseasePayloads = filter(postbacks, (postback) => {
+        return postback.Types.priority == 3;
+      });
+
+      if (infoPreventTreatmentPayloads.length == 0 && diseasePayloads.length == 0 && generalPayloads.length > 0) {
+        returnedPayloads.push(generalPayloads);
+      } else if (infoPreventTreatmentPayloads.length > 0 && diseasePayloads.length > 0) {
+        infoPreventTreatmentPayloads.forEach(infoPreventTreatmentPayload => {
+          diseasePayloads.forEach(diseasePayload => {
+            returnedPayloads.push([infoPreventTreatmentPayload, diseasePayload]);
+          });
+        });
+
+      }
+      return returnedPayloads;
+    });
+  }
+
+  _getMessageTemplateFromDatabase(user, payloads) {
     const self = this;
     return co(function *() {
       //FIXME: We temporary handle first payload here.
@@ -53,6 +93,29 @@ export default class MessageProducer extends EventEmitter {
       } else if (diseaseMessages.length > 0) {
         return self.messageTemplate.emit(BUILD_DISEASE_TEMPLATE_MESSAGE, user, diseaseMessages);
       }
+    });
+  }
+
+  _buildMessageFromPayloads(user, payloads) {
+    const self = this;
+    return co(function *() {
+      const requestingPayloads = yield self._filterRequestingPayloads(payloads);
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(requestingPayloads));
+
+      return async.eachSeries(requestingPayloads, (requestingPayload, next) => {
+        const payloads = map(requestingPayload, (payloads) => {
+          return payloads.value
+        });
+
+        logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(payloads));
+
+        return self._getMessageTemplateFromDatabase(user, payloads).then(result => {
+          logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload][Result]: %s', JSON.stringify(result));
+          if (result) {
+            next();
+          }
+        });
+      });
     });
   }
 }

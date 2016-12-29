@@ -34,13 +34,13 @@ describe('MessageProducer', () => {
     });
   });
 
-  context('_buildMessageFromPayloads', () => {
+  context('_getMessageTemplateFromDatabase', () => {
     context('the requesting payload is text message', () => {
       const payloads = ['GREETING_PAYLOAD'];
 
       it('emits BUILD_TEXT_MESSAGE to messageTemplate', (done) => {
         const spy = sinon.spy(messageProducer.messageTemplate, 'emit');
-        messageProducer._buildMessageFromPayloads(senderId, payloads).then(() => {
+        messageProducer._getMessageTemplateFromDatabase(senderId, payloads).then(() => {
           expect(spy.called).to.be.true;
           expect(spy.args[0][0]).to.be.equal('BUILD_TEXT_MESSAGE');
           done();
@@ -53,7 +53,7 @@ describe('MessageProducer', () => {
 
       it('emits BUILD_GENERIC_MESSAGE to messageTemplate', (done) => {
         const spy = sinon.spy(messageProducer.messageTemplate, 'emit');
-        messageProducer._buildMessageFromPayloads(senderId, payloads).then(() => {
+        messageProducer._getMessageTemplateFromDatabase(senderId, payloads).then(() => {
           expect(spy.called).to.be.true;
           expect(spy.args[0][0]).to.be.equal('BUILD_GENERIC_MESSAGE');
           done();
@@ -66,7 +66,8 @@ describe('MessageProducer', () => {
 
       it('emits BUILD_BUTTON_TEMPLATE_MESSAGE to messageTemplate', (done) => {
         const spy = sinon.spy(messageProducer.messageTemplate, 'emit');
-        messageProducer._buildMessageFromPayloads(senderId, payloads).then(() => {
+
+        messageProducer._getMessageTemplateFromDatabase(senderId, payloads).then(() => {
           expect(spy.called).to.be.true;
           expect(spy.args[0][0]).to.be.equal('BUILD_BUTTON_TEMPLATE_MESSAGE');
           done();
@@ -79,7 +80,7 @@ describe('MessageProducer', () => {
 
       it('emits BUILD_DISEASE_TEMPLATE_MESSAGE to messageTemplate', (done) => {
         const spy = sinon.spy(messageProducer.messageTemplate, 'emit');
-        messageProducer._buildMessageFromPayloads(senderId, payloads).then(() => {
+        messageProducer._getMessageTemplateFromDatabase(senderId, payloads).then(() => {
           expect(spy.called).to.be.true;
           expect(spy.args[0][0]).to.be.equal('BUILD_DISEASE_TEMPLATE_MESSAGE');
           done();

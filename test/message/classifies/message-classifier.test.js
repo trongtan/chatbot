@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { beforeEach } from 'mocha';
+import { callSendAPI } from 'utils/service-utils';
 
 import MessageClassifier from 'message/classifier/message-classifier';
 import {

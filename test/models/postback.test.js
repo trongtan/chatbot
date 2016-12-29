@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import { Postback } from 'models';
 
-describe.only('Postback', () => {
+describe('Postback', () => {
   context('#findAllByPostbackValue', () => {
     it('returns all postback', (done) => {
       Postback.getAllPostbackFromValues(['REQUEST_INFORMATION_PAYLOAD', 'DISEASE_COLDS_PAYLOAD']).then(result => {
@@ -14,7 +14,6 @@ describe.only('Postback', () => {
         expect(diseasePayload.Types.priority).to.equal(3);
         done();
       });
-      //
     });
   });
 });
