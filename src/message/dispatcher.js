@@ -9,7 +9,8 @@ import {
   BUILD_MESSAGE_EVENT,
   FINISHED_BUILD_MESSAGE,
   SHIPPING_MESSAGE_EVENT,
-  FINISHED_SHIPPING_MESSAGE_EVENT
+  FINISHED_SHIPPING_MESSAGE_EVENT,
+  BUILD_CONVERSATION_MESSAGE
 } from 'utils/event-constants';
 
 import {
@@ -22,12 +23,13 @@ import { User } from 'models';
 import { logger } from 'logs/winston-logger';
 
 export default class Dispatcher extends EventEmitter {
-  constructor(messageClassifier, messageProducer, messageShipper, messageTracker) {
+  constructor(messageClassifier, messageProducer, messageShipper, messageTracker, conversationProducer) {
     super();
     this.messageClassifier = messageClassifier;
     this.messageProducer = messageProducer;
     this.messageShipper = messageShipper;
     this.messageTracker = messageTracker;
+    this.conversationProducer = conversationProducer;
 
     this._listenIncomingMessageEvent();
     this._listenMessageProducerEvent();
@@ -60,8 +62,13 @@ export default class Dispatcher extends EventEmitter {
       this.messageTracker.emit(TRACK_OUT_GOING_MESSAGE_EVENT, messageStructure);
     });
 
-    this.messageShipper.on(FINISHED_SHIPPING_MESSAGE_EVENT, messageStructure => {
+    this.conversationProducer.on(FINISHED_BUILD_MESSAGE, messageStructure => {
+      logger.info('Dispatcher: FINISHED_BUILD_MESSAGE: (%s)', JSON.stringify(messageStructure));
 
+      this.messageShipper.emit(SHIPPING_MESSAGE_EVENT, messageStructure);
+    });
+
+    this.messageShipper.on(FINISHED_SHIPPING_MESSAGE_EVENT, messageStructure => {
       logger.info('Dispatcher: FINISHED_SHIPPING_MESSAGE_EVENT: (%s)', JSON.stringify(messageStructure));
       logger.info('Dispatcher: FINISHED_SHIPPING_MESSAGE_EVENT:  ------------------------');
     });
@@ -72,7 +79,17 @@ export default class Dispatcher extends EventEmitter {
     return co(function *() {
       const user = yield self._bindSenderToCurrentUser(senderId);
       if (user) {
-        return self.messageProducer.emit(BUILD_MESSAGE_EVENT, user, payloads);
+        if (payloads.length > 0 && !payloads.includes('CONVERSATION_PAYLOAD')) {
+          user.chatting = false;
+        } else {
+          user.chatting = true;
+        };
+
+        if (user.chatting) {
+          return self.conversationProducer.emit(BUILD_CONVERSATION_MESSAGE, user, payloads);
+        } else {
+          return self.messageProducer.emit(BUILD_MESSAGE_EVENT, user, payloads);
+        }
       }
     });
   }

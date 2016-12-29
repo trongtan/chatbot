@@ -21,6 +21,11 @@ import ArticleDefinition from './article';
 import DiseaseDefinition from './disease';
 import DiseaseArticleDefinition from './disease-article';
 import DiseaseMessageDefinition from './disease-messages';
+import ConversationDialogMessageDefinition from './conversation-dialog-message';
+import ConversationDialogQuickReplyDefinition from './conversation-dialog-quickreply';
+import ConversationDialogDefinition from './conversation-dialog';
+import ConversationStepDefinition from './conversation-step';
+import ConversationDefinition from './conversation';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -44,6 +49,11 @@ const Articles = sequelize.import('Article', ArticleDefinition);
 const Diseases = sequelize.import('Disease', DiseaseDefinition);
 const DiseaseArticles = sequelize.import('DiseaseArticle', DiseaseArticleDefinition);
 const DiseaseMessages = sequelize.import('DiseaseMessage', DiseaseMessageDefinition);
+const ConversationDialogMessages = sequelize.import('ConversationDialogMessage', ConversationDialogMessageDefinition);
+const ConversationDialogQuickReplies = sequelize.import('ConversationDialogQuickReply', ConversationDialogQuickReplyDefinition);
+const ConversationDialogs = sequelize.import('ConversationDialog', ConversationDialogDefinition);
+const ConversationSteps  = sequelize.import('ConversationStep', ConversationStepDefinition);
+const Conversations = sequelize.import('Conversation', ConversationDefinition);
 
 Postback.hasMany(Watchword, {foreignKey: 'postbackId'});
 Watchword.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
@@ -106,6 +116,21 @@ Diseases.belongsTo(Postback, {as: 'DiseasePostback', foreignKey: 'diseasePostbac
 Diseases.belongsToMany(Messages, {through: {model: DiseaseMessages}, foreignKey: 'diseaseId'});
 Messages.belongsToMany(Diseases, {through: {model: DiseaseMessages}, foreignKey: 'messageId'});
 
+//ConversationDialogs n - m Messages
+ConversationDialogs.belongsToMany(Messages, {through: {model: ConversationDialogMessages}, foreignKey: 'conversationDialogId'});
+Messages.belongsToMany(ConversationDialogs, {through: {model: ConversationDialogMessages}, foreignKey: 'messageId'});
+
+//ConversationDialogs n - m QuickReplies
+ConversationDialogs.belongsToMany(QuickReplies, {through: {model: ConversationDialogQuickReplies}, foreignKey: 'conversationDialogId'});
+QuickReplies.belongsToMany(ConversationDialogs, {through: {model: ConversationDialogQuickReplies}, foreignKey: 'quickReplyId'});
+
+//Conversation 1 - m ConversationSteps
+Conversations.hasMany(ConversationSteps, {foreignKey: 'conversationId'});
+ConversationSteps.belongsTo(Conversations, {as: 'ConversationSteps', foreignKey: 'conversationId' });
+
+//ConversationDialogs 1 - 1 ConversationSteps
+ConversationSteps.belongsTo(ConversationDialogs, {as: 'ConversationDialogs', foreignKey: 'dialogId'});
+
 export {
   User,
   QuickReplies,
@@ -120,5 +145,8 @@ export {
   ButtonTypes,
   ButtonTemplates,
   Diseases,
-  Articles
+  Articles,
+  Conversations,
+  ConversationSteps,
+  ConversationDialogs
 }

@@ -1,15 +1,8 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var ConversationStep = sequelize.define('ConversationStep', {
-    conversationId: DataTypes.STRING,
-    dialogId: DataTypes.STRING,
+export default (sequelize, DataTypes) => {
+  const ConversationStep = sequelize.define('ConversationStep', {
     step: DataTypes.INTEGER
   }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
+    classMethods: {}
   });
   return ConversationStep;
 };

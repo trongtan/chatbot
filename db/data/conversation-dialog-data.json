@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "title": "Xin chào! Tôi là bác sĩ  Lifebuoy. Bạn đã sẵn sàng để chat với chúng tôi chưa nè",
+    "description": "",
+    "createdAt": "12/28/2016 07:00:00+0700",
+    "updatedAt": "12/28/2016 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "title": "Đầu tiên hãy cung cấp cho bác sĩ một vài thông tin của bạn nhé! \nBạn là bố hay mẹ",
+    "description": "",
+    "createdAt": "12/28/2016 07:00:00+0700",
+    "updatedAt": "12/28/2016 07:00:00+0700"
+  }
+]

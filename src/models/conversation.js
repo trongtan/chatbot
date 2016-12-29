@@ -1,14 +1,41 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var Conversation = sequelize.define('Conversation', {
+import { ConversationSteps, ConversationDialogs, QuickReplies } from 'models';
+
+import { logger } from 'logs/winston-logger';
+
+export default (sequelize, DataTypes) => {
+  const Conversation = sequelize.define('Conversation', {
     title: DataTypes.TEXT,
     description: DataTypes.TEXT
   }, {
     classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
+      findConversationDialog: (conversationId, step) => {
+        return Conversation.findOne({
+          include: [
+            {
+              model: ConversationSteps,
+              as: 'ConversationSteps',
+              where: {
+                conversationId: conversationId,
+                step: step
+              },
+              include: [
+                {
+                  model: ConversationDialogs,
+                  as: 'ConversationDialogs',
+                  include: [
+                    {
+                      model: QuickReplies,
+                      as: 'QuickReplies',
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        });
+      },
     }
   });
+
   return Conversation;
 };

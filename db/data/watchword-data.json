@@ -33,5 +33,12 @@
     "postbackId": 5,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 6,
+    "value": "tro chuyen",
+    "postbackId": 11,
+    "createdAt": "11/28/2016 07:00:00+0700",
+    "updatedAt": "11/28/2016 07:00:00+0700"
   }
 ]

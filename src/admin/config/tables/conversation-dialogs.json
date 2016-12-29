@@ -65,7 +65,7 @@
         "manyToMany": {
           "link": {
             "table": "ConversationDialogQuickReplies",
-            "parentPk": "conversationId",
+            "parentPk": "conversationDialogId",
             "childPk": "quickReplyId"
           },
           "ref": {

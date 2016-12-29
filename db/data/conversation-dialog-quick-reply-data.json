@@ -1,0 +1,22 @@
+[
+  {
+    "conversationDialogId": 1,
+    "quickReplyId": 1
+  },
+  {
+    "conversationDialogId": 1,
+    "quickReplyId": 2
+  },
+  {
+    "conversationDialogId": 1,
+    "quickReplyId": 3
+  },
+  {
+    "conversationDialogId": 2,
+    "quickReplyId": 4
+  },
+  {
+    "conversationDialogId": 2,
+    "quickReplyId": 5
+  }
+]

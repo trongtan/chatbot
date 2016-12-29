@@ -18,6 +18,9 @@ export default (sequelize, DataTypes) => {
     currentPayload: DataTypes.STRING,
     parental: DataTypes.STRING,
     childName: DataTypes.STRING,
+    chatting: DataTypes.BOOLEAN,
+    chatStep: DataTypes.INTEGER,
+    conversationId: DataTypes.STRING,
     favoriteTime: DataTypes.INTEGER
   }, {
     freezeTableName: true,

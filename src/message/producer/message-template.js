@@ -7,7 +7,8 @@ import {
   BUILD_GENERIC_MESSAGE,
   BUILD_BUTTON_TEMPLATE_MESSAGE,
   BUILD_DISEASE_TEMPLATE_MESSAGE,
-  FINISHED_BUILD_MESSAGE
+  FINISHED_BUILD_MESSAGE,
+  BUILD_CONVERSATION_MESSAGE
 } from 'utils/event-constants';
 
 import { getRandomObjectFromArray } from 'utils/helpers';
@@ -29,14 +30,35 @@ export default class MessageTemplate extends EventEmitter {
     });
 
     this.on(BUILD_DISEASE_TEMPLATE_MESSAGE, (user, diseaseMessages) => {
-      this.buildTextMessage(user, diseaseMessages)
-      this.buildDiseaseTemplateMessage(user, diseaseMessages)
+      this.buildTextMessage(user, diseaseMessages);
+      this.buildDiseaseTemplateMessage(user, diseaseMessages);
+    });
 
+    this.on(BUILD_CONVERSATION_MESSAGE, (user, templateMessage) => {
+      this.buildConversationMessage(user, templateMessage)
     });
 
     this.on(ASSIGN_SENDER_ID_TO_MESSAGE, (user, builtMessage) => {
       this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
     });
+  }
+
+  buildConversationMessage(user, templateMessage) {
+    logger.info('[MessageTemplate][BUILD_CONVERSATION_MESSAGE][buildConversationMessage] %s', JSON.stringify(templateMessage));
+    let builtMessage = {};
+
+    if (templateMessage.ConversationSteps && templateMessage.ConversationSteps.length > 0 && templateMessage.ConversationSteps[0].ConversationDialogs) {
+      const dialog = templateMessage.ConversationSteps[0].ConversationDialogs;
+      builtMessage = {
+        text: dialog.title
+      };
+
+      if (dialog.QuickReplies && dialog.QuickReplies.length > 0) {
+        builtMessage['quick_replies'] = this._buildQuickReplies(dialog.QuickReplies);
+      }
+    }
+
+    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage);
   }
 
   buildTextMessage(user, templateMessages) {
@@ -131,7 +153,7 @@ export default class MessageTemplate extends EventEmitter {
       message: message
     };
 
-    logger.error('[Message Template][Bind Place Holder To Template Message] (%s)', messages);
+    logger.error('[Message Template][Bind Place Holder To Template Message] (%s)', JSON.stringify(messages));
 
     return this.emit(FINISHED_BUILD_MESSAGE, messages)
 
