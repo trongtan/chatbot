@@ -10,4 +10,8 @@ export default class WatchwordEvent {
     });
     next();
   };
+
+  postSave(req, res, args, next) {
+    next();
+  };
 };

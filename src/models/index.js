@@ -134,5 +134,6 @@ export {
   ButtonTemplates,
   Diseases,
   Articles,
-  Types
+  Types,
+  PersistentMenus
 }

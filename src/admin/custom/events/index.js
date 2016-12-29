@@ -3,9 +3,11 @@ import shortid from 'shortid';
 
 import { DEFAULT_DATE_FORMAT } from 'utils/constants';
 import WatchwordEvent from './watchword';
+import PersistentMenusEvent from './persistent-menu';
 
 const childEvents = {
-  'Watchword': new WatchwordEvent()
+  'Watchword': new WatchwordEvent(),
+  'PersistentMenus': new PersistentMenusEvent(),
 };
 
 export const preSave = (req, res, args, next) => {
@@ -20,6 +22,14 @@ export const preSave = (req, res, args, next) => {
 
   if (childEvents[args.name]) {
     childEvents[args.name].preSave(req, res, args, next);
+  } else {
+    next();
+  }
+};
+
+export const postSave = (req, res, args, next) => {
+  if (childEvents[args.name]) {
+    childEvents[args.name].postSave(req, res, args, next);
   } else {
     next();
   }
