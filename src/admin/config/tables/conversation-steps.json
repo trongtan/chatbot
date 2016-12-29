@@ -1,10 +1,10 @@
 {
-  "Conversations": {
-    "slug": "Conversations",
+  "ConversationSteps": {
+    "slug": "ConversationSteps",
     "table": {
-      "name": "Conversations",
+      "name": "ConversationSteps",
       "pk": "id",
-      "verbose": "Conversations"
+      "verbose": "ConversationSteps"
     },
     "columns": [
       {
@@ -24,13 +24,34 @@
         }
       },
       {
-        "name": "title",
-        "verbose": "Title",
+        "name": "conversationId",
+        "verbose": "conversationId",
         "control": {
           "text": true
         },
-        "type": "text",
-        "allowNull": true,
+        "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "dialogId",
+        "verbose": "Dialog",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "ConversationDialogs",
+          "pk": "id",
+          "columns": "title"
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
         "defaultValue": null,
         "listview": {
           "show": true
@@ -40,12 +61,12 @@
         }
       },
       {
-        "name": "description",
-        "verbose": "Description",
+        "name": "step",
+        "verbose": "Step",
         "control": {
           "text": true
         },
-        "type": "text",
+        "type": "integer",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -89,17 +110,14 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false,
-      "manyToOne": {
-        "ConversationSteps": "conversationId"
-      }
+      "readonly": false
     }
   }
 }

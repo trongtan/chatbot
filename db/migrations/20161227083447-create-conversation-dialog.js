@@ -16,12 +16,6 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      step: {
-        type: Sequelize.STRING
-      },
-      nextStep: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

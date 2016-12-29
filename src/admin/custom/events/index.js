@@ -4,10 +4,12 @@ import shortid from 'shortid';
 import { DEFAULT_DATE_FORMAT } from 'utils/constants';
 import WatchwordEvent from './watchword';
 import ConversationEvent from './conversation';
+import ConversationStepEvent from './conversation-steps';
 
 const childEvents = {
   'Watchword': new WatchwordEvent(),
-  'Conversations': new ConversationEvent()
+  'Conversations': new ConversationEvent(),
+  'ConversationSteps': new ConversationStepEvent()
 };
 
 export const preSave = (req, res, args, next) => {

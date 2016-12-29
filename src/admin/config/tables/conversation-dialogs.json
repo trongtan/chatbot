@@ -4,7 +4,7 @@
     "table": {
       "name": "ConversationDialogs",
       "pk": "id",
-      "verbose": "ConversationDialogs"
+      "verbose": "Conversation Dialogs"
     },
     "columns": [
       {
@@ -56,38 +56,6 @@
         }
       },
       {
-        "name": "step",
-        "verbose": "Step",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "nextStep",
-        "verbose": "Next Step",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
         "name": "quickReplyId",
         "verbose": "Quick Reply Value",
         "control": {
@@ -122,8 +90,7 @@
         "name": "messageId",
         "verbose": "Messages",
         "control": {
-          "select": true,
-          "multiple": true
+          "select": true
         },
         "manyToMany": {
           "link": {
@@ -199,7 +166,7 @@
       }
     ],
     "mainview": {
-      "show": false
+      "show": true
     },
     "listview": {
       "order": {},

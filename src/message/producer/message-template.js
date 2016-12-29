@@ -98,7 +98,6 @@ export default class MessageTemplate extends EventEmitter {
         }
       }
     };
-    console.log(JSON.stringify(builtMessage));
     return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage);
   }
 

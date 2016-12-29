@@ -114,6 +114,7 @@ gulp.task('merge-admin-settings', () => {
       'src/admin/config/tables/user.json',
       'src/admin/config/tables/conversations.json',
       'src/admin/config/tables/conversation-dialogs.json',
+      'src/admin/config/tables/conversation-steps.json',
 
       //Hidden table
       'src/admin/config/tables/synonym.json',
