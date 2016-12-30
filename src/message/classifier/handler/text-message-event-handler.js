@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 import co from 'co';
 
-import { uniq, concat } from 'lodash';
+import { uniq, concat, filter, countBy, forEach } from 'lodash';
 
 import { Synonym, Watchword } from 'models';
 
@@ -26,14 +26,19 @@ export default class TextMessageHandler extends EventEmitter {
     const self = this;
 
     return co(function *() {
-      const payloads = yield self._findPostbackInMessageEvent(messageEvent);
-      const senderId = messageEvent.sender.id;
+        const payloads = yield self._findPostbackInMessageEvent(messageEvent);
+        const senderId = messageEvent.sender.id;
 
-      logger.info('Handle Text Message - Payload: %s', JSON.stringify(payloads));
-      if (payloads.length > 0) {
-        self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
+        logger.info('Handle Text Message - Payload: %s', JSON.stringify(payloads));
+        const diseaseSymptomPayload = self._getDiseaseHaveHighestSymptom(payloads);
+
+        if (diseaseSymptomPayload) {
+          self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, [diseaseSymptomPayload]);
+        } else if (payloads.length > 0) {
+          self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
+        }
       }
-    });
+    );
   }
 
   _findPostbackInMessageEvent(messageEvent) {
@@ -58,9 +63,9 @@ export default class TextMessageHandler extends EventEmitter {
       logger.info('[Handle Text Message][Find Postback By Watchwords In Message Event][Keywords]: %s', JSON.stringify(watchwords));
 
       const requestedWatchwords = self._filterKeywordsInMessageEvent(messageEvent, watchwords);
-      return uniq(requestedWatchwords.map(requestedWatchword => {
+      return requestedWatchwords.map(requestedWatchword => {
         return requestedWatchword.Postback.value;
-      }));
+      });
     });
   }
 
@@ -73,9 +78,9 @@ export default class TextMessageHandler extends EventEmitter {
       logger.info('[Handle Text Message][Find Postback By Synonyms In Message Event][Keywords]: %s', JSON.stringify(synonyms));
       const requestedKeywordSynonyms = self._filterKeywordsInMessageEvent(messageEvent, synonyms);
 
-      return uniq(requestedKeywordSynonyms.map(requestedKeywordSynonym => {
+      return requestedKeywordSynonyms.map(requestedKeywordSynonym => {
         return requestedKeywordSynonym.Watchwords.Postback.value;
-      }));
+      });
     });
   }
 
@@ -87,5 +92,27 @@ export default class TextMessageHandler extends EventEmitter {
     });
 
     return requestedKeyword;
+  }
+
+  _filterDiseaseSymptomPayloads(payloads) {
+    return filter(payloads, payload => {
+      return (payload.indexOf('SYMPTOM_DISEASE') !== -1);
+    });
+  }
+
+  _getDiseaseHaveHighestSymptom(payloads) {
+    const symptomPayloads = this._filterDiseaseSymptomPayloads(payloads);
+
+    let payload = '';
+    let count = 0;
+
+    forEach(countBy(symptomPayloads), (value, key) => {
+      if (value > count) {
+        count = value;
+        payload = key;
+      }
+    });
+
+    return payload;
   }
 }
