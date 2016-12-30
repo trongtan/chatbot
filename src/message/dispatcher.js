@@ -12,11 +12,6 @@ import {
   FINISHED_SHIPPING_MESSAGE_EVENT
 } from 'utils/event-constants';
 
-import {
-  TRACK_INCOMING_MESSAGE_EVENT,
-  TRACK_OUT_GOING_MESSAGE_EVENT
-} from 'utils/event-constants';
-
 import { User } from 'models';
 
 import { logger } from 'logs/winston-logger';
@@ -40,7 +35,6 @@ export default class Dispatcher extends EventEmitter {
 
       if (isValidSender(messageEvent) && !isEchoMessage(messageEvent) && !isDeliveryMessage(messageEvent) && !isReadMessage(messageEvent)) {
         this.messageClassifier.emit(CLASSIFY_MESSAGE_EVENT, messageEvent);
-        this.messageTracker.emit(TRACK_INCOMING_MESSAGE_EVENT, messageEvent);
       }
     });
   }
@@ -57,7 +51,6 @@ export default class Dispatcher extends EventEmitter {
       logger.info('Dispatcher: FINISHED_BUILD_MESSAGE: (%s)', JSON.stringify(messageStructure));
 
       this.messageShipper.emit(SHIPPING_MESSAGE_EVENT, messageStructure);
-      this.messageTracker.emit(TRACK_OUT_GOING_MESSAGE_EVENT, messageStructure);
     });
 
     this.messageShipper.on(FINISHED_SHIPPING_MESSAGE_EVENT, messageStructure => {

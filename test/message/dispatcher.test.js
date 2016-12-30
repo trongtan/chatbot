@@ -79,7 +79,7 @@ describe('Dispatcher', () => {
     it('emits to message tracker ', () => {
       const spy = sinon.spy(messageTracker, 'emit');
       messageProducer.emit('FINISHED_BUILD_MESSAGE', validMessageEvent);
-      expect(spy.calledOnce).to.be.true;
+      expect(spy.calledOnce).to.be.false;
       messageTracker.emit.restore();
       Utils.callSendAPI.restore();
     });
