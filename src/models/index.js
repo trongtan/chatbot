@@ -21,6 +21,7 @@ import ArticleDefinition from './article';
 import DiseaseDefinition from './disease';
 import DiseaseArticleDefinition from './disease-article';
 import DiseaseMessageDefinition from './disease-messages';
+import TypeDefinition from './type';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -44,6 +45,7 @@ const Articles = sequelize.import('Article', ArticleDefinition);
 const Diseases = sequelize.import('Disease', DiseaseDefinition);
 const DiseaseArticles = sequelize.import('DiseaseArticle', DiseaseArticleDefinition);
 const DiseaseMessages = sequelize.import('DiseaseMessage', DiseaseMessageDefinition);
+const Types = sequelize.import('Type', TypeDefinition);
 
 Postback.hasMany(Watchword, {foreignKey: 'postbackId'});
 Watchword.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
@@ -106,6 +108,9 @@ Diseases.belongsTo(Postback, {as: 'DiseasePostback', foreignKey: 'diseasePostbac
 Diseases.belongsToMany(Messages, {through: {model: DiseaseMessages}, foreignKey: 'diseaseId'});
 Messages.belongsToMany(Diseases, {through: {model: DiseaseMessages}, foreignKey: 'messageId'});
 
+//Postback 1 - 1 Type
+Postback.belongsTo(Types, {as: 'Types', foreignKey: 'typeId'});
+
 export {
   User,
   QuickReplies,
@@ -120,5 +125,6 @@ export {
   ButtonTypes,
   ButtonTemplates,
   Diseases,
-  Articles
+  Articles,
+  Types
 }

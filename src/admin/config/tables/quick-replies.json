@@ -87,7 +87,7 @@
           "table": "Postback",
           "pk": "id",
           "columns": [
-            "value"
+            "title"
           ]
         },
         "type": "varchar(255)",

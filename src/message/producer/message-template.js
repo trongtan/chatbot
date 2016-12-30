@@ -1,4 +1,6 @@
 import EventEmitter from 'events';
+import Promise from 'promise';
+import async from 'async';
 
 import { User } from 'models';
 import {
@@ -17,21 +19,27 @@ export default class MessageTemplate extends EventEmitter {
   constructor() {
     super();
     this.on(BUILD_TEXT_MESSAGE, (user, templateMessages) => {
-      this.buildTextMessage(user, templateMessages)
+      this.buildTextMessage(user, templateMessages);
     });
 
     this.on(BUILD_GENERIC_MESSAGE, (user, templateMessages) => {
-      this.buildGenericTemplateMessage(user, templateMessages)
+      this.buildGenericTemplateMessage(user, templateMessages);
     });
 
     this.on(BUILD_BUTTON_TEMPLATE_MESSAGE, (user, templateMessages) => {
-      this.buildButtonTemplateMessage(user, templateMessages)
+      this.buildButtonTemplateMessage(user, templateMessages);
     });
 
     this.on(BUILD_DISEASE_TEMPLATE_MESSAGE, (user, diseaseMessages) => {
-      this.buildTextMessage(user, diseaseMessages)
-      this.buildDiseaseTemplateMessage(user, diseaseMessages)
+      async.series([
+        (callback) => {
+          this.buildTextMessage(user, diseaseMessages).then(callback());
+        },
 
+        (callback) => {
+          this.buildDiseaseTemplateMessage(user, diseaseMessages).then(callback());
+        }
+      ]);
     });
 
     this.on(ASSIGN_SENDER_ID_TO_MESSAGE, (user, builtMessage) => {
@@ -43,7 +51,7 @@ export default class MessageTemplate extends EventEmitter {
     const templateMessage = templateMessages[0];
     let builtMessage = {};
 
-    if (templateMessage.Messages) {
+    if (templateMessage.Messages && templateMessage.Messages.length > 0) {
       builtMessage = {
         text: getRandomObjectFromArray(templateMessage.Messages).message
       };
@@ -52,7 +60,7 @@ export default class MessageTemplate extends EventEmitter {
       builtMessage['quick_replies'] = this._buildQuickReplies(templateMessage.QuickReplies);
     }
 
-    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage);
+    return Promise.resolve(this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage));
   }
 
   buildGenericTemplateMessage(user, elements) {
@@ -99,7 +107,7 @@ export default class MessageTemplate extends EventEmitter {
       }
     };
     console.log(JSON.stringify(builtMessage));
-    return this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage);
+    return Promise.resolve(this.emit(ASSIGN_SENDER_ID_TO_MESSAGE, user, builtMessage));
   }
 
   _assignSenderIdAndPlaceHolderMessage(user, builtMessage) {

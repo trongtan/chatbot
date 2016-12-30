@@ -6,5 +6,13 @@
     "diseasePostbackId": "7",
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "title": "dieu tri cam cum",
+    "typePostbackId": "11",
+    "diseasePostbackId": "7",
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]

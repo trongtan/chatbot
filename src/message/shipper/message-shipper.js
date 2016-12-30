@@ -2,7 +2,7 @@ import EventEmitter from 'events';
 
 import { SHIPPING_MESSAGE_EVENT, FINISHED_SHIPPING_MESSAGE_EVENT } from 'utils/event-constants';
 
-import { callSendAPI } from 'utils/service-utils';
+import Utils from 'utils';
 
 import { logger } from 'logs/winston-logger';
 
@@ -16,7 +16,7 @@ export default class MessageShipper extends EventEmitter {
     this.on(SHIPPING_MESSAGE_EVENT, (messageStructure) => {
       logger.info('[Message Shipper] [SHIP_MESSAGE_EVENT]: %s', JSON.stringify(messageStructure));
 
-      callSendAPI(messageStructure).then(result => {
+      Utils.callSendAPI(messageStructure).then(result => {
         this.emit(FINISHED_SHIPPING_MESSAGE_EVENT, result);
       });
     });

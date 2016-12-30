@@ -1,10 +1,10 @@
 {
-  "Buttons": {
-    "slug": "Buttons",
+  "Types": {
+    "slug": "Types",
     "table": {
-      "name": "Buttons",
+      "name": "Types",
       "pk": "id",
-      "verbose": "Buttons"
+      "verbose": "Types"
     },
     "columns": [
       {
@@ -40,58 +40,12 @@
         }
       },
       {
-        "name": "buttonTypeId",
-        "verbose": "buttonTypeId",
-        "control": {
-          "select": true
-        },
-        "oneToMany": {
-          "table": "ButtonTypes",
-          "pk": "id",
-          "columns": [
-            "value"
-          ]
-        },
-        "type": "varchar(255)",
-        "allowNull": false,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "url",
-        "verbose": "URL",
+        "name": "priority",
+        "verbose": "Priority",
         "control": {
           "text": true
         },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "postbackId",
-        "verbose": "Postback Value",
-        "control": {
-          "select": true
-        },
-        "oneToMany": {
-          "table": "Postback",
-          "pk": "id",
-          "columns": [
-            "title"
-          ]
-        },
-        "type": "varchar(255)",
+        "type": "integer",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -135,7 +89,7 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},

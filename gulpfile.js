@@ -99,7 +99,8 @@ gulp.task('copy-message-structure', () => {
 
 gulp.task('merge-admin-settings', () => {
   return _mergeExpressAdminSettingsTask(
-    [ 'src/admin/config/tables/postback.json',
+    [ 'src/admin/config/tables/type.json',
+      'src/admin/config/tables/postback.json',
       'src/admin/config/tables/watchword.json',
       'src/admin/config/tables/button.json',
       'src/admin/config/tables/messages.json',

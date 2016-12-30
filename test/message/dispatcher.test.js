@@ -7,6 +7,7 @@ import { MessageProducerFactory } from 'message/producer';
 import { MessageClassifierFactory } from 'message/classifier';
 import { MessageShipperFactory } from 'message/shipper';
 import MessageTracker from 'message/tracker/message-tracker';
+import Utils from 'utils';
 
 describe('Dispatcher', () => {
   const messageClassifier = new MessageClassifierFactory().build();
@@ -63,11 +64,16 @@ describe('Dispatcher', () => {
       }
     };
 
+    beforeEach(() => {
+      sinon.stub(Utils, 'callSendAPI', () => Promise.resolve(true));
+    });
+
     it('emits to message shipper ', () => {
       const spy = sinon.spy(messageShipper, 'emit');
       messageProducer.emit('FINISHED_BUILD_MESSAGE', validMessageEvent);
       expect(spy.calledOnce).to.be.true;
       messageShipper.emit.restore();
+      Utils.callSendAPI.restore();
     });
 
     it('emits to message tracker ', () => {
@@ -75,6 +81,7 @@ describe('Dispatcher', () => {
       messageProducer.emit('FINISHED_BUILD_MESSAGE', validMessageEvent);
       expect(spy.calledOnce).to.be.true;
       messageTracker.emit.restore();
+      Utils.callSendAPI.restore();
     });
   });
 
