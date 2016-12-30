@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { beforeEach } from 'mocha';
-import { callSendAPI } from 'utils/service-utils';
+import { beforeEach, afterEach } from 'mocha';
 
 import MessageClassifier from 'message/classifier/message-classifier';
 import {
@@ -66,6 +65,40 @@ describe('MessageClassifier', () => {
       expect(spy.calledWith('HANDLE_MESSAGE_EVENT', messageClassifier, textMessageEvent)).to.be.true;
 
       postbackMessageHandler.emit.restore();
+    });
+  });
+
+  context('_listenHandlersEvent', () => {
+    const senderId = 'senderId';
+    const payload = 'PAYLOAD';
+    let spyEmit;
+
+    beforeEach(() => {
+      spyEmit = sinon.spy(messageClassifier, 'emit');
+    });
+
+    afterEach(() => {
+      messageClassifier.emit.restore();
+    });
+
+    it('emits FINISHED_HANDLE_MESSAGE_EVENT if receive FINISHED_HANDLE_MESSAGE_EVENT from textMessageHandler', () => {
+      textMessageHandler.emit('FINISHED_HANDLE_MESSAGE_EVENT', senderId, payload);
+      expect(spyEmit.calledWith('FINISHED_HANDLE_MESSAGE_EVENT', senderId, payload)).to.be.true;
+    });
+
+    it('emits FINISHED_HANDLE_MESSAGE_EVENT if receive FINISHED_HANDLE_MESSAGE_EVENT from quickReplyMessageHandler', () => {
+      quickReplyMessageHandler.emit('FINISHED_HANDLE_MESSAGE_EVENT', senderId, payload);
+      expect(spyEmit.calledWith('FINISHED_HANDLE_MESSAGE_EVENT', senderId, payload)).to.be.true;
+    });
+
+    it('emits FINISHED_HANDLE_MESSAGE_EVENT if receive FINISHED_HANDLE_MESSAGE_EVENT from quickReplyMessageHandler', () => {
+      attachmentMessageHandler.emit('FINISHED_HANDLE_MESSAGE_EVENT', senderId, payload);
+      expect(spyEmit.calledWith('FINISHED_HANDLE_MESSAGE_EVENT', senderId, payload)).to.be.true;
+    });
+
+    it('emits FINISHED_HANDLE_MESSAGE_EVENT if receive FINISHED_HANDLE_MESSAGE_EVENT from quickReplyMessageHandler', () => {
+      postbackMessageHandler.emit('FINISHED_HANDLE_MESSAGE_EVENT', senderId, payload);
+      expect(spyEmit.calledWith('FINISHED_HANDLE_MESSAGE_EVENT', senderId, payload)).to.be.true;
     });
   });
 });

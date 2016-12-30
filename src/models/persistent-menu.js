@@ -16,7 +16,7 @@ export default (sequelize, DataTypes) => {
         }).then(menus => {
           return map(menus, menu => {
             return { type: menu.type, title: menu.title, payload: menu.Postback.value }
-          })
+          });
         });
       }
     }

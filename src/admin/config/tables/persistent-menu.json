@@ -62,7 +62,7 @@
       },
       {
         "name": "postbackId",
-        "verbose": "postbackId",
+        "verbose": "Postback Value",
         "control": {
           "select": true
         },
@@ -70,7 +70,7 @@
           "table": "Postback",
           "pk": "id",
           "columns": [
-            "value"
+            "title"
           ]
         },
         "type": "varchar(255)",

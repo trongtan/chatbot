@@ -21,11 +21,8 @@ import ArticleDefinition from './article';
 import DiseaseDefinition from './disease';
 import DiseaseArticleDefinition from './disease-article';
 import DiseaseMessageDefinition from './disease-messages';
-<<<<<<< HEAD
 import TypeDefinition from './type';
-=======
 import PersistentMenuDefinition from './persistent-menu';
->>>>>>> [f] 084 - Add persistent menu table
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
