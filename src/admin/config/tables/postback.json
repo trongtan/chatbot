@@ -72,6 +72,29 @@
         }
       },
       {
+        "name": "typeId",
+        "verbose": "Type",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Types",
+          "pk": "id",
+          "columns": [
+            "title"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
         "name": "createdAt",
         "verbose": "Created At",
         "control": {
