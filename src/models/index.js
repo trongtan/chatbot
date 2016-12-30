@@ -22,6 +22,7 @@ import DiseaseDefinition from './disease';
 import DiseaseArticleDefinition from './disease-article';
 import DiseaseMessageDefinition from './disease-messages';
 import TypeDefinition from './type';
+import PersistentMenuDefinition from './persistent-menu';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -46,6 +47,7 @@ const Diseases = sequelize.import('Disease', DiseaseDefinition);
 const DiseaseArticles = sequelize.import('DiseaseArticle', DiseaseArticleDefinition);
 const DiseaseMessages = sequelize.import('DiseaseMessage', DiseaseMessageDefinition);
 const Types = sequelize.import('Type', TypeDefinition);
+const PersistentMenus = sequelize.import('PersistentMenu', PersistentMenuDefinition);
 
 Postback.hasMany(Watchword, {foreignKey: 'postbackId'});
 Watchword.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
@@ -111,6 +113,9 @@ Messages.belongsToMany(Diseases, {through: {model: DiseaseMessages}, foreignKey:
 //Postback 1 - 1 Type
 Postback.belongsTo(Types, {as: 'Types', foreignKey: 'typeId'});
 
+//PersistentMenus 1 - 1 Postback
+PersistentMenus.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+
 export {
   User,
   QuickReplies,
@@ -126,5 +131,6 @@ export {
   ButtonTemplates,
   Diseases,
   Articles,
-  Types
+  Types,
+  PersistentMenus
 }
