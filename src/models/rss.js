@@ -1,6 +1,5 @@
-'use strict';
-module.exports = function(sequelize, DataTypes) {
-  var RSS = sequelize.define('RSS', {
+export default (sequelize, DataTypes) => {
+  const RSS = sequelize.define('RSS', {
     title: DataTypes.STRING,
     rssURL: DataTypes.STRING,
     postbackId: DataTypes.STRING
