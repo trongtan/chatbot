@@ -4,6 +4,9 @@ export const FACEBOOK_GET_STARTED_PAYLOAD = 'USER_DEFINED_PAYLOAD';
 export const DEFAULT_TYPE_KEYWORD = 'thong tin';
 export const DEFAULT_MAXIMUM_PAYLOAD_ELEMENT = 10;
 export const DEFAULT_MAXIMUM_QUICK_REPLY_ELEMENT = 11;
+export const GENERAL_TYPE = 1;
+export const INFORMATION_PREVENTION_TREATMENT_TYPE = 2;
+export const DISEASE_TYPE = 3;
 export const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
 const payloadPrefixConstants = constantMirror(

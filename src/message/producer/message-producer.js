@@ -14,6 +14,8 @@ import {
   BUILD_DISEASE_TEMPLATE_MESSAGE
 } from 'utils/event-constants';
 
+import { GENERAL_TYPE, INFORMATION_PREVENTION_TREATMENT_TYPE, DISEASE_TYPE } from 'utils/constants';
+
 import { logger } from 'logs/winston-logger';
 
 export default class MessageProducer extends EventEmitter {
@@ -42,15 +44,15 @@ export default class MessageProducer extends EventEmitter {
       const postbacks = yield Postback.getAllPostbackFromValues(payloads);
 
       const generalPayloads = filter(postbacks, (postback) => {
-        return postback.Types.priority == 1;
+        return postback.Types.priority == GENERAL_TYPE;
       });
 
       const infoPreventTreatmentPayloads = filter(postbacks, (postback) => {
-        return postback.Types.priority == 2;
+        return postback.Types.priority == INFORMATION_PREVENTION_TREATMENT_TYPE;
       });
 
       const diseasePayloads = filter(postbacks, (postback) => {
-        return postback.Types.priority == 3;
+        return postback.Types.priority == DISEASE_TYPE;
       });
 
       if (infoPreventTreatmentPayloads.length == 0 && diseasePayloads.length == 0 && generalPayloads.length > 0) {

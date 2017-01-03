@@ -97,5 +97,14 @@
     "typeId": 2,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 12,
+    "title": "Đọc Tin Tức RSS",
+    "value": "REQUEST_RSS_PAYLOAD",
+    "description": "",
+    "typeId": 1,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]
