@@ -27,12 +27,13 @@ export default class MessageRSS extends EventEmitter {
 
     return co(function *() {
       const rssElements = yield RSSes.findAllRSS();
+      logger.info('[MessageRSS][BUILD_RSS_MESSAGE_EVENT][RssElements]: %s', JSON.stringify(rssElements));
       if (rssElements.length > 0) {
         rssElements.forEach(rss => {
           quickRelies.push({
             contentType: 'text',
             title: rss.title,
-            postbackId: (rss.postbackId ? rss.postbackId : 'UNSUPPORTED_PAYLOAD')
+            postbackId: (rss.Postback ? rss.Postback.value : 'UNSUPPORTED_PAYLOAD')
           });
         });
       }
