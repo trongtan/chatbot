@@ -1,3 +1,6 @@
+import { Postback } from 'models';
+import { DEFAULT_MAXIMUM_QUICK_REPLY_ELEMENT } from 'utils/constants';
+
 export default (sequelize, DataTypes) => {
   const RSS = sequelize.define('RSS', {
     title: DataTypes.STRING,
@@ -5,8 +8,16 @@ export default (sequelize, DataTypes) => {
     postbackId: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function(models) {
-        // associations can be defined here
+      findAllRSS: () => {
+        return RSS.findAll({
+          limit: DEFAULT_MAXIMUM_QUICK_REPLY_ELEMENT,
+          include: [
+            {
+              model: Postback,
+              as: 'Postback'
+            }
+          ]
+        });
       }
     }
   });
