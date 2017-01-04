@@ -106,5 +106,23 @@
     "typeId": 1,
     "createdAt": "11/08/2016 07:00:00+0700",
     "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 13,
+    "title": "Làm Mẹ RSS",
+    "value": "LAMME_RSS_PAYLOAD",
+    "description": "",
+    "typeId": 1,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
+  },
+  {
+    "id": 14,
+    "title": "Làm Đẹp RSS",
+    "value": "LAMDEP_RSS_PAYLOAD",
+    "description": "",
+    "typeId": 1,
+    "createdAt": "11/08/2016 07:00:00+0700",
+    "updatedAt": "11/08/2016 07:00:00+0700"
   }
 ]

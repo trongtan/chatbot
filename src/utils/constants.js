@@ -9,6 +9,10 @@ export const INFORMATION_PREVENTION_TREATMENT_TYPE = 2;
 export const DISEASE_TYPE = 3;
 export const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
+export const CATEGORY_TYPE = 'CATEGORY_TYPE';
+export const SUBCATEGORY_TYPE = 'SUBCATEGORY_TYPE';
+export const DEFAULT_SEPARATOR_PAYLOAD = '~';
+
 const payloadPrefixConstants = constantMirror(
   'GET_INFO_DISEASE'
 );

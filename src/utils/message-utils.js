@@ -1,3 +1,5 @@
+import { join } from 'lodash';
+
 export const isValidSender = (messageEvent) => {
   return messageEvent &&
     messageEvent.sender &&
@@ -44,4 +46,8 @@ export const isDeliveryMessage = (messageEvent) => {
 export const isReadMessage = (messageEvent) => {
   return messageEvent
     && messageEvent.read;
+};
+
+export const isContainRSSPayload = payloads => {
+  return (join(payloads, '~').indexOf('_RSS_') !== -1);
 };

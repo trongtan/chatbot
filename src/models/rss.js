@@ -18,6 +18,18 @@ export default (sequelize, DataTypes) => {
             }
           ]
         });
+      },
+
+      findRSSByPostback: (postback) => {
+       return RSS.findOne({
+         include: [{
+             model: Postback,
+             as: 'Postback',
+             where: {
+               value: postback
+             }
+           }]
+       });
       }
     }
   });

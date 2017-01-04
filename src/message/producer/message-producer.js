@@ -5,8 +5,15 @@ import async from 'async';
 import { filter, map } from 'lodash';
 
 import { Texts, Elements, ButtonTemplates, Diseases, Postback } from 'models';
+import { isContainRSSPayload } from 'utils/message-utils';
+import { CATEGORY_TYPE, SUBCATEGORY_TYPE } from 'utils/constants';
 
-import { BUILD_MESSAGE_EVENT, FINISHED_BUILD_MESSAGE, BUILD_RSS_MESSAGE_EVENT, FINISHED_BUILD_RSS_MESSAGE_EVENT } from 'utils/event-constants';
+import {
+  BUILD_MESSAGE_EVENT,
+  FINISHED_BUILD_MESSAGE,
+  BUILD_RSS_MESSAGE_EVENT,
+  FINISHED_BUILD_RSS_MESSAGE_EVENT
+} from 'utils/event-constants';
 import {
   BUILD_TEXT_MESSAGE,
   BUILD_GENERIC_MESSAGE,
@@ -38,9 +45,14 @@ export default class MessageProducer extends EventEmitter {
       this.emit(FINISHED_BUILD_MESSAGE, message);
     });
 
-    this.messageRSS.on(FINISHED_BUILD_RSS_MESSAGE_EVENT, (user, templateMessages) => {
+    this.messageRSS.on(FINISHED_BUILD_RSS_MESSAGE_EVENT, (user, messageType, templateMessages) => {
       if (templateMessages.length > 0) {
-        return this.messageTemplate.emit(BUILD_TEXT_MESSAGE, user, templateMessages);
+        switch (messageType) {
+          case CATEGORY_TYPE:
+            return this.messageTemplate.emit(BUILD_TEXT_MESSAGE, user, templateMessages);
+          case SUBCATEGORY_TYPE:
+            return this.messageTemplate.emit(BUILD_GENERIC_MESSAGE, user, templateMessages);
+        }
       }
     });
   }
@@ -106,7 +118,8 @@ export default class MessageProducer extends EventEmitter {
   }
 
   _buildMessageFromPayloads(user, payloads) {
-    if (payloads.includes('REQUEST_RSS_PAYLOAD')) {
+    logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][isRSSPayload]: %s', JSON.stringify(isContainRSSPayload(payloads)));
+    if (isContainRSSPayload(payloads)) {
       this.messageRSS.emit(BUILD_RSS_MESSAGE_EVENT, user, payloads);
     } else {
       this._buildNormalMessage(user, payloads);

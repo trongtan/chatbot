@@ -175,13 +175,6 @@ export default class MessageTemplate extends EventEmitter {
         title: element.title,
         image_url: element.imageURL,
         subtitle: element.subtitle,
-        default_action: {
-          type: 'web_url',
-          url: element.itemURL,
-          messenger_extensions: true,
-          webview_height_ratio: 'tall',
-          fallback_url: element.itemURL
-        },
         buttons: this._buildButtons(element.Buttons)
       })
     });
