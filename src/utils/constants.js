@@ -11,7 +11,15 @@ export const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
 export const CATEGORY_TYPE = 'CATEGORY_TYPE';
 export const SUBCATEGORY_TYPE = 'SUBCATEGORY_TYPE';
+
+export const SUBSCRIBE = 'SUBSCRIBE';
+export const UNSUBSCRIBE = 'UNSUBSCRIBE';
+export const MORE_STORY = 'MORE_STORY';
+
 export const DEFAULT_SEPARATOR_PAYLOAD = '~';
+export const DEFAULT_RSS_PAYLOAD = 'REQUEST_RSS_PAYLOAD';
+export const DEFAULT_UNSUPPORTED_PAYLOAD = 'UNSUPPORTED_PAYLOAD';
+
 
 const payloadPrefixConstants = constantMirror(
   'GET_INFO_DISEASE'

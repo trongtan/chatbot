@@ -17,7 +17,8 @@ export default (sequelize, DataTypes) => {
     currentPayload: DataTypes.STRING,
     parental: DataTypes.STRING,
     childName: DataTypes.STRING,
-    favoriteTime: DataTypes.INTEGER
+    favoriteTime: DataTypes.INTEGER,
+    subscribe:  DataTypes.ARRAY(DataTypes.STRING)
   }, {
     freezeTableName: true,
     classMethods: {
@@ -85,6 +86,11 @@ export default (sequelize, DataTypes) => {
           'NA': 'bạn'
         };
         return parentalMap[parental];
+      },
+      updateSubscribe(userId, subscribe) {
+        return User.update({
+          subscribe: subscribe
+        }, { where: { userId: userId } });
       }
     }
   });

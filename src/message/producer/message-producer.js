@@ -57,6 +57,38 @@ export default class MessageProducer extends EventEmitter {
     });
   }
 
+  _buildMessageFromPayloads(user, payloads) {
+    logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][isRSSPayload]: %s', JSON.stringify(isContainRSSPayload(payloads)));
+    if (isContainRSSPayload(payloads)) {
+      this.messageRSS.emit(BUILD_RSS_MESSAGE_EVENT, user, payloads);
+    } else {
+      this._buildNormalMessage(user, payloads);
+    }
+  }
+
+  _buildNormalMessage(user, payloads) {
+    const self = this;
+    return co(function *() {
+      const requestingPayloads = yield self._filterRequestingPayloads(payloads);
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(requestingPayloads));
+
+      return async.eachSeries(requestingPayloads, (requestingPayload, next) => {
+        const payloads = map(requestingPayload, (payloads) => {
+          return payloads.value
+        });
+
+        logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(payloads));
+
+        return self._getMessageTemplateFromDatabase(user, payloads).then(result => {
+          logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload][Result]: %s', JSON.stringify(result));
+          if (result) {
+            next();
+          }
+        });
+      });
+    });
+  }
+
   _filterRequestingPayloads(payloads) {
     return co(function *() {
       let returnedPayloads = [];
@@ -114,38 +146,6 @@ export default class MessageProducer extends EventEmitter {
       } else if (diseaseMessages.length > 0) {
         return self.messageTemplate.emit(BUILD_DISEASE_TEMPLATE_MESSAGE, user, diseaseMessages);
       }
-    });
-  }
-
-  _buildMessageFromPayloads(user, payloads) {
-    logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][isRSSPayload]: %s', JSON.stringify(isContainRSSPayload(payloads)));
-    if (isContainRSSPayload(payloads)) {
-      this.messageRSS.emit(BUILD_RSS_MESSAGE_EVENT, user, payloads);
-    } else {
-      this._buildNormalMessage(user, payloads);
-    }
-  }
-
-  _buildNormalMessage(user, payloads) {
-    const self = this;
-    return co(function *() {
-      const requestingPayloads = yield self._filterRequestingPayloads(payloads);
-      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(requestingPayloads));
-
-      return async.eachSeries(requestingPayloads, (requestingPayload, next) => {
-        const payloads = map(requestingPayload, (payloads) => {
-          return payloads.value
-        });
-
-        logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(payloads));
-
-        return self._getMessageTemplateFromDatabase(user, payloads).then(result => {
-          logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload][Result]: %s', JSON.stringify(result));
-          if (result) {
-            next();
-          }
-        });
-      });
     });
   }
 }
