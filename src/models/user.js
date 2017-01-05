@@ -18,7 +18,8 @@ export default (sequelize, DataTypes) => {
     parental: DataTypes.STRING,
     childName: DataTypes.STRING,
     favoriteTime: DataTypes.INTEGER,
-    subscribe:  DataTypes.ARRAY(DataTypes.STRING)
+    subscribe:  DataTypes.STRING,
+    readStories: DataTypes.STRING
   }, {
     freezeTableName: true,
     classMethods: {
@@ -91,6 +92,11 @@ export default (sequelize, DataTypes) => {
         return User.update({
           subscribe: subscribe
         }, { where: { userId: userId } });
+      },
+      updateReadStories(userId, readStories) {
+        return User.update({
+          readStories: readStories
+        }, { where: { userId: userId }});
       }
     }
   });

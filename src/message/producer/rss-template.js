@@ -1,5 +1,6 @@
 import co from 'co';
 
+import { map } from 'lodash';
 import { RSSes } from 'models';
 
 import { DEFAULT_SEPARATOR_PAYLOAD, DEFAULT_UNSUPPORTED_PAYLOAD } from 'utils/constants';
@@ -64,5 +65,45 @@ export default class RSSTemplate {
           }
         }]
     }];
+  }
+
+  buildMoreStory(parentPayload) {
+    return {
+      title: "More Stories",
+      Buttons: [
+        {
+          title: 'More',
+          Postback: {
+            value: MORE_STORY + DEFAULT_SEPARATOR_PAYLOAD + parentPayload,
+          },
+          ButtonTypes: {
+            value: 'postback'
+          }
+        }]
+    };
+  }
+
+  buildRSSStories(rss) {
+    return map(rss, element => {
+      return {
+        title: element.title,
+        subtitle: element.description,
+        imageURL: element.imageUrl ? element.imageUrl : element.url,
+        Buttons: [
+          {
+            title: 'View on Web',
+            url: element.url,
+            ButtonTypes: {
+              value: 'web_url'
+            }
+          },
+          {
+            ButtonTypes: {
+              value: 'element_share'
+            }
+          }
+        ]
+      }
+    });
   }
 }

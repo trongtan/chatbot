@@ -4,7 +4,6 @@ var util = require('util'),
   xml2js = require('xml2js'),
   request = require('request');
 
-
 module.exports = {
   load: function (url, callback) {
     var $ = this;
@@ -26,7 +25,6 @@ module.exports = {
         parser.parseString(xml, function (err, result) {
           var rss = $.parser(result);
           callback(null, rss);
-          //console.log(JSON.stringify(result.rss.channel));
         });
 
       } else {
@@ -64,6 +62,13 @@ module.exports = {
         obj.title = !util.isNullOrUndefined(val.title) ? val.title[0] : '';
         obj.description = !util.isNullOrUndefined(val.description) ? val.description[0] : '';
         obj.url = obj.link = !util.isNullOrUndefined(val.link) ? val.link[0] : '';
+
+        var content = !util.isNullOrUndefined(val['content:encoded']) ? val['content:encoded'][0] : '';
+        var imageTagRegex = new RegExp('\<img[^>]+src=\"([^\">]+)\"');
+        var imageTags = imageTagRegex.exec(content);
+        if (imageTags && imageTags.length > 0) {
+          obj.imageUrl = imageTags[1];
+        }
 
         if (val.pubDate) {
           //lets try basis js date parsing for now

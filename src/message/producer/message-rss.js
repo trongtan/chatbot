@@ -2,13 +2,13 @@ import EventEmitter from 'events';
 import co from 'co';
 import Feed from 'vendors/feed';
 
-import { split, remove } from 'lodash';
+import { split, remove, slice } from 'lodash';
 
 import { RSSes, User } from 'models';
 
 import { BUILD_RSS_MESSAGE_EVENT, FINISHED_BUILD_RSS_MESSAGE_EVENT } from 'utils/event-constants';
 import { CATEGORY_TYPE, SUBCATEGORY_TYPE, DEFAULT_SEPARATOR_PAYLOAD, DEFAULT_RSS_PAYLOAD, DEFAULT_UNSUPPORTED_PAYLOAD } from 'utils/constants';
-import { SUBSCRIBE, UNSUBSCRIBE, MORE_STORY } from 'utils/constants';
+import { SUBSCRIBE, UNSUBSCRIBE, MORE_STORY, DEFAULT_MAX_LOAD_MORE_ELEMENTS } from 'utils/constants';
 
 import { logger } from 'logs/winston-logger';
 
@@ -60,7 +60,7 @@ export default class MessageRSS extends EventEmitter {
 
           logger.info('[MessageRSS][BUILD_RSS_MESSAGE_EVENT][rssPayloads]: %s', JSON.stringify(rssPayloads));
           if (parsedRSSPayload.action) {
-            self._handleUserActionOnRSSSubCategory(user, parsedRSSPayload);
+            self._handleUserActionOnRSSSubCategory(user, rss, parsedRSSPayload);
           } else {
             self._handleUserSelectRSSCategory(user, rss, parsedRSSPayload);
           }
@@ -85,7 +85,7 @@ export default class MessageRSS extends EventEmitter {
     }
   }
 
-  _handleUserActionOnRSSSubCategory(user, parsedPayload) {
+  _handleUserActionOnRSSSubCategory(user, rss, parsedPayload) {
     switch (parsedPayload.action) {
       case SUBSCRIBE:
         if (!user.subscribe) {
@@ -103,6 +103,19 @@ export default class MessageRSS extends EventEmitter {
 
         break;
       case MORE_STORY:
+        const readingIndex = user.readStories;
+
+        let allStories = this.rssTemplate.buildRSSStories(rss.items);
+
+        const min = Math.min(allStories.length, readingIndex + DEFAULT_MAX_LOAD_MORE_ELEMENTS);
+        let stories = slice(allStories, readingIndex, min);
+        if (readingIndex + DEFAULT_MAX_LOAD_MORE_ELEMENTS < allStories.length) {
+          let lastItem = this.rssTemplate.buildMoreStory(parsedPayload.category);
+          stories.push(lastItem);
+          User.updateReadStories(user.userId, readingIndex + DEFAULT_MAX_LOAD_MORE_ELEMENTS);
+        } else { User.updateReadStories(user.userId, 0); }
+
+        this.emit(FINISHED_BUILD_RSS_MESSAGE_EVENT, user, SUBCATEGORY_TYPE, stories);
         break;
     }
   }
