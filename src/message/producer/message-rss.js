@@ -27,6 +27,10 @@ export default class MessageRSS extends EventEmitter {
     });
   }
 
+  sendRSSToUser(user, rss, payload) {
+    _handleUserActionOnRSSSubCategory(user, rss, payload);
+  }
+
   _processRequestRSSPayload(user) {
     const self = this;
     return co(function *() {

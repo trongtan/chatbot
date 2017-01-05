@@ -4,9 +4,11 @@ import { DispatcherFactory } from 'message';
 import { RECEIVED_MESSAGE_EVENT } from 'utils/event-constants';
 
 import { logger } from 'logs/winston-logger';
-
+import { sendMessage } from 'broadcast/broadcast';
 const webHookApp = new Express();
 const dispatcher = new DispatcherFactory().build();
+
+sendMessage();
 
 webHookApp.get('/', (req, res) => {
   res.send('Hello from Life Pedia - Chatbot');
