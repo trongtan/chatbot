@@ -123,6 +123,29 @@
         "name": "currentPayload",
         "verbose": "currentPayload",
         "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Postback",
+          "pk": "id",
+          "columns": [
+            "title"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "subscribe",
+        "verbose": "Subscribe Channels",
+        "control": {
           "text": true
         },
         "type": "varchar(255)",
@@ -132,7 +155,23 @@
           "show": true
         },
         "editview": {
-          "show": true
+          "show": false
+        }
+      },
+      {
+        "name": "readStories",
+        "verbose": "readStories",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
         }
       },
       {

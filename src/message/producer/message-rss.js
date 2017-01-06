@@ -7,7 +7,13 @@ import { split, remove, slice } from 'lodash';
 import { RSSes, User } from 'models';
 
 import { BUILD_RSS_MESSAGE_EVENT, FINISHED_BUILD_RSS_MESSAGE_EVENT } from 'utils/event-constants';
-import { CATEGORY_TYPE, SUBCATEGORY_TYPE, DEFAULT_SEPARATOR_PAYLOAD, DEFAULT_RSS_PAYLOAD, DEFAULT_UNSUPPORTED_PAYLOAD } from 'utils/constants';
+import {
+  CATEGORY_TYPE,
+  SUBCATEGORY_TYPE,
+  DEFAULT_SEPARATOR_PAYLOAD,
+  DEFAULT_RSS_PAYLOAD,
+  DEFAULT_UNSUPPORTED_PAYLOAD
+} from 'utils/constants';
 import { SUBSCRIBE, UNSUBSCRIBE, MORE_STORY, DEFAULT_MAX_LOAD_MORE_ELEMENTS } from 'utils/constants';
 
 import { logger } from 'logs/winston-logger';
@@ -58,7 +64,7 @@ export default class MessageRSS extends EventEmitter {
             return;
           }
 
-          logger.info('[MessageRSS][BUILD_RSS_MESSAGE_EVENT][rssPayloads]: %s', JSON.stringify(rssPayloads));
+          logger.info('[MessageRSS][BUILD_RSS_MESSAGE_EVENT][rssPayloads]: %s', JSON.stringify(parsedRSSPayload));
           if (parsedRSSPayload.action) {
             self._handleUserActionOnRSSSubCategory(user, rss, parsedRSSPayload);
           } else {
@@ -103,7 +109,7 @@ export default class MessageRSS extends EventEmitter {
 
         break;
       case MORE_STORY:
-        const readingIndex = user.readStories;
+        const readingIndex = (user.readStories) ? user.readStories : 0;
 
         let allStories = this.rssTemplate.buildRSSStories(rss.items);
 
@@ -113,7 +119,9 @@ export default class MessageRSS extends EventEmitter {
           let lastItem = this.rssTemplate.buildMoreStory(parsedPayload.category);
           stories.push(lastItem);
           User.updateReadStories(user.userId, readingIndex + DEFAULT_MAX_LOAD_MORE_ELEMENTS);
-        } else { User.updateReadStories(user.userId, 0); }
+        } else {
+          User.updateReadStories(user.userId, 0);
+        }
 
         this.emit(FINISHED_BUILD_RSS_MESSAGE_EVENT, user, SUBCATEGORY_TYPE, stories);
         break;
@@ -121,6 +129,9 @@ export default class MessageRSS extends EventEmitter {
   }
 
   _handleUserSelectRSSCategory(user, rss, parsedRSSPayload) {
+    // Reset readStory index
+    User.updateReadStories(user.userId, 0);
+
     const subCategoryTemplateMessage = this.rssTemplate.buildRSSSubCategory(user, rss, parsedRSSPayload.category);
     this.emit(FINISHED_BUILD_RSS_MESSAGE_EVENT, user, SUBCATEGORY_TYPE, subCategoryTemplateMessage);
   }
