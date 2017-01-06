@@ -32,13 +32,13 @@ describe('MessageClassifier', () => {
       const spy = sinon.spy(textMessageHandler, 'emit');
 
       messageClassifier.emit('CLASSIFY_MESSAGE_EVENT', textMessageEvent);
-      expect(spy.calledWith('HANDLE_MESSAGE_EVENT', messageClassifier, textMessageEvent)).to.be.true;
+      expect(spy.calledWith('HANDLE_MESSAGE_EVENT', textMessageEvent)).to.be.true;
 
       textMessageHandler.emit.restore();
     });
 
     it('emits the quickReplyMessageHandler when message is quick reply', () => {
-      const textMessageEvent = { message: { text: 'hey', quick_reply: [] } };
+      const textMessageEvent = { sender: { id: '1' }, message: { text: 'hey', quick_reply: { payload: 'GREETING-PAYLOAD'} } };
       const spy = sinon.spy(quickReplyMessageHandler, 'emit');
 
       messageClassifier.emit('CLASSIFY_MESSAGE_EVENT', textMessageEvent);
@@ -62,7 +62,7 @@ describe('MessageClassifier', () => {
       const spy = sinon.spy(postbackMessageHandler, 'emit');
 
       messageClassifier.emit('CLASSIFY_MESSAGE_EVENT', textMessageEvent);
-      expect(spy.calledWith('HANDLE_MESSAGE_EVENT', messageClassifier, textMessageEvent)).to.be.true;
+      expect(spy.calledWith('HANDLE_MESSAGE_EVENT', textMessageEvent)).to.be.true;
 
       postbackMessageHandler.emit.restore();
     });
