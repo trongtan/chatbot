@@ -1,3 +1,4 @@
+import co from 'co';
 import rp from 'request-promise';
 
 import { logger } from 'logs/winston-logger';

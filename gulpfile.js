@@ -103,7 +103,8 @@ gulp.task('copy-vendors', () => {
 
 gulp.task('merge-admin-settings', () => {
   return _mergeExpressAdminSettingsTask(
-    [ 'src/admin/config/tables/type.json',
+    [ 'src/admin/config/t' +
+    'bles/type.json',
       'src/admin/config/tables/postback.json',
       'src/admin/config/tables/watchword.json',
       'src/admin/config/tables/button.json',
