@@ -32,10 +32,12 @@ export default class TextMessageHandler extends EventEmitter {
         logger.info('Handle Text Message - Payload: %s', JSON.stringify(payloads));
         const diseaseSymptomPayload = self._getDiseaseHaveHighestSymptom(payloads);
 
-        if (diseaseSymptomPayload) {
+        if (diseaseSymptomPayload.length > 0) {
           self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, [diseaseSymptomPayload]);
         } else if (payloads.length > 0) {
           self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, payloads);
+        } else {
+          self.emit(FINISHED_HANDLE_MESSAGE_EVENT, senderId, ['UNKNOWN_PAYLOAD']);
         }
       }
     );
@@ -112,6 +114,7 @@ export default class TextMessageHandler extends EventEmitter {
         payload = key;
       }
     });
+    logger.info('GetDiseaseHaveHighestSymptom: %s', JSON.stringify(payloads));
 
     return payload;
   }
