@@ -155,7 +155,7 @@ gulp.task('copy-mocha-options', () => {
 });
 
 gulp.task('build-test', () => {
-  return gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test', 'copy-express-admin-config').on('error', gulpUtil.log);
+  return gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test', 'copy-express-admin-config', 'copy-vendors').on('error', gulpUtil.log);
 });
 
 /////////////////////////////////////////////////////////////////
