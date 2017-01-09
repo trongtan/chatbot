@@ -7,7 +7,7 @@ import { ASSIGN_SENDER_ID_TO_MESSAGE } from 'utils/event-constants';
 
 describe('MessageTemplate', () => {
   let messageTemplate;
-  const senderId = '1';
+  const senderId = 1;
 
   beforeEach(() => {
     messageTemplate = new MessageTemplate();
@@ -65,13 +65,6 @@ describe('MessageTemplate', () => {
               title: 'element title',
               image_url: 'image_url',
               subtitle: 'sub title',
-              default_action: {
-                type: 'web_url',
-                url: 'item_url',
-                messenger_extensions: true,
-                webview_height_ratio: 'tall',
-                fallback_url: 'item_url'
-              },
               buttons: [{ type: 'postback', title: 'button title', payload: 'GREETING' }]
             }]
           }

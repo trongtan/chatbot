@@ -5,8 +5,15 @@ import async from 'async';
 import { filter, map } from 'lodash';
 
 import { Texts, Elements, ButtonTemplates, Diseases, Postback } from 'models';
+import { isContainRSSPayload } from 'utils/message-utils';
+import { CATEGORY_TYPE, SUBCATEGORY_TYPE } from 'utils/constants';
 
-import { BUILD_MESSAGE_EVENT, FINISHED_BUILD_MESSAGE } from 'utils/event-constants';
+import {
+  BUILD_MESSAGE_EVENT,
+  FINISHED_BUILD_MESSAGE,
+  BUILD_RSS_MESSAGE_EVENT,
+  FINISHED_BUILD_RSS_MESSAGE_EVENT
+} from 'utils/event-constants';
 import {
   BUILD_TEXT_MESSAGE,
   BUILD_GENERIC_MESSAGE,
@@ -14,12 +21,15 @@ import {
   BUILD_DISEASE_TEMPLATE_MESSAGE
 } from 'utils/event-constants';
 
+import { GENERAL_TYPE, INFORMATION_PREVENTION_TREATMENT_TYPE, DISEASE_TYPE } from 'utils/constants';
+
 import { logger } from 'logs/winston-logger';
 
 export default class MessageProducer extends EventEmitter {
-  constructor(messageTemplate) {
+  constructor(messageTemplate, messageRSS) {
     super();
     this.messageTemplate = messageTemplate;
+    this.messageRSS = messageRSS;
     this._listenEvent();
   }
 
@@ -34,6 +44,49 @@ export default class MessageProducer extends EventEmitter {
       logger.info('[Message Producer] [FINISHED_BUILD_MESSAGE]: %s', JSON.stringify(message));
       this.emit(FINISHED_BUILD_MESSAGE, message);
     });
+
+    this.messageRSS.on(FINISHED_BUILD_RSS_MESSAGE_EVENT, (user, messageType, templateMessages) => {
+      if (templateMessages.length > 0) {
+        switch (messageType) {
+          case CATEGORY_TYPE:
+            return this.messageTemplate.emit(BUILD_TEXT_MESSAGE, user, templateMessages);
+          case SUBCATEGORY_TYPE:
+            return this.messageTemplate.emit(BUILD_GENERIC_MESSAGE, user, templateMessages);
+        }
+      }
+    });
+  }
+
+  _buildMessageFromPayloads(user, payloads) {
+    logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][isRSSPayload]: %s', JSON.stringify(isContainRSSPayload(payloads)));
+    if (isContainRSSPayload(payloads)) {
+      this.messageRSS.emit(BUILD_RSS_MESSAGE_EVENT, user, payloads);
+    } else {
+      this._buildNormalMessage(user, payloads);
+    }
+  }
+
+  _buildNormalMessage(user, payloads) {
+    const self = this;
+    return co(function *() {
+      const requestingPayloads = yield self._filterRequestingPayloads(payloads);
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(requestingPayloads));
+
+      return async.eachSeries(requestingPayloads, (requestingPayload, next) => {
+        const payloads = map(requestingPayload, (payloads) => {
+          return payloads.value
+        });
+
+        logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(payloads));
+
+        return self._getMessageTemplateFromDatabase(user, payloads).then(result => {
+          logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload][Result]: %s', JSON.stringify(result));
+          if (result) {
+            next();
+          }
+        });
+      });
+    });
   }
 
   _filterRequestingPayloads(payloads) {
@@ -42,15 +95,15 @@ export default class MessageProducer extends EventEmitter {
       const postbacks = yield Postback.getAllPostbackFromValues(payloads);
 
       const generalPayloads = filter(postbacks, (postback) => {
-        return postback.Types.priority == 1;
+        return postback.Types.priority == GENERAL_TYPE;
       });
 
       const infoPreventTreatmentPayloads = filter(postbacks, (postback) => {
-        return postback.Types.priority == 2;
+        return postback.Types.priority == INFORMATION_PREVENTION_TREATMENT_TYPE;
       });
 
       const diseasePayloads = filter(postbacks, (postback) => {
-        return postback.Types.priority == 3;
+        return postback.Types.priority == DISEASE_TYPE;
       });
 
       if (infoPreventTreatmentPayloads.length == 0 && diseasePayloads.length == 0 && generalPayloads.length > 0) {
@@ -93,29 +146,6 @@ export default class MessageProducer extends EventEmitter {
       } else if (diseaseMessages.length > 0) {
         return self.messageTemplate.emit(BUILD_DISEASE_TEMPLATE_MESSAGE, user, diseaseMessages);
       }
-    });
-  }
-
-  _buildMessageFromPayloads(user, payloads) {
-    const self = this;
-    return co(function *() {
-      const requestingPayloads = yield self._filterRequestingPayloads(payloads);
-      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(requestingPayloads));
-
-      return async.eachSeries(requestingPayloads, (requestingPayload, next) => {
-        const payloads = map(requestingPayload, (payloads) => {
-          return payloads.value
-        });
-
-        logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(payloads));
-
-        return self._getMessageTemplateFromDatabase(user, payloads).then(result => {
-          logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload][Result]: %s', JSON.stringify(result));
-          if (result) {
-            next();
-          }
-        });
-      });
     });
   }
 }

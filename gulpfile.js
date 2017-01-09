@@ -77,7 +77,7 @@ gulp.task('build-env', function () {
 });
 
 gulp.task('es6', () => {
-  return _es6Task(['src/**/*.js', '!src/admin/custom/static/**/*.js'], 'dist');
+  return _es6Task(['src/**/*.js', '!src/admin/custom/static/**/*.js', '!src/vendors/**/*.js'], 'dist');
 });
 
 gulp.task('copy-express-admin-config', () => {
@@ -90,11 +90,15 @@ gulp.task('import-db', ['build-env'], () => {
 });
 
 gulp.task('build', ['clean'], () => {
-  gulp.start('es6', 'copy-message-structure', 'import-db', 'build-admin').on('error', gulpUtil.log);
+  gulp.start('es6', 'copy-message-structure', 'import-db', 'build-admin', 'copy-vendors').on('error', gulpUtil.log);
 });
 
 gulp.task('copy-message-structure', () => {
   return _copyTask('src/message/producer/**/*.json', 'dist/message/producer/');
+});
+
+gulp.task('copy-vendors', () => {
+  return _copyTask('src/vendors/**/*.js', 'dist/vendors/');
 });
 
 gulp.task('merge-admin-settings', () => {
@@ -114,6 +118,7 @@ gulp.task('merge-admin-settings', () => {
 
       'src/admin/config/tables/user.json',
       'src/admin/config/tables/persistent-menu.json',
+      'src/admin/config/tables/rss.json',
       //Hidden table
       'src/admin/config/tables/synonym.json',
       'src/admin/config/tables/button-type.json',
@@ -150,7 +155,7 @@ gulp.task('copy-mocha-options', () => {
 });
 
 gulp.task('build-test', () => {
-  return gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test', 'copy-express-admin-config').on('error', gulpUtil.log);
+  return gulp.start('es6', 'es6-test', 'copy-mocha-options', 'import-db-test', 'copy-express-admin-config', 'copy-vendors').on('error', gulpUtil.log);
 });
 
 /////////////////////////////////////////////////////////////////

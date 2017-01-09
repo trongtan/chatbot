@@ -12,7 +12,7 @@ import { logger } from 'logs/winston-logger';
 export default class TextMessageHandler extends EventEmitter {
   constructor() {
     super();
-    this.on(HANDLE_MESSAGE_EVENT, (classifier, messageEvent) => {
+    this.on(HANDLE_MESSAGE_EVENT, (messageEvent) => {
       logger.info('Handle Text Message: %s', JSON.stringify(messageEvent));
       const self = this;
 

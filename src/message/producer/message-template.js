@@ -175,13 +175,6 @@ export default class MessageTemplate extends EventEmitter {
         title: element.title,
         image_url: element.imageURL,
         subtitle: element.subtitle,
-        default_action: {
-          type: 'web_url',
-          url: element.itemURL,
-          messenger_extensions: true,
-          webview_height_ratio: 'tall',
-          fallback_url: element.itemURL
-        },
         buttons: this._buildButtons(element.Buttons)
       })
     });
@@ -218,18 +211,26 @@ export default class MessageTemplate extends EventEmitter {
     let builtButtons = [];
     if (buttons) {
       buttons.forEach(button => {
-        if (button.ButtonTypes.value === 'postback') {
-          builtButtons.push({
-            type: 'postback',
-            title: button.title,
-            payload: button.Postback.value
-          })
-        } else if (buttons.ButtonTypes.value === 'web_url') {
-          builtButtons.push({
-            type: 'web_url',
-            url: button.url,
-            title: button.title
-          })
+        switch (button.ButtonTypes.value) {
+          case 'postback':
+            builtButtons.push({
+              type: 'postback',
+              title: button.title,
+              payload: button.Postback.value
+            });
+            break;
+          case 'web_url':
+            builtButtons.push({
+              type: 'web_url',
+              url: button.url,
+              title: button.title
+            });
+            break;
+          case 'element_share':
+            builtButtons.push({
+              type: 'element_share'
+            });
+            break;
         }
       });
     }

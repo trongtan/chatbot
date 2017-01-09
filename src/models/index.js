@@ -23,6 +23,7 @@ import DiseaseArticleDefinition from './disease-article';
 import DiseaseMessageDefinition from './disease-messages';
 import TypeDefinition from './type';
 import PersistentMenuDefinition from './persistent-menu';
+import RSSDefinition from './rss';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
@@ -48,73 +49,77 @@ const DiseaseArticles = sequelize.import('DiseaseArticle', DiseaseArticleDefinit
 const DiseaseMessages = sequelize.import('DiseaseMessage', DiseaseMessageDefinition);
 const Types = sequelize.import('Type', TypeDefinition);
 const PersistentMenus = sequelize.import('PersistentMenu', PersistentMenuDefinition);
+const RSSes = sequelize.import('RSS', RSSDefinition);
 
-Postback.hasMany(Watchword, {foreignKey: 'postbackId'});
-Watchword.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+Postback.hasMany(Watchword, { foreignKey: 'postbackId' });
+Watchword.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 //Watchword 1 - n Synonym
-Watchword.hasMany(Synonym, {foreignKey: 'watchwordId'});
-Synonym.belongsTo(Watchword, {as: 'Watchwords', foreignKey: 'watchwordId'});
+Watchword.hasMany(Synonym, { foreignKey: 'watchwordId' });
+Synonym.belongsTo(Watchword, { as: 'Watchwords', foreignKey: 'watchwordId' });
 
 //Texts n - m Messages
-Texts.belongsToMany(Messages, {through: {model: TextMessages}, foreignKey: 'textId'});
-Messages.belongsToMany(Texts, {through: {model: TextMessages}, foreignKey: 'messageId'});
+Texts.belongsToMany(Messages, { through: { model: TextMessages }, foreignKey: 'textId' });
+Messages.belongsToMany(Texts, { through: { model: TextMessages }, foreignKey: 'messageId' });
 
 //Texts 1 - 1 Postback
-Texts.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+Texts.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
-QuickReplies.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+QuickReplies.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 //Texts n-m QuickReply
-Texts.belongsToMany(QuickReplies, {through: {model: TextQuickReplies}, foreignKey: 'textId'});
-QuickReplies.belongsToMany(Texts, {through: {model: TextQuickReplies}, foreignKey: 'quickReplyId'});
+Texts.belongsToMany(QuickReplies, { through: { model: TextQuickReplies }, foreignKey: 'textId' });
+QuickReplies.belongsToMany(Texts, { through: { model: TextQuickReplies }, foreignKey: 'quickReplyId' });
 
 //Element 1 - 1 Postback
-Elements.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+Elements.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 //Button 1 - n ButtonType
-ButtonTypes.hasMany(Buttons, {foreignKey: 'buttonTypeId'});
-Buttons.belongsTo(ButtonTypes, {as: 'ButtonTypes', foreignKey: 'buttonTypeId'});
+ButtonTypes.hasMany(Buttons, { foreignKey: 'buttonTypeId' });
+Buttons.belongsTo(ButtonTypes, { as: 'ButtonTypes', foreignKey: 'buttonTypeId' });
 
-ButtonTypes.hasMany(Buttons, {foreignKey: 'buttonTypeId'});
+ButtonTypes.hasMany(Buttons, { foreignKey: 'buttonTypeId' });
 
 //Button 1 - 1 Postback
-Buttons.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+Buttons.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 //Element n-m Button
-Elements.belongsToMany(Buttons, {through: {model: ElementButtons}, foreignKey: 'elementId'});
-Buttons.belongsToMany(Elements, {through: {model: ElementButtons}, foreignKey: 'buttonId'});
+Elements.belongsToMany(Buttons, { through: { model: ElementButtons }, foreignKey: 'elementId' });
+Buttons.belongsToMany(Elements, { through: { model: ElementButtons }, foreignKey: 'buttonId' });
 
 //ButtonTemplate 1 - 1 Postback
-ButtonTemplates.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+ButtonTemplates.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 //ButtonTemplate n - m Button
-ButtonTemplates.belongsToMany(Buttons, {through: {model: ButtonTemplateButtons}, foreignKey: 'buttonTemplateId'});
-Buttons.belongsToMany(ButtonTemplates, {through: {model: ButtonTemplateButtons}, foreignKey: 'buttonId'});
+ButtonTemplates.belongsToMany(Buttons, { through: { model: ButtonTemplateButtons }, foreignKey: 'buttonTemplateId' });
+Buttons.belongsToMany(ButtonTemplates, { through: { model: ButtonTemplateButtons }, foreignKey: 'buttonId' });
 
 //ButtonTemplate n - m Message
-ButtonTemplates.belongsToMany(Messages, {through: {model: ButtonTemplateMessages}, foreignKey: 'buttonTemplateId'});
-Messages.belongsToMany(ButtonTemplates, {through: {model: ButtonTemplateMessages}, foreignKey: 'messageId'});
+ButtonTemplates.belongsToMany(Messages, { through: { model: ButtonTemplateMessages }, foreignKey: 'buttonTemplateId' });
+Messages.belongsToMany(ButtonTemplates, { through: { model: ButtonTemplateMessages }, foreignKey: 'messageId' });
 
 //Disease n - m Article
-Diseases.belongsToMany(Articles, {through: {model: DiseaseArticles}, foreignKey: 'diseaseId'});
-Articles.belongsToMany(Diseases, {through: {model: DiseaseArticles}, foreignKey: 'articleId'});
+Diseases.belongsToMany(Articles, { through: { model: DiseaseArticles }, foreignKey: 'diseaseId' });
+Articles.belongsToMany(Diseases, { through: { model: DiseaseArticles }, foreignKey: 'articleId' });
 
 //Disease 1 - 1 Postback (Type)
-Diseases.belongsTo(Postback, {as: 'TypePostback', foreignKey: 'typePostbackId'});
+Diseases.belongsTo(Postback, { as: 'TypePostback', foreignKey: 'typePostbackId' });
 
 //Disease 1 - 1 Postback (Disease)
-Diseases.belongsTo(Postback, {as: 'DiseasePostback', foreignKey: 'diseasePostbackId'});
+Diseases.belongsTo(Postback, { as: 'DiseasePostback', foreignKey: 'diseasePostbackId' });
 
 //Disease n - m Messages
-Diseases.belongsToMany(Messages, {through: {model: DiseaseMessages}, foreignKey: 'diseaseId'});
-Messages.belongsToMany(Diseases, {through: {model: DiseaseMessages}, foreignKey: 'messageId'});
+Diseases.belongsToMany(Messages, { through: { model: DiseaseMessages }, foreignKey: 'diseaseId' });
+Messages.belongsToMany(Diseases, { through: { model: DiseaseMessages }, foreignKey: 'messageId' });
 
 //Postback 1 - 1 Type
-Postback.belongsTo(Types, {as: 'Types', foreignKey: 'typeId'});
+Postback.belongsTo(Types, { as: 'Types', foreignKey: 'typeId' });
 
 //PersistentMenus 1 - 1 Postback
-PersistentMenus.belongsTo(Postback, {as: 'Postback', foreignKey: 'postbackId'});
+PersistentMenus.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
+
+//RSSes 1 - 1 Postback
+RSSes.belongsTo(Postback, { as: 'Postback', foreignKey: 'postbackId' });
 
 export {
   User,
@@ -132,5 +137,6 @@ export {
   Diseases,
   Articles,
   Types,
-  PersistentMenus
+  PersistentMenus,
+  RSSes
 }
