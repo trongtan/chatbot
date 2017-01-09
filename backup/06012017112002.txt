@@ -1,0 +1,1360 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: Articles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Articles" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    "itemURL" character varying(255),
+    "imageURL" character varying(255),
+    subtitle text,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Articles" OWNER TO postgres;
+
+--
+-- Name: ButtonTemplateButtons; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "ButtonTemplateButtons" (
+    "buttonTemplateId" character varying(255) NOT NULL,
+    "buttonId" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE "ButtonTemplateButtons" OWNER TO postgres;
+
+--
+-- Name: ButtonTemplateMessages; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "ButtonTemplateMessages" (
+    "buttonTemplateId" character varying(255) NOT NULL,
+    "messageId" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE "ButtonTemplateMessages" OWNER TO postgres;
+
+--
+-- Name: ButtonTemplates; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "ButtonTemplates" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    "postbackId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "ButtonTemplates" OWNER TO postgres;
+
+--
+-- Name: ButtonTypes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "ButtonTypes" (
+    id character varying(255) NOT NULL,
+    value character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "ButtonTypes" OWNER TO postgres;
+
+--
+-- Name: Buttons; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Buttons" (
+    id character varying(255) NOT NULL,
+    "buttonTypeId" character varying(255),
+    url character varying(255),
+    title character varying(255),
+    "postbackId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Buttons" OWNER TO postgres;
+
+--
+-- Name: DiseaseArticles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "DiseaseArticles" (
+    "diseaseId" character varying(255) NOT NULL,
+    "articleId" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE "DiseaseArticles" OWNER TO postgres;
+
+--
+-- Name: DiseaseMessages; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "DiseaseMessages" (
+    "diseaseId" character varying(255) NOT NULL,
+    "messageId" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE "DiseaseMessages" OWNER TO postgres;
+
+--
+-- Name: Diseases; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Diseases" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    "typePostbackId" character varying(255) NOT NULL,
+    "diseasePostbackId" character varying(255) NOT NULL,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Diseases" OWNER TO postgres;
+
+--
+-- Name: ElementButtons; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "ElementButtons" (
+    "elementId" character varying(255) NOT NULL,
+    "buttonId" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE "ElementButtons" OWNER TO postgres;
+
+--
+-- Name: Elements; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Elements" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    "itemURL" character varying(255),
+    "imageURL" character varying(255),
+    subtitle text,
+    "postbackId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Elements" OWNER TO postgres;
+
+--
+-- Name: Messages; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Messages" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    message text,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Messages" OWNER TO postgres;
+
+--
+-- Name: PersistentMenus; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "PersistentMenus" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    type character varying(255),
+    "postbackId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "PersistentMenus" OWNER TO postgres;
+
+--
+-- Name: Postback; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Postback" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    value character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    "typeId" character varying(255),
+    description text
+);
+
+
+ALTER TABLE "Postback" OWNER TO postgres;
+
+--
+-- Name: QuickReplies; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "QuickReplies" (
+    id character varying(255) NOT NULL,
+    "contentType" character varying(255),
+    title character varying(255),
+    "imageURL" character varying(255),
+    "postbackId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "QuickReplies" OWNER TO postgres;
+
+--
+-- Name: RSSes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "RSSes" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    "rssURL" character varying(255),
+    "postbackId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "RSSes" OWNER TO postgres;
+
+--
+-- Name: SequelizeMeta; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "SequelizeMeta" (
+    name character varying(255) NOT NULL
+);
+
+
+ALTER TABLE "SequelizeMeta" OWNER TO postgres;
+
+--
+-- Name: Synonym; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Synonym" (
+    id character varying(255) NOT NULL,
+    value character varying(255) NOT NULL,
+    "watchwordId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Synonym" OWNER TO postgres;
+
+--
+-- Name: TextMessages; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "TextMessages" (
+    "textId" character varying(255) NOT NULL,
+    "messageId" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE "TextMessages" OWNER TO postgres;
+
+--
+-- Name: TextQuickReplies; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "TextQuickReplies" (
+    "textId" character varying(255) NOT NULL,
+    "quickReplyId" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE "TextQuickReplies" OWNER TO postgres;
+
+--
+-- Name: Texts; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Texts" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    "postbackId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Texts" OWNER TO postgres;
+
+--
+-- Name: Types; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Types" (
+    id character varying(255) NOT NULL,
+    title character varying(255),
+    priority integer,
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Types" OWNER TO postgres;
+
+--
+-- Name: User; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "User" (
+    "userId" character varying(255) NOT NULL,
+    "firstName" character varying(255),
+    "lastName" character varying(255),
+    gender character varying(255),
+    "currentPayload" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL,
+    parental character varying(255),
+    "childName" character varying(255),
+    "favoriteTime" integer,
+    subscribe character varying(255)[],
+    "readStories" integer
+);
+
+
+ALTER TABLE "User" OWNER TO postgres;
+
+--
+-- Name: Watchword; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "Watchword" (
+    id character varying(255) NOT NULL,
+    value character varying(255) NOT NULL,
+    "postbackId" character varying(255),
+    "createdAt" timestamp with time zone NOT NULL,
+    "updatedAt" timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE "Watchword" OWNER TO postgres;
+
+--
+-- Data for Name: Articles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Articles" (id, title, "itemURL", "imageURL", subtitle, "createdAt", "updatedAt") FROM stdin;
+2	Bệnh hô hấp, tim mạch: Nỗi kinh hoàng trong mùa lạnh	http://www.webtretho.com/forum/f26/benh-ho-hap-tim-mach-noi-kinh-hoang-trong-mua-lanh-1823012/	http://img.webtretho.com/images/lifepedia/2.jpg	Thời tiết giá lạnh kèm theo ẩm thấp khiến nhiều trẻ nhỏ phải nhập viện …	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+3	5 cách giúp bà bầu phòng bệnh hô hấp	http://www.webtretho.com/forum/f73/5-cach-giup-ba-bau-phong-benh-ho-hap-1262651/	http://img.webtretho.com/images/lifepedia/3.jpg	Mùa hè dễ bùng phát nhiều loại vi khuẩn khác nhau, chúng dễ dàng lây lan…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+4	Lưu ý bệnh hô hấp ở trẻ	http://www.webtretho.com/forum/f26/luu-y-benh-ho-hap-o-tre-1957741/	http://img.webtretho.com/images/lifepedia/4.jpg	Viêm hô hấp ở trẻ em đa phần là nhẹ nhưng rất ảnh hưởng đến sinh hoạt của trẻ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+5	Ho và hắt xì đúng cách: Phòng ngừa hiệu quả bệnh hô hấp	http://www.webtretho.com/forum/f26/ho-va-hat-xi-dung-cach-phong-ngua-hieu-qua-benh-ho-hap-2063069/	http://img.webtretho.com/images/lifepedia/5.jpg	Nếu bệnh về hô hấp, ho và hắt xì đúng cách sẽ giúp bạn phòng bệnh hiệu quả.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+6	7 cách phòng bệnh hô hấp khi giao mùa	http://www.webtretho.com/forum/f119/7-cach-phong-benh-ho-hap-khi-giao-mua-1982898/	http://img.webtretho.com/images/lifepedia/6.jpg	Sự thay đổi thời tiết là điều kiện làm gia tăng các bệnh về tai mũi họng	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+7	Một nguyên nhân gây ra bệnh hô hấp cho trẻ	http://www.webtretho.com/forum/f87/mot-nguyen-nhan-gay-ra-benh-ho-hap-cho-tre-638952/	http://img.webtretho.com/images/lifepedia/7.jpg	Một nguyên nhân mà nhiều người không để ý cứ mỗi dịp lễ tết đó chính là ...	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+8	Phòng bệnh hô hấp cho con bằng nước muối sinh lý: phòng hay hại con	http://www.webtretho.com/forum/f854/phon-benh-ho-hap-cho-con-bang-nuoc-muoi-sinh-ly-phong-dau-chua-thay-da-thay-hai-con-2198000/	http://img.webtretho.com/images/lifepedia/8.jpg	Nước muối sinh lý dùng thường xuyên có thật sự công hiệu như mọi người nghĩ …	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+9	Những điều cần biết khi chăm sóc trẻ bị bệnh hô hấp	http://www.webtretho.com/forum/f87/nhung-dieu-can-biet-khi-cham-soc-tre-bi-benh-ho-hap-1362764/	http://img.webtretho.com/images/lifepedia/9.jpg	Nếu triệu chứng nhẹ không có dấu hiệu nhiễm trùng thì không nên uống kháng sinh	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+11	5 cách giúp bà bầu phòng bệnh hô hấp	http://www.webtretho.com/forum/f73/5-cach-giup-ba-bau-phong-benh-ho-hap-1262651/	http://img.webtretho.com/images/lifepedia/11.jpg	Mùa hè dễ bùng phát nhiều loại vi khuẩn khác nhau, chúng dễ dàng lây lan…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+12	Lưu ý bệnh hô hấp ở trẻ	http://www.webtretho.com/forum/f26/luu-y-benh-ho-hap-o-tre-1957741/	http://img.webtretho.com/images/lifepedia/12.jpg	Viêm hô hấp ở trẻ em đa phần là nhẹ nhưng rất ảnh hưởng đến sinh hoạt của trẻ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+13	Ho và hắt xì đúng cách: Phòng ngừa hiệu quả bệnh hô hấp	http://www.webtretho.com/forum/f26/ho-va-hat-xi-dung-cach-phong-ngua-hieu-qua-benh-ho-hap-2063069/	http://img.webtretho.com/images/lifepedia/13.jpg	Nếu bệnh về hô hấp, ho và hắt xì đúng cách sẽ giúp bạn phòng bệnh hiệu quả.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+14	Phòng bệnh hô hấp khi bé đi nhà trẻ	http://www.webtretho.com/forum/f87/phong-benh-ho-hap-khi-be-di-nha-tre-2124129/	http://img.webtretho.com/images/lifepedia/14.jpg	Ba mẹ cần có những “tuyệt chiêu” để giúp bé phòng bệnh hô hấp khi đi nhà trẻ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+15	7 cách phòng bệnh hô hấp khi giao mùa	http://www.webtretho.com/forum/f119/7-cach-phong-benh-ho-hap-khi-giao-mua-1982898/	http://img.webtretho.com/images/lifepedia/15.jpg	Sự thay đổi thời tiết là điều kiện làm gia tăng các bệnh về tai mũi họng	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+16	Những điều cần biết khi chăm sóc trẻ bị bệnh hô hấp	http://www.webtretho.com/forum/f87/nhung-dieu-can-biet-khi-cham-soc-tre-bi-benh-ho-hap-1362764/	http://img.webtretho.com/images/lifepedia/9.jpg	Nếu triệu chứng nhẹ không có dấu hiệu nhiễm trùng thì không nên uống kháng sinh	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+17	5 cách giúp bà bầu phòng bệnh hô hấp	http://www.webtretho.com/forum/f73/5-cach-giup-ba-bau-phong-benh-ho-hap-1262651/	http://img.webtretho.com/images/lifepedia/11.jpg	Mùa hè dễ bùng phát nhiều loại vi khuẩn khác nhau, chúng dễ dàng lây lan…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+18	Ho và hắt xì đúng cách: Phòng ngừa hiệu quả bệnh hô hấp	http://www.webtretho.com/forum/f26/ho-va-hat-xi-dung-cach-phong-ngua-hieu-qua-benh-ho-hap-2063069/	http://img.webtretho.com/images/lifepedia/5.jpg	Nếu bệnh về hô hấp, ho và hắt xì đúng cách sẽ giúp bạn phòng bệnh hiệu quả.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+19	Phòng bệnh hô hấp khi bé đi nhà trẻ	http://www.webtretho.com/forum/f87/phong-benh-ho-hap-khi-be-di-nha-tre-2124129/	http://img.webtretho.com/images/lifepedia/14.jpg	Ba mẹ cần có những “tuyệt chiêu” để giúp bé phòng bệnh hô hấp khi đi nhà trẻ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+20	Các bài thuốc dân gian chữa kiết lỵ, phân sống, loạn khuẩn, .	http://www.webtretho.com/forum/f87/cac-bai-thuoc-dan-gian-chua-kiet-ly-phan-song-loan-khuan-1859992/	http://img.webtretho.com/images/lifepedia/16.jpg	Những bài thuốc tuy dân gian nhưng rất hiệu quả để chữa bệnh kiết lị nhé	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+21	Chữa kiết lỵ bằng thuốc Nam	http://www.webtretho.com/forum/f73/chua-kiet-ly-bang-thuoc-nam-1391587/	http://img.webtretho.com/images/lifepedia/17.jpg	Thuốc Nam có những công dụng rất tuyệt vời để chữa bệnh kiết lị …	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+22	Các bài thuốc dân gian chữa kiết lỵ, phân sống, loạn khuẩn, .	http://www.webtretho.com/forum/f87/cac-bai-thuoc-dan-gian-chua-kiet-ly-phan-song-loan-khuan-1859992/	http://img.webtretho.com/images/lifepedia/16.jpg	Những bài thuốc tuy dân gian nhưng rất hiệu quả để chữa bệnh kiết lị nhé	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+23	Chữa kiết lỵ bằng thuốc Nam	http://www.webtretho.com/forum/f73/chua-kiet-ly-bang-thuoc-nam-1391587/	http://img.webtretho.com/images/lifepedia/17.jpg	Thuốc Nam có những công dụng rất tuyệt vời để chữa bệnh kiết lị …	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+10	Bệnh hô hấp, tim mạch: Nỗi kinh hoàng trong mùa lạnh	http://www.webtretho.com/forum/f26/benh-ho-hap-tim-mach-noi-kinh-hoang-trong-mua-lanh-1823012/	http://img.webtretho.com/images/lifepedia/10.jpg	Thời tiết giá lạnh kèm theo ẩm thấp khiến nhiều trẻ nhỏ phải nhập viện …	2016-11-08 00:00:00+00	2017-01-06 04:03:53+00
+24	Các bài thuốc dân gian chữa kiết lỵ, phân sống, loạn khuẩn, .	http://www.webtretho.com/forum/f87/cac-bai-thuoc-dan-gian-chua-kiet-ly-phan-song-loan-khuan-1859992/	http://img.webtretho.com/images/lifepedia/16.jpg	Những bài thuốc tuy dân gian nhưng rất hiệu quả để chữa bệnh kiết lị nhé	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+25	Chữa kiết lỵ bằng thuốc Nam	http://www.webtretho.com/forum/f73/chua-kiet-ly-bang-thuoc-nam-1391587/	http://img.webtretho.com/images/lifepedia/17.jpg	Thuốc Nam có những công dụng rất tuyệt vời để chữa bệnh kiết lị …	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+26	Chế độ ăn uống cho trẻ mắc bệnh lỵ	http://www.webtretho.com/forum/f26/che-do-an-uong-cho-tre-mac-benh-ly-53188/	http://img.webtretho.com/images/lifepedia/18.jpg	Trẻ mắc bệnh lỵ sẽ bị rối loạn tiêu hóa kéo dài và suy dinh dưỡng…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+27	mẩn ngứa - bệnh thường gặp trong mùa nóng	http://www.webtretho.com/forum/f854/man-ngua-benh-thuong-gap-trong-mua-nong-2267283/	http://img.webtretho.com/images/lifepedia/19.jpg	Nhiệt độ cao của mùa hè là nguyên nhân chủ yếu dẫn đến mẩn ngứa	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+28	Chữa mẩn ngứa ở trẻ nhỏ	http://www.webtretho.com/forum/f26/chua-man-ngua-o-tre-nho-140719/	http://img.webtretho.com/images/lifepedia/20.jpg	Một số bí quyết dưới đây sẽ loại bỏ chứng bệnh mẫn ngứa khó chịu này cho trẻ.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+29	mẩn ngứa - bệnh thường gặp trong mùa nóng	http://www.webtretho.com/forum/f854/man-ngua-benh-thuong-gap-trong-mua-nong-2267283/	http://img.webtretho.com/images/lifepedia/19.jpg	Nhiệt độ cao của mùa hè là nguyên nhân chủ yếu dẫn đến mẩn ngứa	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+30	Chữa mẩn ngứa ở trẻ nhỏ	http://www.webtretho.com/forum/f26/chua-man-ngua-o-tre-nho-140719/	http://img.webtretho.com/images/lifepedia/20.jpg	Một số bí quyết dưới đây sẽ loại bỏ chứng bệnh mẫn ngứa khó chịu này cho trẻ.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+31	mẩn ngứa - bệnh thường gặp trong mùa nóng	http://www.webtretho.com/forum/f854/man-ngua-benh-thuong-gap-trong-mua-nong-2267283/	http://img.webtretho.com/images/lifepedia/19.jpg	Nhiệt độ cao của mùa hè là nguyên nhân chủ yếu dẫn đến mẩn ngứa	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+32	Chữa mẩn ngứa ở trẻ nhỏ	http://www.webtretho.com/forum/f26/chua-man-ngua-o-tre-nho-140719/	http://img.webtretho.com/images/lifepedia/20.jpg	Một số bí quyết dưới đây sẽ loại bỏ chứng bệnh mẫn ngứa khó chịu này cho trẻ.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+33	Lá kinh giới: Đánh bay mẩn ngứa, mề đay khỏi ngay sau 5 phút	http://www.webtretho.com/forum/f113/la-kinh-gioi-danh-bay-man-ngua-me-day-khoi-ngay-sau-5-phut-2250520/	http://img.webtretho.com/images/lifepedia/21.jpg	Chỉ cần một nắm lá kinh giới và ít rượu trắng, mẩn ngứa mề đay sẽ khỏi sau 5'	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+34	Mẹo dân gian trị rôm sảy hiệu quả cho bé trong mùa nắng nóng	http://www.webtretho.com/forum/f26/meo-dan-gian-tri-rom-say-hieu-qua-cho-be-trong-mua-nang-nong-1896036/	http://img.webtretho.com/images/lifepedia/22.jpg	Rôm sảy là bệnh thường gặp ở trẻ nhỏ trong mùa nóng. Nếu không điều trị kịp…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+35	Rôm sảy, kẻ phiền nhiễu cho làn da bé	http://www.webtretho.com/forum/f87/rom-say-ke-phien-nhieu-cho-lan-da-be-1293816/	http://img.webtretho.com/images/lifepedia/23.jpg	Mùa hè, không khí ô nhiễm là điều kiện thuận lợi cho việc phát sinh nhiều bệnh…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+36	7 cách điều trị rôm sảy ở trẻ em	http://www.webtretho.com/forum/f87/7-cach-dieu-tri-rom-say-o-tre-em-1982864/	http://img.webtretho.com/images/lifepedia/24.jpg	Bệnh rôm sảy ở trẻ em khá lành tính và nhìn chung có khá nhiều cách điều trị	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+37	Đánh bay rôm sảy cho bé trong ngày hè	http://www.webtretho.com/forum/f87/danh-bay-rom-say-cho-be-trong-ngay-he-863602/	http://img.webtretho.com/images/lifepedia/25.jpg	Một số bài thuốc dân gian và cách phòng tránh dưới đây sẽ giúp đánh bay rôm sảy	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+38	Tại sao trẻ con bị rôm sảy?	http://www.webtretho.com/forum/f26/tai-sao-tre-con-bi-rom-say-510705/	http://img.webtretho.com/images/lifepedia/26.jpg	Những thông tin hay và thiết thực nguyên nhân vì sao bé bị rôm sảy	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+39	Cách phòng tránh rôm sảy mùa nắng nóng cho bé	http://www.webtretho.com/forum/f3584/cach-phong-tranh-rom-say-mua-nang-nong-cho-be-1727950/	http://img.webtretho.com/images/lifepedia/27.jpg	Nhiều trẻ chỉ bị rôm sảy khi nóng, còn khi thời tiết mát mẻ, rôm tự lặn hết..	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+40	Các chữa trị rôm sảy cho bé yêu ngày nóng	http://www.webtretho.com/forum/f854/cac-chua-tri-rom-say-cho-be-yeu-ngay-nong-2075898/	http://img.webtretho.com/images/lifepedia/28.jpg	Khi bị rôm sảy, trẻ rất hay quấy khóc, khó chịu nên phòng của trẻ phải rộng rãi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+41	Mẹo dân gian trị rôm sảy hiệu quả cho bé trong mùa nắng nóng	http://www.webtretho.com/forum/f26/meo-dan-gian-tri-rom-say-hieu-qua-cho-be-trong-mua-nang-nong-1896036/	http://img.webtretho.com/images/lifepedia/22.jpg	Rôm sảy là bệnh thường gặp ở trẻ nhỏ trong mùa nóng. Nếu không điều trị kịp…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+42	Rôm sảy, kẻ phiền nhiễu cho làn da bé	http://www.webtretho.com/forum/f87/rom-say-ke-phien-nhieu-cho-lan-da-be-1293816/	http://img.webtretho.com/images/lifepedia/23.jpg	Mùa hè, không khí ô nhiễm là điều kiện thuận lợi cho việc phát sinh nhiều bệnh…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+43	Tại sao trẻ con bị rôm sảy?	http://www.webtretho.com/forum/f26/tai-sao-tre-con-bi-rom-say-510705/	http://img.webtretho.com/images/lifepedia/26.jpg	Những thông tin hay và thiết thực nguyên nhân vì sao bé bị rôm sảy	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+44	Mẹo hay trị rôm sảy cho bé	http://www.webtretho.com/forum/f26/meo-hay-tri-rom-say-cho-be-795972/	http://img.webtretho.com/images/lifepedia/29.jpg	Bạn có thể giảm rôm sảy cho bé bằng các cách sau.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+45	Cách phòng tránh rôm sảy mùa nắng nóng cho bé	http://www.webtretho.com/forum/f3584/cach-phong-tranh-rom-say-mua-nang-nong-cho-be-1727950/	http://img.webtretho.com/images/lifepedia/27.jpg	Nhiều trẻ chỉ bị rôm sảy khi nóng, còn khi thời tiết mát mẻ, rôm tự lặn hết..	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+46	Các chữa trị rôm sảy cho bé yêu ngày nóng	http://www.webtretho.com/forum/f854/cac-chua-tri-rom-say-cho-be-yeu-ngay-nong-2075898/	http://img.webtretho.com/images/lifepedia/28.jpg	Khi bị rôm sảy, trẻ rất hay quấy khóc, khó chịu nên phòng của trẻ phải rộng rãi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+47	Trị rôm sảy cho bé bằng các loại lá tắm	http://www.webtretho.com/forum/f119/tri-rom-say-cho-be-bang-cac-loai-la-tam-2046730/	http://img.webtretho.com/images/lifepedia/30.jpg	Sau đây là một số loại lá có thể dùng để nấu nước tắm giúp trị rôm sảy cho bé.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+48	Mẹo dân gian trị rôm sảy hiệu quả cho bé trong mùa nắng nóng	http://www.webtretho.com/forum/f26/meo-dan-gian-tri-rom-say-hieu-qua-cho-be-trong-mua-nang-nong-1896036/	http://img.webtretho.com/images/lifepedia/22.jpg	Rôm sảy là bệnh thường gặp ở trẻ nhỏ trong mùa nóng. Nếu không điều trị kịp…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+49	Rôm sảy, kẻ phiền nhiễu cho làn da bé	http://www.webtretho.com/forum/f87/rom-say-ke-phien-nhieu-cho-lan-da-be-1293816/	http://img.webtretho.com/images/lifepedia/23.jpg	Mùa hè, không khí ô nhiễm là điều kiện thuận lợi cho việc phát sinh nhiều bệnh…	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+50	7 cách điều trị rôm sảy ở trẻ em	http://www.webtretho.com/forum/f87/7-cach-dieu-tri-rom-say-o-tre-em-1982864/	http://img.webtretho.com/images/lifepedia/24.jpg	Bệnh rôm sảy ở trẻ em có khá nhiều cách điều tại nhà.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+51	Đánh bay rôm sảy cho bé trong ngày hè	http://www.webtretho.com/forum/f87/danh-bay-rom-say-cho-be-trong-ngay-he-863602/	http://img.webtretho.com/images/lifepedia/25.jpg	Một số bài thuốc dân gian sẽ giúp bé yêu không bị kẻ phiền nhiễu này tấn công	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+52	Tại sao trẻ con bị rôm sảy?	http://www.webtretho.com/forum/f26/tai-sao-tre-con-bi-rom-say-510705/	http://img.webtretho.com/images/lifepedia/26.jpg	Bị rôm sảy thông thường, chỉ cần tắm cho trẻ hằng ngày để da sạch sẽ.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+53	Mẹo hay trị rôm sảy cho bé	http://www.webtretho.com/forum/f26/meo-hay-tri-rom-say-cho-be-795972/	http://img.webtretho.com/images/lifepedia/29.jpg	Bạn có thể giảm rôm sảy cho bé bằng các cách sau	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+54	Các chữa trị rôm sảy cho bé yêu ngày nóng	http://www.webtretho.com/forum/f854/cac-chua-tri-rom-say-cho-be-yeu-ngay-nong-2075898/	http://img.webtretho.com/images/lifepedia/28.jpg	Nguyên nhân gây rôm sảy là do các tuyến mồ hôi bị tắc nghẽn	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+55	Chữa viêm họng không dùng kháng sinh	http://www.webtretho.com/forum/f26/chua-viem-hong-khong-dung-khang-sinh-394533/	http://img.webtretho.com/images/lifepedia/31.jpg	Theo chuyên gia y tế, không nhất thiết phải dùng kháng sinh khi viêm họng  ..	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+56	Viêm họng: Không nên lạm dụng kháng sinh!	http://www.webtretho.com/forum/f87/viem-hong-khong-nen-lam-dung-khang-sinh-999740/	http://img.webtretho.com/images/lifepedia/32.jpg	Viêm họng cấp tính nếu không được điều trị dứt điểm rất dễ thành mãn tính.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+57	Vài cách trị chứng viêm họng đơn giản và hiệu quả	http://www.webtretho.com/forum/f87/vai-cach-tri-chung-viem-hong-don-gian-va-hieu-qua-1611952/	http://img.webtretho.com/images/lifepedia/33.jpg	Nếu bị viêm họng, uống nước trà nóng sẽ giúp cổ họng của bạn dịu đi rất nhiều	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+58	Biến chứng nguy hiểm của bệnh viêm họng	http://www.webtretho.com/forum/f119/bien-chung-nguy-hiem-cua-benh-viem-hong-1247204/	http://img.webtretho.com/images/lifepedia/34.jpg	Viêm họng cấp là một bệnh hay gặp có thể gây ra các biến chứng	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+59	Vì sao mắc bệnh viêm họng hạt	http://www.webtretho.com/forum/f77/vi-sao-mac-benh-viem-hong-hat-2312898/	http://img.webtretho.com/images/lifepedia/35.jpg	Đây là bệnh viêm nhiễm mạn tính và chủ yếu xảy ra ở người trưởng thành	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+60	Chứng viêm họng của trẻ trong mùa lạnh	http://www.webtretho.com/forum/f119/chung-viem-hong-cua-tre-trong-mua-lanh-2004091/	http://img.webtretho.com/images/lifepedia/36.jpg	Viêm họng là chứng thường gặp ở trẻ em mà nhiều mẹ chưa đánh giá đúng mức	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+61	Viêm họng: Không nên lạm dụng kháng sinh!	http://www.webtretho.com/forum/f26/chua-viem-hong-khong-dung-khang-sinh-394533/	http://img.webtretho.com/images/lifepedia/32.jpg	Viêm họng cấp tính nếu không được điều trị dứt điểm rất dễ thành mãn tính.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+62	Vài cách trị chứng viêm họng đơn giản và hiệu quả	http://www.webtretho.com/forum/f87/vai-cach-tri-chung-viem-hong-don-gian-va-hieu-qua-1611952/	http://img.webtretho.com/images/lifepedia/33.jpg	Nếu bị viêm họng, uống nước trà nóng sẽ giúp cổ họng của bạn dịu đi rất nhiều	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+63	6 cách phòng viêm họng cho dân công sở	http://www.webtretho.com/forum/f26/6-cach-phong-viem-hong-cho-dan-cong-so-803108/	http://img.webtretho.com/images/lifepedia/37.jpg	Viêm họng mãn tính là 1 trong những loại bệnh viêm nhiễm đường hô hấp	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+64	Chữa viêm họng không dùng kháng sinh	http://www.webtretho.com/forum/f26/chua-viem-hong-khong-dung-khang-sinh-394533/	http://img.webtretho.com/images/lifepedia/31.jpg	Theo chuyên gia y tế, không nhất thiết phải dùng kháng sinh khi viêm họng  ..	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+65	Vài cách trị chứng viêm họng đơn giản và hiệu quả	http://www.webtretho.com/forum/f87/vai-cach-tri-chung-viem-hong-don-gian-va-hieu-qua-1611952/	http://img.webtretho.com/images/lifepedia/33.jpg	Nếu bị viêm họng, uống nước trà nóng sẽ giúp cổ họng của bạn dịu đi rất nhiều	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+66	Những cách trị viêm họng tuyệt vời khi trời lạnh	http://www.webtretho.com/forum/f26/nhung-cach-tri-viem-hong-tuyet-voi-khi-troi-lanh-1473734/	http://img.webtretho.com/images/lifepedia/38.jpg	Làm theo những lời khuyên sau để những cơn đau họng không còn là nỗi ám ảnh	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+67	Một số bài thuốc đơn giản chữa viêm họng hiệu quả	http://www.webtretho.com/forum/f26/mot-so-bai-thuoc-don-gian-chua-viem-hong-hieu-qua-1543721/	http://img.webtretho.com/images/lifepedia/39.jpg	Vỏ quả lê, quả quất, khế chua... là những bài thuốc chữa viêm họng hiệu quả.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+68	Chứng viêm họng của trẻ trong mùa lạnh	http://www.webtretho.com/forum/f119/chung-viem-hong-cua-tre-trong-mua-lanh-2004091/	http://img.webtretho.com/images/lifepedia/36.jpg	Viêm họng là chứng thường gặp ở trẻ em mà nhiều mẹ chưa đánh giá đúng mức độ ng	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+69	Cảm sốt	http://www.webtretho.com/forum/f87/cam-sot-15073/	http://img.webtretho.com/images/lifepedia/40.jpg	Trẻ sơ sinh và trẻ nhỏ thường rất dễ bị cảm sốt, nhưng...	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+70	Những cách hạ sốt khiến bé bệnh thêm nặng	http://www.webtretho.com/forum/f71/nhung-cach-ha-sot-khien-be-benh-them-nang-2182041/	http://img.webtretho.com/images/lifepedia/41.jpg	Có những cách hạ sốt khiến bé bệnh càng nặng, vì vậy các mẹ biết để tránh ngay.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+71	Bệnh cảm lạnh ở trẻ: khi nào nguy hiểm?	http://www.webtretho.com/forum/f26/benh-cam-lanh-o-tre-khi-nao-nguy-hiem-1157350/	http://img.webtretho.com/images/lifepedia/42.jpg	Mặc dù chỉ gây các triệu chứng cảm lạnh nhẹ ở người lớn, nhưng khi nhiễm vi-rút	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+72	Phòng chống bệnh cảm cho bé	http://www.webtretho.com/forum/f87/phong-chong-benh-cam-cho-be-1269226/	http://img.webtretho.com/images/lifepedia/43.jpg	Nên rửa tay thật sạch bằng xà phòng diệt khuẩn sau khi bạn xỉ mũi cho bé.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+73	Nguyên Nhân Và Cách Phòng Tránh Bệnh Cảm Cúm Ở Trẻ Em	http://www.webtretho.com/forum/f3584/nguyen-nhan-va-cach-phong-tranh-benh-cam-cum-o-tre-em-1838438/	http://img.webtretho.com/images/lifepedia/44.jpg	Cảm cúm là bệnh về đường hô hấp mà trẻ nhỏ hay mắc phải, nhất là vào mùa lạnh	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+74	10 điều lầm tưởng về cảm cúm	http://www.webtretho.com/forum/f26/10-dieu-lam-tuong-ve-cam-cum-dantri-137377/	http://img.webtretho.com/images/lifepedia/45.jpg	Căn bệnh cực phổ biến ai cũng trải qua nhưng những lầm tưởng về nó lại rất nhiều	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+75	Tìm hiểu một số bệnh ở trẻ em: cảm lạnh	http://www.webtretho.com/forum/f73/tim-hieu-mot-so-benh-o-tre-em-cam-lanh-1628957/	http://img.webtretho.com/images/lifepedia/46.jpg	Nguyên nhân của việc bé hay bị cảm lạnh do hệ miễn dịch của bé chưa hoàn thiện.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+76	Dấu hiệu nhận biết cảm cúm từ sớm - đau họng	http://www.webtretho.com/forum/f119/dau-hieu-nhan-biet-cam-cum-tu-som-dau-hong-2206158/	http://img.webtretho.com/images/lifepedia/47.jpg	Thời tiết chuyển mùa là điều kiện lý tưởng để virus cảm cúm phát triển	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+77	Bị cảm, cúm không nên dùng kháng sinh	http://www.webtretho.com/forum/f26/bi-cam-cum-khong-nen-dung-khang-sinh-378275/	http://img.webtretho.com/images/lifepedia/48.jpg	Các bệnh do nhiễm virut nói chung không nên uống các loại thuốc kháng sinh vì	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+78	Cách chữa cảm đơn giản mà hiệu quả	http://www.webtretho.com/forum/f119/cach-chua-cam-don-gian-ma-hieu-qua-21680/	http://img.webtretho.com/images/lifepedia/49.jpg	Bạn không nhất thiết phải dùng thuốc Tây. Một số cách của Đông y...	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+79	Phòng bệnh cảm cúm cho bé yêu khi thời khắc giao mùa.	http://www.webtretho.com/forum/f3395/phong-benh-cam-cum-cho-be-yeu-khi-thoi-khac-giao-mua-1765171/	http://img.webtretho.com/images/lifepedia/50.jpg	Giao mùa độ ẩm không khí cao kèm theo môi trường ô nhiễm rất dễ làm bé bị ốm,	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+80	Phòng chống bệnh cảm cho bé	http://www.webtretho.com/forum/f87/phong-chong-benh-cam-cho-be-1269226/	http://img.webtretho.com/images/lifepedia/51.jpg	Nên thường xuyên rửa tay thật sạch bằng xà phòng diệt khuẩn sau khi bạn xỉ mũi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+81	Nguyên Nhân Và Cách Phòng Tránh Bệnh Cảm Cúm Ở Trẻ Em	http://www.webtretho.com/forum/f3584/nguyen-nhan-va-cach-phong-tranh-benh-cam-cum-o-tre-em-1838438/	http://img.webtretho.com/images/lifepedia/52.jpg	Cảm cúm là bệnh về đường hô hấp mà trẻ nhỏ hay mắc phải, nhất là vào mùa lạnh	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+82	Tìm hiểu một số bệnh ở trẻ em: cảm lạnh	http://www.webtretho.com/forum/f73/tim-hieu-mot-so-benh-o-tre-em-cam-lanh-1628957/	http://img.webtretho.com/images/lifepedia/53.jpg	Tại sao các bé hay bị cảm lạnh?	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+83	Mẹo chữa cảm cúm không cần dùng thuốc	http://www.webtretho.com/forum/f119/meo-chua-cam-cum-khong-can-dung-thuoc-1470593/	http://img.webtretho.com/images/lifepedia/54.jpg	Mấy hôm nay thời tiết chuyển se lạnh đã khiến nhiều người mắc bệnh cảm cúm	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+84	Dấu hiệu nhận biết cảm cúm từ sớm - đau họng	http://www.webtretho.com/forum/f119/dau-hieu-nhan-biet-cam-cum-tu-som-dau-hong-2206158/	http://img.webtretho.com/images/lifepedia/55.jpg	Thời tiết chuyển mùa là điều kiện lý tưởng để virus cảm cúm phát triển	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+85	Để phòng ngừa cảm cúm, hãy ghi nhớ 3 điều cực kỳ quan trọng sau	http://www.webtretho.com/forum/f113/de-phong-ngua-cam-cum-hay-ghi-nho-3-dieu-cuc-ky-quan-trong-sau-2102316/	http://img.webtretho.com/images/lifepedia/56.jpg	Điều tốt nhất bạn có thể cho sức khỏe của mình là phòng ngừa cảm cúm	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+86	18 mẹo quan trọng giúp bạn không bao giờ bị cảm	http://www.webtretho.com/forum/f26/18-meo-quan-trong-giup-ban-khong-bao-gio-bi-cam-2010374/	http://img.webtretho.com/images/lifepedia/57.jpg	Cảm cúm không phải bệnh nghiêm trọng, nhưng không ngừa cẩn thận thì sẽ hệ lụy	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+87	Cảm sốt	http://www.webtretho.com/forum/f87/cam-sot-15073/	http://img.webtretho.com/images/lifepedia/40.jpg	Trẻ sơ sinh và trẻ nhỏ thường rất dễ bị cảm sốt, nhưng ...	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+88	Bị cảm, cúm không nên dùng kháng sinh	http://www.webtretho.com/forum/f26/bi-cam-cum-khong-nen-dung-khang-sinh-378275/	http://img.webtretho.com/images/lifepedia/48.jpg	Các bệnh do nhiễm virut nói chung không nên uống các loại thuốc kháng sinh vì...	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+89	Cách chữa cảm đơn giản mà hiệu quả	http://www.webtretho.com/forum/f119/cach-chua-cam-don-gian-ma-hieu-qua-21680/	http://img.webtretho.com/images/lifepedia/49.jpg	Bạn không nhất thiết phải dùng thuốc Tây. Một số cách của Đông y...	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+90	Kinh nghiệm chữa ho, viêm họng, viêm amidan, bằng những bài thuốc đơn giản	http://www.webtretho.com/forum/f87/kinh-nghiem-chua-ho-viem-hong-viem-amidan-va-ha-sot-bang-nhung-bai-thuoc-don-gian-248981/	http://img.webtretho.com/images/lifepedia/58.jpg	Những bài thuốc thông dụng ai cũng biết nhưng đạt được hiệu quả rất cao.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+91	Các món canh giải cảm	http://www.webtretho.com/forum/f216/cac-mon-canh-giai-cam-507647/	http://img.webtretho.com/images/lifepedia/59.jpg	Dưới đây là các bài thuốc từ thiên nhiên qua chế biến thành món ăn trong ngày	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+92	Phòng bệnh cảm cúm cho bé yêu khi thời khắc giao mùa.	http://www.webtretho.com/forum/f3395/phong-benh-cam-cum-cho-be-yeu-khi-thoi-khac-giao-mua-1765171/	http://img.webtretho.com/images/lifepedia/50.jpg	Giao mùa độ ẩm không khí cao kèm theo môi trường ô nhiễm rất dễ làm bé bị ốm,	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+93	3 thức uống giải cảm với chanh	http://www.webtretho.com/forum/f26/3-thuc-uong-giai-cam-voi-chanh-1932678/	http://img.webtretho.com/images/lifepedia/60.jpg	Hầu như tủ lạnh nhà ai cũng luôn có sẵn vài trái chanh. Vị chua tự nhiên này	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+94	Bài thuốc chữa cảm cúm tại nhà không cần dùng kháng sinh	http://www.webtretho.com/forum/f26/bai-thuoc-chua-cam-cum-tai-nha-khong-can-dung-khang-sinh-2050069/	http://img.webtretho.com/images/lifepedia/61.jpg	Chỉ cần dùng những bài thuốc đơn giản có sẵn mà vẫn trị cảm cúm hiệu quả	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+95	Tìm hiểu một số bệnh ở trẻ em: cảm lạnh	http://www.webtretho.com/forum/f73/tim-hieu-mot-so-benh-o-tre-em-cam-lanh-1628957/	http://img.webtretho.com/images/lifepedia/53.jpg	Tại sao các bé hay bị cảm lạnh?	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+96	Danh sách thực phẩm đánh bại cảm cúm hiệu quả	http://www.webtretho.com/forum/f119/danh-sach-thuc-pham-danh-bai-cam-cum-hieu-qua-1518076/	http://img.webtretho.com/images/lifepedia/62.jpg	Bạn cần chú ý bổ sung thêm một số loại thực phẩm dưới đây vào khẩu phần ăn	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+97	Mẹo chữa cảm cúm không cần dùng thuốc	http://www.webtretho.com/forum/f119/meo-chua-cam-cum-khong-can-dung-thuoc-1470593/	http://img.webtretho.com/images/lifepedia/54.jpg	Mấy hôm nay thời tiết chuyển se lạnh đã khiến nhiều người mắc bệnh cảm cúm	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+98	Dấu hiệu nhận biết cảm cúm từ sớm - đau họng	http://www.webtretho.com/forum/f119/dau-hieu-nhan-biet-cam-cum-tu-som-dau-hong-2206158/	http://img.webtretho.com/images/lifepedia/55.jpg	Thời tiết chuyển mùa là điều kiện lý tưởng để virus cảm cúm phát triển	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+99	Để phòng ngừa cảm cúm, hãy ghi nhớ 3 điều cực kỳ quan trọng sau	http://www.webtretho.com/forum/f113/de-phong-ngua-cam-cum-hay-ghi-nho-3-dieu-cuc-ky-quan-trong-sau-2102316/	http://img.webtretho.com/images/lifepedia/56.jpg	Điều tốt nhất bạn có thể cho sức khỏe của mình là phòng ngừa cảm cúm	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+104	Dấu hiệu nhận biết cảm cúm từ sớm - đau họng	http://www.webtretho.com/forum/f119/dau-hieu-nhan-biet-cam-cum-tu-som-dau-hong-2206158/	http://img.webtretho.com/images/lifepedia/66.jpg	Nếu không điều trị kịp thời sẽ dẫn tới một số biến chứng về tim mạch, hô hấp...	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+105	Những điều cần biết về bệnh cúm H7N9 trên người	http://www.webtretho.com/forum/f26/nhung-dieu-can-biet-ve-benh-cum-h7n9-tren-nguoi-1840325/	http://img.webtretho.com/images/lifepedia/67.jpg	Biểu hiện của cúm này ra sao? Điều trị thế nào? Phòng ngừa được không?	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+106	Bác sĩ mách mẹ nhận biết dấu hiệu đầu tiên của cảm cúm và cách xử lý nhanh	http://www.webtretho.com/forum/f854/bac-si-mach-me-nhan-biet-dau-hieu-dau-tien-cua-cam-cum-va-cach-xu-ly-nhanh-de-chan-dung-benh-2236301/	http://img.webtretho.com/images/lifepedia/68.jpg	Bé hắt hơi liên tục. Coi chừng, đó có thể là dấu hiệu đầu tiên của cảm cúm.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+107	Những thông tin cần biết về cúm lợn	http://www.webtretho.com/forum/f26/nhung-thong-tin-can-biet-ve-cum-lon-248795/	http://img.webtretho.com/images/lifepedia/69.jpg	Là vi-rút gây bệnh trên người, lây lan rất nhanh, mạnh, nguy cơ tử vong cao.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+108	Bệnh cúm: triệu chứng và cách phòng ngừa	http://www.webtretho.com/forum/f119/benh-cum-trieu-chung-va-cach-phong-ngua-1755860/	http://img.webtretho.com/images/lifepedia/70.jpg	Cúm thường dễ bị nhầm lẫn với cảm lạnh thông thường, vì vậy cần phân biệt rõ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+109	5 điều phụ nữ mang thai cần biết về cúm A/H1N1	http://www.webtretho.com/forum/f92/5-dieu-phu-nu-mang-thai-can-biet-ve-cum-a-h1n1-1812945/	http://img.webtretho.com/images/lifepedia/71.jpg	Nếu những dấu hiệu như sốt cao, ho xuất hiện, hãy gặp bác sĩ ngay lập tức.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+110	Sự cần thiết của chích ngừa cúm khi mang thai	http://www.webtretho.com/forum/f96/su-can-thiet-cua-chich-ngua-cum-khi-mang-thai-2030530/	http://img.webtretho.com/images/lifepedia/72.jpg	Cúm trong thai kỳ có thể gây tổn thương cho cả mẹ và con.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+111	Để phòng ngừa cảm cúm, hãy ghi nhớ 3 điều cực kỳ quan trọng sau	http://www.webtretho.com/forum/f113/de-phong-ngua-cam-cum-hay-ghi-nho-3-dieu-cuc-ky-quan-trong-sau-2102316/	http://img.webtretho.com/images/lifepedia/73.jpg	Duy trì một chế độ ăn uống lành mạnh, ngủ đủ giấc và giữ vệ sinh tốt.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+112	Bệnh cúm: triệu chứng và cách phòng ngừa	http://www.webtretho.com/forum/f119/benh-cum-trieu-chung-va-cach-phong-ngua-1755860/	http://img.webtretho.com/images/lifepedia/74.jpg	Cúm thường dễ bị nhầm lẫn với cảm lạnh thông thường, vì vậy cần phân biệt rõ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+113	Sự cần thiết của chích ngừa cúm khi mang thai	http://www.webtretho.com/forum/f96/su-can-thiet-cua-chich-ngua-cum-khi-mang-thai-2030530/	http://img.webtretho.com/images/lifepedia/72.jpg	Cúm trong thai kỳ có thể gây tổn thương cho cả mẹ và con.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+114	Bí quyết giữ bé khỏe trong mùa cảm cúm	http://www.webtretho.com/forum/f87/bi-quyet-giu-be-khoe-trong-mua-cam-cum-1977024/	http://img.webtretho.com/images/lifepedia/75.jpg	Những bí quyết giữ bé khỏe mạnh trong mùa cảm cúm luôn rất quý giá	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+115	Thông tin phòng tránh và triệu chứng của bệnh cúm virus A(H7N9)	http://www.webtretho.com/forum/f119/thong-tin-phong-tranh-va-trieu-chung-cua-benh-cum-virus-a-h7n9-2022258/	http://img.webtretho.com/images/lifepedia/64.jpg	Giữ vệ sinh thật tốt và hạn chế tiếp xúc với gia cầm để không bị lây bệnh	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+116	Đề phòng bị lây cúm mùa đông	http://www.webtretho.com/forum/f119/de-phong-bi-lay-cum-mua-dong-2152330/	http://img.webtretho.com/images/lifepedia/77.jpg	Xin giới thiệu một số cách phòng chống lây cúm,chủ yếu là dùng tỏi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+117	Giải pháp hữu hiệu cho mẹ bầu khi bị cảm cúm	http://www.webtretho.com/forum/f92/giai-phap-huu-hieu-cho-me-bau-khi-bi-cam-cum-2144242/	http://img.webtretho.com/images/lifepedia/64.jpg	Chỉ cần một triệu chứng cúm nhẹ thôi cũng có thể ảnh hưởng đến thai nhi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+118	Bệnh cúm: triệu chứng và cách phòng ngừa	http://www.webtretho.com/forum/f119/benh-cum-trieu-chung-va-cach-phong-ngua-1755860/	http://img.webtretho.com/images/lifepedia/70.jpg	Cúm thường dễ bị nhầm lẫn với cảm lạnh thông thường, vì vậy cần phân biệt rõ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+101	Cơ chế lây bệnh cúm	http://www.webtretho.com/forum/f26/co-che-lay-benh-cum-364423/	http://img.webtretho.com/images/lifepedia/63.jpg	Người bị cúm chỉ cần ho, hắt hơi sẽ làm bắn các hạt nhỏ chứa virus cúm	2016-11-08 00:00:00+00	2017-01-06 04:04:06+00
+103	Phân biệt cảm cúm với cảm lạnh	http://www.webtretho.com/forum/f113/phan-biet-cam-cum-voi-cam-lanh-2217506/	http://img.webtretho.com/images/lifepedia/65.jpg	Nếu thấy ớn lạnh đó là triệu chứng của cúm bởi ớn lạnh là kết quả của sốt.	2016-11-08 00:00:00+00	2017-01-06 04:05:05+00
+119	Bí quyết giữ bé khỏe trong mùa cảm cúm	http://www.webtretho.com/forum/f87/bi-quyet-giu-be-khoe-trong-mua-cam-cum-1977024/	http://img.webtretho.com/images/lifepedia/75.jpg	Những bí quyết giữ bé khỏe mạnh trong mùa cảm cúm luôn rất quý giá	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+120	Thông tin phòng tránh và triệu chứng của bệnh cúm virus A(H7N9)	http://www.webtretho.com/forum/f119/thong-tin-phong-tranh-va-trieu-chung-cua-benh-cum-virus-a-h7n9-2022258/	http://img.webtretho.com/images/lifepedia/64.jpg	Giữ vệ sinh thật tốt và hạn chế tiếp xúc với gia cầm để không bị lây bệnh	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+121	Món ăn thuốc trị cảm cúm	http://www.webtretho.com/forum/f113/mon-an-thuoc-tri-cam-cum-2229149/	http://img.webtretho.com/images/lifepedia/76.jpg	Nghỉ ngơi, uống nhiều nước, sử dụng một số món ăn bài thuốc để giảm triệu chứng	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+124	Đề phòng bị lây cúm mùa đông	http://www.webtretho.com/forum/f119/de-phong-bi-lay-cum-mua-dong-2152330/	http://img.webtretho.com/images/lifepedia/77.jpg	Xin giới thiệu một số cách phòng chống lây cúm,chủ yếu là dùng tỏi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+125	Đau mắt đỏ - điều trị thế nào?	http://www.webtretho.com/forum/f119/dau-mat-do-dieu-tri-the-nao-2274705/	http://img.webtretho.com/images/lifepedia/80.jpg	Vệ sinh mắt sạch sẽ và thường xuyên sẽ góp phần nhanh giảm các triệu chứng.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+126	Cách phòng bệnh đau mắt đỏ	http://www.webtretho.com/forum/f119/cach-phong-benh-dau-mat-do-1956634/	http://img.webtretho.com/images/lifepedia/81.jpg	Người bệnh cần được nghỉ ngơi, cách ly, dùng thuốc theo đơn của thầy thuốc.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+127	Đau mắt đỏ dễ lây như cúm	http://www.webtretho.com/forum/f119/dau-mat-do-de-lay-nhu-cum-1960177/	http://img.webtretho.com/images/lifepedia/82.jpg	Tuy không trầm trọng nhưng bệnh có thể gây biến chứng ảnh hưởng tới thị lực.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+128	Phòng và chữa bệnh đau mắt đỏ đúng cách	http://www.webtretho.com/forum/f26/phong-va-chua-benh-dau-mat-do-dung-cach-1777743/	http://img.webtretho.com/images/lifepedia/83.jpg	Rửa mắt bằng nước muối sinh lý và không dùng chung đồ đạc với người khác	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+129	Mùa đau mắt đỏ: Phòng bệnh thế nào cho hiệu quả?	http://www.webtretho.com/forum/f26/mua-dau-mat-do-phong-benh-the-nao-cho-hieu-qua-1946465/	http://img.webtretho.com/images/lifepedia/84.jpg	Mùa mưa là lúc bệnh đau mắt đỏ dễ phát triển thành dịch trong cộng đồng	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+130	Mùa mưa, phòng dịch đau mắt đỏ cho bé	http://www.webtretho.com/forum/f87/mua-mua-phong-dich-dau-mat-do-cho-be-1729360/	http://img.webtretho.com/images/lifepedia/85.jpg	Thời tiết mưa nắng bất thường tạo điều kiện cho bệnh đau mắt đỏ phát triển	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+131	Đau mắt đỏ - điều trị thế nào?	http://www.webtretho.com/forum/f119/dau-mat-do-dieu-tri-the-nao-2274705/	http://img.webtretho.com/images/lifepedia/80.jpg	Vệ sinh mắt sạch sẽ và thường xuyên sẽ góp phần nhanh giảm các triệu chứng.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+132	Cách phòng bệnh đau mắt đỏ	http://www.webtretho.com/forum/f119/cach-phong-benh-dau-mat-do-1956634/	http://img.webtretho.com/images/lifepedia/81.jpg	Người bệnh cần được nghỉ ngơi, cách ly, dùng thuốc theo đơn của thầy thuốc.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+133	Đau mắt đỏ dễ lây như cúm	http://www.webtretho.com/forum/f119/dau-mat-do-de-lay-nhu-cum-1960177/	http://img.webtretho.com/images/lifepedia/82.jpg	Tuy không trầm trọng nhưng bệnh có thể gây biến chứng ảnh hưởng tới thị lực.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+134	Cách xử lý khi bị bệnh đau mắt đỏ	http://www.webtretho.com/forum/f119/cach-xu-ly-khi-bi-benh-dau-mat-do-2163837/	http://img.webtretho.com/images/lifepedia/86.jpg	Khi đã được Bác sĩ chẩn đoán là đau mắt đỏ, cần thực hiện như sau	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+135	Ngăn ngừa, điều trị đau mắt đỏ cho bé	http://www.webtretho.com/forum/f119/dieu-tri-dau-mat-do-cho-be-537542/	http://img.webtretho.com/images/lifepedia/87.jpg	Để ngừa đau mắt đỏ do nhiễm khuẩn, cần giúp bé rửa tay và nước ấm thường xuyên	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+136	Phòng và chữa bệnh đau mắt đỏ đúng cách	http://www.webtretho.com/forum/f26/phong-va-chua-benh-dau-mat-do-dung-cach-1777743/	http://img.webtretho.com/images/lifepedia/83.jpg	Rửa mắt bằng nước muối sinh lý và không dùng chung đồ đạc với người khác	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+137	Mùa đau mắt đỏ: Phòng bệnh thế nào cho hiệu quả?	http://www.webtretho.com/forum/f26/mua-dau-mat-do-phong-benh-the-nao-cho-hieu-qua-1946465/	http://img.webtretho.com/images/lifepedia/84.jpg	Mùa mưa là lúc bệnh đau mắt đỏ dễ phát triển thành dịch trong cộng đồng	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+138	Phương pháp điều trị đau mắt đỏ tốt nhất cho trẻ em	http://www.webtretho.com/forum/f87/phuong-phap-dieu-tri-dau-mat-do-tot-nhat-cho-tre-em-2085897/	http://img.webtretho.com/images/lifepedia/88.jpg	Dùng kháng sinh nhỏ mắt phổ rộng hay kháng sinh kết hợp với cortizol nhỏ mắt.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+139	Đau mắt đỏ - điều trị thế nào?	http://www.webtretho.com/forum/f119/dau-mat-do-dieu-tri-the-nao-2274705/	http://img.webtretho.com/images/lifepedia/80.jpg	Vệ sinh mắt sạch sẽ và thường xuyên sẽ góp phần nhanh giảm các triệu chứng.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+140	Cách phòng bệnh đau mắt đỏ	http://www.webtretho.com/forum/f119/cach-phong-benh-dau-mat-do-1956634/	http://img.webtretho.com/images/lifepedia/81.jpg	Người bệnh cần được nghỉ ngơi, cách ly, dùng thuốc theo đơn của thầy thuốc.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+141	Đau mắt đỏ dễ lây như cúm	http://www.webtretho.com/forum/f119/dau-mat-do-de-lay-nhu-cum-1960177/	http://img.webtretho.com/images/lifepedia/82.jpg	Tuy không trầm trọng nhưng bệnh có thể gây biến chứng ảnh hưởng tới thị lực.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+142	Cách xử lý khi bị bệnh đau mắt đỏ	http://www.webtretho.com/forum/f119/cach-xu-ly-khi-bi-benh-dau-mat-do-2163837/	http://img.webtretho.com/images/lifepedia/86.jpg	Khi đã được Bác sĩ chẩn đoán là đau mắt đỏ, cần thực hiện như sau	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+122	Thực phẩm trị cảm cúm nhanh và hiệu quả nhất không cần dùng thuốc	http://www.webtretho.com/forum/f73/thuc-pham-tri-cam-cum-nhanh-va-hieu-qua-nhat-khong-can-dung-thuoc-2198160/	http://img.webtretho.com/images/lifepedia/78.jpg	Một cốc sữa chua mỗi buổi sáng có thể giúp hệ thống miễn dịch của bạn khỏe mạnh	2016-11-08 00:00:00+00	2017-01-06 04:12:23+00
+143	Ngăn ngừa, điều trị đau mắt đỏ cho bé	http://www.webtretho.com/forum/f119/dieu-tri-dau-mat-do-cho-be-537542/	http://img.webtretho.com/images/lifepedia/87.jpg	Để ngừa đau mắt đỏ do nhiễm khuẩn, cần giúp bé rửa tay và nước ấm thường xuyên	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+144	Phòng và chữa bệnh đau mắt đỏ đúng cách	http://www.webtretho.com/forum/f26/phong-va-chua-benh-dau-mat-do-dung-cach-1777743/	http://img.webtretho.com/images/lifepedia/83.jpg	Rửa mắt bằng nước muối sinh lý và không dùng chung đồ đạc với người khác	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+145	Phương pháp điều trị đau mắt đỏ tốt nhất cho trẻ em	http://www.webtretho.com/forum/f87/phuong-phap-dieu-tri-dau-mat-do-tot-nhat-cho-tre-em-2085897/	http://img.webtretho.com/images/lifepedia/88.jpg	Dùng kháng sinh nhỏ mắt phổ rộng hay kháng sinh kết hợp với cortizol nhỏ mắt.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+146	7 giải pháp trị mụn	http://www.webtretho.com/forum/f3268/7-giai-phap-tri-mun-13516/	http://img.webtretho.com/images/lifepedia/89.jpg	Khoảng 70% các trường hợp mụn trứng cá giảm khi được ánh nắng chiếu vào	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+147	Làm thế nào để loại bỏ mụn nhanh và hiệu quả	http://www.webtretho.com/forum/f3268/lam-the-nao-de-loai-bo-mun-nhanh-va-hieu-qua-114411/	http://img.webtretho.com/images/lifepedia/90.jpg	Nhiều người mắc phải sai lầm khi thường xuyên dùng tay bóc gỡ mụn, nặn mụn	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+148	Trị mụn như thế nào?	http://www.webtretho.com/forum/f119/tri-mun-nhu-the-nao-144027/	http://img.webtretho.com/images/lifepedia/91.jpg	Mụn trứng cá là một bệnh thường gặp nhất là ở tuổi dậy thì đến 30-40 tuổi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+149	Ngừa mụn: 6 thói quen cho nam giới	http://www.webtretho.com/forum/f26/ngua-mun-6-thoi-quen-cho-nam-gioi-141855/	http://img.webtretho.com/images/lifepedia/92.jpg	Dù bận như thế nào thì cũng nên buổi tối lên giường đi ngủ trước 11 giờ.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+150	Thảm họa từ... nặn mụn	http://www.webtretho.com/forum/f26/tham-hoa-tu-nan-mun-383483/	http://img.webtretho.com/images/lifepedia/93.jpg	Nhiều bạn gái mắc phải tật nghiện nặn mụn. Vậy sử dụng chiêu gì để trị đây?	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+151	Giải pháp nào cho điều trị mụn trứng cá?	http://www.webtretho.com/forum/f119/giai-phap-nao-cho-dieu-tri-mun-trung-ca-691432/	http://img.webtretho.com/images/lifepedia/94.jpg	Nguồn gốc của mụn trứng cá rất phức tạp và vẫn chưa được tìm hiểu cặn kẽ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+152	Những lí do khiến bạn không nên nặn mụn	http://www.webtretho.com/forum/f1742/nhung-li-do-khien-ban-khong-nen-nan-mun-767260/	http://img.webtretho.com/images/lifepedia/95.jpg	Tìm những hậu quả do nặn mụn gây ra để không phạm phải sai lầm này nữa	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+153	Cách trị mụn đầu đen đơn giản tại nhà	http://www.webtretho.com/forum/f3268/cach-tri-mun-dau-den-don-gian-tai-nha-2333631/	http://img.webtretho.com/images/lifepedia/96.jpg	Những phương pháp hiệu quả nhanh chóng từ những nguyên liệu có sẵn tại nhà.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+154	7 giải pháp trị mụn	http://www.webtretho.com/forum/f3268/7-giai-phap-tri-mun-13516/	http://img.webtretho.com/images/lifepedia/89.jpg	Khoảng 70% các trường hợp mụn trứng cá giảm khi được ánh nắng chiếu vào	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+155	Làm thế nào để loại bỏ mụn nhanh và hiệu quả	http://www.webtretho.com/forum/f3268/lam-the-nao-de-loai-bo-mun-nhanh-va-hieu-qua-114411/	http://img.webtretho.com/images/lifepedia/90.jpg	Nhiều người mắc phải sai lầm khi thường xuyên dùng tay bóc gỡ mụn, nặn mụn	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+156	Dùng dầu dừa trị mụn, vừa an toàn mà dưỡng da	http://www.webtretho.com/forum/f3268/dung-dau-dua-tri-mun-vua-an-toan-ma-duong-da-2333129/	http://img.webtretho.com/images/lifepedia/97.jpg	Phương pháp rất đơn giản mà không hề kém hiệu quả so với các cách trị mụn khác	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+157	Trị mụn như thế nào?	http://www.webtretho.com/forum/f119/tri-mun-nhu-the-nao-144027/	http://img.webtretho.com/images/lifepedia/91.jpg	Mụn trứng cá là một bệnh thường gặp nhất là ở tuổi dậy thì đến 30-40 tuổi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+158	Ngừa mụn: 6 thói quen cho nam giới	http://www.webtretho.com/forum/f26/ngua-mun-6-thoi-quen-cho-nam-gioi-141855/	http://img.webtretho.com/images/lifepedia/92.jpg	Dù bận như thế nào thì cũng nên buổi tối lên giường đi ngủ trước 11 giờ.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+159	Giải pháp nào cho điều trị mụn trứng cá?	http://www.webtretho.com/forum/f119/giai-phap-nao-cho-dieu-tri-mun-trung-ca-691432/	http://img.webtretho.com/images/lifepedia/94.jpg	Nguồn gốc của mụn trứng cá rất phức tạp và vẫn chưa được tìm hiểu cặn kẽ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+160	Những lí do khiến bạn không nên nặn mụn	http://www.webtretho.com/forum/f1742/nhung-li-do-khien-ban-khong-nen-nan-mun-767260/	http://img.webtretho.com/images/lifepedia/95.jpg	Tìm những hậu quả do nặn mụn gây ra để không phạm phải sai lầm này nữa	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+161	Các loại mặt nạ trị mụn từ thiên nhiên	http://www.webtretho.com/forum/f3268/cac-loai-mat-na-tri-mun-tu-thien-nhien-2330962/	http://img.webtretho.com/images/lifepedia/98.jpg	Những công thức đơn giản mà hiệu quả từ thiên nhiên sẽ giúp bạn loại trừ mụn	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+162	Cách trị mụn đầu đen đơn giản tại nhà	http://www.webtretho.com/forum/f3268/cach-tri-mun-dau-den-don-gian-tai-nha-2333631/	http://img.webtretho.com/images/lifepedia/96.jpg	Những phương pháp hiệu quả nhanh chóng từ những nguyên liệu có sẵn tại nhà.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+163	7 giải pháp trị mụn	http://www.webtretho.com/forum/f3268/7-giai-phap-tri-mun-13516/	http://img.webtretho.com/images/lifepedia/89.jpg	Khoảng 70% các trường hợp mụn trứng cá giảm khi được ánh nắng chiếu vào	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+164	Trị mụn trứng cá bằng rau sam	http://www.webtretho.com/forum/f3268/tri-mun-trung-ca-127063/	http://img.webtretho.com/images/lifepedia/99.jpg	Người bị nám, da mặt đen sạm cũng có thể dùng cách này để giúp da sáng hồng hơn.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+165	Làm thế nào để loại bỏ mụn nhanh và hiệu quả	http://www.webtretho.com/forum/f3268/lam-the-nao-de-loai-bo-mun-nhanh-va-hieu-qua-114411/	http://img.webtretho.com/images/lifepedia/90.jpg	Nhiều người mắc phải sai lầm khi thường xuyên dùng tay bóc gỡ mụn, nặn mụn	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+166	Dùng dầu dừa trị mụn, vừa an toàn mà dưỡng da	http://www.webtretho.com/forum/f3268/dung-dau-dua-tri-mun-vua-an-toan-ma-duong-da-2333129/	http://img.webtretho.com/images/lifepedia/97.jpg	Phương pháp rất đơn giản mà không hề kém hiệu quả so với các cách trị mụn khác	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+167	Trị mụn như thế nào?	http://www.webtretho.com/forum/f119/tri-mun-nhu-the-nao-144027/	http://img.webtretho.com/images/lifepedia/91.jpg	Mụn trứng cá là một bệnh thường gặp nhất là ở tuổi dậy thì đến 30-40 tuổi	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+168	Ngừa mụn: 6 thói quen cho nam giới	http://www.webtretho.com/forum/f26/ngua-mun-6-thoi-quen-cho-nam-gioi-141855/	http://img.webtretho.com/images/lifepedia/92.jpg	Dù bận như thế nào thì cũng nên buổi tối nên lên giường đi ngủ trước 11 giờ.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+169	Giải pháp nào cho điều trị mụn trứng cá?	http://www.webtretho.com/forum/f119/giai-phap-nao-cho-dieu-tri-mun-trung-ca-691432/	http://img.webtretho.com/images/lifepedia/94.jpg	Nguồn gốc của mụn trứng cá rất phức tạp và vẫn chưa được tìm hiểu cặn kẽ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+170	Những lí do khiến bạn không nên nặn mụn	http://www.webtretho.com/forum/f1742/nhung-li-do-khien-ban-khong-nen-nan-mun-767260/	http://img.webtretho.com/images/lifepedia/95.jpg	Tìm những hậu quả do nặn mụn gây ra để không phạm phải sai lầm này nữa	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+171	Nhận diện kẻ thù gây tiêu chảy mùa nắng nóng	http://www.webtretho.com/forum/f2140/tieu-chay-cap-va-dinh-duong-cho-con-yeu-647162/	http://img.webtretho.com/images/lifepedia/100.jpg	Ngăn chặn các tác nhân gây tiêu chảy nhằm hạn chế chúng gây bệnh cho con người.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+172	Tiêu chảy và chữa tiêu chảy	http://www.webtretho.com/forum/f87/tieu-chay-va-chua-tieu-chay-4411/	http://img.webtretho.com/images/lifepedia/101.jpg	Một vài thông tin cơ bản về bệnh tiêu chảy mà bố mẹ cần biết	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+173	Xử trí tiêu chảy cấp ở trẻ em	http://www.webtretho.com/forum/f87/xu-tri-tieu-chay-cap-o-tre-em-13515/	http://img.webtretho.com/images/lifepedia/102.jpg	Trẻ bị tiêu chảy cấp nếu không được điều trị kịp thời có thể tử vong.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+174	Cách chữa bệnh tiêu chảy mà không cần bù nước	http://www.webtretho.com/forum/f26/cach-chua-benh-tieu-chay-ma-khong-can-bu-nuoc-445218/	http://img.webtretho.com/images/lifepedia/103.jpg	Mỹ đã thử nghiệm một hợp chất có khả năng điều trị bệnh tiêu chảy	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+175	Trẻ dễ bị tiêu chảy cấp vào mùa lạnh	http://www.webtretho.com/forum/f26/tre-de-bi-tieu-chay-cap-vao-mua-lanh-641944/	http://img.webtretho.com/images/lifepedia/104.jpg	Trời lạnh là điều kiện thuận lợi cho vi khuẩn, virus và ký sinh trùng phát triển	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+176	Các sai lầm hay gặp khi chăm bé bị tiêu chảy	http://www.webtretho.com/forum/f71/cac-sai-lam-hay-gap-khi-cham-be-bi-tieu-chay-165863/	http://img.webtretho.com/images/lifepedia/105.jpg	Kiêng tôm, cá, dầu mỡ hay sữa chua là sai lầm phổ biến của các ông bố bà mẹ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+177	Nên và không nên khi bé tiêu chảy	http://www.webtretho.com/forum/f71/nen-va-khong-nen-khi-be-tieu-chay-1365288/	http://img.webtretho.com/images/lifepedia/106.jpg	Không nên cho bé ăn lá ổi, hồng xiêm xanh vì chỉ là khỏi bệnh giả tạo	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+178	Nhận diện kẻ thù gây tiêu chảy mùa nắng nóng	http://www.webtretho.com/forum/f26/nhan-dien-ke-thu-gay-tieu-chay-mua-nang-nong-1680740/	http://img.webtretho.com/images/lifepedia/107.jpg	Vi sinh vật gây bệnh đường ruột có thể là virut, vi khuẩn hoặc vi nấm	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+179	Phòng bệnh tiêu chảy mùa đông cho bé!	http://www.webtretho.com/forum/f26/phong-benh-tieu-chay-mua-dong-cho-be-37820/	http://img.webtretho.com/images/lifepedia/108.jpg	Bệnh dễ phát sinh thành dịch do nguy cơ lây chéo cao	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+180	Những nguy cơ gây tiêu chảy cấp ở trẻ em	http://www.webtretho.com/forum/f26/nhung-nguy-co-gay-tieu-chay-cap-o-tre-em-17004/	http://img.webtretho.com/images/lifepedia/109.jpg	Ở Việt Nam, tỷ lệ trẻ mắc bệnh tiêu chảy trong mùa hè, mùa đông rất cao	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+181	Tiêu chảy cấp và dinh dưỡng cho con yêu	http://www.webtretho.com/forum/f2140/tieu-chay-cap-va-dinh-duong-cho-con-yeu-647162/	http://img.webtretho.com/images/lifepedia/110.jpg	Hàng năm trên thế giới có tới 4,6 triệu trẻ dưới 5 tuổi tử vong do tiêu chảy	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+182	Xử trí tiêu chảy cấp ở trẻ em	http://www.webtretho.com/forum/f87/xu-tri-tieu-chay-cap-o-tre-em-13515/	http://img.webtretho.com/images/lifepedia/111.jpg	Trẻ bị tiêu chảy cấp nếu không được điều trị kịp thời có thể tử vong	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+183	Trẻ dễ bị tiêu chảy cấp vào mùa lạnh	http://www.webtretho.com/forum/f26/tre-de-bi-tieu-chay-cap-vao-mua-lanh-641944/	http://img.webtretho.com/images/lifepedia/104.jpg	Trời lạnh là điều kiện thuận lợi cho vi khuẩn, virus và ký sinh trùng phát triển	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+184	Nên và không nên khi bé tiêu chảy	http://www.webtretho.com/forum/f71/nen-va-khong-nen-khi-be-tieu-chay-1365288/	http://img.webtretho.com/images/lifepedia/106.jpg	Không nên cho bé ăn lá ổi, hồng xiêm xanh vì chỉ là khỏi bệnh giả tạo	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+185	Nhận diện kẻ thù gây tiêu chảy mùa nắng nóng	http://www.webtretho.com/forum/f26/nhan-dien-ke-thu-gay-tieu-chay-mua-nang-nong-1680740/	http://img.webtretho.com/images/lifepedia/107.jpg	Vi sinh vật gây bệnh đường ruột có thể là virut, vi khuẩn hoặc vi nấm	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+186	Phòng tiêu chảy	http://www.webtretho.com/forum/f87/phong-tieu-chay-1411401/	http://img.webtretho.com/images/lifepedia/112.jpg	Trẻ càng nhỏ, càng có nguy cơ bệnh nặng, dễ tử vong nếu không điều trị kịp thời.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+187	Phòng bệnh tiêu chảy mùa đông cho bé!	http://www.webtretho.com/forum/f26/phong-benh-tieu-chay-mua-dong-cho-be-37820/	http://img.webtretho.com/images/lifepedia/108.jpg	Bệnh dễ phát sinh thành dịch do nguy cơ lây chéo cao	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+188	Cần sử dụng kẽm trong điều trị trẻ bị tiêu chảy	http://www.webtretho.com/forum/f26/can-su-dung-kem-trong-dieu-tri-tre-bi-tieu-chay-407345/	http://img.webtretho.com/images/lifepedia/113.jpg	Nên sử dụng kẽm và oresol độ thẩm thấu thấp trong điều trị tiêu chảy cho trẻ em	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+189	Tiêu chảy cấp và dinh dưỡng cho con yêu	http://www.webtretho.com/forum/f2140/tieu-chay-cap-va-dinh-duong-cho-con-yeu-647162/	http://img.webtretho.com/images/lifepedia/110.jpg	Hàng năm trên thế giới có tới 4,6 triệu trẻ dưới 5 tuổi tử vong do tiêu chảy	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+190	Tiêu chảy và chữa tiêu chảy	http://www.webtretho.com/forum/f87/tieu-chay-va-chua-tieu-chay-4411/	http://img.webtretho.com/images/lifepedia/101.jpg	Một vài thông tin cơ bản về bệnh tiêu chảy mà bố mẹ cần biết	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+191	Bệnh tiêu chảy cấp	http://www.webtretho.com/forum/f26/benh-tieu-chay-cap-163581/	http://img.webtretho.com/images/lifepedia/114.jpg	Khi bé bị tiêu chảy hay rối loạn tiêu hóa thì càng nên ăn sữa chua	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+192	Cách chữa bệnh tiêu chảy mà không cần bù nước	http://www.webtretho.com/forum/f26/cach-chua-benh-tieu-chay-ma-khong-can-bu-nuoc-445218/	http://img.webtretho.com/images/lifepedia/103.jpg	Mỹ đã thử nghiệm một hợp chất có khả năng điều trị bệnh tiêu chảy	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+193	Tiêu chảy có thể điều trị tại nhà	http://www.webtretho.com/forum/f1582/tieu-chay-co-the-dieu-tri-tai-nha-681434/	http://img.webtretho.com/images/lifepedia/115.jpg	Để tránh mất nước, nên cho trẻ uống nhiều nước sôi, nước khoáng, nước dừa tươi.	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+194	Các sai lầm hay gặp khi chăm bé bị tiêu chảy	http://www.webtretho.com/forum/f71/cac-sai-lam-hay-gap-khi-cham-be-bi-tieu-chay-165863/	http://img.webtretho.com/images/lifepedia/105.jpg	Kiêng tôm, cá, dầu mỡ hay sữa chua là sai lầm phổ biến của các ông bố bà mẹ	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+195	Nên và không nên khi bé tiêu chảy	http://www.webtretho.com/forum/f71/nen-va-khong-nen-khi-be-tieu-chay-1365288/	http://img.webtretho.com/images/lifepedia/106.jpg	Không nên cho bé ăn lá ổi, hồng xiêm xanh vì chỉ là khỏi bệnh giả tạo	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+1	Những điều cần biết khi chăm sóc trẻ bị bệnh hô hấp	http://www.webtretho.com/forum/f87/nhung-dieu-can-biet-khi-cham-soc-tre-bi-benh-ho-hap-1362764/	http://img.webtretho.com/images/lifepedia/1.jpg	Thời tiết thay đổi làm cơ thể trẻ không thích nghi kịp, dẫn đến dễ bị mắc bệnh…	2016-11-08 00:00:00+00	2017-01-06 04:03:37+00
+100	18 mẹo quan trọng giúp bạn không bao giờ bị cảm	http://www.webtretho.com/forum/f26/18-meo-quan-trong-giup-ban-khong-bao-gio-bi-cam-2010374/	http://img.webtretho.com/images/lifepedia/57.jpg	Cảm cúm không phải bệnh nghiêm trọng, nhưng không ngừa cẩn thận thì sẽ hệ lụy	2016-11-08 00:00:00+00	2017-01-06 04:03:59+00
+102	Thông tin phòng tránh và triệu chứng của bệnh cúm virus A(H7N9)	http://www.webtretho.com/forum/f119/thong-tin-phong-tranh-va-trieu-chung-cua-benh-cum-virus-a-h7n9-2022258/	http://img.webtretho.com/images/lifepedia/64.jpg	Giữ vệ sinh thật tốt và hạn chế tiếp xúc với gia cầm để không bị lây bệnh	2016-11-08 00:00:00+00	2017-01-06 04:04:14+00
+123	Những thực phẩm giúp bạn và gia đình tránh bị cảm cúm khi giao mùa	http://www.webtretho.com/forum/f216/nhung-thuc-pham-giup-ban-va-gia-dinh-tranh-bi-cam-cum-khi-giao-mua-2098818/	http://img.webtretho.com/images/lifepedia/79.jpg	Một số loại thực phẩm này có thể giúp bạn tránh cảm cúm bạn nên biết.	2016-11-08 00:00:00+00	2017-01-06 04:12:16+00
+\.
+
+
+--
+-- Data for Name: ButtonTemplateButtons; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "ButtonTemplateButtons" ("buttonTemplateId", "buttonId") FROM stdin;
+1	18
+1	19
+Hkifat3Hx	18
+Hkifat3Hx	r1xrTKhSl
+B196pYnBe	19
+B196pYnBe	HyD26Knre
+\.
+
+
+--
+-- Data for Name: ButtonTemplateMessages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "ButtonTemplateMessages" ("buttonTemplateId", "messageId") FROM stdin;
+1	3
+Hkifat3Hx	1
+B196pYnBe	rJi5at3Hx
+\.
+
+
+--
+-- Data for Name: ButtonTemplates; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "ButtonTemplates" (id, title, "postbackId", "createdAt", "updatedAt") FROM stdin;
+1	Unsupported	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+Hkifat3Hx	Welcome	rkhg6Y2He	2017-01-06 03:20:51+00	2017-01-06 03:21:52+00
+B196pYnBe	Greeting	1	2017-01-06 03:23:46+00	2017-01-06 03:24:01+00
+\.
+
+
+--
+-- Data for Name: ButtonTypes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "ButtonTypes" (id, value, "createdAt", "updatedAt") FROM stdin;
+1	postback	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+2	web_url	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+\.
+
+
+--
+-- Data for Name: Buttons; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Buttons" (id, "buttonTypeId", url, title, "postbackId", "createdAt", "updatedAt") FROM stdin;
+1	1		Theo bệnh	3	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+2	1		Theo vùng miền	4	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+3	1		Tìm theo khu vực	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+4	1		Địa điểm tiêm vắc xin	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+5	1		Lịch tiêm vắc xin	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+6	1		Thông báo dịch bệnh	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+7	1		Thông tin cảm lạnh	8	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+8	1		Thông tin Thành phố HCM	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+9	1		Thông tin Hà Nội	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+10	1		Thông tin Đà Nẵng	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+11	1		Thông tin Cần Thơ	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+12	1		Thông tin Bắc Bộ	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+13	1		Thông tin Nam Bộ	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+14	1		Thông tin Trung Bộ	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+15	1		Thông tin Tây Nguyên	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+16	1		Phòng tránh cảm lạnh	9	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+17	1		Điều trị cảm lạnh	10	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+18	1		Hướng dẫn	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+19	1		Tìm hiểu thông tin	2	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+r1xrTKhSl	1	\N	Xin Chào	1	2017-01-06 03:21:28+00	2017-01-06 03:21:28+00
+HyD26Knre	1	\N	Trò Chuyện	5	2017-01-06 03:23:27+00	2017-01-06 03:23:27+00
+S1L9153rx	1	\N	Tìm theo bệnh viện	5	2017-01-06 03:31:25+00	2017-01-06 03:31:25+00
+\.
+
+
+--
+-- Data for Name: DiseaseArticles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "DiseaseArticles" ("diseaseId", "articleId") FROM stdin;
+1	1
+1	10
+rJ1iZcnSe	100
+2	122
+2	123
+\.
+
+
+--
+-- Data for Name: DiseaseMessages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "DiseaseMessages" ("diseaseId", "messageId") FROM stdin;
+1	5
+2	5
+rJ1iZcnSe	5
+\.
+
+
+--
+-- Data for Name: Diseases; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Diseases" (id, title, "typePostbackId", "diseasePostbackId", "createdAt", "updatedAt") FROM stdin;
+1	Thông Tin Cảm Lạnh	6	7	2016-11-08 00:00:00+00	2017-01-06 04:08:00+00
+rJ1iZcnSe	Phòng Tránh Cảm Lạnh	H1Wiu52re	7	2017-01-06 03:40:07+00	2017-01-06 04:11:22+00
+2	Điều trị Cảm Lạnh	11	7	2016-11-08 00:00:00+00	2017-01-06 04:12:49+00
+\.
+
+
+--
+-- Data for Name: ElementButtons; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "ElementButtons" ("elementId", "buttonId") FROM stdin;
+1	1
+2	2
+4	4
+4	5
+5	6
+14	7
+15	7
+16	7
+17	7
+18	7
+19	7
+20	7
+21	7
+22	7
+6	8
+7	9
+8	10
+9	11
+10	12
+11	13
+12	14
+13	15
+14	16
+14	17
+SJV-gcnrl	3
+SJV-gcnrl	S1L9153rx
+\.
+
+
+--
+-- Data for Name: Elements; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Elements" (id, title, "itemURL", "imageURL", subtitle, "postbackId", "createdAt", "updatedAt") FROM stdin;
+1	Thông tin dịch bệnh	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b1.jpg	10 loại dịch bệnh hay xuất hiện trong nhà bạn bất cứ lúc nào!	2	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+2	Thông tin vùng miền	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b2.jpg	Dù là người miền Bắc, Trung hay Nam thì bạn cũng cần phải biết!	2	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+4	Địa điểm và lịch tiêm Vắc Xin	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b4.jpg	Bí kíp lận lưng các bậc phụ huynh không nên quên!	2	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+5	Thông báo dịch bệnh	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b5.jpg	Báo động đỏ! Cập nhật tình hình dịch bệnh xung quanh	2	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+6	Thành phố Hồ Chí Minh	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b7.jpg	Loa!Loa!Loa! Ai ở TP.HCM chú ý!	4	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+7	Hà Nội	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b8.jpg	Loa!Loa!Loa! Ai ở Hà Nội chú ý!	4	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+8	Đà Nẵng	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b9.jpg	Loa!Loa!Loa! Ai ở Đà Nẵng chú ý!	4	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+9	Cần Thơ	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b10.jpg	Loa!Loa!Loa! Ai ở Cần Thơ chú ý!	4	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+10	Bắc Bộ	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b11.jpg	Loa!Loa!Loa! Ai ở khu vực Bắc Bộ chú ý!	4	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+11	Nam Bộ	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b12.jpg	Loa!Loa!Loa! Ai ở khu vực Nam Bộ chú ý!	4	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+12	Trung Bộ	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b13.jpg	Loa!Loa!Loa! Ai ở khu vực Trung Bộ chú ý!	4	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+13	Tây Nguyên	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b14.jpg	Loa!Loa!Loa! Ai ở khu vực Tây Nguyên chú ý!	4	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+14	Cảm lạnh	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/40.jpg	Alô! Bạn biết gì về bệnh cảm	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+15	Hô hấp	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/1.jpg	Alô! Bạn biết gì về bệnh Hô Hấp	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+16	Kiết lỵ	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b6.jpg	Alô! Bạn biết gì về Kiết Lị	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+17	Mẩn đỏ	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/19.jpg	Alô! Bạn biết gì về mẩn đỏ	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+18	Rôm sảy	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/23.jpg	Alô! Bạn biết gì về rôm sảy	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+19	Viêm họng	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/34.jpg	Alô! Bạn biết gì về viêm họng	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+20	Mụn	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/89.jpg	Alô! Bạn biết gì về mụn	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+21	Đau mắt đỏ	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/80.jpg	Alô! Bạn biết gì về đau mắt đỏ	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+22	Tiêu chảy	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/102.jpg	Alô! Bạn biết gì về tiêu chảy 	3	2016-11-26 00:00:00+00	2016-11-26 00:00:00+00
+SJV-gcnrl	Thông tin bệnh viện	http://webtretho.com/	http://img.webtretho.com/images/lifepedia/b10.jpg	Những thông tin về các bệnh viện mà bạn đang quan tâm 	2	2017-01-06 03:33:15+00	2017-01-06 03:34:11+00
+\.
+
+
+--
+-- Data for Name: Messages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Messages" (id, title, message, "createdAt", "updatedAt") FROM stdin;
+1	Welcome Message	Hey! Xin chào {{userName}}. Chào mừng bạn đã tham gia chat cùng Bác sĩ Lifebuoy. Nhiệm vụ của tớ là trả lời các câu hỏi, đồng thời cập nhật những thông tin mới nhất về các loại bệnh hiện nay cho các bạn, kèm theo đó là cảnh báo dịch bệnh nếu có. Rất đơn giản, hãy nhấn vào nút xin chào bên dưới để bắt đầu	2016-11-08 00:00:00+00	2017-01-06 03:21:10+00
+rJi5at3Hx	Greeting Message	Xin chào! Tôi là bác sĩ  Lifebuoy. Bạn có muốn trò chuyện với chúng tôi hay bạn muốn tìm hiểu thông tin về các dịch bệnh nào?	2017-01-06 03:22:58+00	2017-01-06 03:22:58+00
+3	Unsupported	Hiện tại chúng tôi chưa hỗ trợ thông tin này. Bạn có thể sử dụng các chức năng dưới đây	2016-11-08 00:00:00+00	2017-01-06 04:16:38+00
+5	Disease Message	Thông tin mà bạn đang tìm kiếm đây {{userName}}	2016-11-08 00:00:00+00	2017-01-06 04:16:48+00
+\.
+
+
+--
+-- Data for Name: PersistentMenus; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "PersistentMenus" (id, title, type, "postbackId", "createdAt", "updatedAt") FROM stdin;
+1	Theo Bệnh	postback	3	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+HJ3dAK2Sg	Đọc Tin Tức	postback	12	2017-01-06 03:26:44+00	2017-01-06 03:26:44+00
+BJ73RF2Hg	Menu	postback	2	2017-01-06 03:27:38+00	2017-01-06 03:27:38+00
+\.
+
+
+--
+-- Data for Name: Postback; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Postback" (id, title, value, "createdAt", "updatedAt", "typeId", description) FROM stdin;
+2	MENU_PAYLOAD	MENU_PAYLOAD	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00	1	
+12	Đọc Tin Tức RSS	REQUEST_RSS_PAYLOAD	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00	1	
+13	Làm Mẹ RSS	LAMME_RSS_PAYLOAD	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00	1	
+14	Làm Đẹp RSS	LAMDEP_RSS_PAYLOAD	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00	1	
+rkhg6Y2He	Welcome	WELCOME_PAYLOAD	2017-01-06 03:20:20+00	2017-01-06 03:20:20+00	1	\N
+10	Điều trị cảm lạnh	REQUEST_TREATMENTS_PAYLOAD-DISEASE_COLDS_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:36:55+00	1	\N
+8	Thông tin cảm lạnh	REQUEST_INFORMATION_PAYLOAD-DISEASE_COLDS_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:37:14+00	1	\N
+9	Phòng Tránh Cảm Lạnh	REQUEST_PRECAUTIONS_PAYLOAD-DISEASE_COLDS_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:37:31+00	1	\N
+3	Tìm Kiếm Theo bệnh	SEARCH_BY_DISEASE_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:37:56+00	1	\N
+4	Tìm Kiếm Theo Vùng Miền	SEARCH_BY_REGION_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:38:07+00	1	\N
+1	Greeting	GREETING_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:38:19+00	1	\N
+11	Điều Trị	REQUEST_TREATMENTS_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:38:33+00	2	\N
+5	Chưa Hỗ Trợ	UNSUPPORTED_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:38:45+00	1	\N
+6	Thông Tin	REQUEST_INFORMATION_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 03:38:53+00	2	\N
+H1Wiu52re	Phòng Tránh	REQUEST_PRECAUTIONS_PAYLOAD	2017-01-06 04:10:01+00	2017-01-06 04:10:01+00	2	\N
+7	Bệnh Cảm Lạnh	DISEASE_COLDS_PAYLOAD	2016-11-08 00:00:00+00	2017-01-06 04:10:37+00	3	\N
+\.
+
+
+--
+-- Data for Name: QuickReplies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "QuickReplies" (id, "contentType", title, "imageURL", "postbackId", "createdAt", "updatedAt") FROM stdin;
+1	text	Bố		1	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+2	text	Mẹ		1	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+\.
+
+
+--
+-- Data for Name: RSSes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "RSSes" (id, title, "rssURL", "postbackId", "createdAt", "updatedAt") FROM stdin;
+1	Làm Mẹ	http://www.webtretho.com/forum/external.php?type=RSS2&forumids=854	13	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+2	Làm Đẹp	http://www.webtretho.com/forum/external.php?type=RSS2&forumids=13	14	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+\.
+
+
+--
+-- Data for Name: SequelizeMeta; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "SequelizeMeta" (name) FROM stdin;
+20161110163366-create-user.js
+20161117161223-update-user-add-parental.js
+20161119171019-update-user-add-favorite-time.js
+20161214044555-create-type.js
+20161214044556-create-postback.js
+20161214044557-alter-postback-table-add-foreign-key-to-type.js
+20161214044557-create-watchword.js
+20161214044558-create-synonym.js
+20161215075032-create-message.js
+20161215075232-create-text.js
+20161215075459-create-text-message.js
+20161216034757-create-quick-reply.js
+20161216034758-create-text-quick-reply.js
+20161216080803-create-element.js
+20161216093024-create-button-type.js
+20161216093121-create-button.js
+20161216093347-create-element-button.js
+20161217023205-create-button-template.js
+20161217023247-create-button-template-button.js
+20161217023248-create-button-template-message.js
+20161217111015-create-article.js
+20161217112604-create-disease.js
+20161217112652-create-disease-article.js
+20161226041135-alter-table-postback-add-description-column.js
+20161226063554-create-create-disease-message.js
+20161229101356-create-persistent-menu.js
+20170103025133-create-rss.js
+20170104035056-alter-user-table-add-subcribe-colum.js
+20170104035057-alter-user-table-add-read-stories-colum.js
+\.
+
+
+--
+-- Data for Name: Synonym; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Synonym" (id, value, "watchwordId", "createdAt", "updatedAt") FROM stdin;
+1	heyy	1	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+\.
+
+
+--
+-- Data for Name: TextMessages; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "TextMessages" ("textId", "messageId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: TextQuickReplies; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "TextQuickReplies" ("textId", "quickReplyId") FROM stdin;
+\.
+
+
+--
+-- Data for Name: Texts; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Texts" (id, title, "postbackId", "createdAt", "updatedAt") FROM stdin;
+\.
+
+
+--
+-- Data for Name: Types; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Types" (id, title, priority, "createdAt", "updatedAt") FROM stdin;
+1	General	1	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+2	Information, Prevention, Treatment	2	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+3	Disease	3	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+\.
+
+
+--
+-- Data for Name: User; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "User" ("userId", "firstName", "lastName", gender, "currentPayload", "createdAt", "updatedAt", parental, "childName", "favoriteTime", subscribe, "readStories") FROM stdin;
+1124530250917038	Tân	Vũ	male	GET_STARTED_PAYLOAD	2017-01-06 03:15:10.212+00	2017-01-06 03:15:27.408+00	\N	\N	\N	\N	9
+1581909555168668	Lê Lục	Kim Sách	male	GET_STARTED_PAYLOAD	2017-01-06 04:06:19.208+00	2017-01-06 04:06:19.208+00	\N	\N	\N	\N	\N
+1284289988276255	Gocxua	Quan	male	GET_STARTED_PAYLOAD	2017-01-06 04:07:40.408+00	2017-01-06 04:07:40.408+00	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- Data for Name: Watchword; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY "Watchword" (id, value, "postbackId", "createdAt", "updatedAt") FROM stdin;
+1	hey	1	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+2	menu	2	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+3	thong tin	6	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+4	cam cum	7	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+5	cam lanh	5	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+6	dieu tri	11	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+7	doc tin tuc	12	2016-11-08 00:00:00+00	2016-11-08 00:00:00+00
+\.
+
+
+--
+-- Name: Articles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Articles"
+    ADD CONSTRAINT "Articles_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: ButtonTemplateButtons_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "ButtonTemplateButtons"
+    ADD CONSTRAINT "ButtonTemplateButtons_pkey" PRIMARY KEY ("buttonTemplateId", "buttonId");
+
+
+--
+-- Name: ButtonTemplateMessages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "ButtonTemplateMessages"
+    ADD CONSTRAINT "ButtonTemplateMessages_pkey" PRIMARY KEY ("buttonTemplateId", "messageId");
+
+
+--
+-- Name: ButtonTemplates_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "ButtonTemplates"
+    ADD CONSTRAINT "ButtonTemplates_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: ButtonTypes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "ButtonTypes"
+    ADD CONSTRAINT "ButtonTypes_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Buttons_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Buttons"
+    ADD CONSTRAINT "Buttons_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: DiseaseArticles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "DiseaseArticles"
+    ADD CONSTRAINT "DiseaseArticles_pkey" PRIMARY KEY ("diseaseId", "articleId");
+
+
+--
+-- Name: DiseaseMessages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "DiseaseMessages"
+    ADD CONSTRAINT "DiseaseMessages_pkey" PRIMARY KEY ("diseaseId", "messageId");
+
+
+--
+-- Name: Diseases_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Diseases"
+    ADD CONSTRAINT "Diseases_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: ElementButtons_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "ElementButtons"
+    ADD CONSTRAINT "ElementButtons_pkey" PRIMARY KEY ("elementId", "buttonId");
+
+
+--
+-- Name: Elements_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Elements"
+    ADD CONSTRAINT "Elements_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Messages"
+    ADD CONSTRAINT "Messages_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: PersistentMenus_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "PersistentMenus"
+    ADD CONSTRAINT "PersistentMenus_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Postback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Postback"
+    ADD CONSTRAINT "Postback_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: QuickReplies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "QuickReplies"
+    ADD CONSTRAINT "QuickReplies_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: RSSes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "RSSes"
+    ADD CONSTRAINT "RSSes_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: SequelizeMeta_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "SequelizeMeta"
+    ADD CONSTRAINT "SequelizeMeta_pkey" PRIMARY KEY (name);
+
+
+--
+-- Name: Synonym_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Synonym"
+    ADD CONSTRAINT "Synonym_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: TextMessages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "TextMessages"
+    ADD CONSTRAINT "TextMessages_pkey" PRIMARY KEY ("textId", "messageId");
+
+
+--
+-- Name: TextQuickReplies_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "TextQuickReplies"
+    ADD CONSTRAINT "TextQuickReplies_pkey" PRIMARY KEY ("textId", "quickReplyId");
+
+
+--
+-- Name: Texts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Texts"
+    ADD CONSTRAINT "Texts_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: Types_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Types"
+    ADD CONSTRAINT "Types_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: User_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "User"
+    ADD CONSTRAINT "User_pkey" PRIMARY KEY ("userId");
+
+
+--
+-- Name: Watchword_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "Watchword"
+    ADD CONSTRAINT "Watchword_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: ButtonTemplateButtons_buttonId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ButtonTemplateButtons"
+    ADD CONSTRAINT "ButtonTemplateButtons_buttonId_fkey" FOREIGN KEY ("buttonId") REFERENCES "Buttons"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: ButtonTemplateButtons_buttonTemplateId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ButtonTemplateButtons"
+    ADD CONSTRAINT "ButtonTemplateButtons_buttonTemplateId_fkey" FOREIGN KEY ("buttonTemplateId") REFERENCES "ButtonTemplates"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: ButtonTemplateMessages_buttonTemplateId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ButtonTemplateMessages"
+    ADD CONSTRAINT "ButtonTemplateMessages_buttonTemplateId_fkey" FOREIGN KEY ("buttonTemplateId") REFERENCES "ButtonTemplates"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: ButtonTemplateMessages_messageId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ButtonTemplateMessages"
+    ADD CONSTRAINT "ButtonTemplateMessages_messageId_fkey" FOREIGN KEY ("messageId") REFERENCES "Messages"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: ButtonTemplates_postbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ButtonTemplates"
+    ADD CONSTRAINT "ButtonTemplates_postbackId_fkey" FOREIGN KEY ("postbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Buttons_buttonTypeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Buttons"
+    ADD CONSTRAINT "Buttons_buttonTypeId_fkey" FOREIGN KEY ("buttonTypeId") REFERENCES "ButtonTypes"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Buttons_postbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Buttons"
+    ADD CONSTRAINT "Buttons_postbackId_fkey" FOREIGN KEY ("postbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: DiseaseArticles_articleId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "DiseaseArticles"
+    ADD CONSTRAINT "DiseaseArticles_articleId_fkey" FOREIGN KEY ("articleId") REFERENCES "Articles"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: DiseaseArticles_diseaseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "DiseaseArticles"
+    ADD CONSTRAINT "DiseaseArticles_diseaseId_fkey" FOREIGN KEY ("diseaseId") REFERENCES "Diseases"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: DiseaseMessages_diseaseId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "DiseaseMessages"
+    ADD CONSTRAINT "DiseaseMessages_diseaseId_fkey" FOREIGN KEY ("diseaseId") REFERENCES "Diseases"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: DiseaseMessages_messageId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "DiseaseMessages"
+    ADD CONSTRAINT "DiseaseMessages_messageId_fkey" FOREIGN KEY ("messageId") REFERENCES "Messages"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Diseases_diseasePostbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Diseases"
+    ADD CONSTRAINT "Diseases_diseasePostbackId_fkey" FOREIGN KEY ("diseasePostbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Diseases_typePostbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Diseases"
+    ADD CONSTRAINT "Diseases_typePostbackId_fkey" FOREIGN KEY ("typePostbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: ElementButtons_buttonId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ElementButtons"
+    ADD CONSTRAINT "ElementButtons_buttonId_fkey" FOREIGN KEY ("buttonId") REFERENCES "Buttons"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: ElementButtons_elementId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "ElementButtons"
+    ADD CONSTRAINT "ElementButtons_elementId_fkey" FOREIGN KEY ("elementId") REFERENCES "Elements"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Elements_postbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Elements"
+    ADD CONSTRAINT "Elements_postbackId_fkey" FOREIGN KEY ("postbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: PersistentMenus_postbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "PersistentMenus"
+    ADD CONSTRAINT "PersistentMenus_postbackId_fkey" FOREIGN KEY ("postbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Postback_typeId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Postback"
+    ADD CONSTRAINT "Postback_typeId_fkey" FOREIGN KEY ("typeId") REFERENCES "Types"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: QuickReplies_postbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "QuickReplies"
+    ADD CONSTRAINT "QuickReplies_postbackId_fkey" FOREIGN KEY ("postbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: RSSes_postbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "RSSes"
+    ADD CONSTRAINT "RSSes_postbackId_fkey" FOREIGN KEY ("postbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Synonym_watchwordId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Synonym"
+    ADD CONSTRAINT "Synonym_watchwordId_fkey" FOREIGN KEY ("watchwordId") REFERENCES "Watchword"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: TextMessages_messageId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "TextMessages"
+    ADD CONSTRAINT "TextMessages_messageId_fkey" FOREIGN KEY ("messageId") REFERENCES "Messages"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: TextMessages_textId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "TextMessages"
+    ADD CONSTRAINT "TextMessages_textId_fkey" FOREIGN KEY ("textId") REFERENCES "Texts"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: TextQuickReplies_quickReplyId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "TextQuickReplies"
+    ADD CONSTRAINT "TextQuickReplies_quickReplyId_fkey" FOREIGN KEY ("quickReplyId") REFERENCES "QuickReplies"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: TextQuickReplies_textId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "TextQuickReplies"
+    ADD CONSTRAINT "TextQuickReplies_textId_fkey" FOREIGN KEY ("textId") REFERENCES "Texts"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Texts_postbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Texts"
+    ADD CONSTRAINT "Texts_postbackId_fkey" FOREIGN KEY ("postbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: Watchword_postbackId_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "Watchword"
+    ADD CONSTRAINT "Watchword_postbackId_fkey" FOREIGN KEY ("postbackId") REFERENCES "Postback"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
