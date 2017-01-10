@@ -10,11 +10,26 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      userVariableId: {
-        type: Sequelize.STRING
-      },
-      parentOrder: {
+      order: {
         type: Sequelize.INTEGER
+      },
+      blockId: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'Blocks',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
+      userVariableId: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'UserVariables',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,

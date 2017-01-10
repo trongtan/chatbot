@@ -1,6 +1,6 @@
 'use strict';
 module.exports = {
-  up: function(queryInterface, Sequelize) {
+  up: function (queryInterface, Sequelize) {
     return queryInterface.createTable('Blocks', {
       id: {
         allowNull: false,
@@ -9,6 +9,15 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING
+      },
+      groupId: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'Groups',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       createdAt: {
         allowNull: false,
@@ -20,7 +29,7 @@ module.exports = {
       }
     });
   },
-  down: function(queryInterface, Sequelize) {
+  down: function (queryInterface, Sequelize) {
     return queryInterface.dropTable('Blocks');
   }
 };

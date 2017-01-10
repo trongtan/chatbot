@@ -25,6 +25,24 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING
       },
+      galleryId: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'Galleries',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
+      textCardId: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'TextCards',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

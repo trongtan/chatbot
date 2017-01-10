@@ -2,7 +2,6 @@ export default (sequelize, DataTypes) => {
   const Button = sequelize.define('Button', {
     name: DataTypes.STRING,
     type: DataTypes.INTEGER,
-    blockId: DataTypes.STRING,
     URL: DataTypes.STRING,
     inAppBrowserSize: DataTypes.INTEGER,
     phoneNumber: DataTypes.STRING

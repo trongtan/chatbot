@@ -22,6 +22,15 @@ module.exports = {
       order: {
         type: Sequelize.INTEGER
       },
+      blockId: {
+        type: Sequelize.STRING,
+        references: {
+          model: 'Blocks',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
