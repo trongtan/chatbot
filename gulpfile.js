@@ -103,25 +103,15 @@ gulp.task('copy-vendors', () => {
 
 gulp.task('merge-admin-settings', () => {
   return _mergeExpressAdminSettingsTask(
-    [ 'src/admin/config/tables/type.json',
-      'src/admin/config/tables/postback.json',
-      'src/admin/config/tables/watchword.json',
-      'src/admin/config/tables/button.json',
-      'src/admin/config/tables/messages.json',
-      'src/admin/config/tables/articles.json',
-      'src/admin/config/tables/quick-replies.json',
-
-      'src/admin/config/tables/text.json',
-      'src/admin/config/tables/elements.json',
-      'src/admin/config/tables/button-templates.json',
-      'src/admin/config/tables/diseases.json',
-
-      'src/admin/config/tables/user.json',
-      'src/admin/config/tables/persistent-menu.json',
-      'src/admin/config/tables/rss.json',
+    [ 'src/admin/config/tables/group.json',
+      'src/admin/config/tables/block.json',
+      'src/admin/config/tables/gallery.json',
+      'src/admin/config/tables/text-card.json',
+      'src/admin/config/tables/image.json',
+      'src/admin/config/tables/quick-reply.json',
       //Hidden table
-      'src/admin/config/tables/synonym.json',
-      'src/admin/config/tables/button-type.json',
+      'src/admin/config/tables/button.json',
+      'src/admin/config/tables/user-variable.json',
       'src/admin/config/tables/sequelize-meta.json',
     ],
     'dist/admin/config',

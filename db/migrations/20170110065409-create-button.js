@@ -26,6 +26,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       galleryId: {
+        allowNull: true,
         type: Sequelize.STRING,
         references: {
           model: 'Galleries',
@@ -35,6 +36,7 @@ module.exports = {
         onDelete: 'cascade'
       },
       textCardId: {
+        allowNull: true,
         type: Sequelize.STRING,
         references: {
           model: 'TextCards',

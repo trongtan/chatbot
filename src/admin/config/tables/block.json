@@ -1,0 +1,109 @@
+{
+  "Blocks": {
+    "slug": "Blocks",
+    "table": {
+      "name": "Blocks",
+      "pk": "id",
+      "verbose": "Blocks"
+    },
+    "columns": [
+      {
+        "name": "id",
+        "verbose": "id",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "name",
+        "verbose": "name",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "groupId",
+        "verbose": "groupId",
+        "control": {
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Groups",
+          "pk": "id",
+          "columns": [
+            "name"
+          ]
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "createdAt",
+        "verbose": "createdAt",
+        "control": {
+          "text": true
+        },
+        "type": "timestamp",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "updatedAt",
+        "verbose": "updatedAt",
+        "control": {
+          "text": true
+        },
+        "type": "timestamp",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": false
+        }
+      }
+    ],
+    "mainview": {
+      "show": true
+    },
+    "listview": {
+      "order": {},
+      "page": 25
+    },
+    "editview": {
+      "readonly": false
+    }
+  }
+}

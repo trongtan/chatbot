@@ -1,10 +1,10 @@
 {
-  "Buttons": {
-    "slug": "Buttons",
+  "TextCards": {
+    "slug": "TextCards",
     "table": {
-      "name": "Buttons",
+      "name": "TextCards",
       "pk": "id",
-      "verbose": "Buttons"
+      "verbose": "TextCards"
     },
     "columns": [
       {
@@ -24,8 +24,8 @@
         }
       },
       {
-        "name": "name",
-        "verbose": "name",
+        "name": "text",
+        "verbose": "text",
         "control": {
           "text": true
         },
@@ -40,8 +40,8 @@
         }
       },
       {
-        "name": "type",
-        "verbose": "type",
+        "name": "order",
+        "verbose": "order",
         "control": {
           "text": true
         },
@@ -49,10 +49,10 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
@@ -76,86 +76,6 @@
         },
         "editview": {
           "show": true
-        }
-      },
-      {
-        "name": "URL",
-        "verbose": "URL",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "inAppBrowserSize",
-        "verbose": "inAppBrowserSize",
-        "control": {
-          "text": true
-        },
-        "type": "integer",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "phoneNumber",
-        "verbose": "phoneNumber",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "galleryId",
-        "verbose": "galleryId",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "textCardId",
-        "verbose": "textCardId",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": false
-        },
-        "editview": {
-          "show": false
         }
       },
       {
@@ -192,14 +112,17 @@
       }
     ],
     "mainview": {
-      "show": false
+      "show": true
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false
+      "readonly": false,
+      "manyToOne": {
+        "Buttons": "textCardId"
+      }
     }
   }
 }

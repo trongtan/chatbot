@@ -1,10 +1,10 @@
 {
-  "Buttons": {
-    "slug": "Buttons",
+  "QuickReplies": {
+    "slug": "QuickReplies",
     "table": {
-      "name": "Buttons",
+      "name": "QuickReplies",
       "pk": "id",
-      "verbose": "Buttons"
+      "verbose": "QuickReplies"
     },
     "columns": [
       {
@@ -40,8 +40,8 @@
         }
       },
       {
-        "name": "type",
-        "verbose": "type",
+        "name": "order",
+        "verbose": "order",
         "control": {
           "text": true
         },
@@ -49,10 +49,10 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
@@ -79,8 +79,8 @@
         }
       },
       {
-        "name": "URL",
-        "verbose": "URL",
+        "name": "userVariableId",
+        "verbose": "userVariableId",
         "control": {
           "text": true
         },
@@ -92,70 +92,6 @@
         },
         "editview": {
           "show": true
-        }
-      },
-      {
-        "name": "inAppBrowserSize",
-        "verbose": "inAppBrowserSize",
-        "control": {
-          "text": true
-        },
-        "type": "integer",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "phoneNumber",
-        "verbose": "phoneNumber",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "galleryId",
-        "verbose": "galleryId",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "textCardId",
-        "verbose": "textCardId",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": false
-        },
-        "editview": {
-          "show": false
         }
       },
       {
@@ -192,7 +128,7 @@
       }
     ],
     "mainview": {
-      "show": false
+      "show": true
     },
     "listview": {
       "order": {},
