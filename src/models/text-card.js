@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const TextCard = sequelize.define('TextCard', {
+  const TextCard = sequelize.define('TextCards', {
     text: DataTypes.STRING,
     order: DataTypes.INTEGER
   }, {

@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Gallery = sequelize.define('Gallery', {
+  const Gallery = sequelize.define('Galleries', {
     imageURL: DataTypes.STRING,
     heading: DataTypes.STRING,
     subtitle: DataTypes.STRING,

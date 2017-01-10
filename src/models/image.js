@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Image = sequelize.define('Image', {
+  const Image = sequelize.define('Images', {
     imageURL: DataTypes.STRING,
     order: DataTypes.INTEGER
   }, {

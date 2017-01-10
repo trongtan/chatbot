@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Button = sequelize.define('Button', {
+  const Button = sequelize.define('Buttons', {
     name: DataTypes.STRING,
     type: DataTypes.INTEGER,
     URL: DataTypes.STRING,

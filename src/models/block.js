@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Block = sequelize.define('Block', {
+  const Block = sequelize.define('Blocks', {
     name: DataTypes.STRING
   }, {
     classMethods: {

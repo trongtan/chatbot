@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const QuickReply = sequelize.define('QuickReply', {
+  const QuickReply = sequelize.define('QuickReplies', {
     name: DataTypes.STRING,
     parentOrder: DataTypes.INTEGER
   }, {
