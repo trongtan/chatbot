@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Home",
+    "type": 1,
+    "blockId": 1,
+    "URL": "",
+    "inAppBrowserSize": 100,
+    "phoneNumber": "",
+    "textCardId": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "name": "Hướng Dẫn",
+    "type": 1,
+    "blockId": 1,
+    "URL": "",
+    "inAppBrowserSize": 100,
+    "phoneNumber": "",
+    "textCardId": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  }
+]
