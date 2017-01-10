@@ -6,7 +6,7 @@ import Utils from 'utils';
 import { logger } from 'logs/winston-logger';
 
 export default (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define('Users', {
     userId: {
       type: DataTypes.STRING,
       primaryKey: true
@@ -14,7 +14,6 @@ export default (sequelize, DataTypes) => {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     gender: DataTypes.STRING,
-    currentPayload: DataTypes.STRING,
     parental: DataTypes.STRING,
     childName: DataTypes.STRING,
     favoriteTime: DataTypes.INTEGER,
