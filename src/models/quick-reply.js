@@ -1,10 +1,13 @@
 export default (sequelize, DataTypes) => {
   const QuickReply = sequelize.define('QuickReply', {
-    contentType: DataTypes.STRING,
-    title: DataTypes.STRING,
-    imageURL: DataTypes.STRING
+    name: DataTypes.STRING,
+    userVariableId: DataTypes.STRING,
+    parentOrder: DataTypes.INTEGER
   }, {
     classMethods: {
+      associate: function (models) {
+        // associations can be defined here
+      }
     }
   });
   return QuickReply;

@@ -1,9 +1,17 @@
 export default (sequelize, DataTypes) => {
   const Button = sequelize.define('Button', {
-    url: DataTypes.STRING,
-    title: DataTypes.STRING
+    name: DataTypes.STRING,
+    type: DataTypes.INTEGER,
+    blockId: DataTypes.STRING,
+    URL: DataTypes.STRING,
+    inAppBrowserSize: DataTypes.INTEGER,
+    phoneNumber: DataTypes.STRING
   }, {
-    classMethods: {}
+    classMethods: {
+      associate: function (models) {
+        // associations can be defined here
+      }
+    }
   });
   return Button;
 };
