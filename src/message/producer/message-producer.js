@@ -2,9 +2,9 @@ import EventEmitter from 'events';
 import co from 'co';
 import async from 'async';
 
-import { filter, map } from 'lodash';
+import { filter, map, split } from 'lodash';
 
-import { Texts, Elements, ButtonTemplates, Diseases, Postback } from 'models';
+import { Block } from 'models';
 import { isContainRSSPayload } from 'utils/message-utils';
 import { CATEGORY_TYPE, SUBCATEGORY_TYPE } from 'utils/constants';
 
@@ -58,34 +58,21 @@ export default class MessageProducer extends EventEmitter {
   }
 
   _buildMessageFromPayloads(user, payloads) {
-    logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][isRSSPayload]: %s', JSON.stringify(isContainRSSPayload(payloads)));
-    if (isContainRSSPayload(payloads)) {
-      this.messageRSS.emit(BUILD_RSS_MESSAGE_EVENT, user, payloads);
-    } else {
-      this._buildNormalMessage(user, payloads);
-    }
+    logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][payload]: %s', JSON.stringify(payloads));
+    return this._buildNormalMessage(user, payloads);
   }
 
   _buildNormalMessage(user, payloads) {
     const self = this;
     return co(function *() {
-      const requestingPayloads = yield self._filterRequestingPayloads(payloads);
-      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(requestingPayloads));
+      const requestingPayloads = payloads[0];
+      const blockId = split(requestingPayloads,'=')[1];
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Block Id]: %s', JSON.stringify(blockId));
 
-      return async.eachSeries(requestingPayloads, (requestingPayload, next) => {
-        const payloads = map(requestingPayload, (payloads) => {
-          return payloads.value
-        });
+      const messagesResponse = yield Block.getAllMessagesReponse(blockId);
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Messages Response]: %s', JSON.stringify(messagesResponse));
 
-        logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload]: %s', JSON.stringify(payloads));
-
-        return self._getMessageTemplateFromDatabase(user, payloads).then(result => {
-          logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Requesting Payload][Result]: %s', JSON.stringify(result));
-          if (result) {
-            next();
-          }
-        });
-      });
+      return messagesResponse;
     });
   }
 

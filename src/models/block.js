@@ -1,10 +1,46 @@
+import { Gallery, TextCard, Image, QuickReply, Button } from 'models';
+
 export default (sequelize, DataTypes) => {
   const Block = sequelize.define('Blocks', {
     name: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function (models) {
-        // associations can be defined here
+      getAllMessagesReponse: (blockId) => {
+        return Block.findOne({
+          where: {
+            id: blockId,
+          },
+          include: [
+            {
+              model: Gallery,
+              as: 'Galleries',
+              include: [
+                {
+                  model: Button,
+                  as: 'Buttons'
+                }
+              ]
+            },
+            {
+              model: TextCard,
+              as: 'TextCards',
+              include: [
+                {
+                  model: Button,
+                  as: 'Buttons'
+                }
+              ]
+            },
+            {
+              model: Image,
+              as: 'Images'
+            },
+            {
+              model: QuickReply,
+              as: 'QuickReplies'
+            }
+          ]
+        });
       }
     }
   });

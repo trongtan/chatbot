@@ -13,15 +13,15 @@ import UserVariableDefinition from './user-variable';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
 
-const User = sequelize.import('User', UserDefinition);
-const Group = sequelize.import('Group', GroupDefinition);
-const Block = sequelize.import('Block', BlockDefinition);
-const Gallery = sequelize.import('Gallery', GalleryDefinition);
-const TextCard = sequelize.import('TextCard', TextCardDefinition);
-const Image = sequelize.import('Image', ImageDefinition);
-const QuickReply = sequelize.import('QuickReply', QuickReplyDefinition);
-const Button = sequelize.import('Button', ButtonDefinition);
-const UserVariable = sequelize.import('UserVariable', UserVariableDefinition);
+const User = sequelize.import('Users', UserDefinition);
+const Group = sequelize.import('Groups', GroupDefinition);
+const Block = sequelize.import('Blocks', BlockDefinition);
+const Gallery = sequelize.import('Galleries', GalleryDefinition);
+const TextCard = sequelize.import('TextCards', TextCardDefinition);
+const Image = sequelize.import('Images', ImageDefinition);
+const QuickReply = sequelize.import('QuickReplies', QuickReplyDefinition);
+const Button = sequelize.import('Buttons', ButtonDefinition);
+const UserVariable = sequelize.import('UserVariables', UserVariableDefinition);
 
 //Group 1 - n Block
 Group.hasMany(Block, { foreignKey: 'groupId' });
@@ -45,11 +45,11 @@ QuickReply.belongsTo(Block, { as: 'Block', foreignKey: 'blockId' });
 
 //Gallery 1 - 0..3 Button
 Gallery.hasMany(Button, { foreignKey: 'galleryId' });
-Button.belongsTo(Gallery, { as: 'Gallery', foreignKey: 'galleryId' });
+Button.belongsTo(Gallery, { as: 'Galleries', foreignKey: 'galleryId' });
 
 //TextCard 1 - 0..3 Button
 TextCard.hasMany(Button, { foreignKey: 'textCardId' });
-Button.belongsTo(TextCard, { as: 'Gallery', foreignKey: 'textCardId' });
+Button.belongsTo(TextCard, { as: 'Galleries', foreignKey: 'textCardId' });
 
 //QuickReply 1 - 1 UserVariable
 QuickReply.belongsTo(UserVariable, { as: 'UserVariable', foreignKey: 'userVariableId' });

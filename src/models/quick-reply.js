@@ -1,7 +1,7 @@
 export default (sequelize, DataTypes) => {
   const QuickReply = sequelize.define('QuickReplies', {
     name: DataTypes.STRING,
-    parentOrder: DataTypes.INTEGER
+    order: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function (models) {
