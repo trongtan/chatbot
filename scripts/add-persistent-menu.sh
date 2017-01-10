@@ -4,8 +4,8 @@ curl -X POST -H "Content-Type: application/json" -d '{
   "call_to_actions":[
     {
       "type":"postback",
-      "title":"Help",
-      "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_HELP"
+      "title":"Restart Bot",
+      "payload":"blockId=1"
     },
     {
       "type":"postback",
