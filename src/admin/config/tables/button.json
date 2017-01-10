@@ -24,8 +24,8 @@
         }
       },
       {
-        "name": "title",
-        "verbose": "Title",
+        "name": "name",
+        "verbose": "name",
         "control": {
           "text": true
         },
@@ -40,20 +40,13 @@
         }
       },
       {
-        "name": "buttonTypeId",
-        "verbose": "buttonTypeId",
+        "name": "type",
+        "verbose": "type",
         "control": {
-          "select": true
+          "text": true
         },
-        "oneToMany": {
-          "table": "ButtonTypes",
-          "pk": "id",
-          "columns": [
-            "value"
-          ]
-        },
-        "type": "varchar(255)",
-        "allowNull": false,
+        "type": "integer",
+        "allowNull": true,
         "defaultValue": null,
         "listview": {
           "show": true
@@ -63,7 +56,23 @@
         }
       },
       {
-        "name": "url",
+        "name": "blockId",
+        "verbose": "blockId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "URL",
         "verbose": "URL",
         "control": {
           "text": true
@@ -79,17 +88,58 @@
         }
       },
       {
-        "name": "postbackId",
-        "verbose": "Postback Value",
+        "name": "inAppBrowserSize",
+        "verbose": "inAppBrowserSize",
         "control": {
-          "select": true
+          "text": true
         },
-        "oneToMany": {
-          "table": "Postback",
-          "pk": "id",
-          "columns": [
-            "title"
-          ]
+        "type": "integer",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "phoneNumber",
+        "verbose": "phoneNumber",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "galleryId",
+        "verbose": "galleryId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "textCardId",
+        "verbose": "textCardId",
+        "control": {
+          "text": true
         },
         "type": "varchar(255)",
         "allowNull": true,
@@ -103,7 +153,7 @@
       },
       {
         "name": "createdAt",
-        "verbose": "Created At",
+        "verbose": "createdAt",
         "control": {
           "text": true
         },
@@ -119,7 +169,7 @@
       },
       {
         "name": "updatedAt",
-        "verbose": "Updated At",
+        "verbose": "updatedAt",
         "control": {
           "text": true
         },
@@ -135,7 +185,7 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},
