@@ -17,7 +17,13 @@ export default (sequelize, DataTypes) => {
               include: [
                 {
                   model: Button,
-                  as: 'Buttons'
+                  as: 'Buttons',
+                  include: [
+                    {
+                      model: Block,
+                      as: 'Block'
+                    }
+                  ]
                 }
               ]
             },
@@ -27,7 +33,13 @@ export default (sequelize, DataTypes) => {
               include: [
                 {
                   model: Button,
-                  as: 'Buttons'
+                  as: 'Buttons',
+                  include: [
+                    {
+                      model: Block,
+                      as: 'Block'
+                    }
+                  ]
                 }
               ]
             },

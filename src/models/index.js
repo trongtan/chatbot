@@ -54,7 +54,11 @@ Button.belongsTo(TextCard, { as: 'Galleries', foreignKey: 'textCardId' });
 //QuickReply 1 - 1 UserVariable
 QuickReply.belongsTo(UserVariable, { as: 'UserVariable', foreignKey: 'userVariableId' });
 
+//Button 1 - 1 Block
+Button.belongsTo(Block, { as: 'Block', foreignKey: 'blockId' });
+
 export {
+  sequelize,
   User,
   Group,
   Block,

@@ -14,7 +14,14 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       blockId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true,
+        references: {
+          model: 'Blocks',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       URL: {
         type: Sequelize.STRING

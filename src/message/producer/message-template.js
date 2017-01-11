@@ -16,42 +16,71 @@ import { getRandomObjectFromArray } from 'utils/helpers';
 import { logger } from 'logs/winston-logger';
 
 export default class MessageTemplate {
-  buildTextCardMessage(user, textCard) {
-    logger.info('[MessageTemplate][BuildTextCardMessage] (%s)', JSON.stringify(textCard));
+  buildTextCardMessage(user, textCards) {
+    logger.info('[MessageTemplate][BuildTextCardMessage] (%s)', JSON.stringify(textCards));
 
-    let builtMessage;
+    let result = [];
 
-    if (textCard.Buttons && textCard.Buttons.length > 0) {
-      builtMessage = {
-        attachment: {
-          type: 'template',
-          payload: {
-            template_type: 'button',
-            text: textCard.text,
-            buttons: this.buildButtonMessage(textCard.Buttons)
+    textCards.forEach(textCard => {
+      let builtMessage;
+      if (textCard.Buttons && textCard.Buttons.length > 0) {
+        builtMessage = {
+          attachment: {
+            type: 'template',
+            payload: {
+              template_type: 'button',
+              text: textCard.text,
+              buttons: this._buildButtonMessage(textCard.Buttons)
+            }
           }
-        }
-      };
-    } else {
-      builtMessage = {
-        text: textCard.text
-      };
-    }
+        };
+      } else {
+        builtMessage = {
+          text: textCard.text
+        };
+      }
 
-    logger.info('[MessageTemplate][BuildTextCardMessage] (%s)', JSON.stringify(builtMessage));
+      builtMessage = this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
+      result.push(builtMessage);
+    });
 
-    return this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
+    logger.info('[MessageTemplate][BuildTextCardMessage] (%s)', JSON.stringify(result));
+    return result;
   }
 
-  buildButtonMessage(buttons) {
+  buildGalleryMessage() {
+
+  }
+
+  buildImageMessage() {
+
+  }
+
+  buildQuickReplyMessage() {
+
+  }
+
+  _buildButtonMessage(buttons) {
     let builtButtons = [];
     if (buttons) {
       buttons.forEach(button => {
-        builtButtons.push({
-          type: 'postback',
-          title: button.name,
-          payload: 'button.Postback.value'
-        });
+        if (button.Block) {
+          builtButtons.push({
+            type: 'postback',
+            title: button.name,
+            payload: 'blockId=' + button.Block.id
+          });
+        } else if (button.URL && button.URL.length > 0) {
+          builtButtons.push({
+            type: 'web_url',
+            url: button.URL,
+            title: button.name
+          });
+        } else {
+          builtButtons.push({
+            type: 'element_share'
+          });
+        }
       });
     }
     return builtButtons;

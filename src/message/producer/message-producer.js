@@ -1,9 +1,9 @@
 import EventEmitter from 'events';
 import co from 'co';
 
-import { filter, map, split, sortBy, concat } from 'lodash';
+import { filter, map, split, sortBy, concat, flatten } from 'lodash';
 
-import { Block } from 'models';
+import { Block, TextCard, sequelize } from 'models';
 import { isContainRSSPayload } from 'utils/message-utils';
 import { CATEGORY_TYPE, SUBCATEGORY_TYPE } from 'utils/constants';
 
@@ -50,13 +50,28 @@ export default class MessageProducer extends EventEmitter {
     return co(function *() {
       const messageTemplateFromDatabase = yield self._getMessageTemplateFromDatabase(payloads);
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][MessageTemplateFromDatabase]: %s', JSON.stringify(messageTemplateFromDatabase));
-      const builtMessages = map(messageTemplateFromDatabase, (message) => {
-        return self.messageTemplate.buildTextCardMessage(user, message);
-      });
+
+      let builtMessages = [];
+
+      if (messageTemplateFromDatabase.Galleries && messageTemplateFromDatabase.Galleries.length > 0) {
+        builtMessages.push(self.messageTemplate.buildGalleryMessage(user, messageTemplateFromDatabase.Galleries));
+      }
+
+      if (messageTemplateFromDatabase.TextCards && messageTemplateFromDatabase.TextCards.length > 0) {
+        builtMessages.push(self.messageTemplate.buildTextCardMessage(user, messageTemplateFromDatabase.TextCards));
+      }
+
+      if (messageTemplateFromDatabase.Images && messageTemplateFromDatabase.Images.length > 0) {
+        builtMessages.push(self.messageTemplate.buildImageMessage(user, messageTemplateFromDatabase.Images));
+      }
+
+      if (messageTemplateFromDatabase.QuickReplies && messageTemplateFromDatabase.QuickReplies.length > 0) {
+        builtMessages.push(self.messageTemplate.buildQuickReplyMessage(user, messageTemplateFromDatabase.QuickReplies));
+      }
 
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][BuildNormalMessage]: %s', JSON.stringify(builtMessages));
 
-      self.emit(FINISHED_BUILD_MESSAGE, builtMessages);
+      self.emit(FINISHED_BUILD_MESSAGE, flatten(builtMessages));
     });
   }
 
@@ -67,16 +82,7 @@ export default class MessageProducer extends EventEmitter {
       const blockId = split(requestingPayloads,'=')[1];
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Block Id]: %s', JSON.stringify(blockId));
 
-      const messagesResponse = yield Block.getAllMessagesReponse(blockId);
-      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Messages Response]: %s', JSON.stringify(messagesResponse));
-
-      let messages = sortBy(concat(messagesResponse.Galleries, messagesResponse.TextCards, messagesResponse.Images, messagesResponse.QuickReplies), 'order');
-
-      //FIXME: Remember to sort quick reply in right order
-
-      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Messages Response Sorted]: %s', JSON.stringify(messages));
-
-      return messages;
+      return yield Block.getAllMessagesReponse(blockId);
     });
   }
 }
