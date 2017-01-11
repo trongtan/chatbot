@@ -1,4 +1,5 @@
 import EventEmitter from 'events';
+import async from 'async';
 
 import { SHIPPING_MESSAGE_EVENT, FINISHED_SHIPPING_MESSAGE_EVENT } from 'utils/event-constants';
 
@@ -13,11 +14,14 @@ export default class MessageShipper extends EventEmitter {
   }
 
   _listenEvent() {
-    this.on(SHIPPING_MESSAGE_EVENT, (messageStructure) => {
-      logger.info('[Message Shipper] [SHIP_MESSAGE_EVENT]: %s', JSON.stringify(messageStructure));
+    this.on(SHIPPING_MESSAGE_EVENT, (messagesStructure) => {
+      logger.info('[Message Shipper] [SHIP_MESSAGE_EVENT]: %s', JSON.stringify(messagesStructure));
 
-      Utils.callSendAPI(messageStructure).then(result => {
-        this.emit(FINISHED_SHIPPING_MESSAGE_EVENT, result);
+      async.eachSeries(messagesStructure, (messageStructure, callback) => {
+        Utils.callSendAPI(messageStructure).then(result => {
+          callback();
+          this.emit(FINISHED_SHIPPING_MESSAGE_EVENT, result);
+        });
       });
     });
   }

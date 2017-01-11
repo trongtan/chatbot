@@ -1,4 +1,4 @@
-import EventEmitter from 'events';
+import co from 'co';
 import Promise from 'promise';
 import async from 'async';
 
@@ -15,36 +15,46 @@ import {
 import { getRandomObjectFromArray } from 'utils/helpers';
 import { logger } from 'logs/winston-logger';
 
-export default class MessageTemplate extends EventEmitter {
-  constructor() {
-    super();
-    this.on(BUILD_TEXT_MESSAGE, (user, templateMessages) => {
-      this.buildTextMessage(user, templateMessages);
-    });
+export default class MessageTemplate {
+  buildTextCardMessage(user, textCard) {
+    logger.info('[MessageTemplate][BuildTextCardMessage] (%s)', JSON.stringify(textCard));
 
-    this.on(BUILD_GENERIC_MESSAGE, (user, templateMessages) => {
-      this.buildGenericTemplateMessage(user, templateMessages);
-    });
+    let builtMessage;
 
-    this.on(BUILD_BUTTON_TEMPLATE_MESSAGE, (user, templateMessages) => {
-      this.buildButtonTemplateMessage(user, templateMessages);
-    });
-
-    this.on(BUILD_DISEASE_TEMPLATE_MESSAGE, (user, diseaseMessages) => {
-      async.series([
-        (callback) => {
-          this.buildTextMessage(user, diseaseMessages).then(callback());
-        },
-
-        (callback) => {
-          this.buildDiseaseTemplateMessage(user, diseaseMessages).then(callback());
+    if (textCard.Buttons && textCard.Buttons.length > 0) {
+      builtMessage = {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'button',
+            text: textCard.text,
+            buttons: this.buildButtonMessage(textCard.Buttons)
+          }
         }
-      ]);
-    });
+      };
+    } else {
+      builtMessage = {
+        text: textCard.text
+      };
+    }
 
-    this.on(ASSIGN_SENDER_ID_TO_MESSAGE, (user, builtMessage) => {
-      this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
-    });
+    logger.info('[MessageTemplate][BuildTextCardMessage] (%s)', JSON.stringify(builtMessage));
+
+    return this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
+  }
+
+  buildButtonMessage(buttons) {
+    let builtButtons = [];
+    if (buttons) {
+      buttons.forEach(button => {
+        builtButtons.push({
+          type: 'postback',
+          title: button.name,
+          payload: 'button.Postback.value'
+        });
+      });
+    }
+    return builtButtons;
   }
 
   buildTextMessage(user, templateMessages) {
@@ -142,7 +152,7 @@ export default class MessageTemplate extends EventEmitter {
 
     logger.error('[Message Template][Bind Place Holder To Template Message] (%s)', messages);
 
-    return this.emit(FINISHED_BUILD_MESSAGE, messages)
+    return messages;
 
   }
 
@@ -245,11 +255,8 @@ export default class MessageTemplate extends EventEmitter {
 
     if (!templateMessage) return ('');
 
-    const { parental, firstName, lastName, childName } = user;
-    const parentalStatus = User.getParentalName(parental);
+    const { firstName, lastName } = user;
 
-    return templateMessage.replace(/\{\{parentalStatus}}/g, parentalStatus)
-      .replace(/\{\{userName}}/g, `${firstName} ${lastName}`)
-      .replace(/\{\{childName}}/g, `${childName}`);
+    return templateMessage.replace(/\{\{userName}}/g, `${firstName} ${lastName}`);
   }
 }

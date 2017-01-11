@@ -1,8 +1,16 @@
 [
   {
     "id": 1,
-    "text": "Hi Vũ Tân! 😘 \nTớ là Thánh Hẹn Hò. Tớ có thể cung cấp cho các bạn những thông tin thú vị như nơi hẹn hò ngày Valentine, nơi xem phim, bói bài Tarot để nhận quà hấp dẫn ... \n🤗 Rất đơn giản, các bạn hãy nhấn vào nút Home bên dưới để bắt đầu nhé 👇",
+    "text": "Hi {{userName}}! 😘 \nTớ là Thánh Hẹn Hò. Tớ có thể cung cấp cho các bạn những thông tin thú vị như nơi hẹn hò ngày Valentine, nơi xem phim, bói bài Tarot để nhận quà hấp dẫn ... \n🤗 Rất đơn giản, các bạn hãy nhấn vào nút Home bên dưới để bắt đầu nhé 👇",
     "order": 1,
+    "blockId": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "text": "Bạn đã có kế hoạch gì chưa?",
+    "order": 2,
     "blockId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
