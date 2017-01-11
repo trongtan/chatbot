@@ -1,6 +1,8 @@
 import EventEmitter from 'events';
 import async from 'async';
 
+import { sortBy } from 'lodash';
+
 import { SHIPPING_MESSAGE_EVENT, FINISHED_SHIPPING_MESSAGE_EVENT } from 'utils/event-constants';
 
 import Utils from 'utils';
@@ -16,9 +18,10 @@ export default class MessageShipper extends EventEmitter {
   _listenEvent() {
     this.on(SHIPPING_MESSAGE_EVENT, (messagesStructure) => {
       logger.info('[Message Shipper] [SHIP_MESSAGE_EVENT]: %s', JSON.stringify(messagesStructure));
+      const messages = sortBy(messagesStructure, 'order');
 
-      async.eachSeries(messagesStructure, (messageStructure, callback) => {
-        Utils.callSendAPI(messageStructure).then(result => {
+      async.eachSeries(messages, (message, callback) => {
+        Utils.callSendAPI(message).then(result => {
           callback();
           this.emit(FINISHED_SHIPPING_MESSAGE_EVENT, result);
         });

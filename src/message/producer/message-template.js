@@ -32,11 +32,13 @@ export default class MessageTemplate {
               text: textCard.text,
               buttons: this._buildButtonMessage(textCard.Buttons)
             }
-          }
+          },
+          order: textCard.order
         };
       } else {
         builtMessage = {
-          text: textCard.text
+          text: textCard.text,
+          order: textCard.order
         };
       }
 
@@ -48,12 +50,55 @@ export default class MessageTemplate {
     return result;
   }
 
-  buildGalleryMessage() {
+  buildGalleryMessage(user, galleries) {
+    logger.info('[MessageTemplate][BuildGalleryMessage] (%s)', JSON.stringify(galleries));
+    const builtMessage = {
+      attachment: {
+        type: 'template',
+        payload: {
+          template_type: 'generic',
+          elements: this._buildElement(galleries),
+        },
+      },
+      order: galleries[0].order
+    };
 
+    return this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
   }
 
-  buildImageMessage() {
+  buildImageMessage(user, images) {
+    logger.info('[MessageTemplate][BuildImageMessage] (%s)', JSON.stringify(images));
+    let result = [];
+    images.forEach(image => {
+      let builtMessage = {
+        attachment: {
+          type: 'image',
+          payload: {
+            url: image.imageURL
+          }
+        },
+        order: image.order
+      };
 
+      builtMessage = this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
+      result.push(builtMessage);
+    });
+    return result;
+  }
+
+  _buildElement(elements) {
+    let builtElements = [];
+
+    elements.forEach(element => {
+      builtElements.push({
+        title: element.heading,
+        image_url: element.imageURL,
+        subtitle: element.subtitle,
+        buttons: this._buildButtonMessage(element.Buttons)
+      })
+    });
+
+    return builtElements;
   }
 
   buildQuickReplyMessage() {
@@ -83,7 +128,7 @@ export default class MessageTemplate {
         }
       });
     }
-    return builtButtons;
+    return (builtButtons.length > 0 ? builtButtons : null);
   }
 
   buildTextMessage(user, templateMessages) {
@@ -172,12 +217,17 @@ export default class MessageTemplate {
       message.attachment.payload.text = text;
     }
 
+    const order = message.order;
+    delete message.order;
+
     const messages = {
       recipient: {
         id: user.userId
       },
-      message: message
+      message: message,
+      order: order
     };
+
 
     logger.error('[Message Template][Bind Place Holder To Template Message] (%s)', messages);
 
@@ -204,21 +254,6 @@ export default class MessageTemplate {
     });
 
     return quickReplies;
-  }
-
-  _buildElement(elements) {
-    let builtElements = [];
-
-    elements.forEach(element => {
-      builtElements.push({
-        title: element.title,
-        image_url: element.imageURL,
-        subtitle: element.subtitle,
-        buttons: this._buildButtons(element.Buttons)
-      })
-    });
-
-    return builtElements;
   }
 
   _buildArticles(articles) {
