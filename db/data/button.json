@@ -21,5 +21,17 @@
     "textCardId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 3,
+    "name": "Xem bói bài Tarot",
+    "type": 1,
+    "blockId": 4,
+    "URL": "",
+    "inAppBrowserSize": 100,
+    "phoneNumber": "",
+    "galleryId": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]

@@ -14,5 +14,29 @@
     "blockId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 3,
+    "text": "Hi {{userName}}, chào mừng bạn đến với bói Bài Tarot của Thánh Hẹn Hò. Trước tiên, hãy nghe Thánh dặn dò đôi điều đây. \n☝️Thứ nhất, bài Tarot chỉ hiệu quả khi bạn xem 1 lần/ngày. Chơi nhiều hơn là Thánh không phán đâu nha.",
+    "order": 2,
+    "blockId": 4,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 4,
+    "text": "✌️Thứ hai, mỗi ngày bạn chơi lại sẽ được lưu thành bộ sưu tập các lá bài Tarot tình yêu, sưu tập đủ 3 lá đặc biệt bạn sẽ trúng được 1 e-voucher giá trị",
+    "order": 3,
+    "blockId": 4,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 5,
+    "text": "🤘Thứ ba, khi sưu tập đủ 9 lá bài khác nhau, bạn sẽ có cơ hội nhận được lá bài siêu đặc biệt vào ngày 13/2, với lá bài này, bạn sẽ là chủ nhân của cặp siêu phẩm iPhone 7 và iPhone 7 Plus. \nBạn đã sẵn sàng lật bài Tarot chứ?",
+    "order": 4,
+    "blockId": 4,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]
