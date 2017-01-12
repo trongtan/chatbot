@@ -1,24 +1,22 @@
 [
   {
     "id": 1,
-    "name": "Home",
+    "name": "🏡 Home",
     "type": 1,
     "blockId": 3,
     "URL": "",
     "inAppBrowserSize": 100,
     "phoneNumber": "",
-    "textCardId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
     "id": 2,
-    "name": "Hướng Dẫn",
+    "name": "💁 Hướng dẫn",
     "type": 1,
     "URL": "https://webtretho.com",
     "inAppBrowserSize": 100,
     "phoneNumber": "",
-    "textCardId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -30,7 +28,6 @@
     "URL": "",
     "inAppBrowserSize": 100,
     "phoneNumber": "",
-    "galleryId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -42,31 +39,17 @@
     "URL": "",
     "inAppBrowserSize": 100,
     "phoneNumber": "",
-    "textCardId": 5,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
     "id": 5,
-    "name": "Kiếm tra bộ sưu tập",
+    "name": "Kiểm tra bộ sưu tập",
     "type": 1,
     "blockId": 4,
     "URL": "",
     "inAppBrowserSize": 100,
     "phoneNumber": "",
-    "textCardId": 5,
-    "createdAt": "1/01/2017 07:00:00+0700",
-    "updatedAt": "1/01/2017 07:00:00+0700"
-  },
-  {
-    "id": 6,
-    "name": "Home",
-    "type": 1,
-    "blockId": 4,
-    "URL": "",
-    "inAppBrowserSize": 100,
-    "phoneNumber": "",
-    "textCardId": 5,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   }

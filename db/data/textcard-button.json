@@ -1,0 +1,22 @@
+[
+  {
+    "textCardId":1,
+    "buttonId": 1
+  },
+  {
+    "textCardId":1,
+    "buttonId": 2
+  },
+  {
+    "textCardId":5,
+    "buttonId": 4
+  },
+  {
+    "textCardId":5,
+    "buttonId": 5
+  },
+  {
+    "textCardId":5,
+    "buttonId": 1
+  }
+]
