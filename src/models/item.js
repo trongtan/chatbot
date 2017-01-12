@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
-  const Gallery = sequelize.define('Galleries', {
-    title: DataTypes.STRING,
+  const Item = sequelize.define('Items', {
+    name: DataTypes.STRING,
     order: DataTypes.INTEGER
   }, {
     classMethods: {
@@ -9,5 +9,5 @@ export default (sequelize, DataTypes) => {
       }
     }
   });
-  return Gallery;
+  return Item;
 };

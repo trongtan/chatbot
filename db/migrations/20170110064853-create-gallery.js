@@ -7,16 +7,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.STRING
       },
-      imageURL: {
-        type: Sequelize.STRING
-      },
-      heading: {
-        type: Sequelize.STRING
-      },
-      subtitle: {
-        type: Sequelize.STRING
-      },
-      URL: {
+      title: {
         type: Sequelize.STRING
       },
       order: {

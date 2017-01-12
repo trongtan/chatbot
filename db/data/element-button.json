@@ -1,54 +1,54 @@
 [
   {
-    "galleryId": 1,
+    "elementId": 1,
     "buttonId": 3
   },
   {
-    "galleryId": 3,
+    "elementId": 3,
     "buttonId": 6
   },
   {
-    "galleryId": 3,
+    "elementId": 3,
     "buttonId": 1
   },
   {
-    "galleryId": 4,
+    "elementId": 4,
     "buttonId": 6
   },
   {
-    "galleryId": 4,
+    "elementId": 4,
     "buttonId": 1
   },
   {
-    "galleryId": 5,
+    "elementId": 5,
     "buttonId": 6
   },
   {
-    "galleryId": 5,
+    "elementId": 5,
     "buttonId": 1
   },
   {
-    "galleryId": 6,
+    "elementId": 6,
     "buttonId": 6
   },
   {
-    "galleryId": 6,
+    "elementId": 6,
     "buttonId": 1
   },
   {
-    "galleryId": 7,
+    "elementId": 7,
     "buttonId": 6
   },
   {
-    "galleryId": 7,
+    "elementId": 7,
     "buttonId": 1
   },
   {
-    "galleryId": 8,
+    "elementId": 8,
     "buttonId": 6
   },
   {
-    "galleryId": 8,
+    "elementId": 8,
     "buttonId": 1
   }
 ]

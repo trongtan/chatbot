@@ -5,13 +5,15 @@ import UserDefinition from './user';
 import GroupDefinition from './group';
 import BlockDefinition from './block';
 import GalleryDefinition from './gallery';
+import ElementDefinition from './element';
 import TextCardDefinition from './textcard';
 import ImageDefinition from './image';
 import QuickReplyDefinition from './quick-reply';
+import ItemDefinition from './item';
 import ButtonDefinition from './button';
 import UserVariableDefinition from './user-variable';
 
-import GalleryButtonDefinition from './gallery-buttons';
+import ElementButtonDefinition from './element-buttons';
 import TextCardButtonDefinition from './textcard-buttons';
 
 const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
@@ -20,13 +22,15 @@ const User = sequelize.import('Users', UserDefinition);
 const Group = sequelize.import('Groups', GroupDefinition);
 const Block = sequelize.import('Blocks', BlockDefinition);
 const Gallery = sequelize.import('Galleries', GalleryDefinition);
+const Element = sequelize.import('Elements', ElementDefinition);
 const TextCard = sequelize.import('TextCards', TextCardDefinition);
 const Image = sequelize.import('Images', ImageDefinition);
 const QuickReply = sequelize.import('QuickReplies', QuickReplyDefinition);
+const Item = sequelize.import('Items', ItemDefinition);
 const Button = sequelize.import('Buttons', ButtonDefinition);
 const UserVariable = sequelize.import('UserVariables', UserVariableDefinition);
 
-const GalleryButton = sequelize.import('GalleryButtons', GalleryButtonDefinition);
+const ElementButton = sequelize.import('ElementButtons', ElementButtonDefinition);
 const TextCardButton = sequelize.import('TextCardButtons', TextCardButtonDefinition);
 
 
@@ -50,13 +54,21 @@ Image.belongsTo(Block, { as: 'Block', foreignKey: 'blockId' });
 Block.hasMany(QuickReply, { foreignKey: 'blockId' });
 QuickReply.belongsTo(Block, { as: 'Block', foreignKey: 'blockId' });
 
-//Gallery n - 0..3 Button
-Gallery.belongsToMany(Button, {through: {model: GalleryButton}, foreignKey: 'galleryId'});
-Button.belongsToMany(Gallery, {through: {model: GalleryButton}, foreignKey: 'buttonId'});
+//QuickReply 1 - n Item
+QuickReply.hasMany(Item, { foreignKey: 'quickReplyId' });
+Item.belongsTo(QuickReply, { as: 'QuickReply', foreignKey: 'quickReplyId' });
+
+//Gallery 1 - n Element
+Gallery.hasMany(Element, { foreignKey: 'galleryId' });
+Element.belongsTo(Gallery, { as: 'Gallery', foreignKey: 'galleryId' });
+
+//Element n - 0..3 Button
+Element.belongsToMany(Button, { through: { model: ElementButton }, foreignKey: 'elementId' });
+Button.belongsToMany(Element, { through: { model: ElementButton }, foreignKey: 'buttonId' });
 
 //TextCard 1 - 0..3 Button
-TextCard.belongsToMany(Button, {through: {model: TextCardButton}, foreignKey: 'textCardId'});
-Button.belongsToMany(TextCard, {through: {model: TextCardButton}, foreignKey: 'buttonId'});
+TextCard.belongsToMany(Button, { through: { model: TextCardButton }, foreignKey: 'textCardId' });
+Button.belongsToMany(TextCard, { through: { model: TextCardButton }, foreignKey: 'buttonId' });
 
 //QuickReply 1 - 1 UserVariable
 QuickReply.belongsTo(UserVariable, { as: 'UserVariable', foreignKey: 'userVariableId' });
@@ -70,9 +82,11 @@ export {
   Group,
   Block,
   Gallery,
+  Element,
   TextCard,
   Image,
   QuickReply,
+  Item,
   Button,
   UserVariable
 }

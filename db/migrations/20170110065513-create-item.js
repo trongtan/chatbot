@@ -1,31 +1,22 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('QuickReplies', {
+    return queryInterface.createTable('Items', {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.STRING
       },
-      title: {
+      name: {
         type: Sequelize.STRING
       },
       order: {
         type: Sequelize.INTEGER
       },
-      blockId: {
+      quickReplyId: {
         type: Sequelize.STRING,
         references: {
-          model: 'Blocks',
-          key: 'id'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
-      },
-      userVariableId: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'UserVariables',
+          model: 'QuickReplies',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -42,6 +33,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('QuickReplies');
+    return queryInterface.dropTable('Items');
   }
 };

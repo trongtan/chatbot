@@ -1,13 +1,13 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('GalleryButtons', {
-      galleryId: {
+    return queryInterface.createTable('ElementButtons', {
+      elementId: {
         type: Sequelize.STRING,
         allowNull: false,
         primaryKey: true,
         references: {
-          model: 'Galleries',
+          model: 'Elements',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -27,6 +27,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('GalleryButtons');
+    return queryInterface.dropTable('ElementButtons');
   }
 };
