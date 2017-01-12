@@ -1,4 +1,4 @@
-import { Gallery, TextCard, Image, QuickReply, Button } from 'models';
+import { Gallery, Element, TextCard, Image, QuickReply, Item, Button } from 'models';
 
 export default (sequelize, DataTypes) => {
   const Block = sequelize.define('Blocks', {
@@ -16,12 +16,18 @@ export default (sequelize, DataTypes) => {
               as: 'Galleries',
               include: [
                 {
-                  model: Button,
-                  as: 'Buttons',
+                  model: Element,
+                  as: 'Elements',
                   include: [
                     {
-                      model: Block,
-                      as: 'Block'
+                      model: Button,
+                      as: 'Buttons',
+                      include: [
+                        {
+                          model: Block,
+                          as: 'Block'
+                        }
+                      ]
                     }
                   ]
                 }
@@ -49,7 +55,13 @@ export default (sequelize, DataTypes) => {
             },
             {
               model: QuickReply,
-              as: 'QuickReplies'
+              as: 'QuickReplies',
+              include: [
+                {
+                  model: Item,
+                  as: 'Items'
+                }
+              ]
             }
           ]
         });

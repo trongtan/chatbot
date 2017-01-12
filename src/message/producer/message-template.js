@@ -52,18 +52,23 @@ export default class MessageTemplate {
 
   buildGalleryMessage(user, galleries) {
     logger.info('[MessageTemplate][BuildGalleryMessage] (%s)', JSON.stringify(galleries));
-    const builtMessage = {
-      attachment: {
-        type: 'template',
-        payload: {
-          template_type: 'generic',
-          elements: this._buildElement(galleries),
+    let result = [];
+    galleries.forEach(gallery => {
+      const builtMessage = {
+        attachment: {
+          type: 'template',
+          payload: {
+            template_type: 'generic',
+            elements: this._buildElement(gallery.Elements),
+          },
         },
-      },
-      order: galleries[0].order
-    };
+        order: gallery.order
+      };
 
-    return this._assignSenderIdAndPlaceHolderMessage(user, builtMessage);
+      result.push(this._assignSenderIdAndPlaceHolderMessage(user, builtMessage));
+    });
+
+    return result;
   }
 
   buildImageMessage(user, images) {
