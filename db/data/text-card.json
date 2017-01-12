@@ -46,5 +46,21 @@
     "blockId": 5,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 7,
+    "text": "☝️ Đầu tiên, các bạn có thể gõ chữ \"Home\" hoặc \"Menu\" khi đang ở bất cứ nơi nào hoặc nhấn vào link Home bên dưới để bắt đầu sử dụng các chức năng của Chatbot này.",
+    "order": 1,
+    "blockId": 6,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 8,
+    "text": "✌️Thứ hai, bạn có thể chat bất kì để hỏi bot.",
+    "order": 2,
+    "blockId": 6,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]
