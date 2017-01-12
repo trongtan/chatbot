@@ -38,5 +38,13 @@
     "blockId": 4,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 6,
+    "text": "Dưới đây là 6 lá bài ngẫu nhiên, mỗi lá ẩn chứa một thông điệp khác nhau, hãy tĩnh tâm, đọc câu hỏi theo gợi ý bên dưới là bài và lật lá bài tương ứng nhé👇",
+    "order": 1,
+    "blockId": 5,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]
