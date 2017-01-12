@@ -62,5 +62,13 @@
     "blockId": 6,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id":9,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 3,
+    "blockId": 7,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]

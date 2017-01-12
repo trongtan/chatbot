@@ -58,7 +58,7 @@
     "id": 6,
     "name": "Mở lá bài này",
     "type": 1,
-    "blockId": 4,
+    "blockId": 7,
     "URL": "",
     "inAppBrowserSize": 100,
     "phoneNumber": "",
@@ -68,6 +68,17 @@
   {
     "id": 7,
     "name": "🤖 Restart",
+    "type": 1,
+    "blockId": 1,
+    "URL": "",
+    "inAppBrowserSize": 100,
+    "phoneNumber": "",
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 8,
+    "name": "Phán ngay đi nào 😆",
     "type": 1,
     "blockId": 1,
     "URL": "",

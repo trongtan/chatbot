@@ -80,6 +80,7 @@ export default class MessageProducer extends EventEmitter {
       //FIXME: We temporary handle first payload here.
       const requestingPayloads = payloads[0];
       const blockId = split(requestingPayloads,'=')[1];
+
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Block Id]: %s', JSON.stringify(blockId));
 
       return yield Block.getAllMessagesReponse(blockId);
