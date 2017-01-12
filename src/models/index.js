@@ -12,6 +12,7 @@ import QuickReplyDefinition from './quick-reply';
 import ItemDefinition from './item';
 import ButtonDefinition from './button';
 import UserVariableDefinition from './user-variable';
+import TarotCardDefinition from './tarot-card';
 
 import ElementButtonDefinition from './element-buttons';
 import TextCardButtonDefinition from './textcard-buttons';
@@ -29,6 +30,7 @@ const QuickReply = sequelize.import('QuickReplies', QuickReplyDefinition);
 const Item = sequelize.import('Items', ItemDefinition);
 const Button = sequelize.import('Buttons', ButtonDefinition);
 const UserVariable = sequelize.import('UserVariables', UserVariableDefinition);
+const TarotCard = sequelize.import('TarotCards', TarotCardDefinition);
 
 const ElementButton = sequelize.import('ElementButtons', ElementButtonDefinition);
 const TextCardButton = sequelize.import('TextCardButtons', TextCardButtonDefinition);
@@ -76,6 +78,18 @@ QuickReply.belongsTo(UserVariable, { as: 'UserVariable', foreignKey: 'userVariab
 //Button 1 - 1 Block
 Button.belongsTo(Block, { as: 'Block', foreignKey: 'blockId' });
 
+//Block 1 - n TarotCard
+Block.hasMany(TarotCard, { foreignKey: 'blockId' });
+TextCard.belongsTo(Block, { as: 'Blocks', foreignKey: 'blockId' });
+
+//TarotCard 1 - n TextCard
+TarotCard.hasMany(TextCard, { foreignKey: 'tarotCardId' });
+TextCard.belongsTo(TarotCard, { as: 'TarotCard', foreignKey: 'tarotCardId' });
+
+//TarotCard 1 - n Image
+TarotCard.hasMany(Image, { foreignKey: 'tarotCardId' });
+Image.belongsTo(TarotCard, { as: 'TarotCard', foreignKey: 'tarotCardId' });
+
 export {
   sequelize,
   User,
@@ -90,5 +104,6 @@ export {
   Button,
   UserVariable,
   TextCardButton,
-  ElementButton
+  ElementButton,
+  TarotCard
 }

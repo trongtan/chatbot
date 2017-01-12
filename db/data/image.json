@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "imageURL": "http://chat.webtretho.vn/images/tarot_card/1.png",
+    "imageURL": "http://tuviso.net/wp-content/uploads/2014/02/boi-bai-tarot.jpg",
     "order": 1,
     "tarotCardId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
@@ -17,7 +17,7 @@
   },
   {
     "id": 3,
-    "imageURL": "http://chat.webtretho.vn/images/tarot_card/2.png",
+    "imageURL": "http://tuviso.net/wp-content/uploads/2014/02/boi-bai-tarot.jpg",
     "order": 1,
     "tarotCardId": 2,
     "createdAt": "1/01/2017 07:00:00+0700",

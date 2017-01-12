@@ -1,4 +1,4 @@
-import { Gallery, Element, TextCard, Image, QuickReply, Item, Button, TextCardButton, ElementButton } from 'models';
+import { Gallery, Element, TextCard, Image, QuickReply, Item, Button, TextCardButton, ElementButton, TarotCard } from 'models';
 
 export default (sequelize, DataTypes) => {
   const Block = sequelize.define('Blocks', {
@@ -62,6 +62,32 @@ export default (sequelize, DataTypes) => {
                   as: 'Items'
                 }
               ]
+            },
+            {
+              model: TarotCard,
+              as: 'TarotCards',
+              include: [
+                {
+                  model: TextCard,
+                  as: 'TextCards',
+                  include: [
+                    {
+                      model: Button,
+                      as: 'Buttons',
+                      include: [
+                        {
+                          model: Block,
+                          as: 'Block'
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  model: Image,
+                  as: 'Images'
+                }
+              ]
             }
           ],
           order: [
@@ -73,6 +99,10 @@ export default (sequelize, DataTypes) => {
             [ QuickReply, Item, 'order', 'ASC' ],
             [ TextCard, Button, TextCardButton, 'order', 'ASC' ],
             [ Gallery, Element, Button, ElementButton, 'order', 'ASC' ],
+            [ TarotCard, 'order', 'ASC' ],
+            [ TarotCard, TextCard, 'order', 'ASC' ],
+            [ TarotCard, TextCard, Button, TextCardButton, 'order', 'ASC' ],
+            [ TarotCard, Image, 'order', 'ASC' ],
           ]
         });
       }
