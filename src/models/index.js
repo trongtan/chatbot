@@ -88,5 +88,7 @@ export {
   QuickReply,
   Item,
   Button,
-  UserVariable
+  UserVariable,
+  TextCardButton,
+  ElementButton
 }

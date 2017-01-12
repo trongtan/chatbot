@@ -1,5 +1,7 @@
 export default (sequelize, DataTypes) => {
-  const ElementButton = sequelize.define('ElementButtons', {}, {
+  const ElementButton = sequelize.define('ElementButtons', {
+    order: DataTypes.INTEGER
+  }, {
     timestamps: false,
   });
   return ElementButton;

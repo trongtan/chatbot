@@ -23,7 +23,10 @@ module.exports = {
         },
         onUpdate: 'cascade',
         onDelete: 'cascade'
-      }
+      },
+      order: {
+        type: Sequelize.INTEGER
+      },
     });
   },
   down: function(queryInterface, Sequelize) {

@@ -1,4 +1,4 @@
-import { Gallery, Element, TextCard, Image, QuickReply, Item, Button } from 'models';
+import { Gallery, Element, TextCard, Image, QuickReply, Item, Button, TextCardButton, ElementButton } from 'models';
 
 export default (sequelize, DataTypes) => {
   const Block = sequelize.define('Blocks', {
@@ -63,6 +63,16 @@ export default (sequelize, DataTypes) => {
                 }
               ]
             }
+          ],
+          order: [
+            [ Gallery, 'order', 'ASC' ],
+            [ TextCard, 'order', 'ASC' ],
+            [ Image, 'order', 'ASC' ],
+            [ QuickReply, 'order', 'ASC' ],
+            [ Gallery, Element, 'order', 'ASC' ],
+            [ QuickReply, Item, 'order', 'ASC' ],
+            [ TextCard, Button, TextCardButton, 'order', 'ASC' ],
+            [ Gallery, Element, Button, ElementButton, 'order', 'ASC' ],
           ]
         });
       }
