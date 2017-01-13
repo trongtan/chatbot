@@ -13,6 +13,7 @@ import ItemDefinition from './item';
 import ButtonDefinition from './button';
 import UserVariableDefinition from './user-variable';
 import TarotCardDefinition from './tarot-card';
+import OpenedCardDefinition from './opened-card';
 
 import ElementButtonDefinition from './element-buttons';
 import TextCardButtonDefinition from './textcard-buttons';
@@ -31,6 +32,7 @@ const Item = sequelize.import('Items', ItemDefinition);
 const Button = sequelize.import('Buttons', ButtonDefinition);
 const UserVariable = sequelize.import('UserVariables', UserVariableDefinition);
 const TarotCard = sequelize.import('TarotCards', TarotCardDefinition);
+const OpenedCard = sequelize.import('OpenedCards', OpenedCardDefinition);
 
 const ElementButton = sequelize.import('ElementButtons', ElementButtonDefinition);
 const TextCardButton = sequelize.import('TextCardButtons', TextCardButtonDefinition);
@@ -90,6 +92,14 @@ TextCard.belongsTo(TarotCard, { as: 'TarotCard', foreignKey: 'tarotCardId' });
 TarotCard.hasMany(Image, { foreignKey: 'tarotCardId' });
 Image.belongsTo(TarotCard, { as: 'TarotCard', foreignKey: 'tarotCardId' });
 
+
+//User 1 - n OpenedCard
+User.hasMany(OpenedCard, { foreignKey: 'userId' });
+OpenedCard.belongsTo(User, { as: 'User', foreignKey: 'userId' });
+
+//OpenedCard 1 - 1 TarotCard
+OpenedCard.belongsTo(TarotCard, { as: 'TarotCard', foreignKey: 'tarotCardId' });
+
 export {
   sequelize,
   User,
@@ -105,5 +115,6 @@ export {
   UserVariable,
   TextCardButton,
   ElementButton,
-  TarotCard
+  TarotCard,
+  OpenedCard
 }

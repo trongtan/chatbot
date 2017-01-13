@@ -17,7 +17,7 @@ import { logger } from 'logs/winston-logger';
 
 export default class MessageTemplate {
   buildTextCardMessage(user, textCards) {
-    logger.info('[MessageTemplate][BuildTextCardMessage] (%s)', JSON.stringify(textCards));
+    logger.info('[MessageTemplate][BuildTextCardMessage] (%s)', JSON.stringify(user));
 
     let result = [];
 
@@ -318,14 +318,21 @@ export default class MessageTemplate {
   }
 
   _bindPlaceHolderToTemplateMessage(templateMessage, user) {
-    logger.info('[MessageTemplate][Bind Place Holder To Template Message] (%s), (%s)',
-      JSON.stringify(templateMessage),
-      JSON.stringify(user));
+    logger.info('[MessageTemplate][Bind Place Holder To Template Message] (%j)', JSON.stringify(user));
 
     if (!templateMessage) return ('');
 
     const { firstName, lastName } = user;
 
-    return templateMessage.replace(/\{\{userName}}/g, `${firstName} ${lastName}`);
+    let message = templateMessage.replace(/\{\{userName}}/g, `${firstName} ${lastName}`);
+
+    if (user.OpenedCards.length > 0) {
+      const { cardName } = user.OpenedCards[0];
+      logger.info('[MessageTemplate][Bind Opened Card] (%s)', JSON.stringify(user.OpenedCards[0]));
+
+      message = message.replace(/\{\{cardName}}/g, `${cardName}`);
+    }
+
+    return message;
   }
 }

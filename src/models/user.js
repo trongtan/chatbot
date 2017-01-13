@@ -1,5 +1,7 @@
 import Promise from 'promise';
 
+import { OpenedCard, TarotCard } from 'models';
+
 import { payloadConstants } from 'utils/constants';
 import Utils from 'utils';
 
@@ -17,7 +19,7 @@ export default (sequelize, DataTypes) => {
     parental: DataTypes.STRING,
     childName: DataTypes.STRING,
     favoriteTime: DataTypes.INTEGER,
-    subscribe:  DataTypes.STRING,
+    subscribe: DataTypes.STRING,
     readStories: DataTypes.STRING
   }, {
     freezeTableName: true,
@@ -46,7 +48,18 @@ export default (sequelize, DataTypes) => {
           where: {
             userId: userId
           },
-          raw: true
+          include: [
+            {
+              model: OpenedCard,
+              as: 'OpenedCards',
+              include: [
+                {
+                  model: TarotCard,
+                  as: 'TarotCard'
+                }
+              ]
+            }
+          ]
         }).then(user => {
           if (user) {
             return Promise.resolve(user);
@@ -95,7 +108,7 @@ export default (sequelize, DataTypes) => {
       updateReadStories(userId, readStories) {
         return User.update({
           readStories: readStories
-        }, { where: { userId: userId }});
+        }, { where: { userId: userId } });
       }
     }
   });
