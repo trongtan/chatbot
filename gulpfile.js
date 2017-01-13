@@ -193,3 +193,8 @@ gulp.task('start', () => {
 gulp.task('debug', () => {
   return _yarnTask('yarn debug', []);
 });
+
+gulp.task('restart', () => {
+  return _yarnTask(' pm2 kill && gulp build && yarn start', []);
+});
+

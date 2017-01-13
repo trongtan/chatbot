@@ -13,6 +13,10 @@ module.exports = {
       type: {
         type: Sequelize.INTEGER
       },
+      tarotCardId: {
+        allowNull: true,
+        type: Sequelize.INTEGER
+      },
       blockId: {
         type: Sequelize.STRING,
         allowNull: true,

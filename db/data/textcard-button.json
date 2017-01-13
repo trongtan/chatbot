@@ -45,17 +45,17 @@
     "order": 2
   },
   {
-    "textCardId":12,
+    "textCardId":13,
     "buttonId": 9,
     "order": 1
   },
   {
-    "textCardId":12,
+    "textCardId":13,
     "buttonId": 5,
     "order": 2
   },
   {
-    "textCardId":12,
+    "textCardId":13,
     "buttonId": 1,
     "order": 3
   }

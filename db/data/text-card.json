@@ -94,5 +94,21 @@
     "tarotCardId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id":13,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài xyz này, con có muốn hỏi không?",
+    "order": 5,
+    "blockId": 8,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 14,
+    "text": "Con đã mở bài Tarot rồi, hãy chơi vào hôm sau nhé",
+    "order": 1,
+    "blockId": 9,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]

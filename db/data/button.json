@@ -81,6 +81,7 @@
     "name": "Phán ngay đi nào 😆",
     "type": 1,
     "blockId": 8,
+    "tarotCardId": 0,
     "URL": "",
     "inAppBrowserSize": 100,
     "phoneNumber": "",
@@ -89,7 +90,7 @@
   },
   {
     "id": 9,
-    "name": "Con có muốn hỏi ta thêm gì không?",
+    "name": "Hỏi 1 câu hỏi",
     "type": 1,
     "blockId": 8,
     "URL": "",
