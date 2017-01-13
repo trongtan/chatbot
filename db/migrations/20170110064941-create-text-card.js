@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       text: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       order: {
         type: Sequelize.INTEGER

@@ -16,18 +16,10 @@
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
-    "id": 3,
-    "imageURL": "http://chat.webtretho.vn/images/tarot_card/2.png",
+    "id": 5,
+    "imageURL": "https://scontent.fsgn2-2.fna.fbcdn.net/v/t34.0-0/p280x280/16111779_232392203885108_1038025082_n.jpg?oh=f6fbdfee548df521cb9cc95e582eb7da&oe=587ADD7D",
     "order": 1,
-    "tarotCardId": 2,
-    "createdAt": "1/01/2017 07:00:00+0700",
-    "updatedAt": "1/01/2017 07:00:00+0700"
-  },
-  {
-    "id": 4,
-    "imageURL": "http://chat.webtretho.vn/images/tarot_card/3.png",
-    "order": 1,
-    "tarotCardId": 3,
+    "blockId": 8,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   }

@@ -86,5 +86,71 @@
     "galleryId": 2,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 9,
+    "heading": "1. Con có để ý 1 bạn. Mối quan hệ của chúng con sẽ như thế nào?",
+    "subtitle": "",
+    "imageURL": "http://chat.webtretho.vn/images/tarot_card/tarot-info.jpg",
+    "URL": "",
+    "order": 1,
+    "galleryId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 10,
+    "heading": "2. Sắp tới chúng con có trở ngại lớn nào trong tình cảm không?",
+    "subtitle": "",
+    "imageURL": "http://chat.webtretho.vn/images/tarot_card/tarot-info.jpg",
+    "URL": "",
+    "order": 2,
+    "galleryId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 11,
+    "heading": "3. Con muốn biết người đó yêu con vì lí do gì?",
+    "subtitle": "",
+    "imageURL": "http://chat.webtretho.vn/images/tarot_card/tarot-info.jpg",
+    "URL": "",
+    "order": 3,
+    "galleryId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 12,
+    "heading": "4. Con có phải là người yêu cuối cùng của người yêu con không?",
+    "subtitle": "",
+    "imageURL": "http://chat.webtretho.vn/images/tarot_card/tarot-info.jpg",
+    "URL": "",
+    "order": 4,
+    "galleryId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 13,
+    "heading": "5. Con có nên tỏ tình với bạn đó không?",
+    "subtitle": "",
+    "imageURL": "http://chat.webtretho.vn/images/tarot_card/tarot-info.jpg",
+    "URL": "",
+    "order": 5,
+    "galleryId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 14,
+    "heading": "6. Lời khuyên cho mối quan hệ của chúng con là gì?",
+    "subtitle": "",
+    "imageURL": "http://chat.webtretho.vn/images/tarot_card/tarot-info.jpg",
+    "URL": "",
+    "order": 6,
+    "galleryId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]

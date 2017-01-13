@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
   const TextCard = sequelize.define('TextCards', {
-    text: DataTypes.STRING,
+    text: DataTypes.TEXT,
     order: DataTypes.INTEGER
   }, {
     classMethods: {

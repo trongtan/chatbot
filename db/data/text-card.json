@@ -70,5 +70,29 @@
     "blockId": 7,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id":10,
+    "text": "Chuẩn không cần chỉnh luôn con ơi. Nhìn chung, lá bài này xuất hiện hứa hẹn mang đến 1 khởi đầu tươi mới. Công việc và tài chính của con vô cùng suôn sẻ. Duy chỉ có sức khoẻ thì nên chú ý chăm sóc bản thân mình một xíu.",
+    "order": 2,
+    "tarotCardId": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id":11,
+    "text": "Về tình yêu, như 1 Kẻ Khờ, tình yêu của con vô tư và đầy đam mê. Đối với con chuyện tình của mình đang ở giai đoạn nồng cháy nhất, nên cứ giữ nó như vậy nhé! Nếu có chút gì đó \"nghi ngờ\" người mình yêu. Nên nhớ, hãy luôn tin vào con tim mình là được.",
+    "order": 3,
+    "tarotCardId": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id":12,
+    "text": "Nếu con vẫn còn FA, có vẻ trái tim vô tư này chưa sẵn sàng bị ràng buộc. Tuy nhiên, đừng để những ham muốn vui vẻ nhất thời che mắt mình. Cũng đừng nhút nhát như hiện tại, sắp đến ngày lễ Tình Nhân rồi, phải lên kế hoạch \"thả thính\" đi thôi! Chần chừ mãi là ế thiệt!",
+    "order": 4,
+    "tarotCardId": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]

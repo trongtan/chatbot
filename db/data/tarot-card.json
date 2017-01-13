@@ -8,25 +8,5 @@
     "order": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
-  },
-  {
-    "id": 2,
-    "name": "The Magician",
-    "generalMeaning": "The Magician hay Thuật sư, Nhà Ảo Thuật là một nhân vật tài năng. Anh ta mang trong mình trí tưởng tượng phong phú và biệt tài về ma thuật giúp bản thân anh ta có thể sửa đổi hoặc tái tạo thực tại theo ý muốn của bản thân mình. The Magician nhấn mạnh về khả năng biến ý tưởng trở thành hành động. Nhân vật Thuật sư luôn tự tin, tràn đầy sức mạnh và sự quyết tâm mà ít người nào có thể sở hữu được.",
-    "isSpecial": false,
-    "blockId": 7,
-    "order": 1,
-    "createdAt": "1/01/2017 07:00:00+0700",
-    "updatedAt": "1/01/2017 07:00:00+0700"
-  },
-  {
-    "id": 3,
-    "name": "The Empress",
-    "generalMeaning": "The Empress biểu thị sự sinh sôi nảy nở, người Mẹ sinh ra sự sống, ngự trị thiên nhiên trù phú và nhịp điệu của Trái Đất. The Empress cũng tượng trưng cho tất cả các hình thái của sự sung túc. Người mang đến cảm giác thoả mãn, đặc biệt là những thứ tri giác cảm nhận được như – thức ăn, niềm vui và sắc đẹp. Người có thể cho bạn những phần thưởng vật chất, nhưng chỉ khi bạn hiểu rằng sự giàu có đến tự tâm hồn rộng lượng, sẵn sàng cho đi và mở lòng với mọi người.",
-    "isSpecial": false,
-    "blockId": 7,
-    "order": 1,
-    "createdAt": "1/01/2017 07:00:00+0700",
-    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]
