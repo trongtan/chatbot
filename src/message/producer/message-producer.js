@@ -81,7 +81,7 @@ export default class MessageProducer extends EventEmitter {
                   {
                     name: 'Thầy cho con hỏi',
                     Block: {
-                      id: openedCardToday.TarotCard.blockId
+                      id: '0&questionId=' + question.id
                     }
                   }
                 ]
