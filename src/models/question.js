@@ -2,6 +2,7 @@ export default (sequelize, DataTypes) => {
   const Question = sequelize.define('Questions', {
     question: DataTypes.TEXT,
     answer: DataTypes.TEXT,
+    imageURL: DataTypes.STRING,
     order: DataTypes.INTEGER
   }, {
     classMethods: {

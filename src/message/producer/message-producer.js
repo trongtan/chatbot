@@ -71,12 +71,20 @@ export default class MessageProducer extends EventEmitter {
           tarotCardMessage = yield self._buildNormalMessage(user, openedCardToday.TarotCard);
           OpenedCard.updateShownMeaning(openedCardToday.id);
         } else if (openedCardToday.isOpened && openedCardToday.isShownMeaning && !openedCardToday.isAskQuestion) {
-          if (openedCardToday.Questions && openedCardToday.Questions.length > 0) {
+          if (openedCardToday.TarotCard.Questions && openedCardToday.TarotCard.Questions.length > 0) {
             let elements = [];
-            openedCardToday.Questions.forEach(question => {
+            openedCardToday.TarotCard.Questions.forEach(question => {
               elements.push({
                 heading: question.question,
                 imageURL: question.imageURL,
+                Buttons: [
+                  {
+                    name: 'Thầy cho con hỏi',
+                    Block: {
+                      id: openedCardToday.TarotCard.blockId
+                    }
+                  }
+                ]
               })
             });
             tarotCardMessage = self.messageTemplate.buildGalleryMessage(user, [{
