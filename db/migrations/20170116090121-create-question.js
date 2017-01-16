@@ -16,6 +16,9 @@ module.exports = {
       imageURL: {
         type: Sequelize.TEXT
       },
+      order: {
+        type: Sequelize.INTEGER
+      },
       tarotCardId: {
         allowNull: true,
         type: Sequelize.STRING,

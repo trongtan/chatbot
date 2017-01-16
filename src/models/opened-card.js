@@ -1,4 +1,4 @@
-import { Block, TextCard, Image, Button, TarotCard, TextCardButton, Question } from 'models';
+import { Block, TextCard, Image, Button, TarotCard, TextCardButton, Question, OpenedCard } from 'models';
 
 export default (sequelize, DataTypes) => {
   const OpenedCards = sequelize.define('OpenedCards', {
@@ -73,23 +73,52 @@ export default (sequelize, DataTypes) => {
               model: Question,
               as: 'Question'
             }
+          ],
+          order: [
+            [{
+              model: TarotCard,
+              as: 'TarotCard'
+            }, {
+              model: TextCard,
+              as: 'TextCards'
+            }, 'order', 'ASC'],
+
+            [{
+              model: TarotCard,
+              as: 'TarotCard'
+            }, {
+              model: TextCard,
+              as: 'TextCards'
+            }, {
+              model: Button,
+              as: 'Buttons',
+            }, TextCardButton, 'order', 'ASC'],
+
+            [{
+              model: TarotCard,
+              as: 'TarotCard'
+            }, {
+              model: Question,
+              as: 'Questions'
+            }, 'order', 'ASC']
+
           ]
         });
       },
       updateCardOpen: (openedTarotCardId) => {
         return OpenedCards.update({
           isOpened: true
-        }, { where: { id: openedTarotCardId } });
+        }, {where: {id: openedTarotCardId}});
       },
       updateShownMeaning: (openedTarotCardId) => {
         return OpenedCards.update({
           isShownMeaning: true
-        }, { where: { id: openedTarotCardId } });
+        }, {where: {id: openedTarotCardId}});
       },
       updateAskQuestion: (openedTarotCardId) => {
         return OpenedCards.update({
           isAskQuestion: true
-        }, { where: { id: openedTarotCardId } });
+        }, {where: {id: openedTarotCardId}});
       }
     }
   });

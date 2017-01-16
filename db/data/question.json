@@ -4,6 +4,7 @@
     "question": "1. Con có để ý 1 bạn. Mối quan hệ của chúng con sẽ như thế nào?",
     "answer": "Người này có vẻ như vẫn còn đang muốn cuộc sống độc thân. Có vẻ khó để cưa đổ bạn đó. Con phải cố gắng và \"lì\" lắm đó!",
     "tarotCardId": 1,
+    "order": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -12,6 +13,7 @@
     "question": "2. Sắp tới chúng con có trở ngại lớn nào trong tình cảm không?",
     "answer": "Tình yêu không có sóng gió là tình chẳng có yêu thương. Đôi lúc đó cũng là 1 gia vị trong tình yêu, vậy nên đừng e sợ nó.",
     "tarotCardId": 1,
+    "order": 2,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -20,6 +22,7 @@
     "question": "3. Con muốn biết người đó yêu con vì lí do gì?",
     "answer": "Con chân thành và vô tư như 1 \"Kẻ Khờ\". Thế Giới đối với con luôn đẹp và người đó cảm nhận được sự lạc quan ấy mỗi lần bên cạnh con.",
     "tarotCardId": 1,
+    "order": 3,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -28,6 +31,7 @@
     "question": "4. Con có phải là người yêu cuối cùng của người yêu con không?",
     "answer": "Người đầu tiên hay người cuối cùng liệu rằng có quan trọng. Quan trọng là từng khoảnh khắc bên nhau sẽ là những thứ chúng ta giữ đến hết đời.",
     "tarotCardId": 1,
+    "order": 4,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -36,6 +40,7 @@
     "question": "5. Con có nên tỏ tình với bạn đó không?",
     "answer": "Về phía con, tất nhiên là nên. Dù được chấp nhận hay bị từ chối, con cũng phải nắm lấy cơ hội của mình.",
     "tarotCardId": 1,
+    "order": 5,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -44,6 +49,7 @@
     "question": "6. Lời khuyên cho mối quan hệ của chúng con là gì?",
     "answer": "Hãy cứ chân thành như hiện tại con nhé! Hãy luôn lạc quan như bản năng của Kẻ Khờ",
     "tarotCardId": 1,
+    "order": 6,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   }
