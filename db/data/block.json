@@ -44,7 +44,7 @@
   {
     "id": 7,
     "name": "Mở lá bài",
-    "groupId": 3,
+    "groupId": 2,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -58,6 +58,13 @@
   {
     "id": 9,
     "name": "Đã mở bài tarot rồi",
+    "groupId": 2,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 10,
+    "name": "Hỏi 1 câu hỏi",
     "groupId": 2,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"

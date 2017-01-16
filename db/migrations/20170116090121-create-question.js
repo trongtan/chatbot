@@ -1,29 +1,23 @@
 'use strict';
 module.exports = {
   up: function(queryInterface, Sequelize) {
-    return queryInterface.createTable('OpenedCards', {
+    return queryInterface.createTable('Questions', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      dateOpened: {
-        type: Sequelize.DATE
-      },
-      cardName: {
         type: Sequelize.STRING
       },
-      userId: {
-        type: Sequelize.STRING,
-        references: {
-          model: 'Users',
-          key: 'userId'
-        },
-        onUpdate: 'cascade',
-        onDelete: 'cascade'
+      question: {
+        type: Sequelize.TEXT
+      },
+      answer: {
+        type: Sequelize.TEXT
+      },
+      imageURL: {
+        type: Sequelize.TEXT
       },
       tarotCardId: {
+        allowNull: true,
         type: Sequelize.STRING,
         references: {
           model: 'TarotCards',
@@ -43,6 +37,6 @@ module.exports = {
     });
   },
   down: function(queryInterface, Sequelize) {
-    return queryInterface.dropTable('OpenedCards');
+    return queryInterface.dropTable('Questions');
   }
 };

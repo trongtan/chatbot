@@ -38,19 +38,61 @@ export default class MessageProducer extends EventEmitter {
       messageTemplateFromDatabase = yield self._getMessageTemplateFromDatabase(payloads);
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][MessageTemplateFromDatabase]: %s', JSON.stringify(messageTemplateFromDatabase));
 
+      let normalMessages = [];
       let tarotCardMessage = [];
 
-      const openedCardToday = yield OpenedCard.getOpenedCardToday(user);
+      let openedCardToday = yield OpenedCard.getOpenedCardToday(user);
 
-      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][OpenedCardToday]: %s', JSON.stringify(openedCardToday));
-      if (openedCardToday) {
-        tarotCardMessage = yield self._buildNormalMessage(user, openedCardToday.TarotCard);
-        // messageTemplateFromDatabase = yield self._getMessageTemplateFromDatabase(['blockId=9']);
-      } else {
-        tarotCardMessage = yield self._buildTarotCardMessage(user, messageTemplateFromDatabase);
+      if (messageTemplateFromDatabase.TarotCards && messageTemplateFromDatabase.TarotCards.length > 0 && openedCardToday) {
+        messageTemplateFromDatabase = yield self._getMessageTemplateFromDatabase(['blockId=9']);
+        normalMessages = yield self._buildNormalMessage(user, messageTemplateFromDatabase);
+
+
+        self.emit(FINISHED_BUILD_MESSAGE, flattenDeep(concat(normalMessages, tarotCardMessage)));
+        return;
       }
 
-      const normalMessages = yield self._buildNormalMessage(user, messageTemplateFromDatabase);
+      if (messageTemplateFromDatabase.TarotCards && messageTemplateFromDatabase.TarotCards.length > 0 && !openedCardToday) {
+        openedCardToday = yield self._openTarotCard(user, messageTemplateFromDatabase);
+      }
+
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][OpenedCardToday]: %s', JSON.stringify(openedCardToday));
+
+      if (openedCardToday) {
+        if (!openedCardToday.isOpened && !openedCardToday.isShownMeaning && !openedCardToday.isAskQuestion) {
+          openedCardToday.TarotCard.TextCards = [openedCardToday.TarotCard.TextCards[0]];
+          logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][OpenedCardTodayRemoveTextCard]: %s', JSON.stringify(openedCardToday));
+
+          tarotCardMessage = yield self._buildNormalMessage(user, openedCardToday.TarotCard);
+          OpenedCard.updateCardOpen(openedCardToday.id);
+        } else if (openedCardToday.isOpened && !openedCardToday.isShownMeaning && !openedCardToday.isAskQuestion) {
+          openedCardToday.TarotCard.TextCards.shift();
+          openedCardToday.TarotCard.Images.pop();
+          tarotCardMessage = yield self._buildNormalMessage(user, openedCardToday.TarotCard);
+          OpenedCard.updateShownMeaning(openedCardToday.id);
+        } else if (openedCardToday.isOpened && openedCardToday.isShownMeaning && !openedCardToday.isAskQuestion) {
+          if (openedCardToday.Questions && openedCardToday.Questions.length > 0) {
+            let elements = [];
+            openedCardToday.Questions.forEach(question => {
+              elements.push({
+                heading: question.question,
+                imageURL: question.imageURL,
+              })
+            });
+            tarotCardMessage = self.messageTemplate.buildGalleryMessage(user, [{
+              Elements: elements,
+              order: 1
+            }]);
+          }
+
+          logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][IsAskQuestion]: %s', JSON.stringify(tarotCardMessage));
+
+        }
+
+        logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][TarotCardMessage]: %s', JSON.stringify(tarotCardMessage));
+      }
+      normalMessages = yield self._buildNormalMessage(user, messageTemplateFromDatabase);
+
 
       self.emit(FINISHED_BUILD_MESSAGE, flattenDeep(concat(normalMessages, tarotCardMessage)));
     });
@@ -83,7 +125,15 @@ export default class MessageProducer extends EventEmitter {
     });
   }
 
-  _buildTarotCardMessage(user, messageTemplateFromDatabase) {
+  _buildMeaningTarotCardMessage(user, openedCardToday) {
+    const self = this;
+    return co(function *() {
+      yield OpenedCard.updateShownMeaning(openedCardToday.id);
+      return yield self._buildNormalMessage(user, openedCardToday.TarotCard);
+    });
+  }
+
+  _buildOpenTarotCardMessage(user, messageTemplateFromDatabase) {
     const self = this;
     return co(function *() {
       let tarotCardMessage = [];
@@ -105,6 +155,18 @@ export default class MessageProducer extends EventEmitter {
       }
 
       return flatten(tarotCardMessage);
+    });
+  }
+
+  _openTarotCard(user, messageTemplateFromDatabase) {
+    return co(function *() {
+      const tarotCardFromDatabase = getRandomObjectFromArray(messageTemplateFromDatabase.TarotCards);
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][TarotCardFromDatabase]: %s', JSON.stringify(tarotCardFromDatabase));
+
+      //FIXME: save selected tarot card to database here
+      const openTarotCard = yield OpenedCard.saveOpenedTarotCard(user, tarotCardFromDatabase);
+      logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][BuildTarotCardMessage][OpenCard]: %s', JSON.stringify(openTarotCard));
+      return yield OpenedCard.getOpenedCardToday(user);
     });
   }
 

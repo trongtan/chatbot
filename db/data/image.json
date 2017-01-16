@@ -9,7 +9,7 @@
   },
   {
     "id": 2,
-    "imageURL": "http://chat.webtretho.vn/images/tarot_card/1.png",
+    "imageURL": "https://upload.wikimedia.org/wikipedia/en/thumb/9/90/RWS_Tarot_00_Fool.jpg/220px-RWS_Tarot_00_Fool.jpg",
     "order": 1,
     "tarotCardId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",

@@ -1,4 +1,17 @@
-import { Gallery, Element, TextCard, Image, QuickReply, Item, Button, TextCardButton, ElementButton, TarotCard } from 'models';
+import {
+  Gallery,
+  Element,
+  TextCard,
+  Image,
+  QuickReply,
+  Item,
+  Button,
+  TextCardButton,
+  ElementButton,
+  TarotCard,
+  Group,
+  Question
+} from 'models';
 
 export default (sequelize, DataTypes) => {
   const Block = sequelize.define('Blocks', {
@@ -11,6 +24,10 @@ export default (sequelize, DataTypes) => {
             id: blockId,
           },
           include: [
+            {
+              model: Group,
+              as: 'Group'
+            },
             {
               model: Gallery,
               as: 'Galleries',
@@ -86,23 +103,27 @@ export default (sequelize, DataTypes) => {
                 {
                   model: Image,
                   as: 'Images'
+                },
+                {
+                  model: Question,
+                  as: 'Questions'
                 }
               ]
             }
           ],
           order: [
-            [ Gallery, 'order', 'ASC' ],
-            [ TextCard, 'order', 'ASC' ],
-            [ Image, 'order', 'ASC' ],
-            [ QuickReply, 'order', 'ASC' ],
-            [ Gallery, Element, 'order', 'ASC' ],
-            [ QuickReply, Item, 'order', 'ASC' ],
-            [ TextCard, Button, TextCardButton, 'order', 'ASC' ],
-            [ Gallery, Element, Button, ElementButton, 'order', 'ASC' ],
-            [ TarotCard, 'order', 'ASC' ],
-            [ TarotCard, TextCard, 'order', 'ASC' ],
-            [ TarotCard, TextCard, Button, TextCardButton, 'order', 'ASC' ],
-            [ TarotCard, Image, 'order', 'ASC' ],
+            [Gallery, 'order', 'ASC'],
+            [TextCard, 'order', 'ASC'],
+            [Image, 'order', 'ASC'],
+            [QuickReply, 'order', 'ASC'],
+            [Gallery, Element, 'order', 'ASC'],
+            [QuickReply, Item, 'order', 'ASC'],
+            [TextCard, Button, TextCardButton, 'order', 'ASC'],
+            [Gallery, Element, Button, ElementButton, 'order', 'ASC'],
+            [TarotCard, 'order', 'ASC'],
+            [TarotCard, TextCard, 'order', 'ASC'],
+            [TarotCard, TextCard, Button, TextCardButton, 'order', 'ASC'],
+            [TarotCard, Image, 'order', 'ASC'],
           ]
         });
       }
