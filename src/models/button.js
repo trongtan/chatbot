@@ -1,3 +1,5 @@
+import { Block } from 'models';
+
 export default (sequelize, DataTypes) => {
   const Button = sequelize.define('Buttons', {
     name: DataTypes.STRING,
@@ -7,8 +9,18 @@ export default (sequelize, DataTypes) => {
     phoneNumber: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function (models) {
-        // associations can be defined here
+      getButtonById: (buttonId) => {
+        return Button.findOne({
+          where: {
+            id: buttonId
+          },
+          include: [
+            {
+              model: Block,
+              as: 'Block'
+            }
+          ]
+        })
       }
     }
   });

@@ -3,7 +3,7 @@ import co from 'co';
 
 import { filter, map, split, sortBy, concat, flatten, flattenDeep } from 'lodash';
 
-import { User, Block, TarotCard, OpenedCard } from 'models';
+import { User, Block, TarotCard, OpenedCard, Button } from 'models';
 import { getRandomObjectFromArray } from 'utils/helpers.js';
 
 import {
@@ -87,17 +87,12 @@ export default class MessageProducer extends EventEmitter {
           if (openedCardToday.Question) {
             logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][aaaaaa]: %s', JSON.stringify(openedCardToday.Question));
 
+            const homeButton = Button.getButtonById(1);
+
             tarotCardMessage = self.messageTemplate.buildTextCardMessage(user, [{
               text: openedCardToday.Question.answer,
               order: 1,
-              Buttons: [
-                {
-                  name: '🏡 Home',
-                  Block: {
-                    id: 3
-                  }
-                }
-              ]
+              Buttons: [homeButton]
             }]);
 
             yield OpenedCard.updateAskQuestion(openedCardToday.id);
