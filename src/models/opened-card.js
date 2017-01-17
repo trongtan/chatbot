@@ -119,6 +119,11 @@ export default (sequelize, DataTypes) => {
         return OpenedCards.update({
           isAskQuestion: true
         }, {where: {id: openedTarotCardId}});
+      },
+      updateSelectedQuestion: (openedTarotCardId, questionId) => {
+        return OpenedCards.update({
+          questionId: questionId
+        }, {where: {id: openedTarotCardId}});
       }
     }
   });

@@ -19,7 +19,9 @@ import QuestionDefinition from './question';
 import ElementButtonDefinition from './element-buttons';
 import TextCardButtonDefinition from './textcard-buttons';
 
-const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST);
+const sequelize = new Sequelize(process.env.NODE_ENV !== 'test' ? process.env.DB_URL : process.env.DB_URL_TEST, {
+  pool: { maxConnections: 20, maxIdleTime: 30000 }
+});
 
 const User = sequelize.import('Users', UserDefinition);
 const Group = sequelize.import('Groups', GroupDefinition);

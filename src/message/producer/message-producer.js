@@ -43,7 +43,9 @@ export default class MessageProducer extends EventEmitter {
 
       let openedCardToday = yield OpenedCard.getOpenedCardToday(user);
 
-      if (messageTemplateFromDatabase.TarotCards && messageTemplateFromDatabase.TarotCards.length > 0 && openedCardToday) {
+      if (messageTemplateFromDatabase.Group && messageTemplateFromDatabase.Group.name === 'TAROT' &&
+        openedCardToday && openedCardToday.isOpened && openedCardToday.isShownMeaning && openedCardToday.isAskQuestion) {
+
         messageTemplateFromDatabase = yield self._getMessageTemplateFromDatabase(['blockId=9']);
         normalMessages = yield self._buildNormalMessage(user, messageTemplateFromDatabase);
 
@@ -56,6 +58,17 @@ export default class MessageProducer extends EventEmitter {
         openedCardToday = yield self._openTarotCard(user, messageTemplateFromDatabase);
       }
 
+      const question = split(payloads, '&')[1];
+      const questionId = split(question, '=')[1];
+      if (questionId) {
+        // Todo: save selected question here
+        const selectedQuestion = yield OpenedCard.updateSelectedQuestion(openedCardToday.id, questionId);
+
+        logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][UpdateSelectedQuestion]: %s', JSON.stringify(selectedQuestion));
+        openedCardToday = yield OpenedCard.getOpenedCardToday(user);
+      }
+
+
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][OpenedCardToday]: %s', JSON.stringify(openedCardToday));
 
       if (openedCardToday) {
@@ -64,41 +77,62 @@ export default class MessageProducer extends EventEmitter {
           logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][OpenedCardTodayRemoveTextCard]: %s', JSON.stringify(openedCardToday));
 
           tarotCardMessage = yield self._buildNormalMessage(user, openedCardToday.TarotCard);
-          OpenedCard.updateCardOpen(openedCardToday.id);
+          yield OpenedCard.updateCardOpen(openedCardToday.id);
         } else if (openedCardToday.isOpened && !openedCardToday.isShownMeaning && !openedCardToday.isAskQuestion) {
           openedCardToday.TarotCard.TextCards.shift();
           openedCardToday.TarotCard.Images.pop();
           tarotCardMessage = yield self._buildNormalMessage(user, openedCardToday.TarotCard);
-          OpenedCard.updateShownMeaning(openedCardToday.id);
+          yield OpenedCard.updateShownMeaning(openedCardToday.id);
         } else if (openedCardToday.isOpened && openedCardToday.isShownMeaning && !openedCardToday.isAskQuestion) {
-          if (openedCardToday.TarotCard.Questions && openedCardToday.TarotCard.Questions.length > 0) {
-            let elements = [];
-            openedCardToday.TarotCard.Questions.forEach(question => {
-              elements.push({
-                heading: question.question,
-                imageURL: question.imageURL,
-                Buttons: [
-                  {
-                    name: 'Thầy cho con hỏi',
-                    Block: {
-                      id: '0&questionId=' + question.id
-                    }
+          if (openedCardToday.Question) {
+            logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][aaaaaa]: %s', JSON.stringify(openedCardToday.Question));
+
+            tarotCardMessage = self.messageTemplate.buildTextCardMessage(user, [{
+              text: openedCardToday.Question.answer,
+              order: 1,
+              Buttons: [
+                {
+                  name: '🏡 Home',
+                  Block: {
+                    id: 3
                   }
-                ]
-              })
-            });
-            tarotCardMessage = self.messageTemplate.buildGalleryMessage(user, [{
-              Elements: elements,
-              order: 1
+                }
+              ]
             }]);
+
+            yield OpenedCard.updateAskQuestion(openedCardToday.id);
+          } else {
+
+            if (openedCardToday.TarotCard.Questions && openedCardToday.TarotCard.Questions.length > 0) {
+              let elements = [];
+              openedCardToday.TarotCard.Questions.forEach(question => {
+                elements.push({
+                  heading: question.question,
+                  imageURL: question.imageURL,
+                  subtitle: '',
+                  Buttons: [
+                    {
+                      name: 'Thầy phán　',
+                      Block: {
+                        id: '7&questionId=' + question.id
+                      }
+                    }
+                  ]
+                })
+              });
+              tarotCardMessage = self.messageTemplate.buildGalleryMessage(user, [{
+                Elements: elements,
+                order: 1
+              }]);
+            }
           }
 
           logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][IsAskQuestion]: %s', JSON.stringify(tarotCardMessage));
-
         }
 
         logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][TarotCardMessage]: %s', JSON.stringify(tarotCardMessage));
       }
+
       normalMessages = yield self._buildNormalMessage(user, messageTemplateFromDatabase);
 
 
@@ -191,7 +225,8 @@ export default class MessageProducer extends EventEmitter {
     return co(function *() {
       //FIXME: We temporary handle first payload here.
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Block Id]: %s', JSON.stringify(payloads));
-      const blockId = split(payloads, '=')[1];
+      const block = split(payloads, '&')[0];
+      const blockId = split(block, '=')[1];
 
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Block Id]: %s', JSON.stringify(blockId));
 
