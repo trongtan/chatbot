@@ -1,6 +1,4 @@
-import co from 'co';
 import Promise from 'promise';
-import async from 'async';
 
 import { User } from 'models';
 import {
