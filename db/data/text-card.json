@@ -1,16 +1,8 @@
 [
   {
     "id": 1,
-    "text": "Hi {{userName}}! 😘 \nTớ là Thánh Hẹn Hò. Tớ có thể cung cấp cho các bạn những thông tin thú vị như nơi hẹn hò ngày Valentine, nơi xem phim, bói bài Tarot để nhận quà hấp dẫn ... \n🤗 Rất đơn giản, các bạn hãy nhấn vào nút Home bên dưới để bắt đầu nhé 👇",
+    "text": "Hi Tân Vũ. Tìm đến ta, chắc chắn bạn muốn có gì cần giúp đỡ mùa Valentine này đúng không?\nTa có một bộ bài Tarot về tình yêu vô cùng thú vị, trên cõi đời này chỉ mỗi ta mới có.\n🤗 Rất đơn giản, ngươi hãy nhấn vào các link bên dưới để bắt đầu nhé 👇🏼",
     "order": 1,
-    "blockId": 1,
-    "createdAt": "1/01/2017 07:00:00+0700",
-    "updatedAt": "1/01/2017 07:00:00+0700"
-  },
-  {
-    "id": 2,
-    "text": "Bạn đã có kế hoạch gì chưa?",
-    "order": 2,
     "blockId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
@@ -64,7 +56,7 @@
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
-    "id":9,
+    "id": 9,
     "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
     "order": 2,
     "tarotCardId": 1,
@@ -72,7 +64,7 @@
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
-    "id":10,
+    "id": 10,
     "text": "Chuẩn không cần chỉnh luôn con ơi. Nhìn chung, lá bài này xuất hiện hứa hẹn mang đến 1 khởi đầu tươi mới. Công việc và tài chính của con vô cùng suôn sẻ. Duy chỉ có sức khoẻ thì nên chú ý chăm sóc bản thân mình một xíu.",
     "order": 3,
     "tarotCardId": 1,
@@ -80,7 +72,7 @@
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
-    "id":11,
+    "id": 11,
     "text": "Về tình yêu, như 1 Kẻ Khờ, tình yêu của con vô tư và đầy đam mê. Đối với con chuyện tình của mình đang ở giai đoạn nồng cháy nhất, nên cứ giữ nó như vậy nhé! Nếu có chút gì đó \"nghi ngờ\" người mình yêu. Nên nhớ, hãy luôn tin vào con tim mình là được.",
     "order": 4,
     "tarotCardId": 1,
@@ -88,7 +80,7 @@
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
-    "id":12,
+    "id": 12,
     "text": "Nếu con vẫn còn FA, có vẻ trái tim vô tư này chưa sẵn sàng bị ràng buộc. Tuy nhiên, đừng để những ham muốn vui vẻ nhất thời che mắt mình. Cũng đừng nhút nhát như hiện tại, sắp đến ngày lễ Tình Nhân rồi, phải lên kế hoạch \"thả thính\" đi thôi! Chần chừ mãi là ế thiệt!",
     "order": 5,
     "tarotCardId": 1,
@@ -96,7 +88,7 @@
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
-    "id":13,
+    "id": 13,
     "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
     "order": 6,
     "tarotCardId": 1,
@@ -108,6 +100,518 @@
     "text": "Con đã mở bài Tarot rồi, hãy chơi vào hôm sau nhé",
     "order": 1,
     "blockId": 9,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 15,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 2,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 16,
+    "text": "Bạn là một người đối xử rất tốt với người mình yêu và cực kì nghiêm túc trong mối quan hệ này. Nếu cả 2 đang giận nhau, lá bài này là điềm lành, cả 2 sẽ sớm làm hoà thôi. Tình cảm cần tôn trọng sự riêng tư nữa, đừng ghen tuông kiểm soát người ta quá.",
+    "order": 3,
+    "tarotCardId": 2,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 17,
+    "text": "Với những ai vẫn còn đang cô đơn, Thánh tiên đoán hôm nay bạn sẽ có 1 cuộc gặp vô cùng tình cờ với 1 người đặc biệt đấy, chờ xem!",
+    "order": 4,
+    "tarotCardId": 2,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 18,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 6,
+    "tarotCardId": 2,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 19,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 20,
+    "text": "Đừng mãi đắn đo mình đã yêu đúng người hay chưa. Nếu yêu hết mình, mối quan hệ này sẽ rất bền vững đó. Dành thời gian chăm sóc cho người ta nhiều hơn nè, lá bài này xuất hiện đảm bảo tình yêu của bạn ngày càng ngọt ngào và sâu sắc.",
+    "order": 3,
+    "tarotCardId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 21,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 4,
+    "tarotCardId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 22,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 4,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 23,
+    "text": "Bạn đang yêu một người lớn tuổi hơn mình, nếu là con trai thì người ta hay gọi \"phi công lái máy bay\" đó đúng không? Ban đầu thì có vẻ 2 người không hợp nhau lắm, 1 kẻ thích tự do còn 1 kẻ thì bị thu hút bởi những người logic, kỉ luật. Tuy nhiên càng bên cạnh nhau thì cả 2 lại càng \"si mê\" nhau nhiều hơn. \n\n",
+    "order": 3,
+    "tarotCardId": 4,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 78,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 4,
+    "tarotCardId": 4,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 24,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 5,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 25,
+    "text": "Tình cảm của bạn mặn nồng đến mức mới yêu nhau thậm chí để tính đến chuyện \"trăm năm hạnh phúc\" cưới xin luôn rồi. Hãy nhớ rằng The Lovers không dự báo trước về một mối quan hệ lâu dài, nhưng lại nói lên sự hạnh phúc trọn vẹn mà cả hai đều cảm thấy.",
+    "order": 3,
+    "tarotCardId": 5,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 26,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 4,
+    "tarotCardId": 5,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 27,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 6,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 28,
+    "text": "\"Giục tốc bất đạt\", bạn hãy luôn nhớ như vậy. Chuyện tình cảm thì đừng nên hối thúc nó.\n\nTheo tình tình chạy, còn chạy tình tình theo. Bạn không có cảm giác với người đang theo đuổi mình, thôi thì hãy nói thẳng với họ. Im lặng chỉ làm tốn thời gian của cả 2.",
+    "order": 3,
+    "tarotCardId": 6,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 29,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 4,
+    "tarotCardId": 6,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 30,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 7,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 31,
+    "text": "2 bạn luôn bên cạnh nhau và đôi khi có giận hơn vu vơ cũng sớm làm lành do cả 2 đều ý thức được chuyện tình cảm này là nghiêm túc. Cả 2 không dùng lời nói để kiểm soát nhau mà để thấu hiểu nhau nhiều hơn.\n\nDù sớm hay muộn thì đây là thời điểm đẹp nhất để bạn gửi gắm trái tim mình cho 1 ai đó. ",
+    "order": 3,
+    "tarotCardId": 7,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 32,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 4,
+    "tarotCardId": 7,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 33,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 8,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 34,
+    "text": "Bạn nên rạch ròi chuyện tình cảm và những thứ khác trong cuộc sống. Khi yêu đương người ta thường si mê nhưng cũng đừng để những vấn đề trong tình yêu làm xáo trộn cuộc sống của mình.",
+    "order": 3,
+    "tarotCardId": 8,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 35,
+    "text": "Nếu bạn vẫn đang còn độc thân, hãy cứ tận hưởng khoảng thời gian này thêm một lúc nữa. Nói chung, bạn vẫn còn tiếc nuối điều gì đó nên vẫn chưa mở lòng mình để yêu thêm một ai.",
+    "order": 4,
+    "tarotCardId": 8,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 36,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 8,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 37,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 9,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 38,
+    "text": "Chuyện tinh cảm tích cực hay tiêu cực là do cách màẩt nhìn nhận cả thôi. Có thể cả 2 nên thay đổi chính bản thân mình để mối quan hệ này trở nên tốt đẹp hơn, nói tóm lại chuyện tình cảm này sắp bước sang một trang rất mới.",
+    "order": 3,
+    "tarotCardId": 9,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 39,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 9,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 40,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 10,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 41,
+    "text": "Sâu bên trong, bạn muốn điều gì nhất trong mối quan hệ của mình? Đừng ngần ngại nói ra với đối phương, người yêu mà ngại ngùng gì nữa chứ.\n\nCòn những ai đang tìm kiếm tình yêu, con sẽ mau chóng thoát ế thôi. Người ấy sẽ còn tự tìm đến luôn đấy!",
+    "order": 3,
+    "tarotCardId": 10,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 42,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 10,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 43,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 11,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 44,
+    "text": "Về tình cảm, nếu bạn đang cảm thấy cô đơn vì thấy rằng bạn không thể hiểu được ai hoặc không ai có thể hiểu được mình thì nên dẹp cái suy nghĩ ấy qua một quên đi, hãy mở lòng ra và nhìn mọi thứ xung quanh theo một cách khác, bạn sẽ tìm thấy cho trả lời cho chính mình.",
+    "order": 3,
+    "tarotCardId": 11,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 45,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 11,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 46,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 12,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 47,
+    "text": "Bất cứ chuyện gì đã đến lúc thay đổi thì một là bạn phải chấp nhận nó, hai là bạn từ chối nó, đặc biệt là trong chuyện tình cảm. Không có kiểu nửa nạc nửa mỡ như vậy được đâu, phần thiệt là về bạn đấy nhé.",
+    "order": 3,
+    "tarotCardId": 12,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 48,
+    "text": "Hoặc nếu bạn cứ mãi ôm khư khư những chuyện đã xảy ra trong quá khứ mà ngại bước tiếp tới tương lai phía trước thì đã đến lúc rủ bỏ chúng đi được rồi. ",
+    "order": 4,
+    "tarotCardId": 12,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 49,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 12,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 50,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 13,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 51,
+    "text": "Những trục trặc trong tình cảm thì tốt nhất là nên được nói ra để cả 2 cùng giải quyết với nhau, cứ giữ trong lòng sẽ chỉ khiến mối quan hệ trở nên rạn nứt thêm mà thôi.",
+    "order": 3,
+    "tarotCardId": 13,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 52,
+    "text": "Nếu đang định bắt đầu một mối quan hệ mới thì bạn nên cân nhắc nhé, phải tìm hiểu thật kỹ đối phương đã rồi mới quyết định có nên tiến tới hay không.",
+    "order": 4,
+    "tarotCardId": 13,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 53,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 13,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 54,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 14,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 55,
+    "text": "Thay đổi một người dường như là điều không thể nên bạn đừng cố gắng vô ích làm gì. Bạn chỉ có thể chấp nhận đối phương vì họ là chính họ, hoặc từ bỏ. \n\nĐừng vì một phút yếu lòng mà chấp nhận tình cảm từ người mà bạn không thích. Ép dầu ép mỡ, ai nỡ ép duyên. Chuyện tình cảm là không có ép buộc được đâu bạn nhé.",
+    "order": 3,
+    "tarotCardId": 14,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 56,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 14,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 57,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 15,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 58,
+    "text": "Nếu đã có quyết định cuối cùng cho mối quan hệ hiện tại của mình thì đừng ngần ngại mà thực hiện nó, tôi tin chắc rằng rồi bạn sẽ tìm được điều mà bạn mong muốn, mọi giông tố rồi sẽ qua đi mau chóng thôi.",
+    "order": 3,
+    "tarotCardId": 15,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 59,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 15,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 60,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 16,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 61,
+    "text": "Trên đời này, cái quái gì cũng có thể xảy ra. Nếu mối quan hệ của bạn đang gặp trục trặc thì đừng quá lo lắng, khi mọi thứ dường như trở nên bế tắc, bạn tự khắc biết mình cần phải làm gì.",
+    "order": 3,
+    "tarotCardId": 16,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 62,
+    "text": "Và nếu vẫn còn độc thân, thì bạn hãy sẵn sàng đi nhé, vì sắp tới bạn sẽ gặp được người có ảnh hưởng rất lớn tới cuộc đời của mình đấy.",
+    "order": 3,
+    "tarotCardId": 16,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 63,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 16,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 64,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 17,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 65,
+    "text": "Bất kỳ mối quan hệ nào cũng sẽ đến lúc gặp những vấn đề nảy sinh, đó là chuyện hoàn toàn bình thường. Hãy cứ bình tĩnh mà tìm giải pháp cho mối quan hệ này, cứ tin vào trực giác của bản thân, bạn sẽ tìm được lời giải cho mình.",
+    "order": 3,
+    "tarotCardId": 17,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 66,
+    "text": "Hãy thôi tự hỏi rằng nếu bắt đầu mối quan hệ với người đấy thì liệu mọi chuyện sẽ tốt đẹp hay không, điều đó thật sự vô ích lắm. Thay vào đó, bạn hãy cứ mạnh dạn làm theo con tim của mình. Mình thích thì mình yêu thôi.",
+    "order": 3,
+    "tarotCardId": 17,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 67,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 17,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 68,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 18,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 69,
+    "text": "Đây là giai đoạn gắn kết tình cảm của 2 bạn đấy, nên đừng vì những tiểu tiết mà làm rạn nứt tình cảm của 2 người nhé.\n\nĐừng đặt mình vào thế bị động mà chờ người ta tấn công, bạn hãy cứ mạnh dạng mà tiến tới. Người mà bạn đang để ý rất có thể cũng đang say nắng bạn đấy, chỉ là ngại nói ra mà thôi.",
+    "order": 3,
+    "tarotCardId": 18,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 70,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 18,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 71,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 19,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 72,
+    "text": "Hãy cho đối phương thấy rằng minh xứng đáng với tình cảm của họ, vì ngay lúc này đây, cả hai người đều đang ngần ngại phân vân có nên tiếp tục hay dừng mối quan hệ này lại hay không, đừng từ bỏ quá sớm bạn nhé.",
+    "order": 3,
+    "tarotCardId": 19,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 73,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 19,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 74,
+    "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
+    "order": 2,
+    "tarotCardId": 20,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 75,
+    "text": "Trong mối quan hệ hiện tại, nếu bạn cứ tiếp tục đứng núi này mà trông núi nọ thì ta tin chắc rằng bạn khó cảm thấy được sự hạnh phúc.",
+    "order": 3,
+    "tarotCardId": 20,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 76,
+    "text": " Có những thứ bạn đừng tìm kiếm chi cho mất công, cứ tưởng xa tận chân trời, nhưng thật ra lại gần ngay trước mắt đấy. ",
+    "order": 4,
+    "tarotCardId": 20,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 77,
+    "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
+    "order": 5,
+    "tarotCardId": 20,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   }

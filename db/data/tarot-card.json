@@ -8,5 +8,195 @@
     "order": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "name": "The Magician",
+    "generalMeaning": "The Magician hay Thuật sư, Nhà Ảo Thuật là một nhân vật tài năng. Anh ta mang trong mình trí tưởng tượng phong phú và biệt tài về ma thuật giúp bản thân anh ta có thể sửa đổi hoặc tái tạo thực tại theo ý muốn của bản thân mình. The Magician nhấn mạnh về khả năng biến ý tưởng trở thành hành động. Nhân vật Thuật sư luôn tự tin, tràn đầy sức mạnh và sự quyết tâm mà ít người nào có thể sở hữu được.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 3,
+    "name": "The Empress",
+    "generalMeaning": "The Empress biểu thị sự sinh sôi nảy nở, người Mẹ sinh ra sự sống, ngự trị thiên nhiên trù phú và nhịp điệu của Trái Đất. The Empress cũng tượng trưng cho tất cả các hình thái của sự sung túc. Người mang đến cảm giác thoả mãn, đặc biệt là những thứ tri giác cảm nhận được như – thức ăn, niềm vui và sắc đẹp. Người có thể cho bạn những phần thưởng vật chất, nhưng chỉ khi bạn hiểu rằng sự giàu có đến tự tâm hồn rộng lượng, sẵn sàng cho đi và mở lòng với mọi người.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 4,
+    "name": "The Emperor",
+    "generalMeaning": "The Emperor hay Hoàng đế, là nhân vật đứng đầu của một đế chế. The Emperor tượng trưng cho những kỉ cương, trật tự trong cuộc sống, các phép tắc thông thường, tính kiểm soát của mỗi con người cũng như tính lãnh đạo, dẫn dắt. Emperor là một người dựa trên lí tính của bản thân nên cái tôi cá nhân sẽ ảnh hưởng trực tiếp đến niềm tin.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 5,
+    "name": "The Lovers",
+    "generalMeaning": "The Lovers hay lá bài Uyên ương không hẳn đề cập đến một nhân vật cụ thể như các lá Ẩn chính từ 0-5. The Lovers đề cập đến vấn đề lựa chọn, tính hai mặt của vấn đề, và cũng có thể là những quyết định trong mối quan hệ. The lovers nhắc đến sự thay đổi bất thình lình trong mối quan hệ, có thể là do mâu thuẫn xung đột giữa công việc và đời sống riêng tư, đòi hỏi bản thân phải lựa chọn để cân bằng cuộc sống cá nhân.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 6,
+    "name": "The Chariot",
+    "generalMeaning": "The Chariot hay Chiến Xa mô tả về những cuộc hành trình. Những cuộc hành trình này có thể là sự chuyển giao tinh thần, hoặc đề cập tới những chuyến đi thực tế mà mỗi người phải trải qua. Đầy quyết tâm, khát vọng, và nhiệt huyết tuổi trẻ. Mọi thứ chỉ thay đổi khi bản thân toàn tâm hướng tới mục tiêu mình đã đề ra.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 7,
+    "name": "Strength",
+    "generalMeaning": "Strength – Sức mạnh là lá bài Tarot gợi nên sự đấu tranh giữa hai phần nội tâm trong mỗi con người. Phần mãnh thú và phần con người. Cũng như triết lý âm dương, lý trí của con người tượng trưng cho tính nữ, và bản năng tượng trưng cho tính nam trong mỗi người. Sức mạnh không được dùng để kiểm soát, nói đúng hơn, sức mạnh được dùng để cân bằng những mặt khác nhau, giữa cái tốt và cái xấu nội tâm.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 8,
+    "name": "The Hermit",
+    "generalMeaning": "The Hermit – Người ẩn sĩ là một nhân vật bí ẩn, luôn đi tìm câu trả lời cho chính bản thân mình. Ông ta đi tìm câu trả lời cho mọi câu hỏi đặt ra cho bản thân. Có thể những câu trả lời đó sẽ giải quyết những rắc rối cho cuộc đời ông ta, hoặc thậm chí đây là những cuộc hành trình tâm linh tìm kiếm ý nghĩa của cuộc sống",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 9,
+    "name": "Wheel of Fortune",
+    "generalMeaning": "Wheel of Fortune – Vòng xoay số mệnh kết nối giữa số mệnh và vận may của mỗi người. Thời thế luôn xoay chuyển. Định mệnh chưa bao giờ đứng yên. Giữa khó khăn con người tìm đến hy vọng cho những đêm dài đen tối trong cuộc đời mình. Và bỗng nhiên tất cả mọi thứ thay đổi.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 10,
+    "name": "Justice",
+    "generalMeaning": "Justice – Công Lý, là một lá bài nói về khía cạnh hai chiều của mọi thứ. Trong tất cả mọi thứ đều có mặt đối lập, có âm và có dương. Kể cả những suy nghĩ đơn giản nhất của con người, Công lý dường như luôn tạo cảm giác rằng bản thân khái niệm của từ Công lý đó, với mỗi người mỗi khác biệt. Và đôi lúc con người phải đưa ra sự lựa chọn giữa trái tim và lý trí khi bản thân đang cảm thấy phân vân. Chẳng phải mỗi hành động chúng ta làm hay chọn, đều ảnh hưởng đến ta hay sao?",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 11,
+    "name": "The Hanged Man",
+    "generalMeaning": "The Hanged Man – Người treo ngược là một lá bài thật sự khó hiểu đối với những ai chỉ nhìn, nhưng không thật sự ngẫm nghĩ. Hãy nghĩ đến lá bài này là như thế này. Bạn đang ở giai đoạn khi tất cả mọi mặt trong cuộc sống của bạn đều gặp bế tắc. Bạn thầm ước lên những vì sao, và vũ trụ rộng lớn, rằng mình muốn tìm ra được câu trả lời để có thể hóa giải được những khuất mắt trong cuộc sống. Lá Hanged Man sẽ nói về vấn đề này, bỏ đi những tạp niệm cũ và tìm cách học hỏi những điều mới.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 12,
+    "name": "The Death",
+    "generalMeaning": "Death – Tử thần, Cái Chết nghe thật đáng sợ nhỉ? Nhưng lá bài này không hẳn đề cập về cái chết nói chung. Death nói về sự thay đổi. Khi cuộc sống mà bạn đã từng biết thay đổi, một phần xưa cũ của nhận thức sẽ mất đi và được thay thế bởi những trải nghiệm mới. Đôi khi con người cần thay đổi, tất cả những việc đơn giản mà họ cần làm là gạt bỏ đi một chút tạp niệm cho đời thêm thanh thản. Đón nhận thay đổi, chấp nhận tái sinh.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 13,
+    "name": "The Temperance",
+    "generalMeaning": "Temperance – Sự tiết Chế, Tiết Độ. Đôi khi lá bài Tarot này còn được gọi dưới tên gọi khác là Nhà Giả Kim. Một chân chạm nước, chân còn lại chạm đất, tượng trưng cho liên kết cân bằng giữa âm và dương, giữa nóng và lạnh, giữa bất động và di chuyển, giữa những mặt đối lập với nhau, nay tìm được sự hài hòa trong cùng một thực thể.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 14,
+    "name": "The Devil",
+    "generalMeaning": "The Devil – Quỷ Dữ là một lá bài tượng trưng cho những mặt tiêu cực cũng như những mặt hạn chế của mỗi người. The Devil tượng trưng cho những hạn chế trong cuộc sống. Và để khắc phục được chúng, bản thân chúng ta phải khắc phục được hành động, và suy nghĩ của chính bản thân mình. Ý chí quyết định tất cả.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 15,
+    "name": "The Tower",
+    "generalMeaning": "The Tower – Ngọn tháp là lá bài tarot nói về sự thay đổi. Nhưng thay đổi của The Tower không giống với lá Death. Bởi thay đổi đó xảy ra bất thình lình, và phá vỡ tất cả mọi thứ. Như một tia sét đánh xẹt ngang từ trên không trung xuống mặt đất. Liệu mắt người có thể bắt kịp theo không ?",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 16,
+    "name": "The Star",
+    "generalMeaning": "The Star – Vì sao. Vì sao trên bầu trời, mang lại hy vọng cho những ai nhìn vào màn đêm sâu thẳm. Ngoài mặt trăng, hình tượng vì sao có lẽ là bạn đồng hành với nhiều người trong màn đêm. Vì sao xa vời lắm nhưng đối với con người khi nhìn lên ánh sáng nhỏ bé trên bầu trời, hy vọng lại được nạp đầy bởi ánh sáng dịu nhẹ đến từ một nơi xa vời lắm. Sau The Tower, tất cả những gì mà con người cần có lẽ là sự hồi phục, chữa lành và một khoảnh khắc lặng im.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 17,
+    "name": "The Moon",
+    "generalMeaning": "The Moon – Mặt Trăng, luôn đem lại nỗi buồn cho những ai đang mang trong mình những khuất mắt về cuộc sống cá nhân. Hay mặt trăng có thể tượng trưng cho những điều bí ẩn, những mê cung tâm trí dựng nên bởi những mặt vô thức trong tâm hồn con người, khiến họ lạc lối bên trong chính bản thân mình, lạc lõng với thế giới.The Moon là lá bài kết nối với mặt nữ bên trong tâm hồn mỗi người. Phần Âm trong Dương, Cảm xúc và trực giác. Sợ hãi và quyến rũ với những bí ẩn chưa được tìm thấy.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 18,
+    "name": "The Sun",
+    "generalMeaning": "The Sun – Mặt trời, mang năng lượng tích cực của ánh sáng, soi sáng mọi tiêu cực trong cuộc sống của mỗi người. Tái sinh từ những tiêu cực của lá bài The Moon, The Sun mang lại ánh sáng cho những ai cần, có thể trước mắt bạn là thành công, nhưng thành công đó chỉ là một dấu hiệu. Một dấu hiệu cho thấy rằng bản thân bạn đang hướng đến một con người mới, một con người hoàn toàn vui vẻ, yêu đời, không bận phải quan tâm những phiền muộn.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 19,
+    "name": "Judgement ",
+    "generalMeaning": "Judgement – Phán xét – Tiếng gọi. Khi định mệnh vẫy gọi, có lẽ chẳng ai có thể kháng lại lời mời. Judgement kêu gọi về một cuộc hành trình, không hẳn như cuộc hành trình của the Fool nhưng cuộc hành trình này khiến con người thức tỉnh. Một cơ hội thứ hai cho cuộc đời khiến bản thân mình có thể thay đổi cuộc đời.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 20,
+    "name": "The World",
+    "generalMeaning": "The World – Thế giới là lá bài Tarot nói về giai đoạn kết thúc của một hành trình. Cuối cuộc hành trình, bạn nhận được điều gì nhỉ. Những gì bạn đã trải qua liệu có giúp cho bạn trưởng thành hơn không? Bạn đã trải qua một quá trình dài, và chính quá trình dài đó đã biến đổi bạn. Nhận thức về những vấn đề xung quanh bạn dần trở nên rõ ràng và trở thành hiện thực. Dù vậy, đây chính là thời khắc để bạn giải phóng mình khỏi những giới hạn thông thường nhất và tìm kiếm chân trời mới.",
+    "isSpecial": false,
+    "blockId": 7,
+    "order": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]
