@@ -99,7 +99,7 @@
     "id":13,
     "text": "Bây giờ ta cho con hỏi 1 câu nữa về lá bài {{cardName}} này, con có muốn hỏi không?",
     "order": 6,
-    "blockId": 8,
+    "tarotCardId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },

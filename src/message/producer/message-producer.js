@@ -45,11 +45,10 @@ export default class MessageProducer extends EventEmitter {
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][NormalMessages]: %s', JSON.stringify(normalMessages));
 
       let message = [];
-      if (normalMessages.length > 0) {
-        message = normalMessages;
-      }
       if (tarotCardMessage.length > 0) {
-        message = concat(message, tarotCardMessage);
+        message =tarotCardMessage;
+      } else if (normalMessages.length > 0) {
+        message = normalMessages;
       }
 
       logger.info('[Message Producer] [BUILD_MESSAGE_EVENT][Messages]: %s', JSON.stringify(message));
