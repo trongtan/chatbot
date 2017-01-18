@@ -114,7 +114,7 @@ export default class TarotCardTemplate extends MessageTemplate {
   }
 
   _isNotOpenedTarotCard(messageTemplateFromDatabase, openedCardToday) {
-    return (messageTemplateFromDatabase.TarotCards && messageTemplateFromDatabase.TarotCards.length > 0 && !openedCardToday);
+    return (messageTemplateFromDatabase.TarotCards && messageTemplateFromDatabase.TarotCards.length > 0 && openedCardToday == null);
   }
 
   _getQuestionIdFromPayloads(payloads) {
