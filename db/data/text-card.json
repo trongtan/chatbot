@@ -614,5 +614,13 @@
     "tarotCardId": 20,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 79,
+    "text": "Hi {{userName}}, chào mừng bạn đến với Bộ bài Tarot tình yêu của Thánh Hẹn Hò. Trước tiên, hãy nghe ta dặn dò đôi điều đây. \nNếu chưa rõ luật chơi, bạn có thể xem \"Thể lệ luật chơi\" bên dưới.\nBạn đã sẵn sàng chưa nào?",
+    "order": 1,
+    "blockId": 11,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
 ]

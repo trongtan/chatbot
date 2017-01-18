@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "name": "Xem bói bài Tarot",
+    "name": "🃏Xem bài Tarot ngay",
     "type": 1,
     "blockId": 4,
     "URL": "",
@@ -114,7 +114,18 @@
     "id": 11,
     "name": "🃏Thử ngay nào",
     "type": 1,
-    "blockId": 3,
+    "blockId": 11,
+    "URL": "",
+    "inAppBrowserSize": 100,
+    "phoneNumber": "",
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 12,
+    "name": "Thể lệ luật chơi",
+    "type": 1,
+    "blockId": 11,
     "URL": "",
     "inAppBrowserSize": 100,
     "phoneNumber": "",
