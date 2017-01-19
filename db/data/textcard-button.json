@@ -15,24 +15,19 @@
     "order": 3
   },
   {
-    "textCardId": 5,
+    "textCardId": 3,
     "buttonId": 4,
     "order": 1
   },
   {
-    "textCardId": 5,
-    "buttonId": 5,
+    "textCardId": 3,
+    "buttonId": 13,
     "order": 2
   },
   {
-    "textCardId": 5,
-    "buttonId": 1,
+    "textCardId": 3,
+    "buttonId": 5,
     "order": 3
-  },
-  {
-    "textCardId": 8,
-    "buttonId": 1,
-    "order": 1
   },
   {
     "textCardId": 8,
@@ -43,11 +38,6 @@
     "textCardId": 9,
     "buttonId": 8,
     "order": 1
-  },
-  {
-    "textCardId": 9,
-    "buttonId": 1,
-    "order": 2
   },
   {
     "textCardId": 13,
@@ -82,6 +72,46 @@
   {
     "textCardId": 79,
     "buttonId": 5,
+    "order": 2
+  },
+  {
+    "textCardId": 80,
+    "buttonId": 3,
+    "order": 3
+  },
+  {
+    "textCardId": 5,
+    "buttonId": 4,
+    "order": 1
+  },
+  {
+    "textCardId": 5,
+    "buttonId": 1,
+    "order": 2
+  },
+  {
+    "textCardId": 81,
+    "buttonId": 4,
+    "order": 1
+  },
+  {
+    "textCardId": 81,
+    "buttonId": 13,
+    "order": 2
+  },
+  {
+    "textCardId": 81,
+    "buttonId": 5,
+    "order": 3
+  },
+  {
+    "textCardId": 9,
+    "buttonId": 9,
+    "order": 1
+  },
+  {
+    "textCardId": 9,
+    "buttonId": 1,
     "order": 2
   }
 ]

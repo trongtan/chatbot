@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "text": "Hi Tân Vũ. Tìm đến ta, chắc chắn bạn muốn có gì cần giúp đỡ mùa Valentine này đúng không?\nTa có một bộ bài Tarot về tình yêu vô cùng thú vị, trên cõi đời này chỉ mỗi ta mới có.\n🤗 Rất đơn giản, ngươi hãy nhấn vào các link bên dưới để bắt đầu nhé 👇🏼",
+    "text": "Hi {{userName}}. Tìm đến ta, chắc chắn bạn muốn có gì cần giúp đỡ mùa Valentine này đúng không?\nTa có một bộ bài Tarot về tình yêu vô cùng thú vị, trên cõi đời này chỉ mỗi ta mới có.\n🤗 Rất đơn giản, ngươi hãy nhấn vào các link bên dưới để bắt đầu nhé 👇🏼",
     "order": 1,
     "blockId": 1,
     "createdAt": "1/01/2017 07:00:00+0700",
@@ -9,31 +9,31 @@
   },
   {
     "id": 3,
-    "text": "Hi {{userName}}, chào mừng bạn đến với bói Bài Tarot của Thánh Hẹn Hò. Trước tiên, hãy nghe Thánh dặn dò đôi điều đây. \n☝️Thứ nhất, bài Tarot chỉ hiệu quả khi bạn xem 1 lần/ngày. Chơi nhiều hơn là Thánh không phán đâu nha.",
+    "text": "Hi {{userName}}, chào mừng bạn đến với Bộ bài Tarot tình yêu của Thánh Hẹn Hò. Trước tiên, hãy nghe ta dặn dò đôi điều đây. \nNếu chưa rõ luật chơi, bạn có thể xem \"Thể lệ luật chơi\" bên dưới. \nBạn đã sẵn sàng chưa nào?",
     "order": 2,
-    "blockId": 4,
+    "blockId": 11,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
     "id": 4,
-    "text": "✌️Thứ hai, mỗi ngày bạn chơi lại sẽ được lưu thành bộ sưu tập các lá bài Tarot tình yêu, sưu tập đủ 3 lá đặc biệt bạn sẽ trúng được 1 e-voucher giá trị",
-    "order": 3,
-    "blockId": 4,
+    "text": "Mỗi ngày, hãy đến đây rút một lá bài Tarot ta xem cho chuyện tình duyên. Từ ngày 1/2 đến ngày 14/2, mỗi ngày rút 1 lá bài, nếu may mắn trong 2 tuần bạn sưu tầm đủ 3 lá bài đặc biệt sẽ nhận được phần quà hấp dẫn từ Close Up là voucher 150k để cùng người yêu hẹn hò thả ga.",
+    "order": 1,
+    "blockId": 12,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
     "id": 5,
-    "text": "🤘Thứ ba, khi sưu tập đủ 9 lá bài khác nhau, bạn sẽ có cơ hội nhận được lá bài siêu đặc biệt vào ngày 13/2, với lá bài này, bạn sẽ là chủ nhân của cặp siêu phẩm iPhone 7 và iPhone 7 Plus. \nBạn đã sẵn sàng lật bài Tarot chứ?",
-    "order": 4,
-    "blockId": 4,
+    "text": "Và nếu may mắn hơn, bạn còn có cơ hội nhận được 1 lá bài siêu đặc biệt, sẽ nhận được phần quà siêu đặc biệt là voucher trị giá 30,000,000 đ của Saigontourist đấy",
+    "order": 2,
+    "blockId": 12,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
   {
     "id": 6,
-    "text": "Dưới đây là 6 lá bài ngẫu nhiên, mỗi lá ẩn chứa một thông điệp khác nhau, hãy tĩnh tâm, đọc câu hỏi theo gợi ý bên dưới là bài và lật lá bài tương ứng nhé👇",
+    "text": "Dưới đây là 6 lá bài ngẫu nhiên, mỗi lá ẩn chứa một thông điệp khác nhau về tình yêu.\nHãy nhớ, mỗi ngày chỉ được rút 1 lá bài thôi nhé! Xem nhiều quá sẽ mất linh đấy!\nChọn cho mình 1 lá bài ngay nào👇",
     "order": 1,
     "blockId": 5,
     "createdAt": "1/01/2017 07:00:00+0700",
@@ -59,7 +59,7 @@
     "id": 9,
     "text": "Hey {{userName}}. Lá bài bạn vừa mở có tên là \"{{cardName}}\". \nÁi chà, thú vị đó, bạn có muốn Thánh Hẹn Hò phán đôi điều liên quan tới chuyện tình yêu của bạn liên quan lá bài này chứ?",
     "order": 2,
-    "tarotCardId": 1,
+    "tarotCardId": 3,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
   },
@@ -622,5 +622,22 @@
     "blockId": 11,
     "createdAt": "1/01/2017 07:00:00+0700",
     "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 80,
+    "text": "Thánh có bộ bài Tarot tình yêu khá thú vị, nhà ngươi có muốn xem thử chuyện tình duyên của mình sẽ như thế nào không?",
+    "order": 2,
+    "blockId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 81,
+    "text": "Hi {{userName}}, chào mừng bạn đến với Bộ bài Tarot tình yêu của Thánh Hẹn Hò. Trước tiên, hãy nghe ta dặn dò đôi điều đây. \nNếu chưa rõ luật chơi, bạn có thể xem \"Thể lệ luật chơi\" bên dưới. \nBạn đã sẵn sàng chưa nào?",
+    "order": 1,
+    "blockId": 4,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
   }
+
 ]

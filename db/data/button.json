@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "name": "🃏Xem bài Tarot ngay",
+    "name": "🃏 Xem bài Tarot",
     "type": 1,
     "blockId": 4,
     "URL": "",
@@ -34,7 +34,7 @@
   },
   {
     "id": 4,
-    "name": "Bói bài Tarot ngay",
+    "name": "🃏 Xem bài Tarot ngay",
     "type": 1,
     "blockId": 5,
     "URL": "",
@@ -56,7 +56,7 @@
   },
   {
     "id": 6,
-    "name": "Mở lá bài này",
+    "name": "Lật lá bài này 👆",
     "type": 1,
     "blockId": 7,
     "URL": "",
@@ -125,7 +125,18 @@
     "id": 12,
     "name": "Thể lệ luật chơi",
     "type": 1,
-    "blockId": 11,
+    "blockId": 12,
+    "URL": "",
+    "inAppBrowserSize": 100,
+    "phoneNumber": "",
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 13,
+    "name": "Thể lệ luật chơi",
+    "type": 1,
+    "blockId": 12,
     "URL": "",
     "inAppBrowserSize": 100,
     "phoneNumber": "",

@@ -1,13 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "Home",
-    "order": 1,
-    "blockId": 3,
-    "createdAt": "1/01/2017 07:00:00+0700",
-    "updatedAt": "1/01/2017 07:00:00+0700"
-  },
-  {
     "id": 2,
     "title": "Bói Bài Tarot ngay",
     "order": 2,

@@ -1,18 +1,8 @@
 [
   {
-    "elementId": 1,
-    "buttonId": 3,
-    "order": 1
-  },
-  {
     "elementId": 3,
     "buttonId": 6,
     "order": 1
-  },
-  {
-    "elementId": 3,
-    "buttonId": 1,
-    "order": 2
   },
   {
     "elementId": 4,
@@ -20,18 +10,8 @@
     "order": 1
   },
   {
-    "elementId": 4,
-    "buttonId": 1,
-    "order": 2
-  },
-  {
     "elementId": 5,
     "buttonId": 6,
-    "order": 1
-  },
-  {
-    "elementId": 5,
-    "buttonId": 1,
     "order": 1
   },
   {
@@ -40,29 +20,13 @@
     "order": 1
   },
   {
-    "elementId": 6,
-    "buttonId": 1,
-    "order": 2
-
-  },
-  {
     "elementId": 7,
     "buttonId": 6,
     "order": 1
   },
   {
-    "elementId": 7,
-    "buttonId": 1,
-    "order": 2
-  },
-  {
     "elementId": 8,
     "buttonId": 6,
     "order": 1
-  },
-  {
-    "elementId": 8,
-    "buttonId": 1,
-    "order": 2
   }
 ]
