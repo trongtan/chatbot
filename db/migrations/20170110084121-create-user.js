@@ -16,21 +16,6 @@ module.exports = {
       gender: {
         type: Sequelize.STRING
       },
-      parental: {
-        type: Sequelize.STRING
-      },
-      childName: {
-        type: Sequelize.STRING
-      },
-      favoriteTime: {
-        type: Sequelize.INTEGER
-      },
-      subscribe: {
-        type: Sequelize.STRING
-      },
-      readStories: {
-        type: Sequelize.STRING
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

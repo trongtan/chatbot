@@ -24,56 +24,8 @@
         }
       },
       {
-        "name": "imageURL",
-        "verbose": "imageURL",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "heading",
-        "verbose": "heading",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "subtitle",
-        "verbose": "subtitle",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "URL",
-        "verbose": "URL",
+        "name": "title",
+        "verbose": "Title",
         "control": {
           "text": true
         },
@@ -120,10 +72,40 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "verbose": "Elements",
+        "name": "galleries_elements",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "listview": {
+          "show": false
         },
         "editview": {
           "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "GalleriesElements",
+            "parentPk": "galleryId",
+            "childPk": "elementId"
+          },
+          "ref": {
+            "table": "Elements",
+            "pk": "id",
+            "columns": [
+              "heading"
+            ]
+          }
         }
       },
       {
@@ -160,14 +142,17 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false
+      "readonly": false,
+      "manyToOne": {
+        "Elements": "galleryId"
+      }
     }
   }
 }

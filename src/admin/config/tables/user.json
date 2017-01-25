@@ -1,10 +1,10 @@
 {
-  "User": {
-    "slug": "User",
+  "Users": {
+    "slug": "Users",
     "table": {
-      "name": "User",
+      "name": "Users",
       "pk": "userId",
-      "verbose": "User"
+      "verbose": "Users"
     },
     "columns": [
       {
@@ -17,15 +17,15 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
         "name": "firstName",
-        "verbose": "First Name",
+        "verbose": "firstName",
         "control": {
           "text": true
         },
@@ -41,7 +41,7 @@
       },
       {
         "name": "lastName",
-        "verbose": "Last Name",
+        "verbose": "lastName",
         "control": {
           "text": true
         },
@@ -57,7 +57,7 @@
       },
       {
         "name": "gender",
-        "verbose": "Gender",
+        "verbose": "gender",
         "control": {
           "text": true
         },
@@ -72,113 +72,40 @@
         }
       },
       {
-        "name": "parental",
-        "verbose": "Parental",
+        "verbose": "Opened Cards",
+        "name": "openedCards",
         "control": {
-          "text": true
+          "select": true,
+          "multiple": true
         },
         "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
+        "allowNull": false,
         "listview": {
           "show": true
         },
         "editview": {
           "show": true
-        }
-      },
-      {
-        "name": "childName",
-        "verbose": "Child Name",
-        "control": {
-          "text": true
         },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "favoriteTime",
-        "verbose": "Favorite Time",
-        "control": {
-          "text": true
-        },
-        "type": "integer",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "currentPayload",
-        "verbose": "currentPayload",
-        "control": {
-          "select": true
-        },
-        "oneToMany": {
-          "table": "Postback",
-          "pk": "id",
-          "columns": [
-            "title"
-          ]
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": false
-        }
-      },
-      {
-        "name": "subscribe",
-        "verbose": "Subscribe Channels",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": false
-        }
-      },
-      {
-        "name": "readStories",
-        "verbose": "readStories",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": false
-        },
-        "editview": {
-          "show": false
+        "manyToMany": {
+          "link": {
+            "table": "OpenedCards",
+            "parentPk": "userId",
+            "childPk": "tarotCardId"
+          },
+          "ref": {
+            "table": "TarotCards",
+            "pk": "id",
+            "columns": [
+              "name"
+            ]
+          }
         }
       },
       {
         "name": "createdAt",
-        "verbose": "Created At",
+        "verbose": "createdAt",
         "control": {
-          "text": true
+          "date": true
         },
         "type": "timestamp",
         "allowNull": false,
@@ -192,9 +119,9 @@
       },
       {
         "name": "updatedAt",
-        "verbose": "Updated At",
+        "verbose": "updatedAt",
         "control": {
-          "text": true
+          "date": true
         },
         "type": "timestamp",
         "allowNull": false,
@@ -215,7 +142,7 @@
       "page": 25
     },
     "editview": {
-      "readonly": false
+      "readonly": true
     }
   }
 }

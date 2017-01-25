@@ -24,8 +24,8 @@
         }
       },
       {
-        "name": "name",
-        "verbose": "name",
+        "name": "title",
+        "verbose": "title",
         "control": {
           "text": true
         },
@@ -72,10 +72,10 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
@@ -88,10 +88,40 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "verbose": "Items",
+        "name": "quickReplies_items",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "listview": {
+          "show": false
         },
         "editview": {
           "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "QuickReliesItems",
+            "parentPk": "quickReplyId",
+            "childPk": "itemId"
+          },
+          "ref": {
+            "table": "Items",
+            "pk": "id",
+            "columns": [
+              "name"
+            ]
+          }
         }
       },
       {
@@ -128,14 +158,17 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false
+      "readonly": false,
+      "manyToOne": {
+        "Items": "quickReplyId"
+      }
     }
   }
 }

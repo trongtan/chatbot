@@ -27,9 +27,9 @@
         "name": "text",
         "verbose": "text",
         "control": {
-          "text": true
+          "textarea": true
         },
-        "type": "varchar(255)",
+        "type": "varchar(320)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -72,10 +72,40 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "verbose": "Buttons",
+        "name": "textCard_Buttons",
+        "control": {
+          "select": true,
+          "multiple": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "listview": {
+          "show": false
         },
         "editview": {
           "show": true
+        },
+        "manyToMany": {
+          "link": {
+            "table": "TextCardButtons",
+            "parentPk": "textCardId",
+            "childPk": "buttonId"
+          },
+          "ref": {
+            "table": "Buttons",
+            "pk": "id",
+            "columns": [
+              "name"
+            ]
+          }
         }
       },
       {
@@ -88,7 +118,7 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
           "show": false
@@ -104,7 +134,23 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "tarotCardId",
+        "verbose": "tarotCardId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": false
         },
         "editview": {
           "show": false
@@ -112,17 +158,14 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},
       "page": 25
     },
     "editview": {
-      "readonly": false,
-      "manyToOne": {
-        "Buttons": "textCardId"
-      }
+      "readonly": false
     }
   }
 }

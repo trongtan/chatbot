@@ -1,10 +1,10 @@
 {
-  "Buttons": {
-    "slug": "Buttons",
+  "Elements": {
+    "slug": "Elements",
     "table": {
-      "name": "Buttons",
+      "name": "Elements",
       "pk": "id",
-      "verbose": "Buttons"
+      "verbose": "Elements"
     },
     "columns": [
       {
@@ -24,8 +24,8 @@
         }
       },
       {
-        "name": "name",
-        "verbose": "name",
+        "name": "heading",
+        "verbose": "heading",
         "control": {
           "text": true
         },
@@ -40,33 +40,26 @@
         }
       },
       {
-        "name": "type",
-        "verbose": "type",
+        "name": "subtitle",
+        "verbose": "subtitle",
         "control": {
           "text": true
         },
-        "type": "integer",
+        "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
-        "name": "blockId",
-        "verbose": "blockId",
+        "name": "imageURL",
+        "verbose": "imageURL",
         "control": {
-          "select": true
-        },
-        "oneToMany": {
-          "table": "Blocks",
-          "pk": "id",
-          "columns": [
-            "name"
-          ]
+          "text": true
         },
         "type": "varchar(255)",
         "allowNull": true,
@@ -95,8 +88,8 @@
         }
       },
       {
-        "name": "inAppBrowserSize",
-        "verbose": "inAppBrowserSize",
+        "name": "order",
+        "verbose": "order",
         "control": {
           "text": true
         },
@@ -111,19 +104,26 @@
         }
       },
       {
-        "name": "phoneNumber",
-        "verbose": "phoneNumber",
+        "name": "galleryId",
+        "verbose": "galleryId",
         "control": {
-          "text": true
+          "select": true
+        },
+        "oneToMany": {
+          "table": "Galleries",
+          "pk": "id",
+          "columns": [
+            "title"
+          ]
         },
         "type": "varchar(255)",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
@@ -153,22 +153,6 @@
         "defaultValue": null,
         "listview": {
           "show": true
-        },
-        "editview": {
-          "show": false
-        }
-      },
-      {
-        "name": "tarotCardId",
-        "verbose": "tarotCardId",
-        "control": {
-          "text": true
-        },
-        "type": "integer",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": false
         },
         "editview": {
           "show": false

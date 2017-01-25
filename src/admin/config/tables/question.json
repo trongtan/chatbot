@@ -1,10 +1,10 @@
 {
-  "Buttons": {
-    "slug": "Buttons",
+  "Questions": {
+    "slug": "Questions",
     "table": {
-      "name": "Buttons",
+      "name": "Questions",
       "pk": "id",
-      "verbose": "Buttons"
+      "verbose": "Questions"
     },
     "columns": [
       {
@@ -24,12 +24,12 @@
         }
       },
       {
-        "name": "name",
-        "verbose": "name",
+        "name": "question",
+        "verbose": "question",
         "control": {
-          "text": true
+          "textarea": true
         },
-        "type": "varchar(255)",
+        "type": "text",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -40,8 +40,40 @@
         }
       },
       {
-        "name": "type",
-        "verbose": "type",
+        "name": "answer",
+        "verbose": "answer",
+        "control": {
+          "textarea": true
+        },
+        "type": "text",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "imageURL",
+        "verbose": "imageURL",
+        "control": {
+          "text": true
+        },
+        "type": "text",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "order",
+        "verbose": "order",
         "control": {
           "text": true
         },
@@ -49,20 +81,20 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": false
+          "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
-        "name": "blockId",
-        "verbose": "blockId",
+        "name": "tarotCardId",
+        "verbose": "tarotCardId",
         "control": {
           "select": true
         },
         "oneToMany": {
-          "table": "Blocks",
+          "table": "TarotCards",
           "pk": "id",
           "columns": [
             "name"
@@ -72,58 +104,10 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "URL",
-        "verbose": "URL",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "inAppBrowserSize",
-        "verbose": "inAppBrowserSize",
-        "control": {
-          "text": true
-        },
-        "type": "integer",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "phoneNumber",
-        "verbose": "phoneNumber",
-        "control": {
-          "text": true
-        },
-        "type": "varchar(255)",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
+          "show": false
         }
       },
       {
@@ -157,26 +141,10 @@
         "editview": {
           "show": false
         }
-      },
-      {
-        "name": "tarotCardId",
-        "verbose": "tarotCardId",
-        "control": {
-          "text": true
-        },
-        "type": "integer",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": false
-        },
-        "editview": {
-          "show": false
-        }
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},

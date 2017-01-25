@@ -1,10 +1,10 @@
 {
-  "Buttons": {
-    "slug": "Buttons",
+  "OpenedCards": {
+    "slug": "OpenedCards",
     "table": {
-      "name": "Buttons",
+      "name": "OpenedCards",
       "pk": "id",
-      "verbose": "Buttons"
+      "verbose": "OpenedCards"
     },
     "columns": [
       {
@@ -13,7 +13,7 @@
         "control": {
           "text": true
         },
-        "type": "varchar(255)",
+        "type": "integer",
         "allowNull": false,
         "defaultValue": null,
         "listview": {
@@ -24,8 +24,24 @@
         }
       },
       {
-        "name": "name",
-        "verbose": "name",
+        "name": "dateOpened",
+        "verbose": "Date Opened",
+        "control": {
+          "text": true
+        },
+        "type": "timestamp",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "Card Name",
+        "verbose": "cardName",
         "control": {
           "text": true
         },
@@ -40,12 +56,12 @@
         }
       },
       {
-        "name": "type",
-        "verbose": "type",
+        "name": "isOpened",
+        "verbose": "isOpened",
         "control": {
           "text": true
         },
-        "type": "integer",
+        "type": "char",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -56,31 +72,40 @@
         }
       },
       {
-        "name": "blockId",
-        "verbose": "blockId",
+        "name": "isShownMeaning",
+        "verbose": "isShownMeaning",
         "control": {
-          "select": true
+          "text": true
         },
-        "oneToMany": {
-          "table": "Blocks",
-          "pk": "id",
-          "columns": [
-            "name"
-          ]
-        },
-        "type": "varchar(255)",
+        "type": "char",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
-        "name": "URL",
-        "verbose": "URL",
+        "name": "isAskQuestion",
+        "verbose": "isAskQuestion",
+        "control": {
+          "text": true
+        },
+        "type": "char",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
+      },
+      {
+        "name": "userId",
+        "verbose": "userId",
         "control": {
           "text": true
         },
@@ -88,31 +113,15 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
         }
       },
       {
-        "name": "inAppBrowserSize",
-        "verbose": "inAppBrowserSize",
-        "control": {
-          "text": true
-        },
-        "type": "integer",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": true
-        }
-      },
-      {
-        "name": "phoneNumber",
-        "verbose": "phoneNumber",
+        "name": "tarotCardId",
+        "verbose": "tarotCardId",
         "control": {
           "text": true
         },
@@ -120,10 +129,26 @@
         "allowNull": true,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
-          "show": true
+          "show": false
+        }
+      },
+      {
+        "name": "questionId",
+        "verbose": "questionId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
         }
       },
       {
@@ -136,7 +161,7 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
+          "show": false
         },
         "editview": {
           "show": false
@@ -152,22 +177,6 @@
         "allowNull": false,
         "defaultValue": null,
         "listview": {
-          "show": true
-        },
-        "editview": {
-          "show": false
-        }
-      },
-      {
-        "name": "tarotCardId",
-        "verbose": "tarotCardId",
-        "control": {
-          "text": true
-        },
-        "type": "integer",
-        "allowNull": true,
-        "defaultValue": null,
-        "listview": {
           "show": false
         },
         "editview": {
@@ -176,7 +185,7 @@
       }
     ],
     "mainview": {
-      "show": true
+      "show": false
     },
     "listview": {
       "order": {},

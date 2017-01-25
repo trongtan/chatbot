@@ -103,7 +103,13 @@
       "page": 25
     },
     "editview": {
-      "readonly": false
+      "readonly": false,
+      "manyToOne": {
+        "TextCards": "blockId",
+        "Galleries": "blockId",
+        "Images": "blockId",
+        "QuickReplies": "blockId"
+      }
     }
   }
 }

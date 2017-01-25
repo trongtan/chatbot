@@ -1,10 +1,10 @@
 {
-  "Images": {
-    "slug": "Images",
+  "TarotCards": {
+    "slug": "TarotCards",
     "table": {
-      "name": "Images",
+      "name": "TarotCards",
       "pk": "id",
-      "verbose": "Images"
+      "verbose": "TarotCards"
     },
     "columns": [
       {
@@ -24,8 +24,8 @@
         }
       },
       {
-        "name": "imageURL",
-        "verbose": "imageURL",
+        "name": "name",
+        "verbose": "name",
         "control": {
           "text": true
         },
@@ -40,12 +40,32 @@
         }
       },
       {
-        "name": "order",
-        "verbose": "order",
+        "name": "generalMeaning",
+        "verbose": "generalMeaning",
         "control": {
-          "text": true
+          "textarea": true
         },
-        "type": "integer",
+        "type": "text",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "isSpecial",
+        "verbose": "isSpecial",
+        "control": {
+          "radio": true,
+          "options": [
+            "True",
+            "False"
+          ]
+        },
+        "type": "char",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
@@ -69,13 +89,29 @@
           ]
         },
         "type": "varchar(255)",
+        "allowNull": false,
+        "defaultValue": null,
+        "listview": {
+          "show": true
+        },
+        "editview": {
+          "show": true
+        }
+      },
+      {
+        "name": "order",
+        "verbose": "order",
+        "control": {
+          "text": true
+        },
+        "type": "integer",
         "allowNull": true,
         "defaultValue": null,
         "listview": {
           "show": true
         },
         "editview": {
-          "show": false
+          "show": true
         }
       },
       {
@@ -119,7 +155,12 @@
       "page": 25
     },
     "editview": {
-      "readonly": false
+      "readonly": false,
+      "manyToOne": {
+        "Images": "tarotCardId",
+        "TextCards": "tarotCardId",
+        "Questions": "tarotCardId"
+      }
     }
   }
 }
