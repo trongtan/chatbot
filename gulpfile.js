@@ -114,6 +114,7 @@ gulp.task('merge-admin-settings', () => {
       'src/admin/config/tables/button.json',
       'src/admin/config/tables/question.json',
       'src/admin/config/tables/tarot-card.json',
+      'src/admin/config/tables/meaning.json',
       'src/admin/config/tables/user.json',
       //Hidden table
       'src/admin/config/tables/opened-cards.json',

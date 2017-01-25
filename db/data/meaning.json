@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "title": "The Fool",
+    "tarotCardId": 1,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 2,
+    "title": "The Magician",
+    "tarotCardId": 2,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 3,
+    "title": "The Empress",
+    "tarotCardId": 3,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 4,
+    "title": "The Emperor",
+    "tarotCardId": 4,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 5,
+    "title": "The Lovers",
+    "tarotCardId": 5,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 6,
+    "title": "The Chariot",
+    "tarotCardId": 6,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 7,
+    "title": "Strength",
+    "tarotCardId": 7,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 8,
+    "title": "The Hermit",
+    "tarotCardId": 8,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 9,
+    "title": "The Wheel of Fortune",
+    "tarotCardId": 9,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 10,
+    "title": "The Justice",
+    "tarotCardId": 10,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 11,
+    "title": "The Hanged Man",
+    "tarotCardId": 11,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 12,
+    "title": "Death",
+    "tarotCardId": 12,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 13,
+    "title": "The Temperance",
+    "tarotCardId": 13,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 14,
+    "title": "The Devil",
+    "tarotCardId": 14,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 15,
+    "title": "The Tower",
+    "tarotCardId": 15,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 16,
+    "title": "The Star",
+    "tarotCardId": 16,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 17,
+    "title": "The Moon",
+    "tarotCardId": 17,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 18,
+    "title": "The Sun",
+    "tarotCardId": 18,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 19,
+    "title": "The Judgment",
+    "tarotCardId": 19,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  },
+  {
+    "id": 20,
+    "title": "The World",
+    "tarotCardId": 20,
+    "createdAt": "1/01/2017 07:00:00+0700",
+    "updatedAt": "1/01/2017 07:00:00+0700"
+  }
+]

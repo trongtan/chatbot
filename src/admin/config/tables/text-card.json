@@ -155,6 +155,22 @@
         "editview": {
           "show": false
         }
+      },
+      {
+        "name": "meaningId",
+        "verbose": "meaningId",
+        "control": {
+          "text": true
+        },
+        "type": "varchar(255)",
+        "allowNull": true,
+        "defaultValue": null,
+        "listview": {
+          "show": false
+        },
+        "editview": {
+          "show": false
+        }
       }
     ],
     "mainview": {
