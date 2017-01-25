@@ -2,12 +2,12 @@ import moment from 'moment';
 import shortid from 'shortid';
 
 import { DEFAULT_DATE_FORMAT } from 'utils/constants';
-import WatchwordEvent from './watchword';
-import PersistentMenusEvent from './persistent-menu';
+import BlockEvent from './blocks';
+import TarotCardEvent from './tarot-cards';
 
 const childEvents = {
-  'Watchword': new WatchwordEvent(),
-  'PersistentMenus': new PersistentMenusEvent(),
+  'Blocks': new BlockEvent(),
+  'TarotCards': new TarotCardEvent()
 };
 
 export const preSave = (req, res, args, next) => {

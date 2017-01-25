@@ -15,12 +15,7 @@ export default (sequelize, DataTypes) => {
     },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    gender: DataTypes.STRING,
-    parental: DataTypes.STRING,
-    childName: DataTypes.STRING,
-    favoriteTime: DataTypes.INTEGER,
-    subscribe: DataTypes.STRING,
-    readStories: DataTypes.STRING
+    gender: DataTypes.STRING
   }, {
     freezeTableName: true,
     classMethods: {
@@ -74,42 +69,6 @@ export default (sequelize, DataTypes) => {
           }
         });
       },
-      updateParental: (userId, payload, parental) => {
-        return User.update({
-          parental: parental,
-          currentPayload: payload
-        }, { where: { userId: userId } });
-      },
-      updateChildName: (userId, childName) => {
-        return User.update({
-          childName: childName,
-          currentPayload: payloadConstants.ASK_CHILD_NAME_PAYLOAD
-        }, { where: { userId: userId } });
-      },
-      updateFavoriteTime: (userId, favoriteTime) => {
-        return User.update({
-          favoriteTime: favoriteTime,
-          currentPayload: payloadConstants.ASK_FAVORITE_TIME_PAYLOAD
-        }, { where: { userId: userId } });
-      },
-      getParentalName(parental) {
-        const parentalMap = {
-          'DAD': 'Bố',
-          'MOM': 'Mẹ',
-          'NA': 'bạn'
-        };
-        return parentalMap[parental];
-      },
-      updateSubscribe(userId, subscribe) {
-        return User.update({
-          subscribe: subscribe
-        }, { where: { userId: userId } });
-      },
-      updateReadStories(userId, readStories) {
-        return User.update({
-          readStories: readStories
-        }, { where: { userId: userId } });
-      }
     }
   });
 
